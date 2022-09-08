@@ -1,0 +1,24 @@
+{
+  "name": "@ucsjs/blueprint",
+  "version": "0.0.5",
+  "description": "UCS.js: Web reactivity with Websocket, Protobuf and RXJS (@server)",
+  "author": "Andre Ferreira",
+  "license": "MIT",
+  "private": false,
+  "homepage": "https://ucsjs.io",
+  "funding": {
+    "type": "opencollective",
+    "url": "https://opencollective.com/ucsjs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ucsjs"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "devDependencies": {
+    "ts-node": "^10.8.1",
+    "typescript": "^4.7.2"
+  }
+}

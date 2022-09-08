@@ -1,0 +1,11 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const counter_blueprint_1 = require("../../../blueprints/counter.blueprint");
+const hash_blueprint_1 = require("../../../blueprints/hash.blueprint");
+const console_blueprint_1 = require("../../../blueprints/console.blueprint");
+const counter = new counter_blueprint_1.Counter();
+const hash = new hash_blueprint_1.Hash({ algorithm: "sha256", encoding: "hex" });
+const console = new console_blueprint_1.Console();
+counter.subscribe("counter", hash.assign("state"));
+hash.subscribe("result", console.assign("message"));
+counter.start();

@@ -1,0 +1,21 @@
+{
+    "name": "ucsjs-hash",
+    "version": "0.0.1",
+    "description": "UCS.js: Web reactivity with Websocket, Protobuf and RXJS",
+    "license": "MIT",
+    "private": false,
+    "scripts": {
+      "dev": "nodemon"
+    },
+    "devDependencies": {
+      "nodemon": "^2.0.16",
+      "ts-loader": "9.2.8",
+      "ts-node": "^10.8.1",
+      "tsconfig-paths": "3.11.0",
+      "typescript": "^4.7.3"
+    },
+    "publishConfig": {
+      "access": "public"
+    }
+}
+  
