@@ -1,7 +1,7 @@
 {
   "name": "@ucsjs/blueprint",
   "version": "0.0.8",
-  "description": "UCS.js: Web reactivity with Websocket, Protobuf and RXJS (@server)",
+  "description": "UCS.js: Web reactivity with Websocket, Protobuf and RXJS (@blueprint)",
   "author": "Andre Ferreira",
   "license": "MIT",
   "private": false,

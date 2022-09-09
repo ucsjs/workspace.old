@@ -1,11 +1,10 @@
 import * as crypto from "crypto";
-import { Type } from "../enums/types.enum";
-import { Blueprint, Global } from "../services";
+import { Blueprint, Type } from "@ucsjs/blueprint";
 
 export class HashBlueprint extends Blueprint {
     //Metadata
     private __namespace = "Hash";
-    private __type = "Common";
+    private __type = "Encoding";
 
     public _algorithm: string = "sha256";
     public _encoding: crypto.BinaryToTextEncoding = "hex";
@@ -13,7 +12,7 @@ export class HashBlueprint extends Blueprint {
     constructor(metadata?: any){
         super();
         this.setup(metadata);
-        this.input("state", Type.String, null, (v) => this.transform(v, this));
+        this.input("state", Type.Any, null, (v) => this.transform(v, this));
         this.output("result", Type.String, null);
     }
 
@@ -27,5 +26,3 @@ export class HashBlueprint extends Blueprint {
         scope.next("result", hash);
     }
 }
-
-Global.register(HashBlueprint);

@@ -1,6 +1,5 @@
 import { BehaviorSubject } from 'rxjs';
-import { Type } from '../enums/types.enum';
-import { Blueprint, Global } from "../services";
+import { Blueprint, Type } from "@ucsjs/blueprint";
 
 export class CounterBlueprint extends Blueprint {
     //Metadata
@@ -41,5 +40,3 @@ export class CounterBlueprint extends Blueprint {
         this.start();
     }
 }
-
-Global.register(CounterBlueprint);

@@ -15,7 +15,7 @@
     "useUnknownInCatchVariables": false,
     "target": "es2017",
     "sourceMap": false,
-    "allowJs": false,
+    "allowJs": true,
     "strict": true,
     "strictNullChecks": false,
     "types": ["node"]

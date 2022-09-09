@@ -66,4 +66,24 @@ export class Blueprint {
         if(output)
             output.value?.next(value);
     }
+
+    error(context, message){
+        
+    }
+}
+
+export class Global {
+    public static blueprints: any[] = [];
+    public static indexBlueprints: any = {};
+
+    public static register(blueprint: any){
+        if(!this.blueprints.find(blueprintExist => blueprintExist.constructor.name === blueprint.constructor.name)){
+            this.blueprints.push(blueprint);
+            this.indexBlueprints[blueprint.constructor.name] = this.blueprints.length-1;
+        } 
+    }
+
+    public static getBlueprint(name: string){
+        return (this.indexBlueprints[name]) ? this.blueprints[this.indexBlueprints[name]] : null;
+    }
 }

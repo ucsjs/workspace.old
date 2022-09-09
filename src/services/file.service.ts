@@ -15,7 +15,7 @@ export class FileService {
 
 		for(let file of files) {
 			const info = fs.lstatSync(file);
-			let language = info.isFile() ? languageDetect.filename(file).toLowerCase() : null;
+			let language = info.isFile() ? languageDetect.filename(file)?.toLowerCase() : null;
 
 			switch(path.extname(file).replace(".", "")){
 				case "ts": language = "typescript"; break;

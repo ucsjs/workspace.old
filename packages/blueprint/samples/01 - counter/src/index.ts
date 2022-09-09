@@ -1,8 +1,10 @@
-import { Counter } from "../../../blueprints/counter.blueprint";
-import { Console } from "../../../blueprints/console.blueprint";
+import { Flow } from "../../../services/flow.services";
+import { CounterBlueprint } from "../../../blueprints/counter.blueprint";
+import { ConsoleBlueprint } from "../../../blueprints/console.blueprint";
 
-const counter = new Counter();
-const console = new Console();
-
-counter.subscribe("counter", console.assign("message"));
-counter.start();
+new Flow({
+    counter: new CounterBlueprint(),
+    console: new ConsoleBlueprint()
+})
+.subscribe("counter", "counter", "console", "message")
+.start();
