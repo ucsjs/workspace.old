@@ -1,0 +1,12 @@
+{
+    "watch": [
+        "src/",
+        "views/"
+    ],
+    "ext": "ts,mst",
+    "ignore": [
+        "src/**/*.spec.ts",
+        "src/**/*.blueprint.ts"
+    ],
+    "exec": "ts-node src/index.ts"
+}

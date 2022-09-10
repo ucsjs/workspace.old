@@ -1,13 +1,8 @@
 {
-  "extends": "./../tsconfig.base.json",
-  "compilerOptions": {
-    "module": "AMD",
-    "moduleResolution": "node",
-    "lib": ["es5", "es6", "dom"],
-    "baseUrl": "./",
-    "outFile": "./build/build.js",
-    "preserveConstEnums": true,
-    "removeComments": true
-  },
-  "include": ["*.ts", "**/*.ts"]
+	"extends": "./../tsconfig.base.json",
+	"compilerOptions": {
+	  "baseUrl": "./"
+	},
+	"include": ["*.ts", "**/*.ts"],
+	"exclude": ["samples"]
 }

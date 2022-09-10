@@ -33,7 +33,7 @@
     "@nestjs/common": "^8.0.0",
     "@nestjs/core": "^8.0.0",
     "@nestjs/platform-express": "^8.0.0",
-    "@ucsjs/blueprint": "^0.0.8",
+    "@ucsjs/blueprint": "^0.0.11",
     "compression": "^1.7.4",
     "cookie-parser": "^1.4.6",
     "cscript": "^1.0.26",

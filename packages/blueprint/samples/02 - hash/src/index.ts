@@ -1,4 +1,4 @@
-import { Flow } from "../../../services/flow.services";
+import { Flow } from "../../../services/flow.service";
 import { CounterBlueprint } from "../../../blueprints/counter.blueprint";
 import { HashBlueprint } from "../../../blueprints/hash.blueprint";
 import { ConsoleBlueprint } from "../../../blueprints/console.blueprint";

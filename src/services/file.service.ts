@@ -5,12 +5,13 @@ import * as mime from "mime-types";
 import * as crypto from 'crypto';
 import * as languageDetect from "language-detect";
 import { Injectable } from '@nestjs/common';
+import { Parser } from "@ucsjs/blueprint";
 
 @Injectable()
 export class FileService {
 	async getFiles(pathname: string = "") {
-		const resolvePath = path.resolve(`./.metadata/${pathname}`);
-		const files = await fg([`${resolvePath}/*`], { dot: true, onlyFiles: false });
+		const resolvePath = path.resolve(`./.workspace/${pathname}`);
+		const files = await fg([`${resolvePath}/*`], { dot: false, onlyFiles: false });
 		let result = [];
 
 		for(let file of files) {
@@ -20,6 +21,9 @@ export class FileService {
 			switch(path.extname(file).replace(".", "")){
 				case "ts": language = "typescript"; break;
 			}
+
+			if(file.includes("blueprint.ts"))
+				language = "blueprint";
 
 			result.push({
 				name: file.replace(resolvePath, "").replace(/\//s, ""),
@@ -39,11 +43,31 @@ export class FileService {
 	}
 
 	steamFile(filename: string) {
-		return fs.createReadStream(filename);
+		const basename = path.basename(filename);
+		return (filename.includes("blueprint.ts")) ? fs.createReadStream(`${filename.replace(basename, `.${basename.replace(".ts", "")}`)}.meta`) : fs.createReadStream(filename);
+	}
+
+	uppercaseFirstLetter(string: string) {
+		return string.charAt(0).toUpperCase() + string.slice(1);
 	}
 
 	async saveFile(item){
-		await fs.writeFileSync(item.filename, item.content);
+		if(item.filename.includes(".blueprint.ts")){
+			const dirname = path.dirname(item.filename);
+			const basename = path.basename(item.filename, ".ts");
+			const parserBasename = basename.split(".");
+			await fs.writeFileSync(`${dirname}/.${basename}.meta`, item.content);
+			
+			const parser = new Parser(`${this.uppercaseFirstLetter(parserBasename[0])}Blueprint`, JSON.parse(item.content), [
+				path.resolve("./src/blueprints/**/*.blueprint.ts")
+			], path.resolve("."));
+		
+			fs.writeFileSync(item.filename, await parser.export());
+		}
+		else{
+			await fs.writeFileSync(item.filename, item.content);
+		}
+
 		const info = fs.lstatSync(item.filename);
 
 		return {				

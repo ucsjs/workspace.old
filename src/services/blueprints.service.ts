@@ -22,20 +22,20 @@ export class BlueprintsService {
             for(let file of files){
                 const contents = fs.readFileSync(file, "utf8").toString();
 
-                if(!fs.existsSync(file.replace(".ts", ".js")))
-                    execSync(`./node_modules/.bin/tsc ${file} --module commonjs`);
+                //if(!fs.existsSync(file.replace(".ts", ".js")))
+                //    execSync(`./node_modules/.bin/tsc ${file} --module commonjs`);
 
-                const contentsBrowser = fs.readFileSync(file.replace(".ts", ".js"), "utf8").toString();
+                //const contentsBrowser = fs.readFileSync(file.replace(".ts", ".js"), "utf8").toString();
 
                 if(contents){
                     let blueprint = {
-                        filename: file,
+                        //filename: file,
                         namespace: this.regexService.getData(/class (.*?) extends Blueprint/isg, contents, ["name"])[0].name,
                         publicVars: this.regexService.getData(/public\s_(.*?)[:]\s(.*?)[\s;][=][\s](.*?)[;]/isg, contents, ["name", "type", "default"]),
                         outputs: this.regexService.getData(/this\.output\(["'](.*?)["'],[\s]Type\.(.*?),.*?\)/isg, contents, ["name", "type"]),
                         inputs: this.regexService.getData(/this\.input\(["'](.*?)["'],[\s]Type\.(.*?),.*?\)/isg, contents, ["name", "type"]),
                         metadata: {},
-                        contents: contentsBrowser
+                        //contents: contentsBrowser
                     };
 
                     for(let key in blueprint.outputs){
