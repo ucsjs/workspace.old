@@ -36,7 +36,8 @@
           "type": "number",
           "default": 100,
           "namespace": "CounterBlueprint::max",
-          "id": "990be13120a8630deeea6b074d7d733e3f946d59"
+          "id": "990be13120a8630deeea6b074d7d733e3f946d59",
+          "value": 50
         },
         {
           "name": "increment",

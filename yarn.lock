@@ -2177,10 +2177,10 @@
     "@typescript-eslint/types" "5.36.2"
     eslint-visitor-keys "^3.3.0"
 
-"@ucsjs/blueprint@^0.0.11":
-  version "0.0.11"
-  resolved "https://registry.yarnpkg.com/@ucsjs/blueprint/-/blueprint-0.0.11.tgz#1f7f909bc2760590cd1a62c6d3607bc83a780c3b"
-  integrity sha512-7a2e/xO+OEIUcVfe1LtgJ5ZP1vkq+1/riRMljGdKSFjcfZGyUC+sKSbMb6ZnZkcgvT4TN9bRFrtJf95JLFJTkw==
+"@ucsjs/blueprint@^0.0.13":
+  version "0.0.13"
+  resolved "https://registry.yarnpkg.com/@ucsjs/blueprint/-/blueprint-0.0.13.tgz#5aa547377d8a2f644d1ff2f6b91a1f8a06b19637"
+  integrity sha512-1qB2Kbvfe/YXgv3+zwGZEwi1wB0GUc3Q95KDV5Ueici4pWZQWXmBnGLXT5FSqNFB5bTDfEyeIV94N4HPHAiPhA==
 
 "@webassemblyjs/ast@1.11.1":
   version "1.11.1"
@@ -2687,6 +2687,11 @@ arguments-extended@~0.0.3:
   dependencies:
     extended "~0.0.3"
     is-extended "~0.0.8"
+
+argv@^0.0.2:
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/argv/-/argv-0.0.2.tgz#ecbd16f8949b157183711b1bda334f37840185ab"
+  integrity sha512-dEamhpPEwRUBpLNHeuCm/v+g0anFByHahxodVO/BbAarHVBBg2MccCwf9K+o1Pof+2btdnkJelYVUWjW/VrATw==
 
 arr-diff@^1.0.1:
   version "1.1.0"

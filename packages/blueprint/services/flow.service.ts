@@ -16,8 +16,6 @@ export class Flow {
         if(!this._scope[to])
             throw new Error(`Flow: ${from} is already subscribed.`);
 
-        //console.log(`Flow: ${from} -> ${output} is subscribed to ${to} -> ${input}.`);
-
         if(this._scope[from])
             this._scope[from].subscribe(output, this._scope[to].assign(input));
 
@@ -33,10 +31,8 @@ export class Flow {
 
     start(){
         for(const key in this._scope){
-            if(this._scope[key].start){
-                //console.log(`Flow: ${key} is started.`);
-                this._scope[key].start();
-            }                
+            if(this._scope[key].start)
+                this._scope[key].start();              
         }
     }
 }

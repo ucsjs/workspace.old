@@ -1,3 +1,4 @@
+const { stdout } = require('node:process');
 const argv = require('argv');
 const path = require('path');
 
@@ -11,4 +12,8 @@ const args = argv.option({
 
 const Blueprint = require(path.resolve(args.options.blueprint)).default;
 const blueprint = new Blueprint();
-blueprint.exec();
+const subject = blueprint.exec();
+
+subject.subscribe((data) => {
+    stdout.write(`${data}\n`);
+});

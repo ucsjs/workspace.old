@@ -16,7 +16,7 @@ export class MulBlueprint extends Blueprint{
     }
 
     parse(v, name, scope){
-        scope[name] = v;
+        scope.nums[name] = v;
         
         if(scope.nums.num1 && scope.nums.num2){
             const result = scope.nums.num1 * scope.nums.num2;
