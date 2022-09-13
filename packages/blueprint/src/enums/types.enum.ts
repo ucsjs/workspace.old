@@ -5,5 +5,6 @@ export enum Type {
     Float,
     Buffer,
     String,
-    Any
+    Any,
+    JSON,
 }

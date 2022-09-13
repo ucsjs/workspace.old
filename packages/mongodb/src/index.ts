@@ -5,4 +5,4 @@
  * MIT Licensed
  */
 
-export * from './blueprints/index';
+export * from './blueprints';

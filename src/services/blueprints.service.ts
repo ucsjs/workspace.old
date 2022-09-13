@@ -36,8 +36,11 @@ export class BlueprintsService {
                     filename: file,
                     namespace: this.regexService.getData(/class (.*?) extends Blueprint/isg, contents, ["name"])[0]?.name,
                     publicVars: this.regexService.getData(/public\s_(.*?)[:]\s(.*?)[\s;][=][\s](.*?)[;]/isg, contents, ["name", "type", "default"], true),
-                    outputs: this.regexService.getData(/this\.output\(["'](.*?)["'],[\s]Type.*?\.(.*?),.*?\)/isg, contents, ["name", "type"]),
-                    inputs: this.regexService.getData(/this\.input\(["'](.*?)["'],[\s]Type.*?\.(.*?),.*?\)/isg, contents, ["name", "type"]),
+                    outputs: this.regexService.getData(/this\.output\(["'](.*?)["'],[\s]Type.*?\.(.*?),.*?\)/isg, contents, ["name", "type"], true),
+                    inputs: this.regexService.getData([
+                        /this\.input\(["'](.*?)["'],[\s]Type\.(.*?),.*?\)/isg,
+                        /this\.input\(["'](.*?)["'],[\s]Type.*?\.(.*?),.*?\)/isg
+                    ], contents, ["name", "type"], true),
                     metadata: {}
                 };
 
@@ -49,6 +52,10 @@ export class BlueprintsService {
                     .digest("hex")
                 }
 
+                blueprint.outputs = Array.from(new Set(blueprint.outputs.map(a => a.namespace))).map(namespace => {
+                    return blueprint.outputs.find(a => a.namespace === namespace)
+                });
+
                 for(let key in blueprint.inputs){
                     blueprint.inputs[key].namespace = `${blueprint.namespace}::${blueprint.inputs[key].name}`;
                     blueprint.inputs[key].id = crypto
@@ -57,6 +64,10 @@ export class BlueprintsService {
                     .digest("hex")
                 }
 
+                blueprint.inputs = Array.from(new Set(blueprint.inputs.map(a => a.namespace))).map(namespace => {
+                    return blueprint.inputs.find(a => a.namespace === namespace)
+                });
+
                 for(let key in blueprint.publicVars){
                     blueprint.publicVars[key].namespace = `${blueprint.namespace}::${blueprint.publicVars[key].name}`;
                     blueprint.publicVars[key].id = crypto
@@ -64,6 +75,10 @@ export class BlueprintsService {
                     .update(Buffer.from(blueprint.publicVars[key].namespace))
                     .digest("hex")
                 }
+
+                blueprint.publicVars = Array.from(new Set(blueprint.publicVars.map(a => a.namespace))).map(namespace => {
+                    return blueprint.publicVars.find(a => a.namespace === namespace)
+                });
 
                 const rawMetadata = this.regexService.getData(/private\s__(.*?)[\s]=[\s]["'](.*?)["'];/isg, contents, ["name", "value"]);
                 const rawMetadataList = this.regexService.getData(/private\s__(.*?)[\s]=[\s]\[(.*?)\][;]/isg, contents, ["name", "value"], true);

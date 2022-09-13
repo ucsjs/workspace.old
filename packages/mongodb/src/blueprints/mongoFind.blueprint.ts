@@ -12,5 +12,6 @@ export class MongoFindBlueprint extends Blueprint{
     constructor(){
         super();
         this.input("connection", TypeMongoDB.Connection, null);
+        this.input("query", Type.JSON, null);
     }
 }
