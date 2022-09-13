@@ -3,20 +3,50 @@
 import * as path from "path";
 import { Subject } from 'rxjs';
 import { Blueprint, Flow } from "@ucsjs/blueprint";
-const { HTTPInBlueprint } = require(path.resolve("src/blueprints/Network/httpin.blueprint.ts"));
-const { MongoFindBlueprint } = require(path.resolve("src/blueprints/mongoFind.blueprint.ts"));
-const { MongoConnectionBlueprint } = require(path.resolve("src/blueprints/mongoConnection.blueprint.ts"));
+import { HTTPInBlueprint } from "src/blueprints/Network/httpIn.blueprint";
+import { HTTPBodyBlueprint } from "src/blueprints/Network/httpBody.blueprint";
+import { MongoConnectionBlueprint } from "node_modules/@ucsjs/mongodb/src/blueprints/mongoConnection.blueprint";
+import { HTTPParamBlueprint } from "src/blueprints/Network/httpParam.blueprint";
+import { MongoFindBlueprint } from "node_modules/@ucsjs/mongodb/src/blueprints/mongoFind.blueprint";
+import { HTTPOutBlueprint } from "src/blueprints/Network/httpOut.blueprint";
+import { MongoInsertBlueprint } from "node_modules/@ucsjs/mongodb/src/blueprints/mongoInsert.blueprint";
+import { MongoUpdateBlueprint } from "node_modules/@ucsjs/mongodb/src/blueprints/mongoUpdate.blueprint";
+import { MongoDeleteBlueprint } from "node_modules/@ucsjs/mongodb/src/blueprints/mongoDelete.blueprint";
 
 export class HelloworldBlueprint extends Blueprint { 
 	exec(){
 		const subject = new Subject<any>();
 
 		new Flow({
-			httpinblueprint0: new HTTPInBlueprint({"controller":"/todo","routes":[{"url":"/"},{"url":"/add","method":"POST"},{"url":"/edit","method":"PUT"},{"url":"/del","method":"DELETE"}]}),
-			mongofindblueprint1: new MongoFindBlueprint(),
+			httpinblueprint0: new HTTPInBlueprint({"controller":"/todo","routes":[{"url":"/"},{"url":"/:id"},{"url":"/","method":"POST"},{"url":"/:id","method":"PUT"},{"url":"/:id","method":"DELETE"}]}),
+			httpbodyblueprint1: new HTTPBodyBlueprint(),
 			mongoconnectionblueprint2: new MongoConnectionBlueprint(),
+			httpparamblueprint3: new HTTPParamBlueprint({"name":"id","toJSON":true}),
+			mongofindblueprint4: new MongoFindBlueprint({"collection":"todo","limit":1}),
+			httpoutblueprint5: new HTTPOutBlueprint(),
+			mongofindblueprint6: new MongoFindBlueprint({"collection":"todo","limit":10}),
+			mongoinsertblueprint7: new MongoInsertBlueprint(),
+			httpbodyblueprint8: new HTTPBodyBlueprint(),
+			httpparamblueprint9: new HTTPParamBlueprint({"name":"id","toJSON":true}),
+			mongoupdateblueprint10: new MongoUpdateBlueprint({"collection":"todo"}),
+			mongodeleteblueprint11: new MongoDeleteBlueprint({"collection":"todo"}),
+			httpparamblueprint12: new HTTPParamBlueprint({"name":"id","toJSON":true}),
 		}, subject)
-		.subscribe("mongoconnectionblueprint2", "connection", "mongofindblueprint1", "connection")
+		.subscribe("mongoconnectionblueprint2", "connection", "mongofindblueprint6", "connection")
+		.subscribe("mongoconnectionblueprint2", "connection", "mongofindblueprint4", "connection")
+		.subscribe("mongoconnectionblueprint2", "connection", "mongoinsertblueprint7", "connection")
+		.subscribe("mongoconnectionblueprint2", "connection", "mongoupdateblueprint10", "connection")
+		.subscribe("mongoconnectionblueprint2", "connection", "mongodeleteblueprint11", "connection")
+		.subscribe("httpbodyblueprint1", "result", "mongoinsertblueprint7", "document")
+		.subscribe("mongofindblueprint4", "result", "httpoutblueprint5", "contents")
+		.subscribe("mongofindblueprint6", "result", "httpoutblueprint5", "contents")
+		.subscribe("mongoinsertblueprint7", "result", "httpoutblueprint5", "contents")
+		.subscribe("mongoupdateblueprint10", "result", "httpoutblueprint5", "contents")
+		.subscribe("mongodeleteblueprint11", "result", "httpoutblueprint5", "contents")
+		.subscribe("httpparamblueprint12", "result", "mongodeleteblueprint11", "query")
+		.subscribe("httpbodyblueprint8", "result", "mongoupdateblueprint10", "document")
+		.subscribe("httpparamblueprint9", "result", "mongoupdateblueprint10", "query")
+		.subscribe("httpparamblueprint3", "result", "mongofindblueprint4", "query")
 		.start();
 
 		return subject;

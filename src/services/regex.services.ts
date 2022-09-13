@@ -30,22 +30,30 @@ export class RegexService {
                 case "float":
                     item.default = parseFloat(item.default);
                     break;
+                case "Boolean":
+                case "boolean":
+                case "Bool":
+                case "bool":
+                    item.default = (item.default === "true");
+                    break;
                 case "object":
                     try{
                         let dataParsed = {};
-                        const items = item.default.replace(/}/, "").replace(/{/, "").split(",");
+                        const items = item.default?.replace(/}/, "").replace(/{/, "").split(",");
                         
-                        for(let i of items){
-                            const [key, value] = i.trim().split(":");
-
-                            if(value){
-                                if(value.trim() === "true" || value.trim() === "false")
-                                    dataParsed[key.trim()] = (value.trim() === "true");
-                                else if(!isNaN(parseInt(value.trim())))
-                                    dataParsed[key.trim()] = parseInt(value.trim());
-                                else
-                                    dataParsed[key.trim()] = value.trim();
-                            }   
+                        if(items){
+                            for(let i of items){
+                                const [key, value] = i?.trim().split(":");
+    
+                                if(value){
+                                    if(value.trim() === "true" || value.trim() === "false")
+                                        dataParsed[key.trim()] = (value.trim() === "true");
+                                    else if(!isNaN(parseInt(value.trim())))
+                                        dataParsed[key.trim()] = parseInt(value.trim());
+                                    else
+                                        dataParsed[key.trim()] = value.trim();
+                                }   
+                            }
                         }
 
                         item.default = dataParsed;

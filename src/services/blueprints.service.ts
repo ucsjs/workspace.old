@@ -3,6 +3,7 @@ import * as fs from "fs";
 import * as fg from "fast-glob";
 import * as crypto from "crypto";
 import { Injectable } from '@nestjs/common';
+import { Parser } from "@ucsjs/blueprint";
 
 import { RegexService } from "./regex.services";
 
@@ -11,6 +12,7 @@ export class BlueprintsService {
     constructor(
         private regexService: RegexService
     ){}
+
     async getBlueprints(paths: Array<string> = []) {
         let blueprints = [];
 
@@ -39,7 +41,7 @@ export class BlueprintsService {
                     outputs: this.regexService.getData(/this\.output\(["'](.*?)["'],[\s]Type.*?\.(.*?),.*?\)/isg, contents, ["name", "type"], true),
                     inputs: this.regexService.getData([
                         /this\.input\(["'](.*?)["'],[\s]Type\.(.*?),.*?\)/isg,
-                        /this\.input\(["'](.*?)["'],[\s]Type.*?\.(.*?),.*?\)/isg
+                        /this\.input\(["'](.*?)["'],[\s](.*?),.*?\)/isg
                     ], contents, ["name", "type"], true),
                     metadata: {}
                 };
@@ -83,6 +85,7 @@ export class BlueprintsService {
                 const rawMetadata = this.regexService.getData(/private\s__(.*?)[\s]=[\s]["'](.*?)["'];/isg, contents, ["name", "value"]);
                 const rawMetadataList = this.regexService.getData(/private\s__(.*?)[\s]=[\s]\[(.*?)\][;]/isg, contents, ["name", "value"], true);
                 const rawMetadataBool = this.regexService.getData(/private\s__(.*?)[\s]=[\s](.*?);/isg, contents, ["name", "value"], true);
+                const newMetadataObject = this.regexService.getData(/private\s__(.*?)[:]\s(.*?)[\s;][=][\s](.*?)[;]/isg, contents, ["name", "type", "default"], true);
                 let metadata = {};
 
                 for(let meta of rawMetadata)
@@ -101,7 +104,12 @@ export class BlueprintsService {
                     if(meta.name && meta.value && meta.value == "true" || meta.value == "false")
                         metadata[meta.name] = (meta.value == "true");
                 }
-                
+
+                for(let meta of newMetadataObject){
+                    if(meta.name && meta.default)
+                        metadata[meta.name] = meta.default;
+                }
+
                 blueprint.metadata = metadata;
                 
                 blueprint.sign = crypto.createHash("sha1")
@@ -114,5 +122,21 @@ export class BlueprintsService {
         
 
         return blueprints;
+    }
+
+    uppercaseFirstLetter(string: string) {
+		return string.charAt(0).toUpperCase() + string.slice(1);
+	}
+
+    async parse(item, namespace){
+        const parser = new Parser(`${this.uppercaseFirstLetter(namespace)}Blueprint`, JSON.parse(item.content), [
+            path.resolve("./src/blueprints/**/*.blueprint.ts"),
+            path.resolve("node_modules/@ucsjs/**/*.blueprint.ts"),
+        ], path.resolve("."));
+
+        
+
+        const result = await parser.export();
+        return result;
     }
 }

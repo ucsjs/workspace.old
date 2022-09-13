@@ -5,10 +5,14 @@ import * as mime from "mime-types";
 import * as crypto from 'crypto';
 import * as languageDetect from "language-detect";
 import { Injectable } from '@nestjs/common';
-import { Parser } from "@ucsjs/blueprint";
+import { BlueprintsService } from "./blueprints.service";
 
 @Injectable()
 export class FileService {
+	constructor(
+		private blueprintsService: BlueprintsService
+	){}
+
 	async getFiles(pathname: string = "") {
 		const resolvePath = path.resolve(`./src/workspace/${pathname}`);
 		const files = await fg([`${resolvePath}/*`], { dot: false, onlyFiles: false });
@@ -47,23 +51,14 @@ export class FileService {
 		return (filename.includes("blueprint.ts")) ? fs.createReadStream(`${filename.replace(basename, `.${basename.replace(".ts", "")}`)}.meta`) : fs.createReadStream(filename);
 	}
 
-	uppercaseFirstLetter(string: string) {
-		return string.charAt(0).toUpperCase() + string.slice(1);
-	}
-
 	async saveFile(item){
 		if(item.filename.includes(".blueprint.ts")){
 			const dirname = path.dirname(item.filename);
 			const basename = path.basename(item.filename, ".ts");
 			const parserBasename = basename.split(".");
 			await fs.writeFileSync(`${dirname}/.${basename}.meta`, item.content);
-			
-			const parser = new Parser(`${this.uppercaseFirstLetter(parserBasename[0])}Blueprint`, JSON.parse(item.content), [
-				path.resolve("./src/blueprints/**/*.blueprint.ts"),
-				path.resolve("node_modules/@ucsjs/**/*.blueprint.ts"),
-			], path.resolve("."));
-		
-			fs.writeFileSync(item.filename, await parser.export());
+			const contents = await this.blueprintsService.parse(item, parserBasename[0]);
+			await fs.writeFileSync(item.filename, contents);
 		}
 		else{
 			await fs.writeFileSync(item.filename, item.content);

@@ -24,7 +24,7 @@ import { Blueprint, Flow } from "@ucsjs/blueprint";\n`;
         let imports = []
         for(let item of this._metadata.items){
             if(!imports.includes(item.namespace) && item.namespace != "OutputBlueprint") {
-                scriptText += `const { ${item.namespace} } = require(path.resolve("${await this.resolve(item.namespace)}"));\n`;
+                scriptText += `import { ${item.namespace} } from "${(await this.resolve(item.namespace)).replace(".ts", "")}";\n`;
                 imports.push(item.namespace);
             }
         }
