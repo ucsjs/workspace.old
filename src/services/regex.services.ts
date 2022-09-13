@@ -2,13 +2,68 @@ import { Injectable } from '@nestjs/common';
 
 @Injectable()
 export class RegexService {
-    getData(regex, contents, legends) {
-        let m;
+    getData(regex, contents, legends, parseline = false) {
         let data = [];
-        let index = -1;
 
         if(!Array.isArray(regex))
             regex = [regex];
+
+        if(parseline){
+            const lines = contents.split(/\n/);
+
+            for(let line of lines)
+                data = data.concat(this.exec(regex, line, legends));
+        }
+        else{
+            data = this.exec(regex, contents, legends);
+        }
+
+        for(let item of data){
+            switch(item.type){
+                case "Int":
+                case "int":
+                case "number":
+                case "Number":
+                    item.default = parseInt(item.default);
+                    break;
+                case "Float":
+                case "float":
+                    item.default = parseFloat(item.default);
+                    break;
+                case "object":
+                    try{
+                        let dataParsed = {};
+                        const items = item.default.replace(/}/, "").replace(/{/, "").split(",");
+                        
+                        for(let i of items){
+                            const [key, value] = i.trim().split(":");
+
+                            if(value){
+                                if(value.trim() === "true" || value.trim() === "false")
+                                    dataParsed[key.trim()] = (value.trim() === "true");
+                                else if(!isNaN(parseInt(value.trim())))
+                                    dataParsed[key.trim()] = parseInt(value.trim());
+                                else
+                                    dataParsed[key.trim()] = value.trim();
+                            }   
+                        }
+
+                        item.default = dataParsed;
+                    }
+                    catch(e){
+                        console.log(e);
+                    }                    
+                break;
+            }
+        }
+
+        return data;
+    }
+
+    exec(regex, contents, legends){
+        let m;
+        let data = [];
+        let index = -1;
 
         for(let r of regex){
             while ((m = r.exec(contents)) !== null) {
@@ -20,23 +75,9 @@ export class RegexService {
                         index++;
                         data[index] = {};
                     }
-                    else if(legends.length >= groupIndex && !match.includes("=") && !match.includes(":") && !match.includes("new "))
+                    else if(legends.length >= groupIndex && !match.includes("=") && !match.includes("new "))
                         data[index][legends[groupIndex-1]] = match.replace(/["']/isg, "");
                 });
-            }
-        }
-
-        for(let item of data){
-            switch(item.type){
-                case "Int":
-                case "int":
-                case "number":
-                case "Number":
-                    item.default = parseInt(item.default);
-                break;
-                case "Float":
-                case "float":
-                    item.default = parseFloat(item.default);
             }
         }
 

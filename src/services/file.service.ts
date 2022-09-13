@@ -10,7 +10,7 @@ import { Parser } from "@ucsjs/blueprint";
 @Injectable()
 export class FileService {
 	async getFiles(pathname: string = "") {
-		const resolvePath = path.resolve(`./.workspace/${pathname}`);
+		const resolvePath = path.resolve(`./src/workspace/${pathname}`);
 		const files = await fg([`${resolvePath}/*`], { dot: false, onlyFiles: false });
 		let result = [];
 
@@ -59,7 +59,8 @@ export class FileService {
 			await fs.writeFileSync(`${dirname}/.${basename}.meta`, item.content);
 			
 			const parser = new Parser(`${this.uppercaseFirstLetter(parserBasename[0])}Blueprint`, JSON.parse(item.content), [
-				path.resolve("./src/blueprints/**/*.blueprint.ts")
+				path.resolve("./src/blueprints/**/*.blueprint.ts"),
+				path.resolve("node_modules/@ucsjs/**/*.blueprint.ts"),
 			], path.resolve("."));
 		
 			fs.writeFileSync(item.filename, await parser.export());
