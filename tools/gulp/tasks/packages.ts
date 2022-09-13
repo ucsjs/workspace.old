@@ -32,22 +32,24 @@
  
  function buildPackage(packageName: string) {
 	var copy = packages[packageName]
-		.src(['./**/*'])
-		.pipe(dest(`${dist}/${packageName}/src`));
+		.src()
+		.pipe(sourcemaps.init())
+		.pipe(sourcemaps.write('.', { includeContent: false }))
+		.pipe(dest(`${dist}/${packageName}`));
 
 	var build = packages[packageName]
 		.src()
 		.pipe(packages[packageName]())
 		.pipe(dest(`${dist}/${packageName}`));
 		
-	return merge(copy, build);
+	return merge(build, copy);
  }
  
  function buildPackageDev(packageName: string) {
    return packages[packageName]
 	 .src()
 	 .pipe(sourcemaps.init())
-	 .pipe(ts(packages[packageName]))
+	 .pipe(packages[packageName]())
 	 .pipe(
 	   sourcemaps.mapSources(
 		 (sourcePath: string) => './' + sourcePath.split('/').pop(),

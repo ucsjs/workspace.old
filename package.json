@@ -1,6 +1,6 @@
 {
   "name": "@ucsjs/workspace",
-  "version": "0.0.7",
+  "version": "0.0.17",
   "description": "UCS.js: Web reactivity with Websocket, Protobuf and RXJS (@workspace)",
   "author": "Andre Ferreira <andrehrf@gmail.com>",
   "license": "MIT",
