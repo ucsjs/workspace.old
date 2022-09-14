@@ -1,8 +1,6 @@
 exports.default = async ($metadata, $blueprint, $itemKey, $moduleInjection, $stateId) => {
-    let $module = "";
-
     let $settings = {
-        connectionName: `mongodb-${$stateId}`,
+        connectionName: `mongodb_${$itemKey}`,
         protocol: "mongodb",
         host: "localhost",
         port: null,
@@ -26,9 +24,9 @@ exports.default = async ($metadata, $blueprint, $itemKey, $moduleInjection, $sta
         const query = [];
 
         for(let key in $settings){
-            const ignore = ["host", "port", "user", "pass", "db", "protocol", "ignorePort", "connectionName"];
+            const queryParams = ["replicaSet", "tls", "authSource"];
 
-            if(!ignore.includes(key))
+            if(queryParams.includes(key))
                 query.push(`${key}=${$settings[key]}`);
         }
 
@@ -37,17 +35,13 @@ exports.default = async ($metadata, $blueprint, $itemKey, $moduleInjection, $sta
 
         return {
             imports: [
-                `import { Document, Model } from "mongoose";`,
-                `import { MongooseModule, Prop, Schema, SchemaFactory, InjectModel } from '@nestjs/mongoose';`
+                `import { Document, Model, createConnection } from "mongoose";`,
+                `import { MongooseModule, Prop, Schema, SchemaFactory, InjectModel } from '@nestjs/mongoose';`,
+                `const ${$settings.connectionName} = createConnection("${protocol}://${uri}");`
             ],
-            importsModule: [`MongooseModule.forRoot('${protocol}://${uri}', {
-            connectionName: "${$settings.connectionName}",
-            dbName: "${$settings.db}",
-            user: "${$settings.user}",
-            pass: "${$settings.pass}"
-        })`]
+            constructors: [{
+                injection: `${$settings.connectionName}`
+            }],
         };
     }   
-
-    return {};
 };

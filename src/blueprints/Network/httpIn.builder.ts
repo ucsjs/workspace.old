@@ -46,7 +46,7 @@ export class ${$blueprint}Controller {
 
             $module += `\n    @${methodNest}("${route.url}")
     async ${$blueprint.toLowerCase()}${method.toLowerCase()}${route.url.replace(/\//, "_").replace(/:/img, "")}(@Req() req: Request, @Res() res: Response){
-        const { subject, flow } = new ${$blueprint}({${$paramsInjection.join(", ")}}).exec();
+        const { subject, flow } = new ${$blueprint}().exec({${$paramsInjection.join(", ")}});
         subject.subscribe((data) => { res.status(200).send(data); });
         flow.get("${$metadata.namespace.toLowerCase()}${$itemKey}").next("${inputRef}", req);
     }\n`;

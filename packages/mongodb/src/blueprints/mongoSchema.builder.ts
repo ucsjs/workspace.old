@@ -2,7 +2,6 @@ exports.default = async ($metadata, $blueprint, $itemKey, $moduleInjection, $sta
     let $module = "";
 
     let $settings = { 
-        connectionName: `mongodb-${$stateId}`,
         collection: "",
         timestamps: false,
         fields: []
@@ -48,13 +47,11 @@ exports.default = async ($metadata, $blueprint, $itemKey, $moduleInjection, $sta
 
         return {
             imports: [
-                `import { Document, Model } from "mongoose";`,
+                `import { Document, Model, createConnection } from "mongoose";`,
                 `import { MongooseModule, Prop, Schema, SchemaFactory, InjectModel } from '@nestjs/mongoose';`
             ],
-            importsModule: [`MongooseModule.forFeature([{ name: "${$settings.collection.toLocaleLowerCase()}", schema: ${collectionClassName}Schema }])`],
             constructors: [{
-                includeInConstructor: `@InjectModel("${$settings.collection.toLocaleLowerCase()}") private ${collectionClassName.toLocaleLowerCase()}Schema: Model<${collectionClassName}Document>`,
-                injection: `${collectionClassName.toLocaleLowerCase()}Schema: this.${collectionClassName.toLocaleLowerCase()}Schema`
+                injection: `${collectionClassName}Schema`
             }],
             extras: [`
 export interface ${collectionClassName} {${fieldsInterface}

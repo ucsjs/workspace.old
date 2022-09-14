@@ -28,19 +28,17 @@ import { Blueprint, Flow } from "@ucsjs/blueprint";\n`;
             }
         }
 
-        scriptText += `\nexport class ${this._namespace} extends Blueprint { 
-    constructor(injection?: any){
-        super(injection);
-    }\n\n`;
+        scriptText += `\nexport class ${this._namespace} extends Blueprint {\n`;
 
         if(this._metadata.items){
-            scriptText += `\texec(){\n`;
+            scriptText += `\texec(args?: any){\n`;
             scriptText += `\t\tconst subject = new Subject<any>();\n\n`;
             scriptText += `\t\tconst flow = new Flow({\n`;
 
             for(let key in this._metadata.items){
                 const newDefaults = {
-                    stateId: new Date().getTime()
+                    stateId: new Date().getTime(),
+                    itemKey: key,
                 };
 
                 let hasInputs = false;
@@ -56,7 +54,7 @@ import { Blueprint, Flow } from "@ucsjs/blueprint";\n`;
                     scriptText += `\t\t\t${this._metadata.items[key].namespace.toLowerCase()}${key}: new ${this._metadata.items[key].namespace}(${(hasInputs) ? JSON.stringify(newDefaults) : ''}),\n`;
             }
 
-            scriptText += `\t\t}, subject);\n\n`;
+            scriptText += `\t\t}, subject, args);\n\n`;
             
             if(this._metadata.connections){
                 for(let connection of this._metadata.connections){

@@ -5,17 +5,12 @@ import { Input } from "../interfaces/input.interface";
 import { Output } from "../interfaces/output.interface";
 
 export class Blueprint {    
+    
+    protected root: {};
+    protected _stateId: string = "";
+    protected _itemKey: string = "";
     protected _inputs: Input<any>[] = [];
     protected _output: Output<any>[] = [];
-
-    constructor(injection?: any){
-        if(injection){
-            for(const key in injection){
-                if(this.hasOwnProperty(`_${key}`))
-                    this[`_${key}`] = injection[key];
-            }
-        }
-    }
 
     setup(metadata: any){
         if(metadata){

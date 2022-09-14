@@ -3,8 +3,13 @@ import { Subject } from 'rxjs';
 export class Flow {
     private _scope: any;
     private _subject: Subject<any>;
+    public _root: any;
 
-    constructor(scope, subject?: Subject<any>){
+    constructor(scope, subject?: Subject<any>, root?:any){
+        for(let key in scope)
+            scope[key].root = (root) ? root:  this;            
+
+        this._root = root;
         this._scope = scope;
         this._subject = subject;
     }

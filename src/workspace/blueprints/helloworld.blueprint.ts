@@ -3,31 +3,31 @@
 import { Subject } from 'rxjs';
 import { Blueprint, Flow } from "@ucsjs/blueprint";
 import { HTTPInBlueprint } from "src/blueprints/Network/httpIn.blueprint";
+import { HTTPOutBlueprint } from "src/blueprints/Network/httpOut.blueprint";
 import { MongoConnectionBlueprint } from "node_modules/@ucsjs/mongodb/src/blueprints/mongoConnection.blueprint";
+import { MongoFindBlueprint } from "node_modules/@ucsjs/mongodb/src/blueprints/mongoFind.blueprint";
 import { MongoSchemaBlueprint } from "node_modules/@ucsjs/mongodb/src/blueprints/mongoSchema.blueprint";
 import { JSONBlueprint } from "src/blueprints/Common/json.blueprint";
-import { HTTPOutBlueprint } from "src/blueprints/Network/httpOut.blueprint";
 
-export class HelloworldBlueprint extends Blueprint { 
-    constructor(injection?: any){
-        super(injection);
-    }
-
-	exec(){
+export class HelloworldBlueprint extends Blueprint {
+	exec(args?: any){
 		const subject = new Subject<any>();
 
 		const flow = new Flow({
-			httpinblueprint0: new HTTPInBlueprint({"stateId":1663151686486,"controller":"/todo","routes":[{"url":"/","key":"c782a1bf7f74c0a22eb8d764d6b7c9ba20300670-0-0"},{"url":"/:id","key":"c782a1bf7f74c0a22eb8d764d6b7c9ba20300670-0-1"}]}),
-			mongoconnectionblueprint1: new MongoConnectionBlueprint({"stateId":1663151686487,"protocol":"mongodb+srv","host":"soucrypto-ea71c61c.mongo.ondigitalocean.com","ignorePort":true,"user":"doadmin","pass":"2w6yh91t3J7pA4L5","db":"soucrypto","replicaSet":"soucrypto","tls":true}),
-			mongoschemablueprint2: new MongoSchemaBlueprint({"stateId":1663151686487,"collection":"todo","timestamps":true}),
-			jsonblueprint3: new JSONBlueprint({"stateId":1663151686487,"document":{}}),
-			httpoutblueprint4: new HTTPOutBlueprint(),
-		}, subject);
+			httpinblueprint0: new HTTPInBlueprint({"stateId":1663170463082,"itemKey":"0","controller":"/todo","routes":[{"url":"/","key":"c782a1bf7f74c0a22eb8d764d6b7c9ba20300670-0-0"},{"url":"/:id","key":"c782a1bf7f74c0a22eb8d764d6b7c9ba20300670-0-1"},{"url":"/","method":"POST","key":"c782a1bf7f74c0a22eb8d764d6b7c9ba20300670-0-2"}]}),
+			httpoutblueprint1: new HTTPOutBlueprint(),
+			mongoconnectionblueprint3: new MongoConnectionBlueprint({"stateId":1663170463082,"itemKey":"3","protocol":"mongodb+srv","host":"soucrypto-ea71c61c.mongo.ondigitalocean.com","ignorePort":true,"user":"doadmin","pass":"2w6yh91t3J7pA4L5","db":"soucrypto","replicaSet":"soucrypto","tls":true}),
+			mongofindblueprint4: new MongoFindBlueprint(),
+			mongoschemablueprint5: new MongoSchemaBlueprint({"stateId":1663170463082,"itemKey":"5","collection":"todo","timestamps":true,"fields":[{"name":"id","index":true,"required":true,"key":"0201a0411d7de880c8bd40d11274259eb733a0a9-5-0"},{"name":"title","index":false,"required":true,"key":"0201a0411d7de880c8bd40d11274259eb733a0a9-5-1"}]}),
+			jsonblueprint6: new JSONBlueprint({"stateId":1663170463083,"itemKey":"6","document":{}}),
+		}, subject, args);
 
-		flow.subscribe("mongoconnectionblueprint1", "connection", "mongoschemablueprint2", "connection")
-		flow.output("httpoutblueprint4", "output")
-		flow.subscribe("httpinblueprint0", "c782a1bf7f74c0a22eb8d764d6b7c9ba20300670-0-0", "httpoutblueprint4", "request")
-		flow.subscribe("jsonblueprint3", "state", "httpoutblueprint4", "contents")
+		flow.subscribe("mongoconnectionblueprint3", "connection", "mongoschemablueprint5", "connection")
+		flow.subscribe("mongoschemablueprint5", "schema", "mongofindblueprint4", "schema")
+		flow.subscribe("httpinblueprint0", "c782a1bf7f74c0a22eb8d764d6b7c9ba20300670-0-0", "httpoutblueprint1", "request")
+		flow.subscribe("jsonblueprint6", "state", "mongofindblueprint4", "query")
+		flow.subscribe("mongofindblueprint4", "result", "httpoutblueprint1", "contents")
+		flow.output("httpoutblueprint1", "output")
 		flow.start();
 
 		return { flow, subject };
@@ -36,48 +36,56 @@ export class HelloworldBlueprint extends Blueprint {
 
 import { Controller, Req, Res, Get, Post, Put, Delete, Patch } from "@nestjs/common";
 import { Request, Response } from "express";
-import { Document, Model } from "mongoose";
+import { Document, Model, createConnection } from "mongoose";
 import { MongooseModule, Prop, Schema, SchemaFactory, InjectModel } from '@nestjs/mongoose';
+const mongodb_3 = createConnection("mongodb+srv://doadmin:2w6yh91t3J7pA4L5@soucrypto-ea71c61c.mongo.ondigitalocean.com/soucrypto?replicaSet=soucrypto&tls=true&authSource=admin");
 
 @Controller("/todo")
 export class HelloworldBlueprintController {
-    constructor(
-		@InjectModel("todo") private todoSchema: Model<TodoDocument>,
-	){}
+    constructor(	){}
 
     @Get("/")
     async helloworldblueprintget_(@Req() req: Request, @Res() res: Response){
-        const { subject, flow } = new HelloworldBlueprint({todoSchema: this.todoSchema}).exec();
+        const { subject, flow } = new HelloworldBlueprint().exec({mongodb_3, TodoSchema});
         subject.subscribe((data) => { res.status(200).send(data); });
         flow.get("httpinblueprint0").next("c782a1bf7f74c0a22eb8d764d6b7c9ba20300670-0-0", req);
     }
 
     @Get("/:id")
     async helloworldblueprintget_id(@Req() req: Request, @Res() res: Response){
-        const { subject, flow } = new HelloworldBlueprint({todoSchema: this.todoSchema}).exec();
+        const { subject, flow } = new HelloworldBlueprint().exec({mongodb_3, TodoSchema});
         subject.subscribe((data) => { res.status(200).send(data); });
         flow.get("httpinblueprint0").next("c782a1bf7f74c0a22eb8d764d6b7c9ba20300670-0-1", req);
+    }
+
+    @Post("/")
+    async helloworldblueprintpost_(@Req() req: Request, @Res() res: Response){
+        const { subject, flow } = new HelloworldBlueprint().exec({mongodb_3, TodoSchema});
+        subject.subscribe((data) => { res.status(200).send(data); });
+        flow.get("httpinblueprint0").next("c782a1bf7f74c0a22eb8d764d6b7c9ba20300670-0-2", req);
     }
 }
 
 export interface Todo {
+	id: string;
+	title: string;
 };
 
 @Schema({ timestamps: true, collection: "todo" })
-export class TodoDocument extends Document implements Todo {};
+export class TodoDocument extends Document implements Todo {
+	@Prop({ required: true, index:true, type: String, unique: false })
+        id: string;
+
+	@Prop({ required: true, index:false, type: String, unique: false })
+        title: string;
+};
 
 export const TodoSchema = SchemaFactory.createForClass(TodoDocument);
 import { Module } from "@nestjs/common";
 
 @Module({
     imports: [
-		MongooseModule.forRoot('mongodb+srv://doadmin:2w6yh91t3J7pA4L5@soucrypto-ea71c61c.mongo.ondigitalocean.com/soucrypto?replicaSet=soucrypto&tls=true&authSource=admin', {
-            connectionName: "mongodb-1663151686457",
-            dbName: "soucrypto",
-            user: "doadmin",
-            pass: "2w6yh91t3J7pA4L5"
-        }),
-		MongooseModule.forFeature([{ name: "todo", schema: TodoSchema }])
+		
 	],
     exports: [
 		

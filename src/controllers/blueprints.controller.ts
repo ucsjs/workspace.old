@@ -8,7 +8,7 @@ export class BlueprintsController {
 	@Get()
 	async index() {
 		return await this.blueprintsService.getBlueprints([
-			'./node_modules/**/*.blueprint.ts',
+			'./packages/**/*.blueprint.ts',
 			'./src/blueprints/**/*.blueprint.ts',
 			'./.metadata/blueprints/**/*.blueprint.ts'
 		]);

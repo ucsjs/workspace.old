@@ -1,5 +1,6 @@
 import { Blueprint, Type } from "@ucsjs/blueprint";
 import { TypeMongoDB } from "./mongoTypes.enum";
+import { createConnection, Connection } from "mongoose";
 
 export class MongoConnectionBlueprint extends Blueprint{
     //Metadata
@@ -21,16 +22,13 @@ export class MongoConnectionBlueprint extends Blueprint{
     public _tls: boolean = false;
     public _authSource: string = "admin";
 
-    protected connectionName;
-
     constructor(metadata?: any){
         super();
         this.setup(metadata);
-        this.output("connection", Type.String, null);
+        this.output("connection", TypeMongoDB.Connection, null);
     }
 
     start(){
-        console.log(this.connectionName);
-        this.next("connection", this.connectionName);
+        this.next("connection", `mongodb_${this._itemKey}`);
     }
 }
