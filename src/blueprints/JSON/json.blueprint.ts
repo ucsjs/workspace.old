@@ -4,7 +4,9 @@ import { Blueprint, Type } from "@ucsjs/blueprint";
 export class JSONBlueprint extends Blueprint{
     //Metadata
     private __namespace = "JSON";
-    private __group = "Common";
+    private __group = "JSON";
+    private __headerColor = "#9603c6";
+    private __headerIcon = "fa-solid fa-code";
 
     public _document: object = {};
 

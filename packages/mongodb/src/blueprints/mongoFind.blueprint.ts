@@ -14,12 +14,15 @@ export class MongoFindBlueprint extends Blueprint{
     public _limit: number = 10;
     public _offset: number = 0;
 
-    private state = { model: null };
+    private state = { model: null, query: null };
 
     constructor(metadata?: any){
         super();
         this.setup(metadata);
 
+        if(metadata && metadata.query)
+            this.state["query"] = metadata.query;
+        
         this.input("schema", TypeMongoDB.Schema, null, async (model: Model<any>) => {
             if(model){
                 Logger.log(`Recive model`, "MongoFindBlueprint");

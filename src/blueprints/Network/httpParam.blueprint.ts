@@ -35,6 +35,6 @@ export class HTTPParamBlueprint extends Blueprint{
             }
         });
 
-        this.output("result", Type.JSON, null);
+        this.output("result", Type.Any, null);
     }
 }

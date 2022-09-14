@@ -50,6 +50,13 @@ import { Blueprint, Flow } from "@ucsjs/blueprint";\n`;
                     }                        
                 }
 
+                for(let keyInput in this._metadata.items[key].inputs){
+                    if(this._metadata.items[key].inputs[keyInput].value){
+                        newDefaults[this._metadata.items[key].inputs[keyInput].name] = this._metadata.items[key].inputs[keyInput].value;
+                        hasInputs = true;
+                    }                        
+                }
+
                 if(this._metadata.items[key].namespace != "OutputBlueprint")
                     scriptText += `\t\t\t${this._metadata.items[key].namespace.toLowerCase()}${key}: new ${this._metadata.items[key].namespace}(${(hasInputs) ? JSON.stringify(newDefaults) : ''}),\n`;
             }

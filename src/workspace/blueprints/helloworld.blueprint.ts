@@ -6,7 +6,6 @@ import { HTTPInBlueprint } from "src/blueprints/Network/httpIn.blueprint";
 import { HTTPOutBlueprint } from "src/blueprints/Network/httpOut.blueprint";
 import { MongoConnectionBlueprint } from "node_modules/@ucsjs/mongodb/src/blueprints/mongoConnection.blueprint";
 import { MongoSchemaBlueprint } from "node_modules/@ucsjs/mongodb/src/blueprints/mongoSchema.blueprint";
-import { JSONBlueprint } from "src/blueprints/Common/json.blueprint";
 import { HTTPParamBlueprint } from "src/blueprints/Network/httpParam.blueprint";
 import { MongoFindBlueprint } from "node_modules/@ucsjs/mongodb/src/blueprints/mongoFind.blueprint";
 
@@ -15,27 +14,25 @@ export class HelloworldBlueprint extends Blueprint {
 		const subject = new Subject<any>();
 
 		const flow = new Flow({
-			httpinblueprint0: new HTTPInBlueprint({"stateId":1663176770017,"itemKey":"0","controller":"/todo","routes":[{"url":"/","key":"c782a1bf7f74c0a22eb8d764d6b7c9ba20300670-0-0"},{"url":"/:id","key":"c782a1bf7f74c0a22eb8d764d6b7c9ba20300670-0-1"},{"url":"/","method":"POST","key":"c782a1bf7f74c0a22eb8d764d6b7c9ba20300670-0-2"}]}),
+			httpinblueprint0: new HTTPInBlueprint({"stateId":1663190885523,"itemKey":"0","controller":"/todo","routes":[{"url":"/","key":"c782a1bf7f74c0a22eb8d764d6b7c9ba20300670-0-0"},{"url":"/:id","key":"c782a1bf7f74c0a22eb8d764d6b7c9ba20300670-0-1"},{"url":"/","method":"POST","key":"c782a1bf7f74c0a22eb8d764d6b7c9ba20300670-0-2"}]}),
 			httpoutblueprint1: new HTTPOutBlueprint(),
-			mongoconnectionblueprint2: new MongoConnectionBlueprint({"stateId":1663176770017,"itemKey":"2","protocol":"mongodb+srv","host":"soucrypto-ea71c61c.mongo.ondigitalocean.com","ignorePort":true,"user":"doadmin","pass":"2w6yh91t3J7pA4L5","db":"soucrypto","replicaSet":"soucrypto","tls":true}),
-			mongoschemablueprint3: new MongoSchemaBlueprint({"stateId":1663176770017,"itemKey":"3","collection":"todo","timestamps":true,"fields":[{"name":"id","index":true,"required":true,"key":"0201a0411d7de880c8bd40d11274259eb733a0a9-5-0"},{"name":"title","index":false,"required":true,"key":"0201a0411d7de880c8bd40d11274259eb733a0a9-5-1"}]}),
-			jsonblueprint4: new JSONBlueprint({"stateId":1663176770017,"itemKey":"4","document":{}}),
-			httpparamblueprint5: new HTTPParamBlueprint({"stateId":1663176770017,"itemKey":"5","name":"id","toJSON":true}),
-			mongofindblueprint6: new MongoFindBlueprint(),
-			mongofindblueprint7: new MongoFindBlueprint(),
-			httpoutblueprint8: new HTTPOutBlueprint(),
+			mongoconnectionblueprint2: new MongoConnectionBlueprint({"stateId":1663190885523,"itemKey":"2","protocol":"mongodb+srv","host":"soucrypto-ea71c61c.mongo.ondigitalocean.com","ignorePort":true,"user":"doadmin","pass":"2w6yh91t3J7pA4L5","db":"soucrypto","replicaSet":"soucrypto","tls":true}),
+			mongoschemablueprint3: new MongoSchemaBlueprint({"stateId":1663190885523,"itemKey":"3","collection":"todo","timestamps":true,"fields":[{"name":"id","index":true,"required":true,"key":"0201a0411d7de880c8bd40d11274259eb733a0a9-5-0"},{"name":"title","index":false,"required":true,"key":"0201a0411d7de880c8bd40d11274259eb733a0a9-5-1"}]}),
+			httpparamblueprint4: new HTTPParamBlueprint({"stateId":1663190885523,"itemKey":"4","name":"id","toJSON":true}),
+			mongofindblueprint5: new MongoFindBlueprint(),
+			mongofindblueprint6: new MongoFindBlueprint({"stateId":1663190885523,"itemKey":"6","query":{}}),
+			httpoutblueprint7: new HTTPOutBlueprint(),
 		}, subject, args);
 
 		flow.subscribe("httpinblueprint0", "c782a1bf7f74c0a22eb8d764d6b7c9ba20300670-0-0", "httpoutblueprint1", "request")
 		flow.subscribe("mongoconnectionblueprint2", "connection", "mongoschemablueprint3", "connection")
-		flow.subscribe("jsonblueprint4", "state", "mongofindblueprint7", "query")
-		flow.subscribe("mongoschemablueprint3", "schema", "mongofindblueprint7", "schema")
+		flow.subscribe("httpinblueprint0", "c782a1bf7f74c0a22eb8d764d6b7c9ba20300670-0-1", "httpparamblueprint4", "request")
 		flow.subscribe("mongoschemablueprint3", "schema", "mongofindblueprint6", "schema")
-		flow.subscribe("httpinblueprint0", "c782a1bf7f74c0a22eb8d764d6b7c9ba20300670-0-1", "httpparamblueprint5", "request")
-		flow.subscribe("httpparamblueprint5", "result", "mongofindblueprint6", "query")
-		flow.subscribe("httpinblueprint0", "c782a1bf7f74c0a22eb8d764d6b7c9ba20300670-0-1", "httpoutblueprint8", "request")
-		flow.subscribe("mongofindblueprint6", "result", "httpoutblueprint8", "contents")
-		flow.subscribe("mongofindblueprint7", "result", "httpoutblueprint1", "contents")
+		flow.subscribe("mongoschemablueprint3", "schema", "mongofindblueprint5", "schema")
+		flow.subscribe("mongofindblueprint6", "result", "httpoutblueprint1", "contents")
+		flow.subscribe("httpparamblueprint4", "result", "mongofindblueprint5", "query")
+		flow.subscribe("httpinblueprint0", "c782a1bf7f74c0a22eb8d764d6b7c9ba20300670-0-1", "httpoutblueprint7", "request")
+		flow.subscribe("mongofindblueprint5", "result", "httpoutblueprint7", "contents")
 		flow.start();
 
 		return { flow, subject };
@@ -62,7 +59,7 @@ export class HelloworldBlueprintController {
     @Get("/:id")
     async helloworldblueprintget_id(@Req() req: Request, @Res() res: Response){
         const { subject, flow } = new HelloworldBlueprint().exec({mongodb_2, TodoSchema});
-		flow.get("httpoutblueprint8").subscribe("output", (data) => { if(data) res.status(200).send(data); });
+		flow.get("httpoutblueprint7").subscribe("output", (data) => { if(data) res.status(200).send(data); });
 		flow.get("httpinblueprint0").next("c782a1bf7f74c0a22eb8d764d6b7c9ba20300670-0-1", req);
     }
 

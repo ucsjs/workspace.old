@@ -56,7 +56,7 @@ export class FileService {
 			const dirname = path.dirname(item.filename);
 			const basename = path.basename(item.filename, ".ts");
 			const parserBasename = basename.split(".");
-			await fs.writeFileSync(`${dirname}/.${basename}.meta`, item.content);
+			await fs.writeFileSync(`${dirname}/.${basename}.meta`, JSON.stringify(JSON.parse(item.content), null, 4));
 			const contents = await this.blueprintsService.parse(item, parserBasename[0]);
 			await fs.writeFileSync(item.filename, contents);
 		}
