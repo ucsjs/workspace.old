@@ -5,7 +5,7 @@ import { Blueprint, Global } from "../services";
 export class HashBlueprint extends Blueprint {
     //Metadata
     private __namespace = "Hash";
-    private __type = "Common";
+    private __group = "Common";
 
     public _algorithm: string = "sha256";
     public _encoding: crypto.BinaryToTextEncoding = "hex";

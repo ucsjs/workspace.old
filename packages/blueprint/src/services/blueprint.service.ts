@@ -8,6 +8,15 @@ export class Blueprint {
     protected _inputs: Input<any>[] = [];
     protected _output: Output<any>[] = [];
 
+    constructor(injection?: any){
+        if(injection){
+            for(const key in injection){
+                if(this.hasOwnProperty(`_${key}`))
+                    this[`_${key}`] = injection[key];
+            }
+        }
+    }
+
     setup(metadata: any){
         if(metadata){
             for(const key in metadata){

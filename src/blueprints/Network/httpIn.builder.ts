@@ -1,4 +1,4 @@
-exports.default = async ($metadata, $blueprint, $itemKey) => {
+exports.default = async ($metadata, $blueprint, $itemKey, $moduleInjection) => {
     let $module = "";
     let $controller = "";
     let $routes = [];
@@ -20,16 +20,24 @@ exports.default = async ($metadata, $blueprint, $itemKey) => {
     }
 
     if($controller){
-        $module += `\nimport { Module, Controller, Req, Res, Get, Post, Put, Delete, Patch } from '@nestjs/common';
-import { Request, Response } from "express";
-
-@Controller("${$controller}")
+        let $paramsInjection = [];
+        $module += `\n@Controller("${$controller}")
 export class ${$blueprint}Controller {
-    private ${$blueprint.toLowerCase()}: ${$blueprint};
+    constructor(`;
 
-    constructor(){
-        this.${$blueprint.toLowerCase()} = new ${$blueprint}();
-    }\n`;
+        if($moduleInjection && $moduleInjection.constructors){
+            for(let injectContructor of $moduleInjection.constructors){
+                for(let item of injectContructor){
+                    if(item.includeInConstructor)
+                        $module += `\n\t\t${item.includeInConstructor},\n`;
+
+                    if(item.injection)
+                        $paramsInjection.push(item.injection)
+                }
+            }
+        }
+
+        $module += `\t){}\n`;
 
         for(let route of $routes){
             const method = (route.method) ? route.method : "GET";
@@ -38,19 +46,24 @@ export class ${$blueprint}Controller {
 
             $module += `\n    @${methodNest}("${route.url}")
     async ${$blueprint.toLowerCase()}${method.toLowerCase()}${route.url.replace(/\//, "_").replace(/:/img, "")}(@Req() req: Request, @Res() res: Response){
-        const { subject, flow } = this.${$blueprint.toLowerCase()}.exec();
+        const { subject, flow } = new ${$blueprint}({${$paramsInjection.join(", ")}}).exec();
         subject.subscribe((data) => { res.status(200).send(data); });
         flow.get("${$metadata.namespace.toLowerCase()}${$itemKey}").next("${inputRef}", req);
     }\n`;
         }
-
-        $module += `}
         
-@Module({
-    controllers: [${$blueprint}Controller]
-})
-export class LazyModule {}`;
-    }   
+        $module += `}`;
 
-    return $module;
+        return {
+            extras: [$module],
+            imports: [
+                `import { Controller, Req, Res, Get, Post, Put, Delete, Patch } from "@nestjs/common";`,
+                `import { Request, Response } from "express";`
+            ],
+            controllers: [`${$blueprint}Controller`]
+        };
+    }   
+    else{
+        return null;
+    }
 };

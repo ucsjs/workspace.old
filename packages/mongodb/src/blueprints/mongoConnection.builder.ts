@@ -1,47 +1,53 @@
-import { MongooseModule } from '@nestjs/mongoose';
-
-exports.default = async ($metadata, $blueprint, $itemKey) => {
+exports.default = async ($metadata, $blueprint, $itemKey, $moduleInjection, $stateId) => {
     let $module = "";
 
-    let $settings = { 
+    let $settings = {
+        connectionName: `mongodb-${$stateId}`,
         protocol: "mongodb",
-        host: null, 
-        port: null, 
-        user: null, 
-        pass: null, 
-        db: null 
+        host: "localhost",
+        port: null,
+        ignorePort: false,
+        db: null,
+        user: null,
+        pass: null,
     };
+
+    for(let publicVar of $metadata.publicVars)
+        $settings[publicVar.name] = publicVar.value || publicVar.default;
     
-    let $routes = [];
-
-    for(let publicVar of $metadata.publicVars){
-        try{
-            switch(publicVar.name){
-                case "host": $settings['host'] = publicVar.value || publicVar.default; break;
-                case "port": $settings['port'] = publicVar.value || publicVar.default; break;
-                case "user": $settings['user'] = publicVar.value || publicVar.default; break;
-                case "pass": $settings['pass'] = publicVar.value || publicVar.default; break;
-                case "db": $settings['db'] = publicVar.value || publicVar.default; break;
-            }
-        }
-        catch(e){}
-    }
-
     if($settings.host && $settings.port && $settings.db){
         const protocol = $settings.protocol || "mongodb";
-        let uri = `${$settings.host}:${$settings.port}/${$settings.db}`;
+
+        let uri = (!$settings.ignorePort) ? `${$settings.host}:${$settings.port}/${$settings.db}` : `${$settings.host}/${$settings.db}`;
 
         if($settings.user && $settings.pass)
             uri = `${$settings.user}:${$settings.pass}@${uri}`;
 
-        $module += `\nimport { Module } from '@nestjs/common';
-import { MongooseModule } from '@nestjs/mongoose';
-        
-@Module({
-    imports: [MongooseModule.forRoot('${protocol}://${uri}')]
-})
-export class LazyModule {}`;
+        const query = [];
+
+        for(let key in $settings){
+            const ignore = ["host", "port", "user", "pass", "db", "protocol", "ignorePort", "connectionName"];
+
+            if(!ignore.includes(key))
+                query.push(`${key}=${$settings[key]}`);
+        }
+
+        if(query.length > 0)
+            uri += `?${query.join("&")}`;
+
+        return {
+            imports: [
+                `import { Document, Model } from "mongoose";`,
+                `import { MongooseModule, Prop, Schema, SchemaFactory, InjectModel } from '@nestjs/mongoose';`
+            ],
+            importsModule: [`MongooseModule.forRoot('${protocol}://${uri}', {
+            connectionName: "${$settings.connectionName}",
+            dbName: "${$settings.db}",
+            user: "${$settings.user}",
+            pass: "${$settings.pass}"
+        })`]
+        };
     }   
 
-    return $module;
+    return {};
 };

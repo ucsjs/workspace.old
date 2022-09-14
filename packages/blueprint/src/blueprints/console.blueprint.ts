@@ -4,7 +4,7 @@ import { Blueprint, Global } from "../services";
 export class ConsoleBlueprint extends Blueprint {
     //Metadata
     private __namespace = "Console";
-    private __type = "Common";
+    private __group = "Common";
 
     constructor(){
         super();

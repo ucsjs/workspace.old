@@ -1,4 +1,5 @@
-import { Blueprint } from "@ucsjs/blueprint";
+import { Logger } from "@nestjs/common";
+import { Blueprint, Type } from "@ucsjs/blueprint";
 import { TypeMongoDB } from "./mongoTypes.enum";
 
 export class MongoSchemaBlueprint extends Blueprint{
@@ -12,12 +13,21 @@ export class MongoSchemaBlueprint extends Blueprint{
     private __type = ["String", "Number", "Date", "Buffer", "Boolean", "Mixed", "ObjectId", "Array", "Decimal128", "Map", "Schema"];
 
     public _collection: string = "";
-    public _fields: object = {name: "string", type: "string", index: "boolean", unique: "boolean", multi: true}; 
+    public _timestamps: boolean = false;
+    public _fields: object = {name: "string", type: "string", index: "boolean", unique: "boolean", required: "boolean", multi: true}; 
+
+    private connectionName = "";
 
     constructor(metadata?: any){
         super();
         this.setup(metadata);
-        this.input("connection", TypeMongoDB.Connection, null);
+
+        this.input("connection", Type.String, null, (v) => {
+            this.connectionName = v;
+            Logger.log(`Recive connection: ${v}`, "MongoSchemaBlueprint")
+            //this.next("schema", )
+        });
+
         this.output("schema", TypeMongoDB.Schema, null);
     }
 }

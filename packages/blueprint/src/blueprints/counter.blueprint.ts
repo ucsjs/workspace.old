@@ -5,7 +5,7 @@ import { Blueprint, Global } from "../services";
 export class CounterBlueprint extends Blueprint {
     //Metadata
     private __namespace = "Counter";
-    private __type = "Common";
+    private __group = "Common";
 
     private _count: BehaviorSubject<number>;
     private _interval;
