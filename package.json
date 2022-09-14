@@ -5,6 +5,15 @@
   "author": "Andre Ferreira <andrehrf@gmail.com>",
   "license": "MIT",
   "private": false,
+  "homepage": "https://ucsjs.io",
+  "funding": {
+    "type": "opencollective",
+    "url": "https://opencollective.com/ucsjs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ucsjs/workspace"
+  },
   "publishConfig": {
     "access": "public"
   },
@@ -34,7 +43,8 @@
     "@nestjs/core": "^8.0.0",
     "@nestjs/platform-express": "^8.0.0",
     "@nestjs/websockets": "^9.0.11",
-    "@ucsjs/blueprint": "^0.0.16",
+    "@ucsjs/blueprint": "^0.0.21",
+    "@ucsjs/mongodb": "^0.0.21",
     "argv": "^0.0.2",
     "compression": "^1.7.4",
     "cookie-parser": "^1.4.6",

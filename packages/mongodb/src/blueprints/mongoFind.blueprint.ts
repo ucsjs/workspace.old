@@ -5,10 +5,10 @@ import { TypeMongoDB } from "./mongoTypes.enum";
 export class MongoFindBlueprint extends Blueprint{
     //Metadata
     private __namespace = "Find";
-    private __type = "MongoDB";
+    private __group = "MongoDB";
     private __headerColor = "#419343";
     private __headerIcon = "fa-solid fa-database";
-    private __TypeMongoDBConnection: object = { color: "#419343" };
+    private __TypeMongoDBSchema: object = { color: "#419343" };
 
     public _collection: string = "";
     public _limit: number = 10;
@@ -17,7 +17,7 @@ export class MongoFindBlueprint extends Blueprint{
     constructor(metadata?: any){
         super();
         this.setup(metadata);
-        this.input("connection", TypeMongoDB.Connection, null);
+        this.input("connection", TypeMongoDB.Schema, null);
         this.input("query", Type.JSON, null);
         this.output("result", Type.JSON, null);
         this.output("error", Type.Any, null);

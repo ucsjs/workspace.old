@@ -3,54 +3,67 @@
 import * as path from "path";
 import { Subject } from 'rxjs';
 import { Blueprint, Flow } from "@ucsjs/blueprint";
-import { HTTPInBlueprint } from "src/blueprints/Network/httpIn.blueprint";
-import { HTTPBodyBlueprint } from "src/blueprints/Network/httpBody.blueprint";
-import { MongoConnectionBlueprint } from "node_modules/@ucsjs/mongodb/src/blueprints/mongoConnection.blueprint";
 import { HTTPParamBlueprint } from "src/blueprints/Network/httpParam.blueprint";
-import { MongoFindBlueprint } from "node_modules/@ucsjs/mongodb/src/blueprints/mongoFind.blueprint";
-import { HTTPOutBlueprint } from "src/blueprints/Network/httpOut.blueprint";
-import { MongoInsertBlueprint } from "node_modules/@ucsjs/mongodb/src/blueprints/mongoInsert.blueprint";
-import { MongoUpdateBlueprint } from "node_modules/@ucsjs/mongodb/src/blueprints/mongoUpdate.blueprint";
-import { MongoDeleteBlueprint } from "node_modules/@ucsjs/mongodb/src/blueprints/mongoDelete.blueprint";
+import { HTTPBodyBlueprint } from "src/blueprints/Network/httpBody.blueprint";
+import { MongoSchemaBlueprint } from "node_modules/@ucsjs/mongodb/src/blueprints/mongoSchema.blueprint";
+import { HTTPInBlueprint } from "src/blueprints/Network/httpIn.blueprint";
+import { MongoConnectionBlueprint } from "node_modules/@ucsjs/mongodb/src/blueprints/mongoConnection.blueprint";
 
 export class HelloworldBlueprint extends Blueprint { 
 	exec(){
 		const subject = new Subject<any>();
 
-		new Flow({
-			httpinblueprint0: new HTTPInBlueprint({"controller":"/todo","routes":[{"url":"/"},{"url":"/:id"},{"url":"/","method":"POST"},{"url":"/:id","method":"PUT"},{"url":"/:id","method":"DELETE"}]}),
-			httpbodyblueprint1: new HTTPBodyBlueprint(),
-			mongoconnectionblueprint2: new MongoConnectionBlueprint(),
-			httpparamblueprint3: new HTTPParamBlueprint({"name":"id","toJSON":true}),
-			mongofindblueprint4: new MongoFindBlueprint({"collection":"todo","limit":1}),
-			httpoutblueprint5: new HTTPOutBlueprint(),
-			mongofindblueprint6: new MongoFindBlueprint({"collection":"todo","limit":10}),
-			mongoinsertblueprint7: new MongoInsertBlueprint(),
-			httpbodyblueprint8: new HTTPBodyBlueprint(),
-			httpparamblueprint9: new HTTPParamBlueprint({"name":"id","toJSON":true}),
-			mongoupdateblueprint10: new MongoUpdateBlueprint({"collection":"todo"}),
-			mongodeleteblueprint11: new MongoDeleteBlueprint({"collection":"todo"}),
-			httpparamblueprint12: new HTTPParamBlueprint({"name":"id","toJSON":true}),
-		}, subject)
-		.subscribe("mongoconnectionblueprint2", "connection", "mongofindblueprint6", "connection")
-		.subscribe("mongoconnectionblueprint2", "connection", "mongofindblueprint4", "connection")
-		.subscribe("mongoconnectionblueprint2", "connection", "mongoinsertblueprint7", "connection")
-		.subscribe("mongoconnectionblueprint2", "connection", "mongoupdateblueprint10", "connection")
-		.subscribe("mongoconnectionblueprint2", "connection", "mongodeleteblueprint11", "connection")
-		.subscribe("httpbodyblueprint1", "result", "mongoinsertblueprint7", "document")
-		.subscribe("mongofindblueprint4", "result", "httpoutblueprint5", "contents")
-		.subscribe("mongofindblueprint6", "result", "httpoutblueprint5", "contents")
-		.subscribe("mongoinsertblueprint7", "result", "httpoutblueprint5", "contents")
-		.subscribe("mongoupdateblueprint10", "result", "httpoutblueprint5", "contents")
-		.subscribe("mongodeleteblueprint11", "result", "httpoutblueprint5", "contents")
-		.subscribe("httpparamblueprint12", "result", "mongodeleteblueprint11", "query")
-		.subscribe("httpbodyblueprint8", "result", "mongoupdateblueprint10", "document")
-		.subscribe("httpparamblueprint9", "result", "mongoupdateblueprint10", "query")
-		.subscribe("httpparamblueprint3", "result", "mongofindblueprint4", "query")
-		.start();
+		const flow = new Flow({
+			httpparamblueprint1: new HTTPParamBlueprint({"name":"id","toJSON":true}),
+			httpbodyblueprint2: new HTTPBodyBlueprint(),
+			mongoschemablueprint3: new MongoSchemaBlueprint({"collection":"todo","fields":[{"unique":false,"index":true,"name":"id","typeInput":"Number","key":"0201a0411d7de880c8bd40d11274259eb733a0a9-6-0"},{"name":"title","key":"0201a0411d7de880c8bd40d11274259eb733a0a9-6-1"},{"name":"contents","key":"0201a0411d7de880c8bd40d11274259eb733a0a9-6-2"}]}),
+			httpinblueprint4: new HTTPInBlueprint({"controller":"/todo","routes":[{"url":"/","key":"c782a1bf7f74c0a22eb8d764d6b7c9ba20300670-5-0"},{"url":"/:id","key":"c782a1bf7f74c0a22eb8d764d6b7c9ba20300670-5-1"},{"url":"/","method":"POST","key":"c782a1bf7f74c0a22eb8d764d6b7c9ba20300670-5-2"}]}),
+			mongoconnectionblueprint5: new MongoConnectionBlueprint(),
+		}, subject);
 
-		return subject;
+		flow.subscribe("mongoconnectionblueprint5", "connection", "mongoschemablueprint3", "connection")
+		flow.start();
+
+		return { flow, subject };
 	}
 }
 
 export default HelloworldBlueprint;
+
+import { Module, Controller, Req, Res, Get, Post, Put, Delete, Patch } from '@nestjs/common';
+import { Request, Response } from "express";
+
+@Controller("/todo")
+export class HelloworldBlueprintController {
+    private helloworldblueprint: HelloworldBlueprint;
+
+    constructor(){
+        this.helloworldblueprint = new HelloworldBlueprint();
+    }
+
+    @Get("/")
+    async helloworldblueprintget_(@Req() req: Request, @Res() res: Response){
+        const { subject, flow } = this.helloworldblueprint.exec();
+        subject.subscribe((data) => { res.status(200).send(data); });
+        flow.get("httpinblueprint4").next("c782a1bf7f74c0a22eb8d764d6b7c9ba20300670-5-0", req);
+    }
+
+    @Get("/:id")
+    async helloworldblueprintget_id(@Req() req: Request, @Res() res: Response){
+        const { subject, flow } = this.helloworldblueprint.exec();
+        subject.subscribe((data) => { res.status(200).send(data); });
+        flow.get("httpinblueprint4").next("c782a1bf7f74c0a22eb8d764d6b7c9ba20300670-5-1", req);
+    }
+
+    @Post("/")
+    async helloworldblueprintpost_(@Req() req: Request, @Res() res: Response){
+        const { subject, flow } = this.helloworldblueprint.exec();
+        subject.subscribe((data) => { res.status(200).send(data); });
+        flow.get("httpinblueprint4").next("c782a1bf7f74c0a22eb8d764d6b7c9ba20300670-5-2", req);
+    }
+}
+        
+@Module({
+    controllers: [HelloworldBlueprintController]
+})
+export class LazyModule {}

@@ -2,6 +2,7 @@ import * as path from "path";
 import * as fs from "fs";
 import * as fg from "fast-glob";
 import * as crypto from "crypto";
+import { LazyModuleLoader } from "@nestjs/core";
 import { Injectable } from '@nestjs/common';
 import { Parser } from "@ucsjs/blueprint";
 
@@ -134,9 +135,39 @@ export class BlueprintsService {
             path.resolve("node_modules/@ucsjs/**/*.blueprint.ts"),
         ], path.resolve("."));
 
-        
+        const metadata = JSON.parse(item.content);
 
-        const result = await parser.export();
+        let imports = [];
+        let module = {};
+        let moduleExtra = "";
+
+        for(let itemKey in metadata.items){
+            const item = metadata.items[itemKey];
+
+            if(!imports.includes(item.namespace) && item.namespace != "OutputBlueprint") {                
+                const importModule = item.filename.replace(`${process.cwd()}/`, "").replace(".ts", "");
+                const builderModule = importModule.replace(".blueprint", ".builder");
+
+                if(fs.existsSync(path.resolve(`${builderModule}.ts`))){
+                    try{
+                        const builder = require(path.resolve(`${builderModule}.ts`)).default;
+                        const moduleData = await builder(item, `${this.uppercaseFirstLetter(namespace)}Blueprint`, itemKey);
+                        
+                        if(moduleData)
+                            moduleExtra += moduleData;
+                    }
+                    catch(e){ 
+                        console.log(e);
+                    }
+                }
+            }
+        }
+
+        let result = await parser.export();
+
+        if(moduleExtra)
+            result += moduleExtra;
+
         return result;
     }
 }

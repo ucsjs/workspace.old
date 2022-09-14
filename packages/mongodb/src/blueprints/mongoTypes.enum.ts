@@ -1,3 +1,4 @@
 export enum TypeMongoDB{
-    Connection
+    Connection,
+    Schema
 }

@@ -4,7 +4,7 @@ import { Blueprint, Type } from "@ucsjs/blueprint";
 export class ModBlueprint extends Blueprint{
     //Metadata
     private __namespace = "Mod";
-    private __type = "Math";
+    private __group = "Math";
 
     private nums: any = {};
 

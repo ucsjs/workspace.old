@@ -3,7 +3,7 @@ import { Blueprint, Type } from "@ucsjs/blueprint";
 export class ConsoleBlueprint extends Blueprint {
     //Metadata
     private __namespace = "Console";
-    private __type = "Debug";
+    private __group = "Debug";
 
     constructor(){
         super();

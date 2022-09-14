@@ -3,7 +3,7 @@ import { Blueprint, Type } from "@ucsjs/blueprint";
 export class SumBlueprint extends Blueprint{
     //Metadata
     private __namespace = "Sum";
-    private __type = "Math";
+    private __group = "Math";
 
     private nums: any = {};
 

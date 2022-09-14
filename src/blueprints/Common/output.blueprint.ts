@@ -3,7 +3,7 @@ import { Blueprint, Type } from "@ucsjs/blueprint";
 export class OutputBlueprint extends Blueprint{
     //Metadata
     private __namespace = "Output";
-    private __type = "Common";
+    private __group = "Common";
 
     constructor(){
         super();

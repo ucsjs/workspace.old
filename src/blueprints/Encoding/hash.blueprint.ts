@@ -4,7 +4,7 @@ import { Blueprint, Type } from "@ucsjs/blueprint";
 export class HashBlueprint extends Blueprint {
     //Metadata
     private __namespace = "Hash";
-    private __type = "Encoding";
+    private __group = "Encoding";
     private __algorithm = ["sha1", "sha256", "sha512", "md5"];
     private __encoding = ["hex", "base64", "binary", "utf8"];
 

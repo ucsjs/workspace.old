@@ -4,7 +4,7 @@ import { Blueprint, Type } from "@ucsjs/blueprint";
 export class DivBlueprint extends Blueprint{
     //Metadata
     private __namespace = "Div";
-    private __type = "Math";
+    private __group = "Math";
 
     private nums: any = {};
 

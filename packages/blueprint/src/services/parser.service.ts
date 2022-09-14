@@ -34,7 +34,7 @@ import { Blueprint, Flow } from "@ucsjs/blueprint";\n`;
         if(this._metadata.items){
             scriptText += `\texec(){\n`;
             scriptText += `\t\tconst subject = new Subject<any>();\n\n`;
-            scriptText += `\t\tnew Flow({\n`;
+            scriptText += `\t\tconst flow = new Flow({\n`;
 
             for(let key in this._metadata.items){
                 const newDefaults = {};
@@ -51,7 +51,7 @@ import { Blueprint, Flow } from "@ucsjs/blueprint";\n`;
                     scriptText += `\t\t\t${this._metadata.items[key].namespace.toLowerCase()}${key}: new ${this._metadata.items[key].namespace}(${(hasInputs) ? JSON.stringify(newDefaults) : ''}),\n`;
             }
 
-            scriptText += `\t\t}, subject)\n`;
+            scriptText += `\t\t}, subject);\n\n`;
             
             if(this._metadata.connections){
                 for(let connection of this._metadata.connections){
@@ -59,14 +59,14 @@ import { Blueprint, Flow } from "@ucsjs/blueprint";\n`;
                     const output = this.getInput(connection.to.component, connection.to.input);
 
                     if(connection.to.component == "OutputBlueprint")
-                        scriptText += `\t\t.output("${connection.from.component.toLowerCase()}${connection.from.input.split("-")[1]}", "${input}")\n`;
+                        scriptText += `\t\tflow.output("${connection.from.component.toLowerCase()}${connection.from.input.split("-")[1]}", "${input}")\n`;
                     else if(input && output)
-                        scriptText += `\t\t.subscribe("${connection.from.component.toLowerCase()}${connection.from.input.split("-")[1]}", "${input}", "${connection.to.component.toLowerCase()}${connection.to.input.split("-")[1]}", "${output}")\n`;                    
+                        scriptText += `\t\tflow.subscribe("${connection.from.component.toLowerCase()}${connection.from.input.split("-")[1]}", "${input}", "${connection.to.component.toLowerCase()}${connection.to.input.split("-")[1]}", "${output}")\n`;                    
                 }
             }
 
-            scriptText += `\t\t.start();\n\n`;
-            scriptText += `\t\treturn subject;\n`;
+            scriptText += `\t\tflow.start();\n\n`;
+            scriptText += `\t\treturn { flow, subject };\n`;
             scriptText += `\t}\n`;
         }
 
@@ -92,6 +92,11 @@ import { Blueprint, Flow } from "@ucsjs/blueprint";\n`;
                         return input.name;
                     }
                 }
+
+                return inputId;  
+            }
+            else if(inputId.split("-").length == 3){
+                return inputId;                    
             }
         }
     }

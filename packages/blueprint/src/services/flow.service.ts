@@ -29,6 +29,17 @@ export class Flow {
         return this;
     }
 
+    get(component: string){
+        return (this._scope[component]) ? this._scope[component] : null;
+    }
+
+    next(component: string, value: any){
+        if(this._scope[component])
+            this._scope[component].next(value);
+
+        return this;
+    }
+
     start(){
         for(const key in this._scope){
             if(this._scope[key].start)

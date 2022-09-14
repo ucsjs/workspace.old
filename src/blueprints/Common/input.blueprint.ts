@@ -4,7 +4,7 @@ import { Blueprint, Type } from "@ucsjs/blueprint";
 export class InputBlueprint extends Blueprint{
     //Metadata
     private __namespace = "Input";
-    private __type = "Common";
+    private __group = "Common";
 
     public _type: Type = Type.Any;
     public _value: any = null;
