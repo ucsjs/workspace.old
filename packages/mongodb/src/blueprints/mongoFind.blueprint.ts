@@ -28,11 +28,11 @@ export class MongoFindBlueprint extends Blueprint{
             }
         });
 
-        this.input("query", Type.JSON, null, async (query) => {
+        this.input("query", Type.JSON, null, (query) => {
             if(query){
                 Logger.log(`Recive query: ${JSON.stringify(query)}`, "MongoFindBlueprint");
                 this.state["query"] = query;
-                await this.run(this);
+                this.run(this);
             }
         });
 
@@ -42,11 +42,15 @@ export class MongoFindBlueprint extends Blueprint{
 
     public async run(scope){
         if(scope.state.model && scope.state.query){
+            Logger.log(`Find in MongoDB: ${JSON.stringify(scope.state.query)}`, "MongoFindBlueprint");
+
             try{
                 const docs = await scope.state.model.find(scope.state.query, null, {
                     limit: scope._limit,
                     skip: scope._offset
                 }).lean();
+
+                Logger.log(`Results: ${docs.length}`, "MongoFindBlueprint");
 
                 scope.next("result", docs);
             }

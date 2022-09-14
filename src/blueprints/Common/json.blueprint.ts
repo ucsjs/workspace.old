@@ -1,3 +1,4 @@
+import { Logger } from "@nestjs/common";
 import { Blueprint, Type } from "@ucsjs/blueprint";
 
 export class JSONBlueprint extends Blueprint{
@@ -9,11 +10,13 @@ export class JSONBlueprint extends Blueprint{
 
     constructor(metadata?: any){
         super();
+        this.setup(metadata);
+        this.output("state", Type.JSON, null);       
+    }
 
-        this.output("state", Type.JSON, null);
-
-        if(typeof metadata.document == "object"){
-            this._document = metadata.document;
+    start(){
+        if(typeof this._document == "object"){
+            Logger.log(`Send JSON: ${JSON.stringify(this._document)}`, "JSONBlueprint");
             this.next("state", this._document);
         }
     }

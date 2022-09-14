@@ -1,3 +1,4 @@
+import { Logger } from "@nestjs/common";
 import { Blueprint, Type } from "@ucsjs/blueprint";
 import { Request } from "express";
 import { HTTPTypes } from "./httpTypes.enum";
@@ -17,8 +18,10 @@ export class HTTPParamBlueprint extends Blueprint{
         
         this.setup(metadata);
 
-        this.input("request", HTTPTypes.Request, null).subscribe((request: Request) => {
+        this.input("request", HTTPTypes.Request, null).subscribe((request) => {
             if(request){
+                Logger.log(`Recive connection, check param exists ${this._name} : ${request.params.hasOwnProperty(this._name)}`, "HTTPParamBlueprint");
+
                 if(request.params.hasOwnProperty(this._name)){
                     if(this._toJSON){
                         const json = {};

@@ -81,6 +81,7 @@ import { Blueprint, Flow } from "@ucsjs/blueprint";\n`;
     getInput(component, inputId){
         for(let key in this._metadata.items){
             const item = this._metadata.items[key];
+            
             if(item.namespace == component){
                 for(let input of item.inputs){
                     if(`${input.id}-${key}` == inputId){
@@ -92,9 +93,7 @@ import { Blueprint, Flow } from "@ucsjs/blueprint";\n`;
                     if(`${input.id}-${key}` == inputId){
                         return input.name;
                     }
-                }
-
-                return inputId;  
+                } 
             }
             else if(inputId.split("-").length == 3){
                 return inputId;                    

@@ -1,4 +1,4 @@
-exports.default = async ($metadata, $blueprint, $itemKey, $moduleInjection) => {
+exports.default = async ($metadata, $blueprint, $itemKey, $moduleInjection, $stateId, $context, $connections) => {
     let $module = "";
     let $controller = "";
     let $routes = [];
@@ -36,7 +36,7 @@ export class ${$blueprint}Controller {
                 }
             }
         }
-
+        
         $module += `\t){}\n`;
 
         for(let route of $routes){
@@ -44,11 +44,24 @@ export class ${$blueprint}Controller {
             const methodNest = method.charAt(0).toUpperCase() + method.slice(1).toLowerCase();
             const inputRef = (route.key) ? route.key : `${method}-${route.url.replace(/\//img,'-')}`;
 
+            let $output = null;
+
+            for(let connection of $connections){
+                if(connection.from.input == inputRef && connection.to.component == "HTTPOutBlueprint"){
+                    $output = connection.to;
+                }
+            }
+
             $module += `\n    @${methodNest}("${route.url}")
-    async ${$blueprint.toLowerCase()}${method.toLowerCase()}${route.url.replace(/\//, "_").replace(/:/img, "")}(@Req() req: Request, @Res() res: Response){
-        const { subject, flow } = new ${$blueprint}().exec({${$paramsInjection.join(", ")}});
-        subject.subscribe((data) => { res.status(200).send(data); });
-        flow.get("${$metadata.namespace.toLowerCase()}${$itemKey}").next("${inputRef}", req);
+    async ${$blueprint.toLowerCase()}${method.toLowerCase()}${route.url.replace(/\//img, "_").replace(/:/img, "")}(@Req() req: Request, @Res() res: Response){
+        const { subject, flow } = new ${$blueprint}().exec({${$paramsInjection.join(", ")}});`;
+
+            if($output){
+                const [input, keyComponent] = $output.input.split("-");
+                $module +=`\n\t\tflow.get("${$output.component.toLowerCase()}${keyComponent}").subscribe("output", (data) => { if(data) res.status(200).send(data); });\n`
+            }
+        
+            $module += `\t\tflow.get("${$metadata.namespace.toLowerCase()}${$itemKey}").next("${inputRef}", req);
     }\n`;
         }
         

@@ -151,7 +151,7 @@ export class BlueprintsService {
 
         //Load depencencies 
         let stateId = new Date().getTime();
-        let dependencies: any = await this.loadDependencies(metadata.items, namespace, stateId);
+        let dependencies: any = await this.loadDependencies(metadata.items, namespace, stateId, metadata.connections);
             
         if(typeof dependencies === "object" || Array.isArray(dependencies)){
             for(let dependency of dependencies){
@@ -188,7 +188,7 @@ export class BlueprintsService {
                 if(fs.existsSync(path.resolve(`${builderModule}.ts`))){
                     try{
                         const builder = require(path.resolve(`${builderModule}.ts`)).default;
-                        const moduleData = await builder(item, `${this.uppercaseFirstLetter(namespace)}Blueprint`, itemKey, moduleInjection, stateId);
+                        const moduleData = await builder(item, `${this.uppercaseFirstLetter(namespace)}Blueprint`, itemKey, moduleInjection, stateId, metadata.items, metadata.connections);
                         
                         if(typeof moduleData == "string")
                             moduleExtra += moduleData;
@@ -240,7 +240,7 @@ export class LazyModule {}`;
         return result;
     }
 
-    async loadDependencies(items, namespace, stateId){
+    async loadDependencies(items, namespace, stateId, connections){
         let imports = [];
         let dependencies = [];
 
@@ -254,7 +254,7 @@ export class LazyModule {}`;
                 if(fs.existsSync(path.resolve(`${builderModule}.ts`))){
                     try{
                         const builder = require(path.resolve(`${builderModule}.ts`)).default;
-                        const moduleData = await builder(item, `${this.uppercaseFirstLetter(namespace)}Blueprint`, itemKey, null, stateId);
+                        const moduleData = await builder(item, `${this.uppercaseFirstLetter(namespace)}Blueprint`, itemKey, null, stateId, items, connections);
                         
                         if(typeof moduleData == "object")
                             dependencies.push(moduleData)
