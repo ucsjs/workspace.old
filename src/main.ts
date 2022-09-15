@@ -10,6 +10,7 @@ import { AppModule } from 'src/modules/app.module';
 
 import { WsAdapter } from "./adapters/ws-adapter";
 import { Terminal } from "./adapters/terminal";
+import { launch } from "./adapters/vscode";
 
 async function bootstrap() {
 	const app = await NestFactory.create(AppModule, { cors: true });

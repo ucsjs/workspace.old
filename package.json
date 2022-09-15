@@ -44,8 +44,8 @@
     "@nestjs/mongoose": "^9.2.0",
     "@nestjs/platform-express": "^8.0.0",
     "@nestjs/websockets": "^9.0.11",
-    "@ucsjs/blueprint": "^0.0.22",
-    "@ucsjs/mongodb": "^0.0.22",
+    "@ucsjs/blueprint": "^0.0.23",
+    "@ucsjs/mongodb": "^0.0.23",
     "argv": "^0.0.2",
     "compression": "^1.7.4",
     "cookie-parser": "^1.4.6",
@@ -58,7 +58,12 @@
     "node-pty": "^0.10.1",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
-    "rxjs": "^7.5.6"
+    "rxjs": "^7.5.6",
+    "vscode-languageserver": "^8.0.2",
+    "vscode-ws-jsonrpc": "^2.0.0"
+  },
+  "resolutions": {
+    "vscode-languageserver-types": "3.17.2"
   },
   "devDependencies": {
     "@nestjs/cli": "^8.0.0",

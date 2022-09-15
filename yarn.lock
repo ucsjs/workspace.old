@@ -2204,18 +2204,18 @@
     "@typescript-eslint/types" "5.37.0"
     eslint-visitor-keys "^3.3.0"
 
-"@ucsjs/blueprint@0.0.22", "@ucsjs/blueprint@^0.0.22":
-  version "0.0.22"
-  resolved "https://registry.yarnpkg.com/@ucsjs/blueprint/-/blueprint-0.0.22.tgz#88681c8e16a65c47357ca93ebd126bb5d026a299"
-  integrity sha512-TmhaZc1YomULFGjIvecCzUHRElVLzl/XFh1lJUlMTFjmxyfMu3cAg84JOKz0eJi5GH6lxEmVyQBgaNon9/CIPA==
+"@ucsjs/blueprint@0.0.23", "@ucsjs/blueprint@^0.0.23":
+  version "0.0.23"
+  resolved "https://registry.yarnpkg.com/@ucsjs/blueprint/-/blueprint-0.0.23.tgz#9e37cde14efa99ccdae8ea45707f6f4b8d065895"
+  integrity sha512-SiX+Fln6zExCntxYYyIE+Tf9wwnW8Ym6bej42wOMgEspEp8Ns6CVgdixPBtWJZW0bpKy7UmGs3RxOJJv6ghwzg==
 
-"@ucsjs/mongodb@^0.0.22":
-  version "0.0.22"
-  resolved "https://registry.yarnpkg.com/@ucsjs/mongodb/-/mongodb-0.0.22.tgz#3a0abc97858dd0e5ed70b52efcbda7ba510ac0e7"
-  integrity sha512-A5q6HlOucwkci9iiPbf5tny0qQ70Lp2n7Ayvgj7JwpOr9XxKNCgHmXG0aJykmzNCAQf4Hf0JCYY2Fp650IORoQ==
+"@ucsjs/mongodb@^0.0.23":
+  version "0.0.23"
+  resolved "https://registry.yarnpkg.com/@ucsjs/mongodb/-/mongodb-0.0.23.tgz#a67a3bfe85127ce6cd108533f510d8bcdad88fd0"
+  integrity sha512-mvuabfLmpbfr09P+ciEmYSqlteKQyfYETGoobHrvCCEWefJI1ZKmFXq4C/b92ZmyzwtYFj8n1eSCe2VtHk6FXA==
   dependencies:
     "@nestjs/mongoose" "^9.2.0"
-    "@ucsjs/blueprint" "0.0.22"
+    "@ucsjs/blueprint" "0.0.23"
     mongodb "^4.9.1"
     mongoose "^6.6.0"
     rxjs "^7.5.6"
@@ -13045,10 +13045,37 @@ vm-browserify@~0.0.1:
   dependencies:
     indexof "0.0.1"
 
-vue-draggable-next@^2.1.1:
-  version "2.1.1"
-  resolved "https://registry.yarnpkg.com/vue-draggable-next/-/vue-draggable-next-2.1.1.tgz#49886da82f116d11b3e4df7674320fdacf5d7e04"
-  integrity sha512-f5lmA7t6LMaL4viR7dU30zzvqJzaKQs0ymL0Jy9UDT9uiZ2tXF3MzPzEvpTH2UODXZJkT+SnjeV1fXHMsgXLYA==
+vscode-jsonrpc@8.0.2, vscode-jsonrpc@^8.0.2:
+  version "8.0.2"
+  resolved "https://registry.yarnpkg.com/vscode-jsonrpc/-/vscode-jsonrpc-8.0.2.tgz#f239ed2cd6004021b6550af9fd9d3e47eee3cac9"
+  integrity sha512-RY7HwI/ydoC1Wwg4gJ3y6LpU9FJRZAUnTYMXthqhFXXu77ErDd/xkREpGuk4MyYkk4a+XDWAMqe0S3KkelYQEQ==
+
+vscode-languageserver-protocol@3.17.2:
+  version "3.17.2"
+  resolved "https://registry.yarnpkg.com/vscode-languageserver-protocol/-/vscode-languageserver-protocol-3.17.2.tgz#beaa46aea06ed061576586c5e11368a9afc1d378"
+  integrity sha512-8kYisQ3z/SQ2kyjlNeQxbkkTNmVFoQCqkmGrzLH6A9ecPlgTbp3wDTnUNqaUxYr4vlAcloxx8zwy7G5WdguYNg==
+  dependencies:
+    vscode-jsonrpc "8.0.2"
+    vscode-languageserver-types "3.17.2"
+
+vscode-languageserver-types@3.17.2:
+  version "3.17.2"
+  resolved "https://registry.yarnpkg.com/vscode-languageserver-types/-/vscode-languageserver-types-3.17.2.tgz#b2c2e7de405ad3d73a883e91989b850170ffc4f2"
+  integrity sha512-zHhCWatviizPIq9B7Vh9uvrH6x3sK8itC84HkamnBWoDFJtzBf7SWlpLCZUit72b3os45h6RWQNC9xHRDF8dRA==
+
+vscode-languageserver@^8.0.2:
+  version "8.0.2"
+  resolved "https://registry.yarnpkg.com/vscode-languageserver/-/vscode-languageserver-8.0.2.tgz#cfe2f0996d9dfd40d3854e786b2821604dfec06d"
+  integrity sha512-bpEt2ggPxKzsAOZlXmCJ50bV7VrxwCS5BI4+egUmure/oI/t4OlFzi/YNtVvY24A2UDOZAgwFGgnZPwqSJubkA==
+  dependencies:
+    vscode-languageserver-protocol "3.17.2"
+
+vscode-ws-jsonrpc@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/vscode-ws-jsonrpc/-/vscode-ws-jsonrpc-2.0.0.tgz#d241b831cbf40402caf7e63a3d7cf7f65661b9d0"
+  integrity sha512-FgTx05ARqmh2gy9k/e4imvr+7wVSXzd8AXE/Rd9d/eDXQwJPbaa7w+PLiswo3MX5FY0Ujk143w2ezELN/Dp14Q==
+  dependencies:
+    vscode-jsonrpc "^8.0.2"
 
 w3c-hr-time@^1.0.1, w3c-hr-time@^1.0.2:
   version "1.0.2"
