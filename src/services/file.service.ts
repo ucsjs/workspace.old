@@ -35,31 +35,35 @@ export class FileService {
 		}
 
 		for(let file of files) {
-			const info = fs.lstatSync(file);
-			const basename = path.basename(file);
-			let language = info.isFile() ? languageDetect.filename(file)?.toLowerCase() : null;
+			if(!file.includes(".blueprint.meta") && !file.includes(".page.meta")){
+				const info = fs.lstatSync(file);
+				const basename = path.basename(file);
+				let language = info.isFile() ? languageDetect.filename(file)?.toLowerCase() : null;
 
-			switch(path.extname(file).replace(".", "")){
-				case "ts": language = "typescript"; break;
+				switch(path.extname(file).replace(".", "")){
+					case "ts": language = "typescript"; break;
+				}
+
+				if(file.includes("blueprint.ts"))
+					language = "blueprint";
+				else if(file.includes("page.ts"))
+					language = "page";
+
+				result.push({
+					name: file.replace(resolvePath, "").replace(/\//s, ""),
+					path: file,
+					filename: file,
+					isDirectory: info.isDirectory(),
+					isFile: info.isFile(),
+					ext: path.extname(file).replace(".", ""),
+					mime: mime.lookup(file),				
+					sha256: crypto.createHash('sha256').update(JSON.stringify(info)).digest('hex'),
+					pathHash: crypto.createHash('sha1').update(file).digest('hex'),
+					hasMetadata: fs.existsSync(`${file.replace(basename, `.${basename.replace(".ts", "")}`)}.meta`),
+					language,
+					lastModified: info.mtime
+				});
 			}
-
-			if(file.includes("blueprint.ts"))
-				language = "blueprint";
-
-			result.push({
-				name: file.replace(resolvePath, "").replace(/\//s, ""),
-				path: file,
-				filename: file,
-				isDirectory: info.isDirectory(),
-				isFile: info.isFile(),
-				ext: path.extname(file).replace(".", ""),
-				mime: mime.lookup(file),				
-				sha256: crypto.createHash('sha256').update(JSON.stringify(info)).digest('hex'),
-				pathHash: crypto.createHash('sha1').update(file).digest('hex'),
-				hasMetadata: fs.existsSync(`${file.replace(basename, `.${basename.replace(".ts", "")}`)}.meta`),
-				language,
-				lastModified: info.mtime
-			})
 		}
 
 		return result;
@@ -76,6 +80,14 @@ export class FileService {
 
 	async createFile(pathname: string, filename: string){
 		const filenameFull = path.resolve(`${pathname}/${filename}`);
+
+		if(filenameFull.includes(".blueprint.ts")){
+			const dirname = path.dirname(filenameFull);
+			const basename = path.basename(filenameFull, ".ts");
+			const parserBasename = basename.split(".");
+			await fs.writeFileSync(`${dirname}/.${basename}.meta`, "{}");
+		}
+
 		await fs.writeFileSync(filenameFull, "");
 
 		const info = fs.lstatSync(filenameFull);

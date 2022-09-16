@@ -6,6 +6,8 @@ export class HashBlueprint extends Blueprint {
     //Metadata
     private __namespace = "Hash";
     private __group = "Common";
+    private __export = false;
+    private __private = true;
 
     public _algorithm: string = "sha256";
     public _encoding: crypto.BinaryToTextEncoding = "hex";

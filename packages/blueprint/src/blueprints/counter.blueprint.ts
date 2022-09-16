@@ -6,6 +6,8 @@ export class CounterBlueprint extends Blueprint {
     //Metadata
     private __namespace = "Counter";
     private __group = "Common";
+    private __export = false;
+    private __private = true;
 
     private _count: BehaviorSubject<number>;
     private _interval;

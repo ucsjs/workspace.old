@@ -105,8 +105,8 @@
             },
             "sign": "374f1e4ba7c364bba0a9782815f3cac7336fe277",
             "position": {
-                "top": -660,
-                "left": 123
+                "top": -557,
+                "left": 127
             }
         },
         {
@@ -217,8 +217,8 @@
             },
             "sign": "07dacb60d5709abb4329d9c494bbb6475e3f818a",
             "position": {
-                "top": -493,
-                "left": -726
+                "top": -477,
+                "left": -819
             }
         },
         {
@@ -314,8 +314,8 @@
             },
             "sign": "1240efe99fa7293bae98e26c046f42fc981256ec",
             "position": {
-                "top": -274,
-                "left": -562
+                "top": -344,
+                "left": -846
             }
         },
         {
@@ -366,8 +366,8 @@
             },
             "sign": "2bfe1aa064459dab68a1acfd6c11d71430ca7fc9",
             "position": {
-                "top": -438,
-                "left": -484
+                "top": -497,
+                "left": -523
             }
         },
         {
@@ -429,8 +429,8 @@
             },
             "sign": "6938820143e75057ffcc22c736861df00d47d227",
             "position": {
-                "top": -309,
-                "left": -201
+                "top": -417,
+                "left": -200
             }
         },
         {
@@ -530,8 +530,8 @@
             },
             "sign": "374f1e4ba7c364bba0a9782815f3cac7336fe277",
             "position": {
-                "top": -409,
-                "left": 131
+                "top": -421,
+                "left": 130
             }
         },
         {
@@ -578,7 +578,7 @@
             },
             "sign": "efdaf6d950a8a8e37f6d53fa871a437ba80d0f51",
             "position": {
-                "top": -119,
+                "top": -278,
                 "left": -221.421875
             }
         },
@@ -613,8 +613,8 @@
             },
             "sign": "4e005a30e2aec64c976924253af9b531128edc7d",
             "position": {
-                "top": -97,
-                "left": -566.421875
+                "top": -368,
+                "left": -523.421875
             }
         },
         {
@@ -650,8 +650,8 @@
             },
             "sign": "374f1e4ba7c364bba0a9782815f3cac7336fe277",
             "position": {
-                "top": -208,
-                "left": 131.578125
+                "top": -286,
+                "left": 129.578125
             }
         },
         {
@@ -702,8 +702,8 @@
             },
             "sign": "a49f74d46b2c1c78943c61b163b17de0db4d3f4e",
             "position": {
-                "top": 158,
-                "left": -564.421875
+                "top": -120,
+                "left": -520.421875
             }
         },
         {
@@ -737,8 +737,8 @@
             },
             "sign": "4e005a30e2aec64c976924253af9b531128edc7d",
             "position": {
-                "top": 32,
-                "left": -567.421875
+                "top": -248,
+                "left": -524.421875
             }
         },
         {
@@ -774,8 +774,8 @@
             },
             "sign": "374f1e4ba7c364bba0a9782815f3cac7336fe277",
             "position": {
-                "top": 40,
-                "left": 152.578125
+                "top": -152,
+                "left": 127.578125
             }
         },
         {
@@ -843,8 +843,8 @@
             },
             "sign": "57b94693355a9fafd3d78539c0944ee7d3e504d9",
             "position": {
-                "top": 55,
-                "left": -190.421875
+                "top": -139,
+                "left": -196.421875
             }
         },
         {
@@ -895,11 +895,12 @@
             },
             "sign": "a49f74d46b2c1c78943c61b163b17de0db4d3f4e",
             "position": {
-                "top": 288,
-                "left": -560.421875
+                "top": -5,
+                "left": -516.421875
             }
         },
         {
+            "collaped": true,
             "filename": "/mnt/f/Node/ucsjs/workspace/packages/mongodb/src/blueprints/mongoDelete.blueprint.ts",
             "namespace": "MongoDeleteBlueprint",
             "publicVars": [
@@ -950,12 +951,12 @@
             },
             "sign": "88bb38b9424a4808fa4db8f27af9237027027161",
             "position": {
-                "top": 247,
-                "left": -197.421875
-            },
-            "collaped": false
+                "top": 31,
+                "left": -195.421875
+            }
         },
         {
+            "collaped": false,
             "filename": "/mnt/f/Node/ucsjs/workspace/src/blueprints/Network/httpOut.blueprint.ts",
             "namespace": "HTTPOutBlueprint",
             "publicVars": [],
@@ -987,10 +988,9 @@
             },
             "sign": "374f1e4ba7c364bba0a9782815f3cac7336fe277",
             "position": {
-                "top": 251,
-                "left": 150.578125
-            },
-            "collaped": false
+                "top": -15,
+                "left": 128.578125
+            }
         }
     ],
     "connections": [
@@ -1257,11 +1257,11 @@
     ],
     "scale": 1,
     "position": {
-        "x": 815,
-        "y": 817
+        "x": 931,
+        "y": 864
     },
     "scrollOffset": {
         "x": 0,
-        "y": 200
+        "y": 100
     }
 }

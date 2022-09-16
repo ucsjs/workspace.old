@@ -5,6 +5,7 @@ export class ConsoleBlueprint extends Blueprint {
     //Metadata
     private __namespace = "Console";
     private __group = "Common";
+    private __private = true;
 
     constructor(){
         super();

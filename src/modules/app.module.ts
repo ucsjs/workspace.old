@@ -1,13 +1,14 @@
 import { Module } from '@nestjs/common';
-import { MongooseModule } from '@nestjs/mongoose';
 
 import { FileModule } from 'src/modules/file.module';
 import { BlueprintsModule } from 'src/modules/blueprints.module';
+import { VisualModule } from 'src/modules/visual.module';
 
 @Module({
 	imports: [
 		FileModule,
-		BlueprintsModule
+		BlueprintsModule,
+		VisualModule
 	]
 })
 export class AppModule {}
