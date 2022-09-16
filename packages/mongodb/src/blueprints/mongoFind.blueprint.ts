@@ -1,5 +1,5 @@
 import { Logger } from "@nestjs/common";
-import { Schema, Model } from "mongoose";
+import { Model } from "mongoose";
 import { Blueprint, Type } from "@ucsjs/blueprint";
 import { TypeMongoDB } from "./mongoTypes.enum";
 
@@ -52,8 +52,6 @@ export class MongoFindBlueprint extends Blueprint{
                     limit: scope._limit,
                     skip: scope._offset
                 }).lean();
-
-                Logger.log(`Results: ${docs.length}`, "MongoFindBlueprint");
 
                 scope.next("result", docs);
             }

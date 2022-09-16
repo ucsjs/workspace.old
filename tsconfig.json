@@ -20,12 +20,12 @@
 	},
 	"include": [
 	  "src/**/*.ts",
-	  ".workspace/**/*.ts"
 	],
 	"exclude": [
-	  "node_modules",
-	  "dist",
-	  "public",
-	  "http"
+		"src/workspace/**/*.ts",
+		"node_modules",
+		"dist",
+		"public",
+		"http"
 	]
 }

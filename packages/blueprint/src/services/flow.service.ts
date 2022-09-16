@@ -27,6 +27,11 @@ export class Flow {
         return this;
     }
 
+    unsubscribe(component, input){
+        if(this._scope[component])
+            this._scope[component].unsubscribe(input);
+    }
+
     output(component: string, output: string){
         if(this._scope[component])
             this._scope[component].subscribe(output, (v) => this._subject.next(v));

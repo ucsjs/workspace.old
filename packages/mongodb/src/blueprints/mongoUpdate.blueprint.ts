@@ -1,3 +1,5 @@
+import { Logger } from "@nestjs/common";
+import { Model } from "mongoose";
 import { Blueprint, Type } from "@ucsjs/blueprint";
 import { TypeMongoDB } from "./mongoTypes.enum";
 
@@ -9,17 +11,61 @@ export class MongoUpdateBlueprint extends Blueprint{
     private __headerIcon = "fa-solid fa-database";
     private __TypeMongoDBSchema: object = { color: "#419343" };
 
-    public _collection: string = "";
     public _multi: boolean = false;
     public _upsert: boolean = false;
+
+    private state = { model: null, set: null, query: null };
 
     constructor(metadata?: any){
         super();
         this.setup(metadata);
-        this.input("connection", TypeMongoDB.Schema, null);
-        this.input("query", Type.JSON, null);
-        this.input("document", Type.JSON, null);
+
+        this.input("schema", TypeMongoDB.Schema, null, async (model: Model<any>) => {
+            if(model){
+                Logger.log(`Recive model`, "MongoUpdateBlueprint");
+                this.state["model"] = model;
+                await this.run(this);
+            }
+        });
+
+        this.input("set", Type.JSON, null, async (set: object) => {
+            if(set){
+                Logger.log(`Recive set ${JSON.stringify(set)}`, "MongoUpdateBlueprint");
+                this.state["set"] = set;
+                await this.run(this);
+            }
+        });
+
+        this.input("query", Type.JSON, null, async (query: object) => {
+            if(query){
+                Logger.log(`Recive query ${JSON.stringify(query)}`, "MongoUpdateBlueprint");
+                this.state["query"] = query;
+                await this.run(this);
+            }
+        });
+
         this.output("result", Type.JSON, null);
         this.output("error", Type.Any, null);
+    }
+
+    public async run(scope){
+        if(scope.state.model && scope.state.set && scope.state.query){
+            Logger.log(`Update ${JSON.stringify(scope.state.query)} MongoDB: ${JSON.stringify(scope.state.set)}`, "MongoUpdateBlueprint");
+
+            try{
+                let result = null;
+
+                if(scope._multi)
+                    result = await scope.state.model.updateMany(scope.state.query, {$set: scope.state.set}, {upsert: scope._upsert});
+                else 
+                    result = await scope.state.model.updateOne(scope.state.query, {$set: scope.state.set}, {upsert: scope._upsert});
+
+                scope.next("result", result);
+            }
+            catch(e){
+                Logger.error(e, "MongoUpdateBlueprint");
+                scope.next("error", e);
+            }
+        }
     }
 }

@@ -1,19 +1,24 @@
 import * as compression from 'compression';
 import * as express from "express";
 import * as cookieParser from 'cookie-parser';
+import helmet from 'helmet';
+import * as csurf from 'express-csrf-double-submit-cookie';
 import * as path from "path";
 import * as fg from "fast-glob";
 
 import { Logger } from '@nestjs/common';
-import { NestFactory, LazyModuleLoader } from '@nestjs/core';
+import { NestFactory, LazyModuleLoader, HttpAdapterHost } from '@nestjs/core';
 import { AppModule } from 'src/modules/app.module';
 
+import { AllExceptionsFilter } from "./filters/allExceptionsFilter.filter";
 import { WsAdapter } from "./adapters/ws-adapter";
 import { Terminal } from "./adapters/terminal";
 import { launch } from "./adapters/vscode";
 
 async function bootstrap() {
 	const app = await NestFactory.create(AppModule, { cors: true });
+  	//app.useGlobalFilters(new AllExceptionsFilter());
+
 	const lazyModuleLoader = app.get(LazyModuleLoader);
 	const files = await fg("./src/workspace/**/*.blueprint.ts", { dot: true, onlyFiles: true });
 
@@ -28,8 +33,10 @@ async function bootstrap() {
 	
 	app.useWebSocketAdapter(new WsAdapter(app));
 	app.enableCors();
+	app.use(helmet());
 	app.use(compression());
 	app.use(cookieParser());
+	//app.use(csurf());
 	app.use(express.json({ limit: '50mb' }));
   	app.use(express.urlencoded({ extended: true, limit: '50mb' }));
 

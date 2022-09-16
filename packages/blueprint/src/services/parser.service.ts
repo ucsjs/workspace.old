@@ -121,5 +121,7 @@ import { Blueprint, Flow } from "@ucsjs/blueprint";\n`;
                 return file.replace(`${this._cwd}/`, "");
             }
         }
+
+        return "";
     }
 }

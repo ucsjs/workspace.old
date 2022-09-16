@@ -37,6 +37,16 @@
                             "url": "/",
                             "method": "POST",
                             "key": "c782a1bf7f74c0a22eb8d764d6b7c9ba20300670-0-2"
+                        },
+                        {
+                            "url": "/:id",
+                            "method": "PUT",
+                            "key": "c782a1bf7f74c0a22eb8d764d6b7c9ba20300670-0-3"
+                        },
+                        {
+                            "url": "/:id",
+                            "method": "DELETE",
+                            "key": "c782a1bf7f74c0a22eb8d764d6b7c9ba20300670-0-4"
                         }
                     ]
                 }
@@ -58,8 +68,8 @@
             },
             "sign": "8717ba2df6f18cb3a405837c45f1ae64e7d3fe26",
             "position": {
-                "top": -657,
-                "left": -690
+                "top": -707,
+                "left": -807
             }
         },
         {
@@ -207,8 +217,8 @@
             },
             "sign": "07dacb60d5709abb4329d9c494bbb6475e3f818a",
             "position": {
-                "top": -440,
-                "left": -730
+                "top": -493,
+                "left": -726
             }
         },
         {
@@ -304,8 +314,8 @@
             },
             "sign": "1240efe99fa7293bae98e26c046f42fc981256ec",
             "position": {
-                "top": -226,
-                "left": -518
+                "top": -274,
+                "left": -562
             }
         },
         {
@@ -356,8 +366,8 @@
             },
             "sign": "2bfe1aa064459dab68a1acfd6c11d71430ca7fc9",
             "position": {
-                "top": -410,
-                "left": -493
+                "top": -438,
+                "left": -484
             }
         },
         {
@@ -419,8 +429,8 @@
             },
             "sign": "6938820143e75057ffcc22c736861df00d47d227",
             "position": {
-                "top": -461,
-                "left": -208
+                "top": -309,
+                "left": -201
             }
         },
         {
@@ -483,8 +493,8 @@
             },
             "sign": "6938820143e75057ffcc22c736861df00d47d227",
             "position": {
-                "top": -608,
-                "left": -210
+                "top": -557,
+                "left": -203
             }
         },
         {
@@ -523,6 +533,464 @@
                 "top": -409,
                 "left": 131
             }
+        },
+        {
+            "collaped": false,
+            "filename": "/mnt/f/Node/ucsjs/workspace/packages/mongodb/src/blueprints/mongoInsert.blueprint.ts",
+            "namespace": "MongoInsertBlueprint",
+            "publicVars": [],
+            "outputs": [
+                {
+                    "name": "result",
+                    "type": "Any",
+                    "namespace": "MongoInsertBlueprint::result",
+                    "id": "214039db09bbcbe5c537a6e70abcf988a3bb27df"
+                },
+                {
+                    "name": "error",
+                    "type": "Any",
+                    "namespace": "MongoInsertBlueprint::error",
+                    "id": "2504a97f2ee0ed4e8b762350f2d90a427b2b0632"
+                }
+            ],
+            "inputs": [
+                {
+                    "name": "schema",
+                    "type": "TypeMongoDB.Schema",
+                    "namespace": "MongoInsertBlueprint::schema",
+                    "id": "6afd531579f97174ec1470e55f667cdb64bd02eb"
+                },
+                {
+                    "name": "document",
+                    "type": "JSON",
+                    "namespace": "MongoInsertBlueprint::document",
+                    "id": "831c7496ec4ec764bcce66040fa34e17d8f89808"
+                }
+            ],
+            "metadata": {
+                "namespace": "Insert",
+                "group": "MongoDB",
+                "headerColor": "#419343",
+                "headerIcon": "fa-solid fa-database",
+                "TypeMongoDBSchema": {
+                    "color": "#419343"
+                }
+            },
+            "sign": "efdaf6d950a8a8e37f6d53fa871a437ba80d0f51",
+            "position": {
+                "top": -119,
+                "left": -221.421875
+            }
+        },
+        {
+            "collaped": false,
+            "filename": "/mnt/f/Node/ucsjs/workspace/src/blueprints/Network/httpBody.blueprint.ts",
+            "namespace": "HTTPBodyBlueprint",
+            "publicVars": [],
+            "outputs": [
+                {
+                    "name": "result",
+                    "type": "JSON",
+                    "namespace": "HTTPBodyBlueprint::result",
+                    "id": "bc0f1c91e8224e9b7e9a4df617b5d48c59b8625b"
+                }
+            ],
+            "inputs": [
+                {
+                    "name": "request",
+                    "type": "HTTPTypes.Request",
+                    "namespace": "HTTPBodyBlueprint::request",
+                    "id": "f4fd419baf1b471b4a54b8db0c8780692b2efaef"
+                }
+            ],
+            "metadata": {
+                "namespace": "HTTP Body",
+                "group": "Network",
+                "module": true,
+                "HTTPTypes_Request": {
+                    "color": "yellow"
+                }
+            },
+            "sign": "4e005a30e2aec64c976924253af9b531128edc7d",
+            "position": {
+                "top": -97,
+                "left": -566.421875
+            }
+        },
+        {
+            "collaped": false,
+            "filename": "/mnt/f/Node/ucsjs/workspace/src/blueprints/Network/httpOut.blueprint.ts",
+            "namespace": "HTTPOutBlueprint",
+            "publicVars": [],
+            "outputs": [
+                {
+                    "name": "output",
+                    "type": "Any",
+                    "namespace": "HTTPOutBlueprint::output",
+                    "id": "ff1a05ee2253e0619427f9dc06b34cd2b7d5687e"
+                }
+            ],
+            "inputs": [
+                {
+                    "name": "request",
+                    "type": "HTTPTypes.Request",
+                    "namespace": "HTTPOutBlueprint::request",
+                    "id": "c111f0d645a5b37b70464659b43122e3a0e66b26"
+                },
+                {
+                    "name": "contents",
+                    "type": "Any",
+                    "namespace": "HTTPOutBlueprint::contents",
+                    "id": "53546bd648df7f58e1a6a3bf0abce2d481c6e51b"
+                }
+            ],
+            "metadata": {
+                "namespace": "HTTP Out",
+                "group": "Network"
+            },
+            "sign": "374f1e4ba7c364bba0a9782815f3cac7336fe277",
+            "position": {
+                "top": -208,
+                "left": 131.578125
+            }
+        },
+        {
+            "collaped": true,
+            "filename": "/mnt/f/Node/ucsjs/workspace/src/blueprints/Network/httpParam.blueprint.ts",
+            "namespace": "HTTPParamBlueprint",
+            "publicVars": [
+                {
+                    "name": "name",
+                    "type": "string",
+                    "default": "",
+                    "namespace": "HTTPParamBlueprint::name",
+                    "id": "8c7cf29e0afac4558da5556f6cdabfe4a701c32b",
+                    "value": "id"
+                },
+                {
+                    "name": "toJSON",
+                    "type": "boolean",
+                    "default": false,
+                    "namespace": "HTTPParamBlueprint::toJSON",
+                    "id": "38a3299e3793a9a7ab66c4ee93bd43d6f7fb38e1",
+                    "value": true
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "result",
+                    "type": "Any",
+                    "namespace": "HTTPParamBlueprint::result",
+                    "id": "72e7784f113b824d4761104f2dd463bd18493279"
+                }
+            ],
+            "inputs": [
+                {
+                    "name": "request",
+                    "type": "HTTPTypes.Request",
+                    "namespace": "HTTPParamBlueprint::request",
+                    "id": "cfa0f923a7291ef65e0dd4caf9d8dc12e9ca1ba4"
+                }
+            ],
+            "metadata": {
+                "namespace": "HTTP Param",
+                "group": "Network",
+                "module": true,
+                "HTTPTypes_Request": {
+                    "color": "yellow"
+                }
+            },
+            "sign": "a49f74d46b2c1c78943c61b163b17de0db4d3f4e",
+            "position": {
+                "top": 158,
+                "left": -564.421875
+            }
+        },
+        {
+            "collaped": false,
+            "filename": "/mnt/f/Node/ucsjs/workspace/src/blueprints/Network/httpBody.blueprint.ts",
+            "namespace": "HTTPBodyBlueprint",
+            "publicVars": [],
+            "outputs": [
+                {
+                    "name": "result",
+                    "type": "JSON",
+                    "namespace": "HTTPBodyBlueprint::result",
+                    "id": "bc0f1c91e8224e9b7e9a4df617b5d48c59b8625b"
+                }
+            ],
+            "inputs": [
+                {
+                    "name": "request",
+                    "type": "HTTPTypes.Request",
+                    "namespace": "HTTPBodyBlueprint::request",
+                    "id": "f4fd419baf1b471b4a54b8db0c8780692b2efaef"
+                }
+            ],
+            "metadata": {
+                "namespace": "HTTP Body",
+                "group": "Network",
+                "module": true,
+                "HTTPTypes_Request": {
+                    "color": "yellow"
+                }
+            },
+            "sign": "4e005a30e2aec64c976924253af9b531128edc7d",
+            "position": {
+                "top": 32,
+                "left": -567.421875
+            }
+        },
+        {
+            "collaped": false,
+            "filename": "/mnt/f/Node/ucsjs/workspace/src/blueprints/Network/httpOut.blueprint.ts",
+            "namespace": "HTTPOutBlueprint",
+            "publicVars": [],
+            "outputs": [
+                {
+                    "name": "output",
+                    "type": "Any",
+                    "namespace": "HTTPOutBlueprint::output",
+                    "id": "ff1a05ee2253e0619427f9dc06b34cd2b7d5687e"
+                }
+            ],
+            "inputs": [
+                {
+                    "name": "request",
+                    "type": "HTTPTypes.Request",
+                    "namespace": "HTTPOutBlueprint::request",
+                    "id": "c111f0d645a5b37b70464659b43122e3a0e66b26"
+                },
+                {
+                    "name": "contents",
+                    "type": "Any",
+                    "namespace": "HTTPOutBlueprint::contents",
+                    "id": "53546bd648df7f58e1a6a3bf0abce2d481c6e51b"
+                }
+            ],
+            "metadata": {
+                "namespace": "HTTP Out",
+                "group": "Network"
+            },
+            "sign": "374f1e4ba7c364bba0a9782815f3cac7336fe277",
+            "position": {
+                "top": 40,
+                "left": 152.578125
+            }
+        },
+        {
+            "collaped": true,
+            "filename": "/mnt/f/Node/ucsjs/workspace/packages/mongodb/src/blueprints/mongoUpdate.blueprint.ts",
+            "namespace": "MongoUpdateBlueprint",
+            "publicVars": [
+                {
+                    "name": "multi",
+                    "type": "boolean",
+                    "default": false,
+                    "namespace": "MongoUpdateBlueprint::multi",
+                    "id": "d036bde350112216fa81648b3c2c0b1df62c4811"
+                },
+                {
+                    "name": "upsert",
+                    "type": "boolean",
+                    "default": false,
+                    "namespace": "MongoUpdateBlueprint::upsert",
+                    "id": "30dc84df29d02059fe88f0a785516f8669d0b616"
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "result",
+                    "type": "JSON",
+                    "namespace": "MongoUpdateBlueprint::result",
+                    "id": "e2f16f09a259ad3a7dfa88db6921a64b28cf85a2"
+                },
+                {
+                    "name": "error",
+                    "type": "Any",
+                    "namespace": "MongoUpdateBlueprint::error",
+                    "id": "3849d11342cbad2887d2ebfb1e03277b4dcaf24e"
+                }
+            ],
+            "inputs": [
+                {
+                    "name": "schema",
+                    "type": "TypeMongoDB.Schema",
+                    "namespace": "MongoUpdateBlueprint::schema",
+                    "id": "c9c1de07835ad3513eab602db2b33246b1de9383"
+                },
+                {
+                    "name": "set",
+                    "type": "JSON",
+                    "namespace": "MongoUpdateBlueprint::set",
+                    "id": "54f646e8afc8bb497babfb3d9f75d377519e17ee"
+                },
+                {
+                    "name": "query",
+                    "type": "JSON",
+                    "namespace": "MongoUpdateBlueprint::query",
+                    "id": "b34b4ee6e21ccc5cb101ba4a3acdf7e7150a3d2a"
+                }
+            ],
+            "metadata": {
+                "namespace": "Update",
+                "group": "MongoDB",
+                "headerColor": "#419343",
+                "headerIcon": "fa-solid fa-database",
+                "TypeMongoDBSchema": {
+                    "color": "#419343"
+                }
+            },
+            "sign": "57b94693355a9fafd3d78539c0944ee7d3e504d9",
+            "position": {
+                "top": 55,
+                "left": -190.421875
+            }
+        },
+        {
+            "collaped": true,
+            "filename": "/mnt/f/Node/ucsjs/workspace/src/blueprints/Network/httpParam.blueprint.ts",
+            "namespace": "HTTPParamBlueprint",
+            "publicVars": [
+                {
+                    "name": "name",
+                    "type": "string",
+                    "default": "",
+                    "namespace": "HTTPParamBlueprint::name",
+                    "id": "8c7cf29e0afac4558da5556f6cdabfe4a701c32b",
+                    "value": "id"
+                },
+                {
+                    "name": "toJSON",
+                    "type": "boolean",
+                    "default": false,
+                    "namespace": "HTTPParamBlueprint::toJSON",
+                    "id": "38a3299e3793a9a7ab66c4ee93bd43d6f7fb38e1",
+                    "value": true
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "result",
+                    "type": "Any",
+                    "namespace": "HTTPParamBlueprint::result",
+                    "id": "72e7784f113b824d4761104f2dd463bd18493279"
+                }
+            ],
+            "inputs": [
+                {
+                    "name": "request",
+                    "type": "HTTPTypes.Request",
+                    "namespace": "HTTPParamBlueprint::request",
+                    "id": "cfa0f923a7291ef65e0dd4caf9d8dc12e9ca1ba4"
+                }
+            ],
+            "metadata": {
+                "namespace": "HTTP Param",
+                "group": "Network",
+                "module": true,
+                "HTTPTypes_Request": {
+                    "color": "yellow"
+                }
+            },
+            "sign": "a49f74d46b2c1c78943c61b163b17de0db4d3f4e",
+            "position": {
+                "top": 288,
+                "left": -560.421875
+            }
+        },
+        {
+            "filename": "/mnt/f/Node/ucsjs/workspace/packages/mongodb/src/blueprints/mongoDelete.blueprint.ts",
+            "namespace": "MongoDeleteBlueprint",
+            "publicVars": [
+                {
+                    "name": "multi",
+                    "type": "boolean",
+                    "default": false,
+                    "namespace": "MongoDeleteBlueprint::multi",
+                    "id": "1dbcbeaa61f378580a2af933445636a86ce028cb"
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "result",
+                    "type": "JSON",
+                    "namespace": "MongoDeleteBlueprint::result",
+                    "id": "5b5ae0f9cc45a047ab377262f808886e69f2b654"
+                },
+                {
+                    "name": "error",
+                    "type": "Any",
+                    "namespace": "MongoDeleteBlueprint::error",
+                    "id": "f7d4911333a2eef6ed637d460abc2a6f976ed605"
+                }
+            ],
+            "inputs": [
+                {
+                    "name": "schema",
+                    "type": "TypeMongoDB.Schema",
+                    "namespace": "MongoDeleteBlueprint::schema",
+                    "id": "74a38e1a142629393aad7265d3aa40f521ece831"
+                },
+                {
+                    "name": "query",
+                    "type": "JSON",
+                    "namespace": "MongoDeleteBlueprint::query",
+                    "id": "700afbb7faa510abdd0e473db8325c3f1b0cae50"
+                }
+            ],
+            "metadata": {
+                "namespace": "Delete",
+                "group": "MongoDB",
+                "headerColor": "#419343",
+                "headerIcon": "fa-solid fa-database",
+                "TypeMongoDBSchema": {
+                    "color": "#419343"
+                }
+            },
+            "sign": "88bb38b9424a4808fa4db8f27af9237027027161",
+            "position": {
+                "top": 247,
+                "left": -197.421875
+            },
+            "collaped": false
+        },
+        {
+            "filename": "/mnt/f/Node/ucsjs/workspace/src/blueprints/Network/httpOut.blueprint.ts",
+            "namespace": "HTTPOutBlueprint",
+            "publicVars": [],
+            "outputs": [
+                {
+                    "name": "output",
+                    "type": "Any",
+                    "namespace": "HTTPOutBlueprint::output",
+                    "id": "ff1a05ee2253e0619427f9dc06b34cd2b7d5687e"
+                }
+            ],
+            "inputs": [
+                {
+                    "name": "request",
+                    "type": "HTTPTypes.Request",
+                    "namespace": "HTTPOutBlueprint::request",
+                    "id": "c111f0d645a5b37b70464659b43122e3a0e66b26"
+                },
+                {
+                    "name": "contents",
+                    "type": "Any",
+                    "namespace": "HTTPOutBlueprint::contents",
+                    "id": "53546bd648df7f58e1a6a3bf0abce2d481c6e51b"
+                }
+            ],
+            "metadata": {
+                "namespace": "HTTP Out",
+                "group": "Network"
+            },
+            "sign": "374f1e4ba7c364bba0a9782815f3cac7336fe277",
+            "position": {
+                "top": 251,
+                "left": 150.578125
+            },
+            "collaped": false
         }
     ],
     "connections": [
@@ -615,15 +1083,185 @@
                 "component": "HTTPOutBlueprint",
                 "input": "53546bd648df7f58e1a6a3bf0abce2d481c6e51b-7"
             }
+        },
+        {
+            "from": {
+                "component": "HTTPInBlueprint",
+                "input": "c782a1bf7f74c0a22eb8d764d6b7c9ba20300670-0-2"
+            },
+            "to": {
+                "component": "HTTPBodyBlueprint",
+                "input": "f4fd419baf1b471b4a54b8db0c8780692b2efaef-9"
+            }
+        },
+        {
+            "from": {
+                "component": "HTTPBodyBlueprint",
+                "input": "bc0f1c91e8224e9b7e9a4df617b5d48c59b8625b-9"
+            },
+            "to": {
+                "component": "MongoInsertBlueprint",
+                "input": "831c7496ec4ec764bcce66040fa34e17d8f89808-8"
+            }
+        },
+        {
+            "from": {
+                "component": "HTTPInBlueprint",
+                "input": "c782a1bf7f74c0a22eb8d764d6b7c9ba20300670-0-2"
+            },
+            "to": {
+                "component": "HTTPOutBlueprint",
+                "input": "c111f0d645a5b37b70464659b43122e3a0e66b26-10"
+            }
+        },
+        {
+            "from": {
+                "component": "MongoSchemaBlueprint",
+                "input": "382e78e2ac7cb2424c03f8d2523531de42a9d722-3"
+            },
+            "to": {
+                "component": "MongoInsertBlueprint",
+                "input": "6afd531579f97174ec1470e55f667cdb64bd02eb-8"
+            }
+        },
+        {
+            "from": {
+                "component": "HTTPInBlueprint",
+                "input": "c782a1bf7f74c0a22eb8d764d6b7c9ba20300670-0-3"
+            },
+            "to": {
+                "component": "HTTPParamBlueprint",
+                "input": "cfa0f923a7291ef65e0dd4caf9d8dc12e9ca1ba4-11"
+            }
+        },
+        {
+            "from": {
+                "component": "HTTPInBlueprint",
+                "input": "c782a1bf7f74c0a22eb8d764d6b7c9ba20300670-0-3"
+            },
+            "to": {
+                "component": "HTTPBodyBlueprint",
+                "input": "f4fd419baf1b471b4a54b8db0c8780692b2efaef-12"
+            }
+        },
+        {
+            "from": {
+                "component": "MongoInsertBlueprint",
+                "input": "214039db09bbcbe5c537a6e70abcf988a3bb27df-8"
+            },
+            "to": {
+                "component": "HTTPOutBlueprint",
+                "input": "53546bd648df7f58e1a6a3bf0abce2d481c6e51b-10"
+            }
+        },
+        {
+            "from": {
+                "component": "MongoSchemaBlueprint",
+                "input": "382e78e2ac7cb2424c03f8d2523531de42a9d722-3"
+            },
+            "to": {
+                "component": "MongoUpdateBlueprint",
+                "input": "c9c1de07835ad3513eab602db2b33246b1de9383-14"
+            }
+        },
+        {
+            "from": {
+                "component": "MongoUpdateBlueprint",
+                "input": "e2f16f09a259ad3a7dfa88db6921a64b28cf85a2-14"
+            },
+            "to": {
+                "component": "HTTPOutBlueprint",
+                "input": "53546bd648df7f58e1a6a3bf0abce2d481c6e51b-13"
+            }
+        },
+        {
+            "from": {
+                "component": "HTTPInBlueprint",
+                "input": "c782a1bf7f74c0a22eb8d764d6b7c9ba20300670-0-3"
+            },
+            "to": {
+                "component": "HTTPOutBlueprint",
+                "input": "c111f0d645a5b37b70464659b43122e3a0e66b26-13"
+            }
+        },
+        {
+            "from": {
+                "component": "HTTPBodyBlueprint",
+                "input": "bc0f1c91e8224e9b7e9a4df617b5d48c59b8625b-12"
+            },
+            "to": {
+                "component": "MongoUpdateBlueprint",
+                "input": "54f646e8afc8bb497babfb3d9f75d377519e17ee-14"
+            }
+        },
+        {
+            "from": {
+                "component": "HTTPParamBlueprint",
+                "input": "72e7784f113b824d4761104f2dd463bd18493279-11"
+            },
+            "to": {
+                "component": "MongoUpdateBlueprint",
+                "input": "b34b4ee6e21ccc5cb101ba4a3acdf7e7150a3d2a-14"
+            }
+        },
+        {
+            "from": {
+                "component": "HTTPInBlueprint",
+                "input": "c782a1bf7f74c0a22eb8d764d6b7c9ba20300670-0-4"
+            },
+            "to": {
+                "component": "HTTPParamBlueprint",
+                "input": "cfa0f923a7291ef65e0dd4caf9d8dc12e9ca1ba4-15"
+            }
+        },
+        {
+            "from": {
+                "component": "MongoSchemaBlueprint",
+                "input": "382e78e2ac7cb2424c03f8d2523531de42a9d722-3"
+            },
+            "to": {
+                "component": "MongoDeleteBlueprint",
+                "input": "74a38e1a142629393aad7265d3aa40f521ece831-16"
+            }
+        },
+        {
+            "from": {
+                "component": "HTTPParamBlueprint",
+                "input": "72e7784f113b824d4761104f2dd463bd18493279-15"
+            },
+            "to": {
+                "component": "MongoDeleteBlueprint",
+                "input": "700afbb7faa510abdd0e473db8325c3f1b0cae50-16"
+            }
+        },
+        {
+            "from": {
+                "component": "MongoDeleteBlueprint",
+                "input": "5b5ae0f9cc45a047ab377262f808886e69f2b654-16"
+            },
+            "to": {
+                "component": "HTTPOutBlueprint",
+                "input": "53546bd648df7f58e1a6a3bf0abce2d481c6e51b-17"
+            }
+        },
+        {
+            "from": {
+                "component": "HTTPInBlueprint",
+                "input": "c782a1bf7f74c0a22eb8d764d6b7c9ba20300670-0-4"
+            },
+            "to": {
+                "component": "HTTPOutBlueprint",
+                "input": "c111f0d645a5b37b70464659b43122e3a0e66b26-17"
+            }
         }
     ],
     "scale": 1,
     "position": {
-        "x": 819,
-        "y": 712
+        "x": 815,
+        "y": 817
     },
     "scrollOffset": {
         "x": 0,
-        "y": 0
+        "y": 200
     }
 }

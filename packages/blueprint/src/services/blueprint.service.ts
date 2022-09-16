@@ -55,6 +55,13 @@ export class Blueprint {
             output.value?.subscribe(callback);
     }
 
+    unsubscribe(key: string){
+        const output = this._output.find(output => output.key === key);
+
+        if(output)
+            output.value?.unsubscribe();
+    }
+
     assign(key: string){
         return (value: any) => {
             const input = this._inputs.find(input => input.key === key);
