@@ -73,15 +73,17 @@ export class FileService {
 		const basename = path.basename(filename);
 
 		return (
-			filename.includes("blueprint.ts") &&
-			fs.existsSync(`${filename.replace(basename, `.${basename.replace(".ts", "")}`)}.meta`)
+			(filename.includes("blueprint.ts") &&
+			fs.existsSync(`${filename.replace(basename, `.${basename.replace(".ts", "")}`)}.meta`)) || 
+			(filename.includes("page.ts") &&
+			fs.existsSync(`${filename.replace(basename, `.${basename.replace(".ts", "")}`)}.meta`))
 		) ? fs.createReadStream(`${filename.replace(basename, `.${basename.replace(".ts", "")}`)}.meta`) : fs.createReadStream(filename);
 	}
 
 	async createFile(pathname: string, filename: string){
 		const filenameFull = path.resolve(`${pathname}/${filename}`);
 
-		if(filenameFull.includes(".blueprint.ts")){
+		if(filenameFull.includes(".blueprint.ts") || filenameFull.includes(".page.ts")){
 			const dirname = path.dirname(filenameFull);
 			const basename = path.basename(filenameFull, ".ts");
 			const parserBasename = basename.split(".");
@@ -102,11 +104,7 @@ export class FileService {
 	async saveFile(item){
 		if(item.filename.includes(".blueprint.ts")){
 			let metadata = null;
-
-			try{
-				metadata = JSON.stringify(JSON.parse(item.content), null, 4);
-			}
-			catch(e){}
+			try{ metadata = JSON.stringify(JSON.parse(item.content), null, 4); } catch(e){}
 
 			if(metadata){
 				const dirname = path.dirname(item.filename);
@@ -115,6 +113,22 @@ export class FileService {
 				await fs.writeFileSync(`${dirname}/.${basename}.meta`, metadata);
 				const contents = await this.blueprintsService.parse(item, parserBasename[0]);
 				await fs.writeFileSync(item.filename, contents);
+			}
+			else{
+				await fs.writeFileSync(item.filename, item.content);
+			}
+		}
+		else if(item.filename.includes(".page.ts")){
+			let metadata = null;
+			try{ metadata = JSON.stringify(JSON.parse(item.content), null, 4); } catch(e){}
+
+			if(metadata){
+				const dirname = path.dirname(item.filename);
+				const basename = path.basename(item.filename, ".ts");
+				const parserBasename = basename.split(".");
+				await fs.writeFileSync(`${dirname}/.${basename}.meta`, metadata);
+				//const contents = await this.blueprintsService.parse(item, parserBasename[0]);
+				//await fs.writeFileSync(item.filename, contents);
 			}
 			else{
 				await fs.writeFileSync(item.filename, item.content);

@@ -10,12 +10,14 @@ export class ParserService {
 
     getData(file: string, $extendsClass: string = "Blueprint", $metadataOverride: boolean = false) {
         const contents = fs.readFileSync(file, "utf8").toString();
-        const namespaceRegex = new RegExp(`class (.*?) extends ${$extendsClass}`, "isg");
+        const namespaceRegex = new RegExp(`class (.*?) extends (.*?){`, "isg");
+        const classInfo = this.regexService.getData(namespaceRegex, contents, ["name", "extends"], true);
 
         if(contents){
             let component: any = {
                 filename: file,
-                namespace: this.regexService.getData(namespaceRegex, contents, ["name"])[0]?.name,
+                namespace: classInfo[0]?.name,
+                extends: classInfo[0]?.extends,
                 publicVars: this.regexService.getData([
                     /public\s_(.*?)[:]\s(.*?)[\s;][=][\s](.*?)[;]/isg,
                     /public\s_(.*?)[:]\s(.*?);/isg
@@ -69,17 +71,21 @@ export class ParserService {
             let rawMetadataBool = [];
             let newMetadataObject = [];
 
+            rawMetadata = this.regexService.getData(/private\s__(.*?)[\s]=[\s]["'](.*?)["'];/isg, contents, ["name", "value"], true);
+            rawMetadataList = this.regexService.getData(/private\s__(.*?)[\s]=[\s]\[(.*?)\][;]/isg, contents, ["name", "value"], true);
+            rawMetadataBool = this.regexService.getData(/private\s__(.*?)[\s]=[\s](.*?);/isg, contents, ["name", "value"], true);
+            newMetadataObject = this.regexService.getData(/private\s__(.*?)[:]\s(.*?)[\s;][=][\s](.*?)[;]/isg, contents, ["name", "type", "default"], true);
+        
             if($metadataOverride){
-                rawMetadata = this.regexService.getData(/protected override\s__(.*?)[\s]=[\s]["'](.*?)["'];/isg, contents, ["name", "value"]);
-                rawMetadataList = this.regexService.getData(/protected override\s__(.*?)[\s]=[\s]\[(.*?)\][;]/isg, contents, ["name", "value"], true);
-                rawMetadataBool = this.regexService.getData(/protected override\s__(.*?)[\s]=[\s](.*?);/isg, contents, ["name", "value"], true);
-                newMetadataObject = this.regexService.getData(/protected override\s__(.*?)[:]\s(.*?)[\s;][=][\s](.*?)[;]/isg, contents, ["name", "type", "default"], true);
-            }
-            else{
-                rawMetadata = this.regexService.getData(/private\s__(.*?)[\s]=[\s]["'](.*?)["'];/isg, contents, ["name", "value"]);
-                rawMetadataList = this.regexService.getData(/private\s__(.*?)[\s]=[\s]\[(.*?)\][;]/isg, contents, ["name", "value"], true);
-                rawMetadataBool = this.regexService.getData(/private\s__(.*?)[\s]=[\s](.*?);/isg, contents, ["name", "value"], true);
-                newMetadataObject = this.regexService.getData(/private\s__(.*?)[:]\s(.*?)[\s;][=][\s](.*?)[;]/isg, contents, ["name", "type", "default"], true);
+                const rawMetadataOverride = this.regexService.getData(/protected override\s__(.*?)[\s]=[\s]["'](.*?)["'];/isg, contents, ["name", "value"], true);
+                const rawMetadataListOverride = this.regexService.getData(/protected override\s__(.*?)[\s]=[\s]\[(.*?)\][;]/isg, contents, ["name", "value"], true);
+                const rawMetadataBoolOverride = this.regexService.getData(/protected override\s__(.*?)[\s]=[\s](.*?);/isg, contents, ["name", "value"], true);
+                const newMetadataObjectOverride = this.regexService.getData(/protected override\s__(.*?)[:]\s(.*?)[\s;][=][\s](.*?)[;]/isg, contents, ["name", "type", "default"], true);
+                
+                rawMetadata = rawMetadata.concat(rawMetadataOverride);
+                rawMetadataList = rawMetadataList.concat(rawMetadataListOverride);
+                rawMetadataBool = rawMetadataBool.concat(rawMetadataBoolOverride);
+                newMetadataObject = newMetadataObject.concat(newMetadataObjectOverride);
             }
             
             let metadata = {};
@@ -104,6 +110,26 @@ export class ParserService {
             for(let meta of newMetadataObject){
                 if(meta.name && meta.default)
                     metadata[meta.name] = meta.default;
+            }
+
+            for(let keyPublicVar in component.publicVars){
+                try{
+                    if(
+                        component.publicVars[keyPublicVar].default && 
+                        component.publicVars[keyPublicVar].default?.includes("{") && 
+                        component.publicVars[keyPublicVar].default?.includes("}")
+                    ){
+                        try{
+                            let object = null;
+                            eval(`object = ${component.publicVars[keyPublicVar].default};`);
+
+                            if(object)
+                                component.publicVars[keyPublicVar].default = object;
+                        }
+                        catch(e){}
+                    }
+                }
+                catch(e){}
             }
 
             component.metadata = metadata;

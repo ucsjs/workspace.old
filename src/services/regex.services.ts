@@ -84,7 +84,7 @@ export class RegexService {
                         data[index] = {};
                     }
                     else if(legends.length >= groupIndex && !match.includes("=") && !match.includes("new "))
-                        data[index][legends[groupIndex-1]] = match.replace(/["']/isg, "");
+                        data[index][legends[groupIndex-1].trim()] = match.replace(/["']/isg, "").trim();
                 });
             }
         }

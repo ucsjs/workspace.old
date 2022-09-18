@@ -17,6 +17,7 @@ export class VisualService extends ParserService{
 
     async getComponents(paths: Array<string> = []) {
         let components = [];
+        let dependenciesIndex = {};
 
         for(let key in paths){
             const pathRelative = paths[key];
@@ -35,11 +36,97 @@ export class VisualService extends ParserService{
         for(let file of files){
             const component = this.getData(file, "Component", true);
 
-            if(component)
+            if(component){
                 components.push(component);
+                dependenciesIndex[component.namespace] = component;
+            }
         }
 
-        return components;
+        for(let key in components){
+            components[key] = this.injectDependencies(components[key], dependenciesIndex);
+        }
+
+        let exportedComponents = [];
+
+        for(let key in components){
+            if(components[key].metadata.importable){
+                const importModule = components[key].filename.replace(`${process.cwd()}/`, "").replace(".ts", "");
+                const builderModule = importModule.replace(".component", ".template");
+
+                if(fs.existsSync(path.resolve(`${builderModule}.ejs`)))
+                    components[key].template = fs.readFileSync(path.resolve(`${builderModule}.ejs`), "utf8");
+                
+                exportedComponents.push({
+                    namespace: components[key].namespace,
+                    extends: components[key].extends,
+                    sign: components[key].sign,
+                    metadata: components[key].metadata,
+                    components: components[key].components,
+                    template: components[key].template
+                });
+            } 
+        }
+
+        return exportedComponents;
+    }
+
+    injectDependencies(component: any, dependenciesIndex: any){
+        if(component.extends != "Component"){
+            const parent = dependenciesIndex[component.extends];
+
+            if(parent){
+                if(!component.components)
+                    component.components = [];
+
+                for(let key in parent.publicVars){
+                    if(dependenciesIndex[parent.publicVars[key].type]){
+                        const metadata = {};
+                        const ignore = ["namespace", "icon", "fixed", "importable"];
+
+                        for(let keyMetadata in dependenciesIndex[parent.publicVars[key].type].metadata){
+                            if(!ignore.includes(keyMetadata))
+                                metadata[keyMetadata] = dependenciesIndex[parent.publicVars[key].type].metadata[keyMetadata];
+                        }
+
+                        component.components.push({
+                            component: parent.publicVars[key].type,
+                            fixed: dependenciesIndex[parent.publicVars[key].type].metadata.fixed || false,
+                            icon: dependenciesIndex[parent.publicVars[key].type].metadata.icon,
+                            sign: dependenciesIndex[parent.publicVars[key].type].sign,
+                            properties: dependenciesIndex[parent.publicVars[key].type].publicVars,
+                            default: this.generateDefault(dependenciesIndex[parent.publicVars[key].type].publicVars),
+                            metadata: metadata                          
+                        })
+                    }
+                }
+            }
+
+            for(let key in component.publicVars){
+                if(dependenciesIndex[component.publicVars[key].type]){
+                    component.components.push({
+                        component: component.publicVars[key].type,
+                        fixed: dependenciesIndex[component.publicVars[key].type].metadata.fixed || false,
+                        icon: dependenciesIndex[component.publicVars[key].type].metadata.icon,
+                        sign: dependenciesIndex[component.publicVars[key].type].sign,
+                        properties: dependenciesIndex[component.publicVars[key].type].publicVars,
+                        default: this.generateDefault(dependenciesIndex[component.publicVars[key].type].publicVars),
+                        metadata: []
+                    })
+                }
+            }
+        }
+
+        return component;
+    }
+
+    generateDefault(list){
+        let defaultObject = {};
+
+        for(let key in list){
+            defaultObject[list[key].name] = list[key].default;
+        }
+
+        return defaultObject;
     }
 
     uppercaseFirstLetter(string: string) {

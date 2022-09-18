@@ -1,9 +1,12 @@
-import { Component } from "./Component";
+import { Component } from "../Types/Component.type";
 import { Transform } from "./Transform.component";
 
 export class VisualObject extends Component{
     //Matadata
     protected override __namespace = "VisualObject";
+    protected override __importable = false;
+    protected __resizable = false;
+    protected __moveble = false;
 
     //Private scope
     protected scope = {
@@ -14,7 +17,7 @@ export class VisualObject extends Component{
 
     constructor($argv){
         super();
-        
+
         if($argv){
             for(const key in $argv){
                 if(this.hasOwnProperty(`_${key}`))

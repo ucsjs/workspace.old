@@ -1,0 +1,16 @@
+{
+    "settings": {
+        "backgroundColor": "#ffffff"
+    },
+    "scale": 1,
+    "position": {
+        "x": 0,
+        "y": 0
+    },
+    "viewport": {
+        "width": 375,
+        "height": 667
+    },
+    "hierarchy": [],
+    "componentIndex": 1
+}

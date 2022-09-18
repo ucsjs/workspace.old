@@ -21,7 +21,6 @@ export class MongoSchemaBlueprint extends Blueprint{
         super();
         this.setup(metadata);
 
-        this.output("schema", TypeMongoDB.Connection, null);
         this.input("connection", Type.String, null, (connectionName: string) => {
             if(connectionName){
                 const collectionClassName = this._collection.charAt(0).toUpperCase() + this._collection.slice(1).toLowerCase();
@@ -32,5 +31,7 @@ export class MongoSchemaBlueprint extends Blueprint{
                 }
             }
         });
+
+        this.output("schema", TypeMongoDB.Schema, null);
     }
 }

@@ -1,6 +1,7 @@
 {
     "items": [
         {
+            "collaped": false,
             "filename": "/mnt/f/Node/ucsjs/workspace/packages/blueprint/src/blueprints/counter.blueprint.ts",
             "namespace": "CounterBlueprint",
             "publicVars": [
@@ -51,10 +52,10 @@
             "position": {
                 "top": 48,
                 "left": 44.796875
-            },
-            "collaped": false
+            }
         },
         {
+            "collaped": false,
             "filename": "/mnt/f/Node/ucsjs/workspace/src/blueprints/Encoding/hash.blueprint.ts",
             "namespace": "HashBlueprint",
             "publicVars": [
@@ -109,10 +110,10 @@
             "position": {
                 "top": 56,
                 "left": 418.796875
-            },
-            "collaped": false
+            }
         },
         {
+            "collaped": false,
             "filename": "/mnt/f/Node/ucsjs/workspace/src/blueprints/Common/output.blueprint.ts",
             "namespace": "OutputBlueprint",
             "publicVars": [],
@@ -133,8 +134,7 @@
             "position": {
                 "top": 56,
                 "left": 781.796875
-            },
-            "collaped": false
+            }
         }
     ],
     "connections": [
@@ -161,8 +161,8 @@
     ],
     "scale": 1,
     "position": {
-        "x": 0,
-        "y": 1
+        "x": -1,
+        "y": 3
     },
     "scrollOffset": {
         "x": 0,
