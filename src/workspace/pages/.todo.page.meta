@@ -4,8 +4,8 @@
     },
     "scale": 1,
     "position": {
-        "x": -1,
-        "y": 0
+        "x": 9,
+        "y": 8
     },
     "viewport": {
         "width": 375,
@@ -15,10 +15,10 @@
         {
             "0": false,
             "1": true,
-            "id": "Text_38",
+            "id": "Text_48",
             "namespace": "Text",
             "extends": "VisualObject",
-            "sign": "2d56c6aea8046c5a82c268404ec442460590b1f7",
+            "sign": "b1710cf637acf596fa16b34364ed9d69769d6e58",
             "metadata": {
                 "namespace": "Text",
                 "group": "Core",
@@ -94,9 +94,9 @@
                         ]
                     },
                     "value": {
-                        "position": "absolute",
-                        "top": 42.5,
-                        "left": 59.125,
+                        "position": "static",
+                        "top": 27,
+                        "left": 23,
                         "scale": 1,
                         "zIndex": 1
                     },
@@ -104,9 +104,9 @@
                 },
                 {
                     "component": "Dimensions",
-                    "fixed": false,
+                    "fixed": true,
                     "icon": "fa-solid fa-up-down-left-right",
-                    "sign": "8eff5b910d4267f2470f2beb61ddceb9ff9af037",
+                    "sign": "bcd944392acba319fa847313951d9bc90b1bb38a",
                     "properties": [
                         {
                             "name": "width",
@@ -146,9 +146,79 @@
                     "metadata": {},
                     "value": {
                         "width": "240",
-                        "widthAuto": false,
+                        "widthAuto": true,
                         "height": "40",
                         "heightAuto": false
+                    },
+                    "open": true
+                },
+                {
+                    "component": "Background",
+                    "fixed": true,
+                    "icon": "fa-solid fa-paint-roller",
+                    "sign": "eea4b6bead3ef2149e1285bf4a8ca3f1217a27f9",
+                    "properties": [
+                        {
+                            "name": "color",
+                            "type": "Color",
+                            "default": {
+                                "r": 0,
+                                "g": 0,
+                                "b": 0,
+                                "a": 1,
+                                "hex": "#FFFFFF"
+                            },
+                            "changeStyle": {
+                                "style": "background-color",
+                                "styleVue": "backgroundColor"
+                            },
+                            "namespace": "Background::color",
+                            "id": "c3ce09e2abae62182f7730f3aa12264ca9b7af0a",
+                            "open": false
+                        }
+                    ],
+                    "default": {
+                        "color": {
+                            "r": 0,
+                            "g": 0,
+                            "b": 0,
+                            "a": 1,
+                            "hex": "#FFFFFF"
+                        }
+                    },
+                    "metadata": {
+                        "namespace": "Background",
+                        "group": "Core",
+                        "icon": "fa-solid fa-paint-roller",
+                        "fixed": true,
+                        "importable": false
+                    },
+                    "value": {
+                        "color": {
+                            "hsl": {
+                                "h": 0,
+                                "s": 0.836715951878042,
+                                "l": 0.498335085,
+                                "a": 1
+                            },
+                            "hex": "#E91515",
+                            "hex8": "#E91515FF",
+                            "rgba": {
+                                "r": 233,
+                                "g": 21,
+                                "b": 21,
+                                "a": 1
+                            },
+                            "hsv": {
+                                "h": 0,
+                                "s": 0.9111,
+                                "v": 0.9153,
+                                "a": 1
+                            },
+                            "oldHue": 0,
+                            "source": "hsva",
+                            "a": 1
+                        }
                     },
                     "open": true
                 },
@@ -156,12 +226,16 @@
                     "component": "Font",
                     "fixed": true,
                     "icon": "fa-solid fa-font",
-                    "sign": "2550353a9298e0dc4ef3f0e4f3539fd3af7a6f8d",
+                    "sign": "4332f105ca0a8c8176a2107a060298fa3fa6192c",
                     "properties": [
                         {
                             "name": "font",
                             "type": "string",
                             "default": "Arial, sans-serif",
+                            "changeStyle": {
+                                "style": "font-family",
+                                "styleVue": "fontFamily"
+                            },
                             "namespace": "Font::font",
                             "id": "bc8ff01e5ac9e501b530fd05702ed150f06d133f"
                         },
@@ -169,13 +243,28 @@
                             "name": "size",
                             "type": "number",
                             "default": 12,
+                            "changeStyle": {
+                                "style": "font-size",
+                                "styleVue": "fontSize",
+                                "subfix": "px"
+                            },
                             "namespace": "Font::size",
                             "id": "8dfdd335121a336e936ff7497a3f6120ae4b64f4"
                         },
                         {
                             "name": "color",
                             "type": "Color",
-                            "default": "{ r: 0, g: 0, b: 0, a: 1, hex: #FFFFFF }",
+                            "default": {
+                                "r": 0,
+                                "g": 0,
+                                "b": 0,
+                                "a": 1,
+                                "hex": "#000000"
+                            },
+                            "changeStyle": {
+                                "style": "color",
+                                "styleVue": "color"
+                            },
                             "namespace": "Font::color",
                             "id": "fd5d30235781a0cf0cd760964f49bf409ddcc0cf"
                         }
@@ -183,7 +272,13 @@
                     "default": {
                         "font": "Arial, sans-serif",
                         "size": 12,
-                        "color": "{ r: 0, g: 0, b: 0, a: 1, hex: #FFFFFF }"
+                        "color": {
+                            "r": 0,
+                            "g": 0,
+                            "b": 0,
+                            "a": 1,
+                            "hex": "#000000"
+                        }
                     },
                     "metadata": {
                         "namespace": "Font",
@@ -200,17 +295,23 @@
                         ]
                     },
                     "value": {
-                        "font": "Arial, sans-serif",
-                        "size": 12,
-                        "color": "{ r: 0, g: 0, b: 0, a: 1, hex: #FFFFFF }"
+                        "font": "Andale Mono, monospace",
+                        "size": 20,
+                        "color": {
+                            "r": 0,
+                            "g": 0,
+                            "b": 0,
+                            "a": 1,
+                            "hex": "#000000"
+                        }
                     },
                     "open": true
                 },
                 {
                     "component": "Content",
-                    "fixed": false,
+                    "fixed": true,
                     "icon": "fa-solid fa-align-justify",
-                    "sign": "9dc59ca21f953e475eaaa4a77f3715ce51d4e38e",
+                    "sign": "c7055cd685649130158d4f7bdc18f4fb21fde962",
                     "properties": [
                         {
                             "name": "content",
@@ -222,9 +323,13 @@
                     "default": {},
                     "metadata": {
                         "namespace": "Content",
-                        "icon": "fa-solid fa-align-justify"
+                        "icon": "fa-solid fa-align-justify",
+                        "fixed": true,
+                        "importable": false
                     },
-                    "value": {},
+                    "value": {
+                        "content": "teste"
+                    },
                     "open": true
                 }
             ],
@@ -243,34 +348,69 @@
                 }
             ],
             "position": {
-                "left": 59.125,
-                "top": 42.5
+                "left": 97.921875,
+                "top": 98
             },
             "hierarchy": [],
-            "label": "Text_38",
+            "label": "Text_48",
             "visibility": true,
             "static": false,
             "lockBox": true,
             "Transform": {
-                "position": "absolute",
-                "top": 42.5,
-                "left": 59.125,
+                "position": "static",
+                "top": 27,
+                "left": 23,
                 "scale": 1,
                 "zIndex": 1
             },
             "Dimensions": {
                 "width": "240",
-                "widthAuto": false,
+                "widthAuto": true,
                 "height": "40",
                 "heightAuto": false
             },
-            "Font": {
-                "font": "Arial, sans-serif",
-                "size": 12,
-                "color": "{ r: 0, g: 0, b: 0, a: 1, hex: #FFFFFF }"
+            "Background": {
+                "color": {
+                    "hsl": {
+                        "h": 0,
+                        "s": 0.836715951878042,
+                        "l": 0.498335085,
+                        "a": 1
+                    },
+                    "hex": "#E91515",
+                    "hex8": "#E91515FF",
+                    "rgba": {
+                        "r": 233,
+                        "g": 21,
+                        "b": 21,
+                        "a": 1
+                    },
+                    "hsv": {
+                        "h": 0,
+                        "s": 0.9111,
+                        "v": 0.9153,
+                        "a": 1
+                    },
+                    "oldHue": 0,
+                    "source": "hsva",
+                    "a": 1
+                }
             },
-            "Content": {}
+            "Font": {
+                "font": "Andale Mono, monospace",
+                "size": 20,
+                "color": {
+                    "r": 0,
+                    "g": 0,
+                    "b": 0,
+                    "a": 1,
+                    "hex": "#000000"
+                }
+            },
+            "Content": {
+                "content": "teste"
+            }
         }
     ],
-    "componentIndex": 38
+    "componentIndex": 48
 }

@@ -59,6 +59,11 @@ export class ParserService {
             });
 
             for(let key in component.publicVars){
+                const changeStyle = this.regexService.getData(new RegExp(`private _${component.publicVars[key].name}ChangeStyle = (.*?);`, "gms"), contents, ["data"], true)[0];
+                
+                if(changeStyle)
+                    component.publicVars[key].changeStyle = changeStyle.data;
+
                 component.publicVars[key].namespace = `${component.namespace}::${component.publicVars[key].name}`;
                 component.publicVars[key].id = crypto
                 .createHash("sha1")

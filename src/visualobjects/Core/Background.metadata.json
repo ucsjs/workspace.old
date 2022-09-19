@@ -1,0 +1,38 @@
+{
+    "blendMode": [
+        "normal", 
+        "multiply", 
+        "screen", 
+        "overlay", 
+        "darken", 
+        "lighten",
+        "color-dodge",
+        "saturation",
+        "color",
+        "luminosity"
+    ],
+    "clip": [
+        "border-box",
+        "padding-box",
+        "content-box",
+        "initial",
+        "inherit"
+    ],
+    "origin": [
+        "border-box",
+        "padding-box",
+        "content-box",
+        "initial",
+        "inherit"
+    ],
+    "repeat": [
+        "repeat",
+        "repeat-x",
+        "repeat-y",
+        "no-repeat",
+        "space",
+        "round",
+        "initial",
+        "inherit"
+    ]
+}

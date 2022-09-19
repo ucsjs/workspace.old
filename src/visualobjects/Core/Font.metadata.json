@@ -6,5 +6,34 @@
         "Courier, monospace",
         "Comic Sans MS, Comic Sans, cursive",
         "Impact, fantasy"
+    ],
+    "variantCaps": [
+        "normal", 
+        "small-caps", 
+        "all-small-caps", 
+        "petite-caps", 
+        "all-petite-caps", 
+        "unicase", 
+        "titling-caps", 
+        "initial", 
+        "inherit", 
+        "unset"
+    ],
+    "weight": [
+        "normal", 
+        "bold", 
+        "bolder", 
+        "lighter",
+        "100",
+        "200",
+        "300",
+        "400",
+        "500",
+        "600",
+        "700",
+        "800",
+        "900", 
+        "initial", 
+        "inherit"
     ]
 }

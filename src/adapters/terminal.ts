@@ -43,6 +43,8 @@ export class Terminal {
         this.wss.on('connection', (ws) => {
             this.onopened();
 
+            this.tty.write('\r');
+
             ws.on('message', (msg) => {
                 if (msg.includes("ESCAPED|-- ")) {
                     if (msg.includes("ESCAPED|-- RESIZE:")) {
@@ -60,9 +62,8 @@ export class Terminal {
             this.tty.on('data', (data) => {
                 try {
                     ws.send(data);
-                } catch (e) {
-                    // Websocket closed
-                }
+                } 
+                catch (e) {}
             });
         });
 

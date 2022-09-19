@@ -16,9 +16,10 @@ export class VisualService extends ParserService {
         super(regexService);
     }
 
-    async getComponents(paths: Array<string> = []) {
+    async getComponents(paths: Array<string> = [], typesPaths: Array<string> = []) {
         let components = [];
         let dependenciesIndex = {};
+        let types = await this.loadTypes(typesPaths);
 
         const files = await fg(paths, { 
             dot: true, 
@@ -39,7 +40,7 @@ export class VisualService extends ParserService {
         }
 
         for(let key in components)
-            components[key] = this.injectDependencies(components[key], dependenciesIndex);
+            components[key] = this.injectDependencies(components[key], dependenciesIndex, types);        
         
         let exportedComponents = [];
 
@@ -76,9 +77,11 @@ export class VisualService extends ParserService {
         return exportedComponents;
     }
 
-    async getSubcomponents(paths: Array<string> = []){
+    async getSubcomponents(paths: Array<string> = [], typesPaths: Array<string> = []){
         const components = [];
         const exportedComponents = [];
+        let dependenciesIndex = {};
+        let types = await this.loadTypes(typesPaths);
 
         const files = await fg(paths, { 
             dot: true, 
@@ -92,9 +95,14 @@ export class VisualService extends ParserService {
         for(let file of files){
             const component = this.getData(file, "UCS", true);
 
-            if(component && component.extends == "UCS")
+            if(component && (component.extends == "UCS" || component.extends == "Component")){
                 components.push(component);
+                dependenciesIndex[component.namespace] = component;
+            }   
         }
+
+        for(let key in components)
+            components[key] = this.injectDependencies(components[key], dependenciesIndex, types);
 
         for(let key in components){
             const importModule = components[key].filename.replace(`${process.cwd()}/`, "").replace(".ts", "");
@@ -111,23 +119,107 @@ export class VisualService extends ParserService {
                 }
                 catch(e){}
             }
-            
-            exportedComponents.push({
-                namespace: components[key].namespace,
-                extends: components[key].extends,
-                sign: components[key].sign,
-                metadata: (metadataJson) ? { ...metadataJson, ...components[key].metadata } : components[key].metadata,
-                components: components[key].components,
-                template: components[key].template,
-                content: components[key].content,
-                componentsDafaults: components[key]?.componentsDafaults,
-            }); 
+
+            let metadata = (metadataJson) ? { ...metadataJson, ...components[key].metadata } : components[key].metadata;
+
+            if(components[key].extends == "UCS"){
+                metadata.namespace = components[key].namespace;
+                metadata.group = "Scripts";
+                metadata.icon = "fa-solid fa-code";
+            }
+
+            if((!metadata.importable && typeof metadata.importable !== "boolean") || metadata.importable === true) {
+                exportedComponents.push({
+                    namespace: components[key].namespace,
+                    extends: components[key].extends,
+                    sign: components[key].sign,
+                    metadata: metadata,
+                    components: components[key].components,
+                    template: components[key].template,
+                    content: components[key].content,
+                    componentsDafaults: components[key]?.componentsDafaults,
+                    properties: components[key]?.publicVars,
+                }); 
+            }
         }
 
         return exportedComponents;
     }
 
-    injectDependencies(component: any, dependenciesIndex: any){
+    async loadTypes(typesPaths: Array<string> = []){
+        const types = {};
+
+        const files = await fg(typesPaths, { 
+            dot: true, 
+            onlyFiles: false, 
+            deep: 5, 
+            caseSensitiveMatch: false,
+            followSymbolicLinks: true,
+            absolute: true 
+        });
+
+        for(let file of files){
+            const contents = fs.readFileSync(path.resolve(file), "utf-8");
+            const typeName = this.regexService.getData(/class (.*?) {/gms, contents, ["name"], true)[0]?.name.trim();
+            const publicVars = this.regexService.getData(/public (.*?):[\s](.*?)[\s]= (.*?);/gms, contents, ["name", "type", "value"], true);
+
+            for(let publicVar of publicVars){
+                if(!types[typeName])
+                    types[typeName] = { default: {} };
+            
+                switch(publicVar.type){
+                    case "Int":
+                    case "int":
+                    case "number":
+                    case "Number":
+                        publicVar.value = parseInt(publicVar.value);
+                        break;
+                    case "Float":
+                    case "float":
+                        publicVar.value = parseFloat(publicVar.value);
+                        break;
+                    case "Boolean":
+                    case "boolean":
+                    case "Bool":
+                    case "bool":
+                        publicVar.value = (publicVar.value === "true");
+                        break;
+                    case "object":
+                        try{
+                            let dataParsed = {};
+                            const items = publicVar.value?.replace(/}/, "").replace(/{/, "").split(",");
+                            
+                            if(items){
+                                for(let i of items){
+                                    const [key, value] = i?.trim().split(":");
+        
+                                    if(value){
+                                        if(value.trim() === "true" || value.trim() === "false")
+                                            dataParsed[key.trim()] = (value.trim() === "true");
+                                        else if(!isNaN(parseInt(value.trim())))
+                                            dataParsed[key.trim()] = parseInt(value.trim());
+                                        else
+                                            dataParsed[key.trim()] = value.trim();
+                                    }   
+                                }
+                            }
+    
+                            publicVar.value = dataParsed;
+                        }
+                        catch(e){
+                            console.log(e);
+                        }                    
+                    break;
+                }
+
+                types[typeName].default[publicVar.name] = publicVar.value
+            }
+        }
+
+        return types
+    }
+
+    injectDependencies(component: any, dependenciesIndex: any, types: any){
         if(component.extends != "Component"){
             const parent = dependenciesIndex[component.extends];
 
@@ -151,7 +243,7 @@ export class VisualService extends ParserService {
                             icon: dependenciesIndex[parent.publicVars[key].type].metadata.icon,
                             sign: dependenciesIndex[parent.publicVars[key].type].sign,
                             properties: dependenciesIndex[parent.publicVars[key].type].publicVars,
-                            default: this.generateDefault(dependenciesIndex[parent.publicVars[key].type].publicVars),
+                            default: this.generateDefault(dependenciesIndex[parent.publicVars[key].type].publicVars, types),
                             metadata: metadata                          
                         })
                     }
@@ -166,7 +258,7 @@ export class VisualService extends ParserService {
                         icon: dependenciesIndex[component.publicVars[key].type].metadata.icon,
                         sign: dependenciesIndex[component.publicVars[key].type].sign,
                         properties: dependenciesIndex[component.publicVars[key].type].publicVars,
-                        default: this.generateDefault(dependenciesIndex[component.publicVars[key].type].publicVars),
+                        default: this.generateDefault(dependenciesIndex[component.publicVars[key].type].publicVars, types),
                         metadata: dependenciesIndex[component.publicVars[key].type].metadata
                     })
                 }
@@ -176,11 +268,14 @@ export class VisualService extends ParserService {
         return component;
     }
 
-    generateDefault(list){
+    generateDefault(list, types){
         let defaultObject = {};
 
         for(let key in list){
-            defaultObject[list[key].name] = list[key].default;
+            if(types[list[key].type] && types[list[key].type].default && !list[key].default)
+                defaultObject[list[key].name] = types[list[key].type].default;
+            else
+                defaultObject[list[key].name] = list[key].default;
         }
 
         return defaultObject;

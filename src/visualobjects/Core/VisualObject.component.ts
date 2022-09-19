@@ -2,7 +2,7 @@ import { Component } from "../Types/Component.type";
 import { Transform } from "./Transform.component";
 import { Dimensions } from "./Dimensions.component";
 
-export class VisualObject extends Component{
+export class VisualObject extends Component {
     //Matadata
     protected override __namespace = "VisualObject";
     protected override __importable = false;

@@ -1,6 +1,7 @@
 import { VisualObject } from "../Core/VisualObject.component";
 import { Font } from "../Core/Font.component";
 import { Content } from "../Core/Content.component";
+import { Background } from "../Core/Background.component";
 
 export class Text extends VisualObject {
     //Matadata
@@ -8,6 +9,7 @@ export class Text extends VisualObject {
     protected override __group = "Core";
     protected override __icon = "fa-solid fa-i-cursor";
 
+    public _background: Background;
     public _font: Font;
     public _text: Content;
     
