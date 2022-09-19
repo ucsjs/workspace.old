@@ -7,9 +7,9 @@ export class Font extends Component{
     protected override __importable = false;
     protected override __icon = "fa-solid fa-font";
 
-    private __font = [`"Times New Roman", Times, serif;`, `Arial, Helvetica, sans-serif`, `"Lucida Console", "Courier New", monospace;`];
+    private __font = [];
     
-    public _font: string = "Arial";
-    public _size: number = 0;
+    public _font: string = "Arial, sans-serif";
+    public _size: number = 12;
     public _color: Color = { r: 0, g: 0, b: 0, a: 1, hex: "#FFFFFF" };
 }

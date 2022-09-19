@@ -1,3 +1,15 @@
-<div style="top: <%= Transform.top %>px; left <%= Transform.left %>px">
-
+<div ref="<%= id %>" class="box<%= id %>">
+    <%= slot %>
 </div>
+
+<style>
+.box<%= id %> {
+    width: <% if(!Dimensions.widthAuto) { %><%= Dimensions.width %>px<% } else { %>auto<% } %>;
+    height: <% if(!Dimensions.heightAuto) { %><%= Dimensions.height %>px<% } else { %>auto<% } %>;
+    position: <%= Transform.position %>;
+    top: <%= Transform.top %>px; 
+    left: <%= Transform.left %>px;
+    z-index: <%= Transform.zIndex %>;
+    transform: scale(<%= Transform.scale %>);
+}
+</style>

@@ -4,5 +4,5 @@
 	  	"baseUrl": "./"
 	},
 	"include": ["*.ts", "**/*.ts"],
-	"exclude": ["./src/samples"]
+	"exclude": ["./samples"]
 }

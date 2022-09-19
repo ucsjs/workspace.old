@@ -83,10 +83,37 @@ export class RegexService {
                         index++;
                         data[index] = {};
                     }
-                    else if(legends.length >= groupIndex && !match.includes("=") && !match.includes("new "))
-                        data[index][legends[groupIndex-1].trim()] = match.replace(/["']/isg, "").trim();
+                    else if(legends.length >= groupIndex && !match.includes("=") && !match.includes("new ")){
+                        if(match.includes("{") && match.includes("}")){
+                            data[index][legends[groupIndex-1].trim()] = {}
+
+                            try{ eval(`data[index][legends[groupIndex-1].trim()] = ${match}`); }
+                            catch(e){}
+                        }
+                        else
+                            data[index][legends[groupIndex-1].trim()] = match.replace(/["']/isg, "").trim();
+                    }
+                        
                 });
             }
+        }
+
+        return data;
+    }
+
+    getDataRaw(regex, contents){
+        let m;
+        let data = [];
+        let index = -1;
+
+        while ((m = regex.exec(contents)) !== null) {
+            if (m.index === regex.lastIndex)
+            regex.lastIndex++;
+                                    
+            m.forEach((match, groupIndex) => {
+                index++;
+                data[index] = match;
+            });
         }
 
         return data;

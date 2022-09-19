@@ -47,7 +47,7 @@ export class BlueprintsService extends ParserService{
 		return string.charAt(0).toUpperCase() + string.slice(1);
 	}
 
-    async parse(item, namespace){
+    async parse(item, namespace): Promise<string>{
         const parser = new Parser(`${this.uppercaseFirstLetter(namespace)}Blueprint`, JSON.parse(item.content), [
             path.resolve("./src/blueprints/**/*.blueprint.ts"),
             path.resolve("node_modules/@ucsjs/**/*.blueprint.ts"),
@@ -56,6 +56,7 @@ export class BlueprintsService extends ParserService{
         const metadata = JSON.parse(item.content);
 
         let imports = [];
+
         let moduleInjection = {
             imports: [],
             importsModule: [],

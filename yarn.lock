@@ -2226,17 +2226,17 @@
   resolved "https://registry.yarnpkg.com/@ucsjs/blueprint/-/blueprint-0.0.23.tgz#9e37cde14efa99ccdae8ea45707f6f4b8d065895"
   integrity sha512-SiX+Fln6zExCntxYYyIE+Tf9wwnW8Ym6bej42wOMgEspEp8Ns6CVgdixPBtWJZW0bpKy7UmGs3RxOJJv6ghwzg==
 
-"@ucsjs/blueprint@0.0.25":
-  version "0.0.25"
-  resolved "https://registry.yarnpkg.com/@ucsjs/blueprint/-/blueprint-0.0.25.tgz#8e0f92af4f5083d08c87754197762a36e20ae8e5"
-  integrity sha512-lZNf3n65/oOno4vbMUVaWENXQU7E6Z61AN5f47DGN8pXIzKZ3aByGSBRZUENzBsiuW7p65xyb1sI0A2217PTZw==
+"@ucsjs/blueprint@0.0.29":
+  version "0.0.29"
+  resolved "https://registry.yarnpkg.com/@ucsjs/blueprint/-/blueprint-0.0.29.tgz#bba0aab7dc0cc9a4a9ce207eafcc9346e771fc0c"
+  integrity sha512-FK73Jdt/K1NpFrIxvXd9aBGlSHSoWvqZCvGvlVM5ctX7rWsDNFbvGPFYiY7xx7cCmV2fqlU8Jgl1xtHpl5H7hA==
 
-"@ucsjs/engine@^0.0.25":
-  version "0.0.25"
-  resolved "https://registry.yarnpkg.com/@ucsjs/engine/-/engine-0.0.25.tgz#7c1cadb7a196c303feb961dce66a94876e04a8cd"
-  integrity sha512-xZtQPN2AppSBVJLl40L012w1sWz1elVIVVRXsGl96n1cycImC5ZQCFJmkT5AXWewQBGAGwfDUf618yMKuLOhsw==
+"@ucsjs/engine@^0.0.29":
+  version "0.0.29"
+  resolved "https://registry.yarnpkg.com/@ucsjs/engine/-/engine-0.0.29.tgz#93df42a302abdf52a7d65f67e32adeef5734af07"
+  integrity sha512-EPbhBxFdl6e/86qdUTB4kjq4d4EgAZ6+CCsbgzCpLmTlCAipfawxJ0uspLYg8ObgvmsyPmK7/XN34f7RvX8a+w==
   dependencies:
-    "@ucsjs/blueprint" "0.0.25"
+    "@ucsjs/blueprint" "0.0.29"
     rxjs "^7.5.6"
 
 "@ucsjs/mongodb@^0.0.23":

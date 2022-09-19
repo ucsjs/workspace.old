@@ -1,5 +1,6 @@
 import * as fs from "fs";
 import * as crypto from "crypto";
+import * as path from "path";
 
 import { RegexService } from "./regex.services";
 
@@ -12,6 +13,7 @@ export class ParserService {
         const contents = fs.readFileSync(file, "utf8").toString();
         const namespaceRegex = new RegExp(`class (.*?) extends (.*?){`, "isg");
         const classInfo = this.regexService.getData(namespaceRegex, contents, ["name", "extends"], true);
+        const content = this.regexService.getDataRaw(/content\(\){.*?return ['"](.*?)['"];/gms, contents)[1];
 
         if(contents){
             let component: any = {
@@ -27,6 +29,8 @@ export class ParserService {
                     /this\.input\(["'](.*?)["'],[\s]Type\.(.*?),.*?\)/isg,
                     /this\.input\(["'](.*?)["'],[\s](.*?),.*?\)/isg
                 ], contents, ["name", "type"], true),
+                content: (content) ? content : null,
+                componentsDafaults: this.regexService.getData(/this._(.*?)._(.*?) = (.*?);/gms, contents, ["component", "property", "value"], true),
                 metadata: {}
             };
 
@@ -110,6 +114,16 @@ export class ParserService {
             for(let meta of newMetadataObject){
                 if(meta.name && meta.default)
                     metadata[meta.name] = meta.default;
+            }
+
+            const medatadaModule = file.replace(".component", ".metadata").replace(".ts", "");
+         
+            if(fs.existsSync(path.resolve(`${medatadaModule}.json`))){
+                try{
+                    const metadataJson = JSON.parse(fs.readFileSync(path.resolve(`${medatadaModule}.json`), "utf-8"));
+                    metadata = { ...metadata, ...metadataJson };
+                }
+                catch(e){}
             }
 
             for(let keyPublicVar in component.publicVars){

@@ -1,0 +1,18 @@
+<div ref="<%= id %>" class="box<%= id %>">
+    <%= Content.content %>
+</div>
+
+<style>
+.box<%= id %> {
+    font: <%= Font.font %>;
+    size: <%= Font.size %>px;
+    color: '<%= Font.color.hex %>';
+    width: <% if(!Dimensions.widthAuto) { %><%= Dimensions.width %>px<% } else { %>auto<% } %>;
+    height: <% if(!Dimensions.heightAuto) { %><%= Dimensions.height %>px<% } else { %>auto<% } %>;
+    position: <%= Transform.position %>;
+    top: <%= Transform.top %>px; 
+    left: <%= Transform.left %>px;
+    z-index: <%= Transform.zIndex %>;
+    transform: scale(<%= Transform.scale %>);
+}
+</style>

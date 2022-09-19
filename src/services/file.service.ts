@@ -5,12 +5,15 @@ import * as mime from "mime-types";
 import * as crypto from 'crypto';
 import * as languageDetect from "language-detect";
 import { Injectable } from '@nestjs/common';
+
 import { BlueprintsService } from "./blueprints.service";
+import { VisualService } from "./visual.service";
 
 @Injectable()
 export class FileService {
 	constructor(
-		private blueprintsService: BlueprintsService
+		private blueprintsService: BlueprintsService,
+		private visualService: VisualService
 	){}
 
 	async getFiles(pathname: string = "") {
@@ -107,10 +110,13 @@ export class FileService {
 			try{ metadata = JSON.stringify(JSON.parse(item.content), null, 4); } catch(e){}
 
 			if(metadata){
+				//Metadata
 				const dirname = path.dirname(item.filename);
 				const basename = path.basename(item.filename, ".ts");
 				const parserBasename = basename.split(".");
 				await fs.writeFileSync(`${dirname}/.${basename}.meta`, metadata);
+
+				//Controller
 				const contents = await this.blueprintsService.parse(item, parserBasename[0]);
 				await fs.writeFileSync(item.filename, contents);
 			}
@@ -123,12 +129,19 @@ export class FileService {
 			try{ metadata = JSON.stringify(JSON.parse(item.content), null, 4); } catch(e){}
 
 			if(metadata){
+				//Metadata
 				const dirname = path.dirname(item.filename);
 				const basename = path.basename(item.filename, ".ts");
 				const parserBasename = basename.split(".");
 				await fs.writeFileSync(`${dirname}/.${basename}.meta`, metadata);
-				//const contents = await this.blueprintsService.parse(item, parserBasename[0]);
-				//await fs.writeFileSync(item.filename, contents);
+
+				//Template
+				const contentsTemplate = await this.visualService.parseTemplate(item, parserBasename[0]);
+				await fs.writeFileSync(`${dirname}/${basename}.html`, contentsTemplate);
+
+				//Controller
+				const contents = await this.visualService.parse(item, parserBasename[0]);
+				await fs.writeFileSync(item.filename, contents);
 			}
 			else{
 				await fs.writeFileSync(item.filename, item.content);

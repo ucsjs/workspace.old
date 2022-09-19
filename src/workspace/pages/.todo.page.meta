@@ -4,8 +4,8 @@
     },
     "scale": 1,
     "position": {
-        "x": 47,
-        "y": 75
+        "x": -1,
+        "y": 0
     },
     "viewport": {
         "width": 375,
@@ -13,24 +13,23 @@
     },
     "hierarchy": [
         {
-            "id": "Box_41",
-            "namespace": "Box",
+            "0": false,
+            "1": true,
+            "id": "Text_37",
+            "namespace": "Text",
             "extends": "VisualObject",
-            "sign": "d57b0ffc41dab88045ec2db8a3ad54a7c312304a",
+            "sign": "2d56c6aea8046c5a82c268404ec442460590b1f7",
             "metadata": {
-                "namespace": "Box",
+                "namespace": "Text",
                 "group": "Core",
-                "icon": "fa-regular fa-square-full",
-                "resizable": true,
-                "moveble": true,
-                "importable": true
+                "icon": "fa-solid fa-i-cursor"
             },
             "components": [
                 {
                     "component": "Transform",
                     "fixed": true,
                     "icon": "fa-solid fa-maximize",
-                    "sign": "b20c75ec3a64f220359e46d4af07b5ce4ad2fc68",
+                    "sign": "8491b0f7ea36f0f9c5ba64a72a855f9443fc5ea9",
                     "properties": [
                         {
                             "name": "position",
@@ -55,7 +54,7 @@
                         },
                         {
                             "name": "scale",
-                            "type": "Ranger",
+                            "type": "Range",
                             "default": {
                                 "default": 1,
                                 "min": -10,
@@ -96,10 +95,10 @@
                     },
                     "value": {
                         "position": "absolute",
-                        "top": 92,
-                        "left": 35,
+                        "top": 77.5,
+                        "left": 60.125,
                         "scale": 1,
-                        "zIndex": 20
+                        "zIndex": 1
                     },
                     "open": true
                 },
@@ -107,7 +106,7 @@
                     "component": "Dimensions",
                     "fixed": false,
                     "icon": "fa-solid fa-up-down-left-right",
-                    "sign": "a576be39b54770252119fef9915229e4d6cf5799",
+                    "sign": "8eff5b910d4267f2470f2beb61ddceb9ff9af037",
                     "properties": [
                         {
                             "name": "width",
@@ -139,32 +138,143 @@
                         }
                     ],
                     "default": {
-                        "width": 240,
+                        "width": "240",
                         "widthAuto": false,
-                        "height": 240,
+                        "height": "40",
                         "heightAuto": false
                     },
-                    "metadata": [],
+                    "metadata": {},
                     "value": {
-                        "width": 271,
+                        "width": 253,
                         "widthAuto": false,
-                        "height": 240,
+                        "height": 40,
                         "heightAuto": false
+                    },
+                    "open": true
+                },
+                {
+                    "component": "Font",
+                    "fixed": true,
+                    "icon": "fa-solid fa-font",
+                    "sign": "2550353a9298e0dc4ef3f0e4f3539fd3af7a6f8d",
+                    "properties": [
+                        {
+                            "name": "font",
+                            "type": "string",
+                            "default": "Arial, sans-serif",
+                            "namespace": "Font::font",
+                            "id": "bc8ff01e5ac9e501b530fd05702ed150f06d133f"
+                        },
+                        {
+                            "name": "size",
+                            "type": "number",
+                            "default": 12,
+                            "namespace": "Font::size",
+                            "id": "8dfdd335121a336e936ff7497a3f6120ae4b64f4"
+                        },
+                        {
+                            "name": "color",
+                            "type": "Color",
+                            "default": "{ r: 0, g: 0, b: 0, a: 1, hex: #FFFFFF }",
+                            "namespace": "Font::color",
+                            "id": "fd5d30235781a0cf0cd760964f49bf409ddcc0cf"
+                        }
+                    ],
+                    "default": {
+                        "font": "Arial, sans-serif",
+                        "size": 12,
+                        "color": "{ r: 0, g: 0, b: 0, a: 1, hex: #FFFFFF }"
+                    },
+                    "metadata": {
+                        "namespace": "Font",
+                        "icon": "fa-solid fa-font",
+                        "fixed": true,
+                        "importable": false,
+                        "font": [
+                            "Arial, sans-serif",
+                            "Times, Times New Roman, serif",
+                            "Andale Mono, monospace",
+                            "Courier, monospace",
+                            "Comic Sans MS, Comic Sans, cursive",
+                            "Impact, fantasy"
+                        ]
+                    },
+                    "value": {
+                        "font": "Arial, sans-serif",
+                        "size": 12,
+                        "color": "{ r: 0, g: 0, b: 0, a: 1, hex: #FFFFFF }"
+                    },
+                    "open": true
+                },
+                {
+                    "component": "Content",
+                    "fixed": false,
+                    "icon": "fa-solid fa-align-justify",
+                    "sign": "9dc59ca21f953e475eaaa4a77f3715ce51d4e38e",
+                    "properties": [
+                        {
+                            "name": "content",
+                            "type": "BigText",
+                            "namespace": "Content::content",
+                            "id": "ef8b63184ab5f995f87a0f6f4272ba911517f5b0"
+                        }
+                    ],
+                    "default": {},
+                    "metadata": {
+                        "namespace": "Content",
+                        "icon": "fa-solid fa-align-justify"
+                    },
+                    "value": {
+                        "content": "teasdasdsad"
                     },
                     "open": true
                 }
             ],
-            "template": "<div style=\"top: <%= Transform.top %>px; left <%= Transform.left %>px\">\r\n\r\n</div>",
+            "template": "/mnt/f/Node/ucsjs/workspace/src/visualobjects/VisualObject/Text.template.ejs",
+            "content": "{{component.Content?.content}}",
+            "componentsDafaults": [
+                {
+                    "component": "dimensions",
+                    "property": "width",
+                    "value": "240"
+                },
+                {
+                    "component": "dimensions",
+                    "property": "height",
+                    "value": "40"
+                }
+            ],
             "position": {
-                "left": 68.125,
-                "top": 121
+                "left": 60.125,
+                "top": 77.5
             },
             "hierarchy": [],
-            "label": "Box_Teste",
+            "label": "Text_37",
             "visibility": true,
             "static": false,
-            "lockBox": true
+            "lockBox": true,
+            "Transform": {
+                "position": "absolute",
+                "top": 77.5,
+                "left": 60.125,
+                "scale": 1,
+                "zIndex": 1
+            },
+            "Dimensions": {
+                "width": 253,
+                "widthAuto": false,
+                "height": 40,
+                "heightAuto": false
+            },
+            "Font": {
+                "font": "Arial, sans-serif",
+                "size": 12,
+                "color": "{ r: 0, g: 0, b: 0, a: 1, hex: #FFFFFF }"
+            },
+            "Content": {
+                "content": "teasdasdsad"
+            }
         }
     ],
-    "componentIndex": 41
+    "componentIndex": 37
 }

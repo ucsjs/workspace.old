@@ -19,8 +19,14 @@ async function bootstrap() {
 	const app = await NestFactory.create(AppModule, { cors: true });
   	//app.useGlobalFilters(new AllExceptionsFilter());
 
+	app.use(express.static(path.resolve(__dirname, '../dist/workspace/pages')));
+
 	const lazyModuleLoader = app.get(LazyModuleLoader);
-	const files = await fg("./src/workspace/**/*.blueprint.ts", { dot: true, onlyFiles: true });
+	
+	const files = await fg([
+		"./src/workspace/**/*.blueprint.ts",
+		"./src/workspace/**/*.page.ts"
+	], { dot: true, onlyFiles: true });
 
 	for(let file of files){
 		try{
