@@ -58,7 +58,7 @@ function buildBrowserify(packageName: string){
 		.pipe(sourceVinyl(`${packageName}.min.js`))
 		.pipe(buffer())
 		.pipe(uglify())
-		.pipe(dest(`${dist}/dist`))
+		.pipe(dest(`${dist}/${packageName}`))
 }
 
 function buildPackageDev(packageName: string) {
