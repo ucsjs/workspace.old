@@ -13,7 +13,7 @@ import { Subject } from "rxjs";
 export class UCS implements UcsInterface{
     private static __updateProfile: Subject<any> = new Subject();
 
-    protected __scope: Array<any> = new Array<any>();
+    protected __scope = {};
     protected __fixedFramerate: number = 60
     protected __framerate: number = 0;
     protected __calls: number = 0;
@@ -43,15 +43,15 @@ export class UCS implements UcsInterface{
 
     public OnApplicationStart(): void | Promise<void> {}
     
-    public static OnUpdateProfile(c){
+    public static OnUpdateProfile(c) {
         if(c) this.__updateProfile.subscribe(c);
     }
 
-    public Profile(profile: any){
+    public Profile(profile: any) {
         UCS.__updateProfile.next(profile);
     }
 
-    public IsPromise(p){
+    public IsPromise(p) {
         return (typeof p === 'object' && typeof p.then === 'function');
     }
 
@@ -59,8 +59,8 @@ export class UCS implements UcsInterface{
         return (!this.IsPromise(f)) ? new Promise((resolve) => { f.bind(component).call(); resolve(null); }): null;
     }
     
-    public AddComponent(component: UcsInterface) {
-        this.__scope.push(component);
+    public AddComponent(namespace: string, component: UcsInterface) {
+        this.__scope[namespace] = component;
 
         for(let key in this.__events){
             if(typeof component[key] === "function"){
@@ -69,7 +69,11 @@ export class UCS implements UcsInterface{
         }
     }
 
-    public async Call(eventName: string, debug: boolean = false){
+    public GetComponent(namespace: string) {
+        return (this.__scope[namespace]) ? this.__scope[namespace] : null;
+    }
+
+    public async Call(eventName: string, debug: boolean = false) {
         if(debug) console.log("Call", eventName, this.__events[eventName].length);
 
         if(this.__events[eventName] && this.__events[eventName].length > 0){
@@ -85,7 +89,7 @@ export class UCS implements UcsInterface{
         return true;
     }
 
-    protected async Pause(){
+    protected async Pause() {
         this.__pause = true;
         this.__frameRateReset.Pause();
         await this.Call("OnApplicationPause");
@@ -105,7 +109,7 @@ export class UCS implements UcsInterface{
         this.Exit();
     }
 
-    public StopLifeCycle(){
+    public StopLifeCycle() {
         this.Exit();
     }
 

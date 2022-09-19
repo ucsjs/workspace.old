@@ -2042,10 +2042,10 @@
   resolved "https://registry.yarnpkg.com/@types/node/-/node-18.7.17.tgz#52438111ea98f77475470fc62d79b9eb96bb2c92"
   integrity sha512-0UyfUnt02zIuqp7yC8RYtDkp/vo8bFaQ13KkSEvUAohPOAlnVNbj5Fi3fgPSuwzakS+EvvnnZ4x9y7i6ASaSPQ==
 
-"@types/node@^16.0.0":
-  version "16.11.58"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-16.11.58.tgz#0a3698dee3492617a8d5fe7998d18d7520b63026"
-  integrity sha512-uMVxJ111wpHzkx/vshZFb6Qni3BOMnlWLq7q9jrwej7Yw/KvjsEbpxCCxw+hLKxexFMc8YmpG8J9tnEe/rKsIg==
+"@types/node@^18.7.18":
+  version "18.7.18"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-18.7.18.tgz#633184f55c322e4fb08612307c274ee6d5ed3154"
+  integrity sha512-m+6nTEOadJZuTPkKR/SYK3A2d7FZrgElol9UP1Kae90VVU4a6mxnPuLiIW1m4Cq4gZ/nWb9GrdVXJCoCazDAbg==
 
 "@types/node@^8.9.5":
   version "8.10.66"
@@ -2221,31 +2221,26 @@
     "@typescript-eslint/types" "5.37.0"
     eslint-visitor-keys "^3.3.0"
 
-"@ucsjs/blueprint@0.0.23", "@ucsjs/blueprint@^0.0.23":
-  version "0.0.23"
-  resolved "https://registry.yarnpkg.com/@ucsjs/blueprint/-/blueprint-0.0.23.tgz#9e37cde14efa99ccdae8ea45707f6f4b8d065895"
-  integrity sha512-SiX+Fln6zExCntxYYyIE+Tf9wwnW8Ym6bej42wOMgEspEp8Ns6CVgdixPBtWJZW0bpKy7UmGs3RxOJJv6ghwzg==
+"@ucsjs/blueprint@0.0.30", "@ucsjs/blueprint@^0.0.30":
+  version "0.0.30"
+  resolved "https://registry.yarnpkg.com/@ucsjs/blueprint/-/blueprint-0.0.30.tgz#ce612e8f584e28d406d254c521ba746447b29620"
+  integrity sha512-qW9o9wXapTvtG4Sgh76++Pv/cqCrqhssgq7P4sPh0X3qlYGe5uyTp0dmpsglnqrcuDMBTojEf8aNWVajWQ8Xbw==
 
-"@ucsjs/blueprint@0.0.29":
-  version "0.0.29"
-  resolved "https://registry.yarnpkg.com/@ucsjs/blueprint/-/blueprint-0.0.29.tgz#bba0aab7dc0cc9a4a9ce207eafcc9346e771fc0c"
-  integrity sha512-FK73Jdt/K1NpFrIxvXd9aBGlSHSoWvqZCvGvlVM5ctX7rWsDNFbvGPFYiY7xx7cCmV2fqlU8Jgl1xtHpl5H7hA==
-
-"@ucsjs/engine@^0.0.29":
-  version "0.0.29"
-  resolved "https://registry.yarnpkg.com/@ucsjs/engine/-/engine-0.0.29.tgz#93df42a302abdf52a7d65f67e32adeef5734af07"
-  integrity sha512-EPbhBxFdl6e/86qdUTB4kjq4d4EgAZ6+CCsbgzCpLmTlCAipfawxJ0uspLYg8ObgvmsyPmK7/XN34f7RvX8a+w==
+"@ucsjs/engine@^0.0.30":
+  version "0.0.30"
+  resolved "https://registry.yarnpkg.com/@ucsjs/engine/-/engine-0.0.30.tgz#cf6e1d56a77f75dfcaf66dd2b5e2b7467c987475"
+  integrity sha512-E0y7T7BtyeGwekfWE6lCYZNSLAT8XBLfxkCT/dHzcobBZIxmRXZpihR6VIpxkwgDfH+FLzJd/OZvceX6RiwnMw==
   dependencies:
-    "@ucsjs/blueprint" "0.0.29"
+    "@ucsjs/blueprint" "0.0.30"
     rxjs "^7.5.6"
 
-"@ucsjs/mongodb@^0.0.23":
-  version "0.0.23"
-  resolved "https://registry.yarnpkg.com/@ucsjs/mongodb/-/mongodb-0.0.23.tgz#a67a3bfe85127ce6cd108533f510d8bcdad88fd0"
-  integrity sha512-mvuabfLmpbfr09P+ciEmYSqlteKQyfYETGoobHrvCCEWefJI1ZKmFXq4C/b92ZmyzwtYFj8n1eSCe2VtHk6FXA==
+"@ucsjs/mongodb@^0.0.30":
+  version "0.0.30"
+  resolved "https://registry.yarnpkg.com/@ucsjs/mongodb/-/mongodb-0.0.30.tgz#a9cac48ee3486c7eb95905e7a97fb1986982a9ca"
+  integrity sha512-C+AuExkh53PXlJEnQ7odOwx7Tqyi/+7E/qepp9Te+t9WN9b6W61X61J4WKZq67/ZB4ucxtGRd5oAje1sY+Ipkw==
   dependencies:
     "@nestjs/mongoose" "^9.2.0"
-    "@ucsjs/blueprint" "0.0.23"
+    "@ucsjs/blueprint" "0.0.30"
     mongodb "^4.9.1"
     mongoose "^6.6.0"
     rxjs "^7.5.6"

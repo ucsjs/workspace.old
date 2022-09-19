@@ -76,6 +76,57 @@ export class VisualService extends ParserService {
         return exportedComponents;
     }
 
+    async getSubcomponents(paths: Array<string> = []){
+        const components = [];
+        const exportedComponents = [];
+
+        const files = await fg(paths, { 
+            dot: true, 
+            onlyFiles: false, 
+            deep: 5, 
+            caseSensitiveMatch: false,
+            followSymbolicLinks: true,
+            absolute: true 
+        });
+
+        for(let file of files){
+            const component = this.getData(file, "UCS", true);
+
+            if(component && component.extends == "UCS")
+                components.push(component);
+        }
+
+        for(let key in components){
+            const importModule = components[key].filename.replace(`${process.cwd()}/`, "").replace(".ts", "");
+            const builderModule = importModule.replace(".component", ".template");
+            const medatadaModule = importModule.replace(".component", ".metadata");
+            let metadataJson = null;
+
+            if(fs.existsSync(path.resolve(`${builderModule}.ejs`)))
+                components[key].template = path.resolve(`${builderModule}.ejs`);
+
+            if(fs.existsSync(path.resolve(`${medatadaModule}.json`))){
+                try{
+                    metadataJson = JSON.parse(fs.readFileSync(path.resolve(`${builderModule}.json`), "utf-8"));
+                }
+                catch(e){}
+            }
+            
+            exportedComponents.push({
+                namespace: components[key].namespace,
+                extends: components[key].extends,
+                sign: components[key].sign,
+                metadata: (metadataJson) ? { ...metadataJson, ...components[key].metadata } : components[key].metadata,
+                components: components[key].components,
+                template: components[key].template,
+                content: components[key].content,
+                componentsDafaults: components[key]?.componentsDafaults,
+            }); 
+        }
+
+        return exportedComponents;
+    }
+
     injectDependencies(component: any, dependenciesIndex: any){
         if(component.extends != "Component"){
             const parent = dependenciesIndex[component.extends];

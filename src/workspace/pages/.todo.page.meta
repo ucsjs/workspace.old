@@ -15,7 +15,7 @@
         {
             "0": false,
             "1": true,
-            "id": "Text_37",
+            "id": "Text_38",
             "namespace": "Text",
             "extends": "VisualObject",
             "sign": "2d56c6aea8046c5a82c268404ec442460590b1f7",
@@ -95,8 +95,8 @@
                     },
                     "value": {
                         "position": "absolute",
-                        "top": 77.5,
-                        "left": 60.125,
+                        "top": 42.5,
+                        "left": 59.125,
                         "scale": 1,
                         "zIndex": 1
                     },
@@ -145,9 +145,9 @@
                     },
                     "metadata": {},
                     "value": {
-                        "width": 253,
+                        "width": "240",
                         "widthAuto": false,
-                        "height": 40,
+                        "height": "40",
                         "heightAuto": false
                     },
                     "open": true
@@ -224,9 +224,7 @@
                         "namespace": "Content",
                         "icon": "fa-solid fa-align-justify"
                     },
-                    "value": {
-                        "content": "teasdasdsad"
-                    },
+                    "value": {},
                     "open": true
                 }
             ],
@@ -245,25 +243,25 @@
                 }
             ],
             "position": {
-                "left": 60.125,
-                "top": 77.5
+                "left": 59.125,
+                "top": 42.5
             },
             "hierarchy": [],
-            "label": "Text_37",
+            "label": "Text_38",
             "visibility": true,
             "static": false,
             "lockBox": true,
             "Transform": {
                 "position": "absolute",
-                "top": 77.5,
-                "left": 60.125,
+                "top": 42.5,
+                "left": 59.125,
                 "scale": 1,
                 "zIndex": 1
             },
             "Dimensions": {
-                "width": 253,
+                "width": "240",
                 "widthAuto": false,
-                "height": 40,
+                "height": "40",
                 "heightAuto": false
             },
             "Font": {
@@ -271,10 +269,8 @@
                 "size": 12,
                 "color": "{ r: 0, g: 0, b: 0, a: 1, hex: #FFFFFF }"
             },
-            "Content": {
-                "content": "teasdasdsad"
-            }
+            "Content": {}
         }
     ],
-    "componentIndex": 37
+    "componentIndex": 38
 }

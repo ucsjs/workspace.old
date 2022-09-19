@@ -13,4 +13,11 @@ export class VisualController {
 			'./.metadata/visualobjects/**/*.component.ts'
 		]);
 	}
+
+	@Get("subcomponents")
+	async getSubcomponents() {
+		return await this.visualService.getSubcomponents([
+			'./src/workspace/**/*.ts',
+		]);
+	}
 }
