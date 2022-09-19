@@ -2221,26 +2221,26 @@
     "@typescript-eslint/types" "5.37.0"
     eslint-visitor-keys "^3.3.0"
 
-"@ucsjs/blueprint@0.0.30", "@ucsjs/blueprint@^0.0.30":
-  version "0.0.30"
-  resolved "https://registry.yarnpkg.com/@ucsjs/blueprint/-/blueprint-0.0.30.tgz#ce612e8f584e28d406d254c521ba746447b29620"
-  integrity sha512-qW9o9wXapTvtG4Sgh76++Pv/cqCrqhssgq7P4sPh0X3qlYGe5uyTp0dmpsglnqrcuDMBTojEf8aNWVajWQ8Xbw==
+"@ucsjs/blueprint@0.0.31", "@ucsjs/blueprint@^0.0.31":
+  version "0.0.31"
+  resolved "https://registry.yarnpkg.com/@ucsjs/blueprint/-/blueprint-0.0.31.tgz#08c403257a30103785bbd1aef10bec57a9d61c2a"
+  integrity sha512-JU5ibSBIvH3N7wifoOjWinI6JNdGX9a7WJWLvvJ9PtO0N6Ui+WV9Nd+NPz0INAIib5ofO1DMX6oWoQk6VqW/nQ==
 
-"@ucsjs/engine@^0.0.30":
-  version "0.0.30"
-  resolved "https://registry.yarnpkg.com/@ucsjs/engine/-/engine-0.0.30.tgz#cf6e1d56a77f75dfcaf66dd2b5e2b7467c987475"
-  integrity sha512-E0y7T7BtyeGwekfWE6lCYZNSLAT8XBLfxkCT/dHzcobBZIxmRXZpihR6VIpxkwgDfH+FLzJd/OZvceX6RiwnMw==
+"@ucsjs/engine@^0.0.31":
+  version "0.0.31"
+  resolved "https://registry.yarnpkg.com/@ucsjs/engine/-/engine-0.0.31.tgz#87ace4939cac552ba6a01299d717f154e2bb86a8"
+  integrity sha512-TIRNMHSP9EF1LpgFbuwhO8p8ckugjbIiiuQtmFu5ywciJYqBafvFKzvqtuz3nPQCPY9f8jp/pcVWF59+SRu21A==
   dependencies:
-    "@ucsjs/blueprint" "0.0.30"
+    "@ucsjs/blueprint" "0.0.31"
     rxjs "^7.5.6"
 
-"@ucsjs/mongodb@^0.0.30":
-  version "0.0.30"
-  resolved "https://registry.yarnpkg.com/@ucsjs/mongodb/-/mongodb-0.0.30.tgz#a9cac48ee3486c7eb95905e7a97fb1986982a9ca"
-  integrity sha512-C+AuExkh53PXlJEnQ7odOwx7Tqyi/+7E/qepp9Te+t9WN9b6W61X61J4WKZq67/ZB4ucxtGRd5oAje1sY+Ipkw==
+"@ucsjs/mongodb@^0.0.31":
+  version "0.0.31"
+  resolved "https://registry.yarnpkg.com/@ucsjs/mongodb/-/mongodb-0.0.31.tgz#e403dbe8a1fec7669ac991d8c64827db17369d41"
+  integrity sha512-viewiP/AB92l9GXb07yeIdIvlBiIk/ExcWd0S7gjVS/3s3O3YPWwccSvwEJY31En7JI0/DDsJ0ncLkThsB5qzA==
   dependencies:
     "@nestjs/mongoose" "^9.2.0"
-    "@ucsjs/blueprint" "0.0.30"
+    "@ucsjs/blueprint" "0.0.31"
     mongodb "^4.9.1"
     mongoose "^6.6.0"
     rxjs "^7.5.6"
