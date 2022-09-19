@@ -27,6 +27,7 @@
 	  "node_modules",
 	  "dist",
 	  "public",
-	  "http"
+	  "http",
+	  "samples"
 	]
 }

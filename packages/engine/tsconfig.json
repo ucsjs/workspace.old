@@ -1,0 +1,18 @@
+{
+	"compilerOptions": {
+		"module": "CommonJS",
+		"moduleResolution": "Node",
+	  	"baseUrl": "./src",
+		"outDir": "./dist",
+		"removeComments": true,
+        "preserveConstEnums": true,
+        "sourceMap": true,
+        "target": "ES6",
+        "watch": true,
+        "allowJs": true,
+        "allowUmdGlobalAccess": true,
+		"allowSyntheticDefaultImports": true
+	},
+	"include": ["*.ts", "**/*.ts"],
+	"exclude": ["./samples"]
+}

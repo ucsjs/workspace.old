@@ -4,8 +4,8 @@
     },
     "scale": 1,
     "position": {
-        "x": -56,
-        "y": 55
+        "x": 47,
+        "y": 75
     },
     "viewport": {
         "width": 375,
@@ -13,7 +13,7 @@
     },
     "hierarchy": [
         {
-            "id": "Box_25",
+            "id": "Box_41",
             "namespace": "Box",
             "extends": "VisualObject",
             "sign": "d57b0ffc41dab88045ec2db8a3ad54a7c312304a",
@@ -30,8 +30,15 @@
                     "component": "Transform",
                     "fixed": true,
                     "icon": "fa-solid fa-maximize",
-                    "sign": "993f355cc2e36b2266b52e24f255466bf97250e2",
+                    "sign": "b20c75ec3a64f220359e46d4af07b5ce4ad2fc68",
                     "properties": [
+                        {
+                            "name": "position",
+                            "type": "string",
+                            "default": "absolute",
+                            "namespace": "Transform::position",
+                            "id": "cb1ff5d5ac80d74b22809fcfc38165143b13e507"
+                        },
                         {
                             "name": "top",
                             "type": "number",
@@ -57,9 +64,17 @@
                             },
                             "namespace": "Transform::scale",
                             "id": "1641e2e0b1265badde139ebbfe2f876e030a4797"
+                        },
+                        {
+                            "name": "zIndex",
+                            "type": "number",
+                            "default": 1,
+                            "namespace": "Transform::zIndex",
+                            "id": "cc7421f74b81fc5e2d39063ad4c0cc47ffd7d37e"
                         }
                     ],
                     "default": {
+                        "position": "absolute",
                         "top": 0,
                         "left": 0,
                         "scale": {
@@ -67,13 +82,24 @@
                             "min": -10,
                             "max": 10,
                             "step": 0.1
-                        }
+                        },
+                        "zIndex": 1
                     },
-                    "metadata": [],
+                    "metadata": {
+                        "position": [
+                            "absolute",
+                            "relative",
+                            "fixed",
+                            "static",
+                            "sticky"
+                        ]
+                    },
                     "value": {
-                        "top": 172,
-                        "left": 87,
-                        "scale": "1"
+                        "position": "absolute",
+                        "top": 92,
+                        "left": 35,
+                        "scale": 1,
+                        "zIndex": 20
                     },
                     "open": true
                 },
@@ -81,7 +107,7 @@
                     "component": "Dimensions",
                     "fixed": false,
                     "icon": "fa-solid fa-up-down-left-right",
-                    "sign": "36c04b839993acd97dd6dde72d79eacfe74226c4",
+                    "sign": "a576be39b54770252119fef9915229e4d6cf5799",
                     "properties": [
                         {
                             "name": "width",
@@ -91,109 +117,11 @@
                             "id": "6951b48a05d0a69e51d3aec76c130883e8b671c3"
                         },
                         {
-                            "name": "height",
-                            "type": "number",
-                            "default": 240,
-                            "namespace": "Dimensions::height",
-                            "id": "2784d0ccafcb78023ae4177df05ce77668ceb6e7"
-                        }
-                    ],
-                    "default": {
-                        "width": 240,
-                        "height": 240
-                    },
-                    "metadata": [],
-                    "value": {
-                        "width": 240,
-                        "height": 240
-                    },
-                    "open": true
-                }
-            ],
-            "template": "<div style=\"top: <%= Transform.top %>px; left <%= Transform.left %>px\">\r\n\r\n</div>",
-            "position": {
-                "left": 0,
-                "top": 0
-            },
-            "hierarchy": []
-        },
-        {
-            "id": "Box_26",
-            "namespace": "Box",
-            "extends": "VisualObject",
-            "sign": "d57b0ffc41dab88045ec2db8a3ad54a7c312304a",
-            "metadata": {
-                "namespace": "Box",
-                "group": "Core",
-                "icon": "fa-regular fa-square-full",
-                "resizable": true,
-                "moveble": true,
-                "importable": true
-            },
-            "components": [
-                {
-                    "component": "Transform",
-                    "fixed": true,
-                    "icon": "fa-solid fa-maximize",
-                    "sign": "993f355cc2e36b2266b52e24f255466bf97250e2",
-                    "properties": [
-                        {
-                            "name": "top",
-                            "type": "number",
-                            "default": 0,
-                            "namespace": "Transform::top",
-                            "id": "84e9b008824d798f6281733cd9bd2972296e8049"
-                        },
-                        {
-                            "name": "left",
-                            "type": "number",
-                            "default": 0,
-                            "namespace": "Transform::left",
-                            "id": "e3200ccfb22fd0650e6f26cc2742b09b3f965285"
-                        },
-                        {
-                            "name": "scale",
-                            "type": "Ranger",
-                            "default": {
-                                "default": 1,
-                                "min": -10,
-                                "max": 10,
-                                "step": 0.1
-                            },
-                            "namespace": "Transform::scale",
-                            "id": "1641e2e0b1265badde139ebbfe2f876e030a4797"
-                        }
-                    ],
-                    "default": {
-                        "top": 0,
-                        "left": 0,
-                        "scale": {
-                            "default": 1,
-                            "min": -10,
-                            "max": 10,
-                            "step": 0.1
-                        }
-                    },
-                    "metadata": [],
-                    "value": {
-                        "top": 55,
-                        "left": 51,
-                        "scale": "1"
-                    },
-                    "open": true
-                },
-                {
-                    "component": "Dimensions",
-                    "fixed": false,
-                    "icon": "fa-solid fa-up-down-left-right",
-                    "sign": "36c04b839993acd97dd6dde72d79eacfe74226c4",
-                    "properties": [
-                        {
-                            "name": "width",
-                            "type": "number",
-                            "default": 240,
-                            "namespace": "Dimensions::width",
-                            "id": "6951b48a05d0a69e51d3aec76c130883e8b671c3"
+                            "name": "widthAuto",
+                            "type": "boolean",
+                            "default": false,
+                            "namespace": "Dimensions::widthAuto",
+                            "id": "4fa8c3691d367173c32bae83043cd0f7df18b86e"
                         },
                         {
                             "name": "height",
@@ -201,132 +129,42 @@
                             "default": 240,
                             "namespace": "Dimensions::height",
                             "id": "2784d0ccafcb78023ae4177df05ce77668ceb6e7"
+                        },
+                        {
+                            "name": "heightAuto",
+                            "type": "boolean",
+                            "default": false,
+                            "namespace": "Dimensions::heightAuto",
+                            "id": "50a06cb31cd5fb63f34edf761225df728e6eb4c4"
                         }
                     ],
                     "default": {
                         "width": 240,
-                        "height": 240
+                        "widthAuto": false,
+                        "height": 240,
+                        "heightAuto": false
                     },
                     "metadata": [],
                     "value": {
-                        "width": 240,
-                        "height": 240
+                        "width": 271,
+                        "widthAuto": false,
+                        "height": 240,
+                        "heightAuto": false
                     },
                     "open": true
                 }
             ],
             "template": "<div style=\"top: <%= Transform.top %>px; left <%= Transform.left %>px\">\r\n\r\n</div>",
             "position": {
-                "left": 0,
-                "top": 0
+                "left": 68.125,
+                "top": 121
             },
-            "hierarchy": []
-        },
-        {
-            "id": "Box_27",
-            "namespace": "Box",
-            "extends": "VisualObject",
-            "sign": "d57b0ffc41dab88045ec2db8a3ad54a7c312304a",
-            "metadata": {
-                "namespace": "Box",
-                "group": "Core",
-                "icon": "fa-regular fa-square-full",
-                "resizable": true,
-                "moveble": true,
-                "importable": true
-            },
-            "components": [
-                {
-                    "component": "Transform",
-                    "fixed": true,
-                    "icon": "fa-solid fa-maximize",
-                    "sign": "993f355cc2e36b2266b52e24f255466bf97250e2",
-                    "properties": [
-                        {
-                            "name": "top",
-                            "type": "number",
-                            "default": 0,
-                            "namespace": "Transform::top",
-                            "id": "84e9b008824d798f6281733cd9bd2972296e8049"
-                        },
-                        {
-                            "name": "left",
-                            "type": "number",
-                            "default": 0,
-                            "namespace": "Transform::left",
-                            "id": "e3200ccfb22fd0650e6f26cc2742b09b3f965285"
-                        },
-                        {
-                            "name": "scale",
-                            "type": "Ranger",
-                            "default": {
-                                "default": 1,
-                                "min": -10,
-                                "max": 10,
-                                "step": 0.1
-                            },
-                            "namespace": "Transform::scale",
-                            "id": "1641e2e0b1265badde139ebbfe2f876e030a4797"
-                        }
-                    ],
-                    "default": {
-                        "top": 0,
-                        "left": 0,
-                        "scale": {
-                            "default": 1,
-                            "min": -10,
-                            "max": 10,
-                            "step": 0.1
-                        }
-                    },
-                    "metadata": [],
-                    "value": {
-                        "top": 366,
-                        "left": 63,
-                        "scale": "0"
-                    },
-                    "open": true
-                },
-                {
-                    "component": "Dimensions",
-                    "fixed": false,
-                    "icon": "fa-solid fa-up-down-left-right",
-                    "sign": "36c04b839993acd97dd6dde72d79eacfe74226c4",
-                    "properties": [
-                        {
-                            "name": "width",
-                            "type": "number",
-                            "default": 240,
-                            "namespace": "Dimensions::width",
-                            "id": "6951b48a05d0a69e51d3aec76c130883e8b671c3"
-                        },
-                        {
-                            "name": "height",
-                            "type": "number",
-                            "default": 240,
-                            "namespace": "Dimensions::height",
-                            "id": "2784d0ccafcb78023ae4177df05ce77668ceb6e7"
-                        }
-                    ],
-                    "default": {
-                        "width": 240,
-                        "height": 240
-                    },
-                    "metadata": [],
-                    "value": {
-                        "width": 240,
-                        "height": 240
-                    },
-                    "open": true
-                }
-            ],
-            "template": "<div style=\"top: <%= Transform.top %>px; left <%= Transform.left %>px\">\r\n\r\n</div>",
-            "position": {
-                "left": 63,
-                "top": 366
-            },
-            "hierarchy": []
+            "hierarchy": [],
+            "label": "Box_Teste",
+            "visibility": true,
+            "static": false,
+            "lockBox": true
         }
     ],
-    "componentIndex": 27
+    "componentIndex": 41
 }

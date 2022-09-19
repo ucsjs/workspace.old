@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>UCS.js Engine</title>
+        <style>
+            table, th, td {
+                border: 1px solid;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div id="app">
+            <table>
+                <tr>
+                    <th v-for="(item, key) in profile" :key="key">{{ key }}</th>
+                </tr>
+                <tr>
+                    <td v-for="(item, key) in profile" :key="key">{{ item }}</td>
+                </tr>
+            </table>
+        </div>
+
+        <script src="https://unpkg.com/vue@3.0.2"></script>
+        <script src="@ucsjs/dist/engine.min.js"></script>
+
+        <script>
+            const { createApp } = Vue
+
+            createApp({
+                data() {
+                    return {
+                        profile: {}
+                    }
+                },
+
+                mounted(){
+                    Application.OnUpdateProfile(this.OnUpdateProfile);
+                    Application.Start();
+                },
+
+                methods: {
+                    OnUpdateProfile(profile){
+                        this.profile = profile;
+                    }
+                }
+            }).mount('#app')
+
+            
+        </script>
+    </body>
+
+</html>

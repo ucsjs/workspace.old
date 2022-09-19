@@ -1,5 +1,6 @@
 import { Component } from "../Types/Component.type";
 import { Transform } from "./Transform.component";
+import { Dimensions } from "./Dimensions.component";
 
 export class VisualObject extends Component{
     //Matadata
@@ -14,6 +15,7 @@ export class VisualObject extends Component{
     };
     
     public _position: Transform;
+    public _dimensions: Dimensions;
 
     constructor($argv){
         super();

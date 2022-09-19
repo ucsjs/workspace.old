@@ -13,4 +13,5 @@ export class Transform extends Component{
     public _top: number = 0;
     public _left: number = 0;
     public _scale: Range = { default: 1, min: -10, max: 10, step: 0.1 };
+    public _zIndex: number = 1;
 }
