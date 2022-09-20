@@ -49,10 +49,14 @@ export class VisualService extends ParserService {
                 const importModule = components[key].filename.replace(`${process.cwd()}/`, "").replace(".ts", "");
                 const builderModule = importModule.replace(".component", ".template");
                 const medatadaModule = importModule.replace(".component", ".metadata");
+                const editorModule = importModule.replace(".component", ".editor");
                 let metadataJson = null;
 
                 if(fs.existsSync(path.resolve(`${builderModule}.ejs`)))
                     components[key].template = path.resolve(`${builderModule}.ejs`);
+
+                if(fs.existsSync(path.resolve(`${editorModule}.ejs`)))
+                    components[key].editor = path.resolve(`${editorModule}.ejs`);
 
                 if(fs.existsSync(path.resolve(`${medatadaModule}.json`))){
                     try{
@@ -68,6 +72,7 @@ export class VisualService extends ParserService {
                     metadata: (metadataJson) ? { ...metadataJson, ...components[key].metadata } : components[key].metadata,
                     components: components[key].components,
                     template: components[key].template,
+                    editor: components[key].editor,
                     content: components[key].content,
                     componentsDafaults: components[key]?.componentsDafaults,
                 });
@@ -108,10 +113,14 @@ export class VisualService extends ParserService {
             const importModule = components[key].filename.replace(`${process.cwd()}/`, "").replace(".ts", "");
             const builderModule = importModule.replace(".component", ".template");
             const medatadaModule = importModule.replace(".component", ".metadata");
+            const editorModule = importModule.replace(".component", ".editor");
             let metadataJson = null;
 
             if(fs.existsSync(path.resolve(`${builderModule}.ejs`)))
                 components[key].template = path.resolve(`${builderModule}.ejs`);
+
+            if(fs.existsSync(path.resolve(`${editorModule}.ejs`)))
+                components[key].editor = path.resolve(`${editorModule}.ejs`);
 
             if(fs.existsSync(path.resolve(`${medatadaModule}.json`))){
                 try{
@@ -136,6 +145,7 @@ export class VisualService extends ParserService {
                     metadata: metadata,
                     components: components[key].components,
                     template: components[key].template,
+                    editor: components[key].editor,
                     content: components[key].content,
                     componentsDafaults: components[key]?.componentsDafaults,
                     properties: components[key]?.publicVars,
@@ -235,6 +245,11 @@ export class VisualService extends ParserService {
                                 metadata[keyMetadata] = dependenciesIndex[parent.publicVars[key].type].metadata[keyMetadata];
                         }
 
+                        for(let keyPublicVar of dependenciesIndex[parent.publicVars[key].type].publicVars){
+                            if(dependenciesIndex[keyPublicVar.type])
+                                keyPublicVar.editor = dependenciesIndex[keyPublicVar.type].editor;
+                        }
+
                         component.components.push({
                             component: parent.publicVars[key].type,
                             fixed: dependenciesIndex[parent.publicVars[key].type].metadata.fixed || false,
@@ -242,8 +257,15 @@ export class VisualService extends ParserService {
                             sign: dependenciesIndex[parent.publicVars[key].type].sign,
                             properties: dependenciesIndex[parent.publicVars[key].type].publicVars,
                             default: this.generateDefault(dependenciesIndex[parent.publicVars[key].type].publicVars, types),
-                            metadata: metadata                          
-                        })
+                            metadata: metadata,                          
+                        });
+
+                        if(dependenciesIndex[parent.publicVars[key].type].editor){
+                            if(!component.editor)
+                                component.editor = {};
+    
+                            component.editor[parent.publicVars[key].type] = dependenciesIndex[parent.publicVars[key].type].editor;
+                        }
                     }
                 }
             }
@@ -259,6 +281,13 @@ export class VisualService extends ParserService {
                         default: this.generateDefault(dependenciesIndex[component.publicVars[key].type].publicVars, types),
                         metadata: dependenciesIndex[component.publicVars[key].type].metadata
                     })
+
+                    if(dependenciesIndex[component.publicVars[key].type].editor){
+                        if(!component.editor)
+                            component.editor = {};
+
+                        component.editor[component.publicVars[key].type] = dependenciesIndex[component.publicVars[key].type].editor;
+                    }
                 }
             }
         }

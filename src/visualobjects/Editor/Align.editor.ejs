@@ -1,0 +1,58 @@
+<template>
+    <span class="isolate inline-flex shadow-sm w-full">
+        <button 
+            type="button" 
+            :class="[
+                (state === 'left') ? 'bg-neutral-900' :'bg-neutral-800', 
+                'relative inline-flex items-center border border-black  px-2 text-sm font-medium text-neutral-100 hover:bg-neutral-700 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500'
+            ]"
+            :title="$t('Align Left')"
+            @click="() => $emit('change', 'left')"
+        >
+            <client-only><font-awesome-icon icon="fa-solid fa-align-left" /></client-only>
+        </button>
+        <button 
+            type="button" 
+            :class="[
+                (state === 'center') ? 'bg-neutral-900' :'bg-neutral-800', 
+                'relative -ml-px inline-flex items-center border border-black px-2 text-sm font-medium text-neutral-100 hover:bg-neutral-700 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500'
+            ]"
+            :title="$t('Align Center')"
+            @click="() => $emit('change', 'center')"
+        >
+            <client-only><font-awesome-icon icon="fa-solid fa-align-center" /></client-only>
+        </button>
+        <button 
+            type="button" 
+            :class="[
+                (state === 'right') ? 'bg-neutral-900' :'bg-neutral-800', 
+                'relative -ml-px inline-flex items-center border border-black px-2 text-sm font-medium text-neutral-100 hover:bg-neutral-700 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500'
+            ]"
+            :title="$t('Align Right')"
+            @click="() => $emit('change', 'right')"
+        >
+            <client-only><font-awesome-icon icon="fa-solid fa-align-right" /></client-only>
+        </button>
+        <button 
+            type="button" 
+            :class="[
+                (state === 'justify') ? 'bg-neutral-900' :'bg-neutral-800', 
+                'relative -ml-px inline-flex items-center border border-black px-2 text-sm font-medium text-neutral-100 hover:bg-neutral-700 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500'
+            ]"
+            :title="$t('Align Justify')"
+            @click="() => $emit('change', 'justify')"
+        >
+            <client-only><font-awesome-icon icon="fa-solid fa-align-justify" /></client-only>
+        </button>
+    </span>
+</template>
+
+<script>
+export default {
+    data(){
+        return {
+            state: 'left'
+        };
+    },
+}
+</script>

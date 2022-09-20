@@ -116,7 +116,7 @@ export class RegexService {
                                     
             m.forEach((match, groupIndex) => {
                 index++;
-                data[index] = match;
+                data[groupIndex] = match;
             });
         }
 

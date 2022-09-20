@@ -124,12 +124,33 @@ export class ParserService {
                     metadata[meta.name] = meta.default;
             }
 
+            //Metadata File
             const medatadaModule = file.replace(".component", ".metadata").replace(".ts", "");
          
             if(fs.existsSync(path.resolve(`${medatadaModule}.json`))){
                 try{
                     const metadataJson = JSON.parse(fs.readFileSync(path.resolve(`${medatadaModule}.json`), "utf-8"));
                     metadata = { ...metadata, ...metadataJson };
+                }
+                catch(e){}
+            }
+
+            //Editor File
+            const editorModule = file.replace(".component", ".editor").replace(".ts", "");
+         
+            if(fs.existsSync(path.resolve(`${editorModule}.json`))){
+                try{
+                    const editorSettings = JSON.parse(fs.readFileSync(path.resolve(`${editorModule}.json`), "utf-8"));
+
+                    for(let key in editorSettings){
+                        const rawEditor = fs.readFileSync(path.resolve(editorSettings[key]), "utf-8");
+                        const template = this.regexService.getDataRaw(/<template>(.*?)<\/template>/isg, rawEditor)[1];
+                        const style = this.regexService.getDataRaw(/<style>(.*?)<\/style>/isg, rawEditor)[1];
+                        const script = this.regexService.getDataRaw(/<script>.*?export default (.*?)<\/script>/isg, rawEditor)[1];
+                        editorSettings[key] = { template, style, script };
+                    }
+
+                    component.editor = editorSettings;
                 }
                 catch(e){}
             }
@@ -171,6 +192,6 @@ export class ParserService {
 	}
 
     fixedLabel(value){
-        return this.uppercaseFirstLetter(value.replace(/([A-Z])/g, " $1"));
+        return (value) ? this.uppercaseFirstLetter(value?.replace(/([A-Z])/g, " $1")) : '';
     }
 }
