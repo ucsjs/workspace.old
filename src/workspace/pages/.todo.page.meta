@@ -4,8 +4,8 @@
     },
     "scale": 1,
     "position": {
-        "x": 9,
-        "y": 8
+        "x": 0,
+        "y": 0
     },
     "viewport": {
         "width": 375,
@@ -15,7 +15,7 @@
         {
             "0": false,
             "1": true,
-            "id": "Text_48",
+            "id": "Text_53",
             "namespace": "Text",
             "extends": "VisualObject",
             "sign": "b1710cf637acf596fa16b34364ed9d69769d6e58",
@@ -94,9 +94,9 @@
                         ]
                     },
                     "value": {
-                        "position": "static",
-                        "top": 27,
-                        "left": 23,
+                        "position": "absolute",
+                        "top": 133,
+                        "left": 49,
                         "scale": 1,
                         "zIndex": 1
                     },
@@ -146,7 +146,7 @@
                     "metadata": {},
                     "value": {
                         "width": "240",
-                        "widthAuto": true,
+                        "widthAuto": false,
                         "height": "40",
                         "heightAuto": false
                     },
@@ -156,7 +156,7 @@
                     "component": "Background",
                     "fixed": true,
                     "icon": "fa-solid fa-paint-roller",
-                    "sign": "eea4b6bead3ef2149e1285bf4a8ca3f1217a27f9",
+                    "sign": "fe3104349f5844cd158c885d07b34439f1b7c7f5",
                     "properties": [
                         {
                             "name": "color",
@@ -175,6 +175,66 @@
                             "namespace": "Background::color",
                             "id": "c3ce09e2abae62182f7730f3aa12264ca9b7af0a",
                             "open": false
+                        },
+                        {
+                            "name": "attachment",
+                            "type": "string",
+                            "changeStyle": {
+                                "style": "background-attachment",
+                                "styleVue": "backgroundAttachment"
+                            },
+                            "namespace": "Background::attachment",
+                            "id": "f5b365ac1ec978bcaeb5e1b97fc05feeaf87f308"
+                        },
+                        {
+                            "name": "blendMode",
+                            "type": "string",
+                            "changeStyle": {
+                                "style": "background-blend-mode",
+                                "styleVue": "background-blend-mode"
+                            },
+                            "namespace": "Background::blendMode",
+                            "id": "438b2688d13d44a85ec716ec342b99ec46c79a24"
+                        },
+                        {
+                            "name": "clip",
+                            "type": "string",
+                            "changeStyle": {
+                                "style": "background-clip",
+                                "styleVue": "backgroundClip"
+                            },
+                            "namespace": "Background::clip",
+                            "id": "43fde3bbef308d91749b042813ee8e6333d42708"
+                        },
+                        {
+                            "name": "origin",
+                            "type": "string",
+                            "changeStyle": {
+                                "style": "background-origin",
+                                "styleVue": "backgroundOrigin"
+                            },
+                            "namespace": "Background::origin",
+                            "id": "713d74e8c99413e369922684ab7e54ec9d048170"
+                        },
+                        {
+                            "name": "position",
+                            "type": "string",
+                            "changeStyle": {
+                                "style": "background-position",
+                                "styleVue": "backgroundPosition"
+                            },
+                            "namespace": "Background::position",
+                            "id": "4cd0cc8dfd1b69066659509f9f301df2b34b9aae"
+                        },
+                        {
+                            "name": "repeat",
+                            "type": "string",
+                            "changeStyle": {
+                                "style": "background-repeat",
+                                "styleVue": "backgroundRepeat"
+                            },
+                            "namespace": "Background::repeat",
+                            "id": "42bd692396a630dc354bdfda72d1fa6a0096edd9"
                         }
                     ],
                     "default": {
@@ -190,29 +250,72 @@
                         "namespace": "Background",
                         "group": "Core",
                         "icon": "fa-solid fa-paint-roller",
+                        "attachment": [
+                            "scroll",
+                            "fixed",
+                            "local",
+                            "initial",
+                            "inherit"
+                        ],
                         "fixed": true,
-                        "importable": false
+                        "importable": false,
+                        "blendMode": [
+                            "normal",
+                            "multiply",
+                            "screen",
+                            "overlay",
+                            "darken",
+                            "lighten",
+                            "color-dodge",
+                            "saturation",
+                            "color",
+                            "luminosity"
+                        ],
+                        "clip": [
+                            "border-box",
+                            "padding-box",
+                            "content-box",
+                            "initial",
+                            "inherit"
+                        ],
+                        "origin": [
+                            "border-box",
+                            "padding-box",
+                            "content-box",
+                            "initial",
+                            "inherit"
+                        ],
+                        "repeat": [
+                            "repeat",
+                            "repeat-x",
+                            "repeat-y",
+                            "no-repeat",
+                            "space",
+                            "round",
+                            "initial",
+                            "inherit"
+                        ]
                     },
                     "value": {
                         "color": {
                             "hsl": {
                                 "h": 0,
-                                "s": 0.836715951878042,
-                                "l": 0.498335085,
+                                "s": 1,
+                                "l": 0.381,
                                 "a": 1
                             },
-                            "hex": "#E91515",
-                            "hex8": "#E91515FF",
+                            "hex": "#C20000",
+                            "hex8": "#C20000FF",
                             "rgba": {
-                                "r": 233,
-                                "g": 21,
-                                "b": 21,
+                                "r": 194,
+                                "g": 0,
+                                "b": 0,
                                 "a": 1
                             },
                             "hsv": {
                                 "h": 0,
-                                "s": 0.9111,
-                                "v": 0.9153,
+                                "s": 1,
+                                "v": 0.762,
                                 "a": 1
                             },
                             "oldHue": 0,
@@ -226,7 +329,7 @@
                     "component": "Font",
                     "fixed": true,
                     "icon": "fa-solid fa-font",
-                    "sign": "4332f105ca0a8c8176a2107a060298fa3fa6192c",
+                    "sign": "f635b014eb0dd5c14c3d19c68b2092d7652391fc",
                     "properties": [
                         {
                             "name": "font",
@@ -267,6 +370,46 @@
                             },
                             "namespace": "Font::color",
                             "id": "fd5d30235781a0cf0cd760964f49bf409ddcc0cf"
+                        },
+                        {
+                            "name": "style",
+                            "type": "string",
+                            "changeStyle": {
+                                "style": "font-style",
+                                "styleVue": "fontStyle"
+                            },
+                            "namespace": "Font::style",
+                            "id": "9194b2a37b79bc13b02d13d1ec6614963b7a573c"
+                        },
+                        {
+                            "name": "variant",
+                            "type": "string",
+                            "changeStyle": {
+                                "style": "font-variant",
+                                "styleVue": "fontVariant"
+                            },
+                            "namespace": "Font::variant",
+                            "id": "6d761a49c1340bfb631b262ddffa440baf1894c1"
+                        },
+                        {
+                            "name": "variantCaps",
+                            "type": "string",
+                            "changeStyle": {
+                                "style": "font-variant-caps",
+                                "styleVue": "font-variant-caps"
+                            },
+                            "namespace": "Font::variantCaps",
+                            "id": "39b4ed025f519ec230ce2148bb0e61604caf68ad"
+                        },
+                        {
+                            "name": "weight",
+                            "type": "string",
+                            "changeStyle": {
+                                "style": "font-weight",
+                                "styleVue": "fontWeight"
+                            },
+                            "namespace": "Font::weight",
+                            "id": "7b650d24af3f5ce5f5c7942bc895f4a21eef8a77"
                         }
                     ],
                     "default": {
@@ -283,6 +426,19 @@
                     "metadata": {
                         "namespace": "Font",
                         "icon": "fa-solid fa-font",
+                        "style": [
+                            "normal",
+                            "italic",
+                            "oblique",
+                            "initial",
+                            "inherit"
+                        ],
+                        "variant": [
+                            "normal",
+                            "small-caps",
+                            "initial",
+                            "inherit"
+                        ],
                         "fixed": true,
                         "importable": false,
                         "font": [
@@ -292,18 +448,48 @@
                             "Courier, monospace",
                             "Comic Sans MS, Comic Sans, cursive",
                             "Impact, fantasy"
+                        ],
+                        "variantCaps": [
+                            "normal",
+                            "small-caps",
+                            "all-small-caps",
+                            "petite-caps",
+                            "all-petite-caps",
+                            "unicase",
+                            "titling-caps",
+                            "initial",
+                            "inherit",
+                            "unset"
+                        ],
+                        "weight": [
+                            "normal",
+                            "bold",
+                            "bolder",
+                            "lighter",
+                            "100",
+                            "200",
+                            "300",
+                            "400",
+                            "500",
+                            "600",
+                            "700",
+                            "800",
+                            "900",
+                            "initial",
+                            "inherit"
                         ]
                     },
                     "value": {
-                        "font": "Andale Mono, monospace",
-                        "size": 20,
+                        "font": "Arial, sans-serif",
+                        "size": 12,
                         "color": {
                             "r": 0,
                             "g": 0,
                             "b": 0,
                             "a": 1,
                             "hex": "#000000"
-                        }
+                        },
+                        "variantCaps": null
                     },
                     "open": true
                 },
@@ -328,7 +514,7 @@
                         "importable": false
                     },
                     "value": {
-                        "content": "teste"
+                        "content": "Pietra"
                     },
                     "open": true
                 }
@@ -348,24 +534,24 @@
                 }
             ],
             "position": {
-                "left": 97.921875,
-                "top": 98
+                "left": 84.125,
+                "top": 45.5
             },
             "hierarchy": [],
-            "label": "Text_48",
+            "label": "Text_53",
             "visibility": true,
             "static": false,
             "lockBox": true,
             "Transform": {
-                "position": "static",
-                "top": 27,
-                "left": 23,
+                "position": "absolute",
+                "top": 133,
+                "left": 49,
                 "scale": 1,
                 "zIndex": 1
             },
             "Dimensions": {
                 "width": "240",
-                "widthAuto": true,
+                "widthAuto": false,
                 "height": "40",
                 "heightAuto": false
             },
@@ -373,22 +559,22 @@
                 "color": {
                     "hsl": {
                         "h": 0,
-                        "s": 0.836715951878042,
-                        "l": 0.498335085,
+                        "s": 1,
+                        "l": 0.381,
                         "a": 1
                     },
-                    "hex": "#E91515",
-                    "hex8": "#E91515FF",
+                    "hex": "#C20000",
+                    "hex8": "#C20000FF",
                     "rgba": {
-                        "r": 233,
-                        "g": 21,
-                        "b": 21,
+                        "r": 194,
+                        "g": 0,
+                        "b": 0,
                         "a": 1
                     },
                     "hsv": {
                         "h": 0,
-                        "s": 0.9111,
-                        "v": 0.9153,
+                        "s": 1,
+                        "v": 0.762,
                         "a": 1
                     },
                     "oldHue": 0,
@@ -397,20 +583,21 @@
                 }
             },
             "Font": {
-                "font": "Andale Mono, monospace",
-                "size": 20,
+                "font": "Arial, sans-serif",
+                "size": 12,
                 "color": {
                     "r": 0,
                     "g": 0,
                     "b": 0,
                     "a": 1,
                     "hex": "#000000"
-                }
+                },
+                "variantCaps": null
             },
             "Content": {
-                "content": "teste"
+                "content": "Pietra"
             }
         }
     ],
-    "componentIndex": 48
+    "componentIndex": 53
 }

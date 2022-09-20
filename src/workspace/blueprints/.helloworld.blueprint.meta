@@ -4,6 +4,7 @@
             "collaped": true,
             "filename": "/mnt/f/Node/ucsjs/workspace/src/blueprints/Network/httpIn.blueprint.ts",
             "namespace": "HTTPInBlueprint",
+            "extends": "Blueprint",
             "publicVars": [
                 {
                     "name": "controller",
@@ -53,6 +54,8 @@
             ],
             "outputs": [],
             "inputs": [],
+            "content": null,
+            "componentsDafaults": [],
             "metadata": {
                 "namespace": "HTTP In",
                 "group": "Network",
@@ -76,6 +79,7 @@
             "collaped": false,
             "filename": "/mnt/f/Node/ucsjs/workspace/src/blueprints/Network/httpOut.blueprint.ts",
             "namespace": "HTTPOutBlueprint",
+            "extends": "Blueprint",
             "publicVars": [],
             "outputs": [
                 {
@@ -99,6 +103,8 @@
                     "id": "53546bd648df7f58e1a6a3bf0abce2d481c6e51b"
                 }
             ],
+            "content": null,
+            "componentsDafaults": [],
             "metadata": {
                 "namespace": "HTTP Out",
                 "group": "Network"
@@ -113,6 +119,7 @@
             "collaped": true,
             "filename": "/mnt/f/Node/ucsjs/workspace/node_modules/@ucsjs/mongodb/src/blueprints/mongoConnection.blueprint.ts",
             "namespace": "MongoConnectionBlueprint",
+            "extends": "Blueprint",
             "publicVars": [
                 {
                     "name": "protocol",
@@ -202,6 +209,8 @@
                 }
             ],
             "inputs": [],
+            "content": null,
+            "componentsDafaults": [],
             "metadata": {
                 "namespace": "Conn",
                 "group": "MongoDB",
@@ -225,6 +234,7 @@
             "collaped": true,
             "filename": "/mnt/f/Node/ucsjs/workspace/node_modules/@ucsjs/mongodb/src/blueprints/mongoSchema.blueprint.ts",
             "namespace": "MongoSchemaBlueprint",
+            "extends": "Blueprint",
             "publicVars": [
                 {
                     "name": "collection",
@@ -287,6 +297,8 @@
                     "id": "a9f3bbe4bc8f4385f02c69a420eb72d8b5e89e65"
                 }
             ],
+            "content": null,
+            "componentsDafaults": [],
             "metadata": {
                 "namespace": "Schema",
                 "group": "MongoDB",
@@ -322,6 +334,7 @@
             "collaped": true,
             "filename": "/mnt/f/Node/ucsjs/workspace/src/blueprints/Network/httpParam.blueprint.ts",
             "namespace": "HTTPParamBlueprint",
+            "extends": "Blueprint",
             "publicVars": [
                 {
                     "name": "name",
@@ -356,6 +369,8 @@
                     "id": "cfa0f923a7291ef65e0dd4caf9d8dc12e9ca1ba4"
                 }
             ],
+            "content": null,
+            "componentsDafaults": [],
             "metadata": {
                 "namespace": "HTTP Param",
                 "group": "Network",
@@ -374,6 +389,7 @@
             "collaped": true,
             "filename": "/mnt/f/Node/ucsjs/workspace/packages/mongodb/src/blueprints/mongoFind.blueprint.ts",
             "namespace": "MongoFindBlueprint",
+            "extends": "Blueprint",
             "publicVars": [
                 {
                     "name": "limit",
@@ -418,6 +434,8 @@
                     "id": "a61d7b0b0dc1ea8adef5e68313d1f5a9c772be0a"
                 }
             ],
+            "content": null,
+            "componentsDafaults": [],
             "metadata": {
                 "namespace": "Find",
                 "group": "MongoDB",
@@ -437,6 +455,7 @@
             "collaped": true,
             "filename": "/mnt/f/Node/ucsjs/workspace/packages/mongodb/src/blueprints/mongoFind.blueprint.ts",
             "namespace": "MongoFindBlueprint",
+            "extends": "Blueprint",
             "publicVars": [
                 {
                     "name": "limit",
@@ -482,6 +501,8 @@
                     "value": {}
                 }
             ],
+            "content": null,
+            "componentsDafaults": [],
             "metadata": {
                 "namespace": "Find",
                 "group": "MongoDB",
@@ -501,6 +522,7 @@
             "collaped": false,
             "filename": "/mnt/f/Node/ucsjs/workspace/src/blueprints/Network/httpOut.blueprint.ts",
             "namespace": "HTTPOutBlueprint",
+            "extends": "Blueprint",
             "publicVars": [],
             "outputs": [
                 {
@@ -524,6 +546,8 @@
                     "id": "53546bd648df7f58e1a6a3bf0abce2d481c6e51b"
                 }
             ],
+            "content": null,
+            "componentsDafaults": [],
             "metadata": {
                 "namespace": "HTTP Out",
                 "group": "Network"
@@ -538,6 +562,7 @@
             "collaped": false,
             "filename": "/mnt/f/Node/ucsjs/workspace/packages/mongodb/src/blueprints/mongoInsert.blueprint.ts",
             "namespace": "MongoInsertBlueprint",
+            "extends": "Blueprint",
             "publicVars": [],
             "outputs": [
                 {
@@ -567,6 +592,8 @@
                     "id": "831c7496ec4ec764bcce66040fa34e17d8f89808"
                 }
             ],
+            "content": null,
+            "componentsDafaults": [],
             "metadata": {
                 "namespace": "Insert",
                 "group": "MongoDB",
@@ -586,6 +613,7 @@
             "collaped": false,
             "filename": "/mnt/f/Node/ucsjs/workspace/src/blueprints/Network/httpBody.blueprint.ts",
             "namespace": "HTTPBodyBlueprint",
+            "extends": "Blueprint",
             "publicVars": [],
             "outputs": [
                 {
@@ -603,6 +631,8 @@
                     "id": "f4fd419baf1b471b4a54b8db0c8780692b2efaef"
                 }
             ],
+            "content": null,
+            "componentsDafaults": [],
             "metadata": {
                 "namespace": "HTTP Body",
                 "group": "Network",
@@ -621,6 +651,7 @@
             "collaped": false,
             "filename": "/mnt/f/Node/ucsjs/workspace/src/blueprints/Network/httpOut.blueprint.ts",
             "namespace": "HTTPOutBlueprint",
+            "extends": "Blueprint",
             "publicVars": [],
             "outputs": [
                 {
@@ -644,6 +675,8 @@
                     "id": "53546bd648df7f58e1a6a3bf0abce2d481c6e51b"
                 }
             ],
+            "content": null,
+            "componentsDafaults": [],
             "metadata": {
                 "namespace": "HTTP Out",
                 "group": "Network"
@@ -658,6 +691,7 @@
             "collaped": true,
             "filename": "/mnt/f/Node/ucsjs/workspace/src/blueprints/Network/httpParam.blueprint.ts",
             "namespace": "HTTPParamBlueprint",
+            "extends": "Blueprint",
             "publicVars": [
                 {
                     "name": "name",
@@ -692,6 +726,8 @@
                     "id": "cfa0f923a7291ef65e0dd4caf9d8dc12e9ca1ba4"
                 }
             ],
+            "content": null,
+            "componentsDafaults": [],
             "metadata": {
                 "namespace": "HTTP Param",
                 "group": "Network",
@@ -710,6 +746,7 @@
             "collaped": false,
             "filename": "/mnt/f/Node/ucsjs/workspace/src/blueprints/Network/httpBody.blueprint.ts",
             "namespace": "HTTPBodyBlueprint",
+            "extends": "Blueprint",
             "publicVars": [],
             "outputs": [
                 {
@@ -727,6 +764,8 @@
                     "id": "f4fd419baf1b471b4a54b8db0c8780692b2efaef"
                 }
             ],
+            "content": null,
+            "componentsDafaults": [],
             "metadata": {
                 "namespace": "HTTP Body",
                 "group": "Network",
@@ -745,6 +784,7 @@
             "collaped": false,
             "filename": "/mnt/f/Node/ucsjs/workspace/src/blueprints/Network/httpOut.blueprint.ts",
             "namespace": "HTTPOutBlueprint",
+            "extends": "Blueprint",
             "publicVars": [],
             "outputs": [
                 {
@@ -768,6 +808,8 @@
                     "id": "53546bd648df7f58e1a6a3bf0abce2d481c6e51b"
                 }
             ],
+            "content": null,
+            "componentsDafaults": [],
             "metadata": {
                 "namespace": "HTTP Out",
                 "group": "Network"
@@ -782,6 +824,7 @@
             "collaped": true,
             "filename": "/mnt/f/Node/ucsjs/workspace/packages/mongodb/src/blueprints/mongoUpdate.blueprint.ts",
             "namespace": "MongoUpdateBlueprint",
+            "extends": "Blueprint",
             "publicVars": [
                 {
                     "name": "multi",
@@ -832,6 +875,8 @@
                     "id": "b34b4ee6e21ccc5cb101ba4a3acdf7e7150a3d2a"
                 }
             ],
+            "content": null,
+            "componentsDafaults": [],
             "metadata": {
                 "namespace": "Update",
                 "group": "MongoDB",
@@ -851,6 +896,7 @@
             "collaped": true,
             "filename": "/mnt/f/Node/ucsjs/workspace/src/blueprints/Network/httpParam.blueprint.ts",
             "namespace": "HTTPParamBlueprint",
+            "extends": "Blueprint",
             "publicVars": [
                 {
                     "name": "name",
@@ -885,6 +931,8 @@
                     "id": "cfa0f923a7291ef65e0dd4caf9d8dc12e9ca1ba4"
                 }
             ],
+            "content": null,
+            "componentsDafaults": [],
             "metadata": {
                 "namespace": "HTTP Param",
                 "group": "Network",
@@ -903,6 +951,7 @@
             "collaped": true,
             "filename": "/mnt/f/Node/ucsjs/workspace/packages/mongodb/src/blueprints/mongoDelete.blueprint.ts",
             "namespace": "MongoDeleteBlueprint",
+            "extends": "Blueprint",
             "publicVars": [
                 {
                     "name": "multi",
@@ -940,6 +989,8 @@
                     "id": "700afbb7faa510abdd0e473db8325c3f1b0cae50"
                 }
             ],
+            "content": null,
+            "componentsDafaults": [],
             "metadata": {
                 "namespace": "Delete",
                 "group": "MongoDB",
@@ -959,6 +1010,7 @@
             "collaped": false,
             "filename": "/mnt/f/Node/ucsjs/workspace/src/blueprints/Network/httpOut.blueprint.ts",
             "namespace": "HTTPOutBlueprint",
+            "extends": "Blueprint",
             "publicVars": [],
             "outputs": [
                 {
@@ -982,6 +1034,8 @@
                     "id": "53546bd648df7f58e1a6a3bf0abce2d481c6e51b"
                 }
             ],
+            "content": null,
+            "componentsDafaults": [],
             "metadata": {
                 "namespace": "HTTP Out",
                 "group": "Network"
@@ -1257,8 +1311,8 @@
     ],
     "scale": 1,
     "position": {
-        "x": 943,
-        "y": 786
+        "x": 1056,
+        "y": 722
     },
     "scrollOffset": {
         "x": 0,

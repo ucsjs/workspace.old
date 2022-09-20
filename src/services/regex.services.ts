@@ -39,6 +39,7 @@ export class RegexService {
                 case "object":
                     try{
                         let dataParsed = {};
+
                         const items = item.default?.replace(/}/, "").replace(/{/, "").split(",");
                         
                         if(items){
@@ -59,7 +60,10 @@ export class RegexService {
                         item.default = dataParsed;
                     }
                     catch(e){
-                        console.log(e);
+                        try{
+                            eval(`item.default = ${item.default}`);
+                        }
+                        catch(e){}
                     }                    
                 break;
             }

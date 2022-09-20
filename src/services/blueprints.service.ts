@@ -51,6 +51,7 @@ export class BlueprintsService extends ParserService{
         const parser = new Parser(`${this.uppercaseFirstLetter(namespace)}Blueprint`, JSON.parse(item.content), [
             path.resolve("./src/blueprints/**/*.blueprint.ts"),
             path.resolve("node_modules/@ucsjs/**/*.blueprint.ts"),
+            path.resolve("packages/**/*.blueprint.ts"),
         ], path.resolve("."));
 
         const metadata = JSON.parse(item.content);
