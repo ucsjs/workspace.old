@@ -30,7 +30,7 @@ const wss = Server({
 })
 
 wss.on('connection', (socket) => {
-	console.log(socket);
+	//console.log(socket);
 	socket.write("Hello");
 
 	if (socket.readyState === socket.OPEN) 

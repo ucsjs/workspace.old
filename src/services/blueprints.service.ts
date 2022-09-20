@@ -180,9 +180,7 @@ export class LazyModule {}`;
                         if(typeof moduleData == "object")
                             dependencies.push(moduleData)
                     }
-                    catch(e){
-                        console.log(e)
-                    }
+                    catch(e){}
                 }
             }
         }

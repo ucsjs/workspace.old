@@ -23,8 +23,6 @@ import {
             statusCode: httpStatus,
             timestamp: new Date().toISOString(),
         };
-
-        console.log(responseBody);
     }
 }
   

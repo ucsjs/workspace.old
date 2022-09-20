@@ -95,12 +95,12 @@
                     },
                     "value": {
                         "position": "absolute",
-                        "top": 133,
-                        "left": 49,
+                        "top": 42,
+                        "left": 48,
                         "scale": 1,
                         "zIndex": 1
                     },
-                    "open": true
+                    "open": false
                 },
                 {
                     "component": "Dimensions",
@@ -150,7 +150,7 @@
                         "height": "40",
                         "heightAuto": false
                     },
-                    "open": true
+                    "open": false
                 },
                 {
                     "component": "Background",
@@ -300,22 +300,22 @@
                         "color": {
                             "hsl": {
                                 "h": 0,
-                                "s": 1,
-                                "l": 0.381,
+                                "s": 0.22948300239749178,
+                                "l": 0.049126340000000004,
                                 "a": 1
                             },
-                            "hex": "#C20000",
-                            "hex8": "#C20000FF",
+                            "hex": "#0F0A0A",
+                            "hex8": "#0F0A0AFF",
                             "rgba": {
-                                "r": 194,
-                                "g": 0,
-                                "b": 0,
+                                "r": 15,
+                                "g": 10,
+                                "b": 10,
                                 "a": 1
                             },
                             "hsv": {
                                 "h": 0,
-                                "s": 1,
-                                "v": 0.762,
+                                "s": 0.3732999999999999,
+                                "v": 0.0604,
                                 "a": 1
                             },
                             "oldHue": 0,
@@ -369,7 +369,8 @@
                                 "styleVue": "color"
                             },
                             "namespace": "Font::color",
-                            "id": "fd5d30235781a0cf0cd760964f49bf409ddcc0cf"
+                            "id": "fd5d30235781a0cf0cd760964f49bf409ddcc0cf",
+                            "open": false
                         },
                         {
                             "name": "style",
@@ -483,13 +484,32 @@
                         "font": "Arial, sans-serif",
                         "size": 12,
                         "color": {
-                            "r": 0,
-                            "g": 0,
-                            "b": 0,
-                            "a": 1,
-                            "hex": "#000000"
+                            "hsl": {
+                                "h": 0,
+                                "s": 0,
+                                "l": 0.9959,
+                                "a": 1
+                            },
+                            "hex": "#FEFEFE",
+                            "hex8": "#FEFEFEFF",
+                            "rgba": {
+                                "r": 254,
+                                "g": 254,
+                                "b": 254,
+                                "a": 1
+                            },
+                            "hsv": {
+                                "h": 0,
+                                "s": 0,
+                                "v": 0.9959,
+                                "a": 1
+                            },
+                            "oldHue": 0,
+                            "source": "hsva",
+                            "a": 1
                         },
-                        "variantCaps": null
+                        "variantCaps": null,
+                        "style": null
                     },
                     "open": true
                 },
@@ -544,8 +564,8 @@
             "lockBox": true,
             "Transform": {
                 "position": "absolute",
-                "top": 133,
-                "left": 49,
+                "top": 42,
+                "left": 48,
                 "scale": 1,
                 "zIndex": 1
             },
@@ -559,22 +579,22 @@
                 "color": {
                     "hsl": {
                         "h": 0,
-                        "s": 1,
-                        "l": 0.381,
+                        "s": 0.22948300239749178,
+                        "l": 0.049126340000000004,
                         "a": 1
                     },
-                    "hex": "#C20000",
-                    "hex8": "#C20000FF",
+                    "hex": "#0F0A0A",
+                    "hex8": "#0F0A0AFF",
                     "rgba": {
-                        "r": 194,
-                        "g": 0,
-                        "b": 0,
+                        "r": 15,
+                        "g": 10,
+                        "b": 10,
                         "a": 1
                     },
                     "hsv": {
                         "h": 0,
-                        "s": 1,
-                        "v": 0.762,
+                        "s": 0.3732999999999999,
+                        "v": 0.0604,
                         "a": 1
                     },
                     "oldHue": 0,
@@ -586,13 +606,32 @@
                 "font": "Arial, sans-serif",
                 "size": 12,
                 "color": {
-                    "r": 0,
-                    "g": 0,
-                    "b": 0,
-                    "a": 1,
-                    "hex": "#000000"
+                    "hsl": {
+                        "h": 0,
+                        "s": 0,
+                        "l": 0.9959,
+                        "a": 1
+                    },
+                    "hex": "#FEFEFE",
+                    "hex8": "#FEFEFEFF",
+                    "rgba": {
+                        "r": 254,
+                        "g": 254,
+                        "b": 254,
+                        "a": 1
+                    },
+                    "hsv": {
+                        "h": 0,
+                        "s": 0,
+                        "v": 0.9959,
+                        "a": 1
+                    },
+                    "oldHue": 0,
+                    "source": "hsva",
+                    "a": 1
                 },
-                "variantCaps": null
+                "variantCaps": null,
+                "style": null
             },
             "Content": {
                 "content": "Pietra"
