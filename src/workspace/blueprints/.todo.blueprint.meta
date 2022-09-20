@@ -1,0 +1,642 @@
+{
+    "items": [
+        {
+            "collaped": true,
+            "filename": "/mnt/f/Node/ucsjs/workspace/packages/mongodb/src/blueprints/mongoConnection.blueprint.ts",
+            "namespace": "MongoConnectionBlueprint",
+            "extends": "Blueprint",
+            "publicVars": [
+                {
+                    "name": "protocol",
+                    "type": "string",
+                    "default": "mongodb",
+                    "namespace": "MongoConnectionBlueprint::protocol",
+                    "id": "f6aba601ab6b1a813710a9798b81a50e393e5887",
+                    "value": "mongodb+srv"
+                },
+                {
+                    "name": "host",
+                    "type": "string",
+                    "default": "localhost",
+                    "namespace": "MongoConnectionBlueprint::host",
+                    "id": "144984cdd9e8e6c2ba5cac66fa9d0b1d809abba5",
+                    "value": "soucrypto-ea71c61c.mongo.ondigitalocean.com"
+                },
+                {
+                    "name": "port",
+                    "type": "number",
+                    "default": 27017,
+                    "namespace": "MongoConnectionBlueprint::port",
+                    "id": "c8587291e4988e3fcc938fbba95680bb59d04e82"
+                },
+                {
+                    "name": "ignorePort",
+                    "type": "boolean",
+                    "default": false,
+                    "namespace": "MongoConnectionBlueprint::ignorePort",
+                    "id": "d03410fb1d60792f0f48b91a185a4dc8c02b65f9",
+                    "value": true
+                },
+                {
+                    "name": "user",
+                    "type": "string",
+                    "default": "",
+                    "namespace": "MongoConnectionBlueprint::user",
+                    "id": "e10c3a69798b2bfbd8bec60e65546ab320666bd9",
+                    "value": "doadmin"
+                },
+                {
+                    "name": "pass",
+                    "type": "string",
+                    "default": "",
+                    "namespace": "MongoConnectionBlueprint::pass",
+                    "id": "2b44b41cc6f523f044fbd1009552d556bc5bde1e",
+                    "value": "2w6yh91t3J7pA4L5"
+                },
+                {
+                    "name": "db",
+                    "type": "string",
+                    "default": "",
+                    "namespace": "MongoConnectionBlueprint::db",
+                    "id": "79e07b8bd5e24bd80e6cf1486af6ffc024a30613",
+                    "value": "soucrypto"
+                },
+                {
+                    "name": "replicaSet",
+                    "type": "string",
+                    "default": "",
+                    "namespace": "MongoConnectionBlueprint::replicaSet",
+                    "id": "909da45cb4451012406e9fc4da2aecb1cda3df39",
+                    "value": "soucrypto"
+                },
+                {
+                    "name": "tls",
+                    "type": "boolean",
+                    "default": false,
+                    "namespace": "MongoConnectionBlueprint::tls",
+                    "id": "7ff0445473de1ea95131ae40aed502d6da304c20",
+                    "value": true
+                },
+                {
+                    "name": "authSource",
+                    "type": "string",
+                    "default": "admin",
+                    "namespace": "MongoConnectionBlueprint::authSource",
+                    "id": "14bfdb10ff8708212b1a05d24cd980cbd7a2ae8d"
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "connection",
+                    "type": "Connection",
+                    "namespace": "MongoConnectionBlueprint::connection",
+                    "id": "5b2ffef7707ef50925f90cd0a4704af95e61642a"
+                }
+            ],
+            "inputs": [],
+            "content": null,
+            "componentsDafaults": [],
+            "metadata": {
+                "namespace": "Conn",
+                "group": "MongoDB",
+                "headerColor": "#419343",
+                "headerIcon": "fa-solid fa-database",
+                "protocol": [
+                    "mongodb",
+                    "mongodb+srv"
+                ],
+                "TypeMongoDBConnection": {
+                    "color": "#419343"
+                }
+            },
+            "sign": "1fb4062ace00ca5b968d64e0db292b88f965ca3e",
+            "position": {
+                "top": 95,
+                "left": -239
+            }
+        },
+        {
+            "collaped": false,
+            "filename": "/mnt/f/Node/ucsjs/workspace/src/blueprints/Network/httpIn.blueprint.ts",
+            "namespace": "HTTPInBlueprint",
+            "extends": "Blueprint",
+            "publicVars": [
+                {
+                    "name": "controller",
+                    "type": "string",
+                    "default": "/",
+                    "namespace": "HTTPInBlueprint::controller",
+                    "id": "cc1d38f2c52fd9ffddb24b0ea2c0efcdc7bfc1e0",
+                    "value": "/todo"
+                },
+                {
+                    "name": "routes",
+                    "type": "object",
+                    "default": {
+                        "url": "string",
+                        "method": "string",
+                        "multi": true,
+                        "createOutputs": true
+                    },
+                    "namespace": "HTTPInBlueprint::routes",
+                    "id": "c782a1bf7f74c0a22eb8d764d6b7c9ba20300670",
+                    "value": [
+                        {
+                            "url": "/",
+                            "key": "c782a1bf7f74c0a22eb8d764d6b7c9ba20300670-1-0"
+                        },
+                        {
+                            "url": "/:id",
+                            "key": "c782a1bf7f74c0a22eb8d764d6b7c9ba20300670-1-1"
+                        }
+                    ]
+                }
+            ],
+            "outputs": [],
+            "inputs": [],
+            "content": null,
+            "componentsDafaults": [],
+            "metadata": {
+                "namespace": "HTTP In",
+                "group": "Network",
+                "model": "./models/httpin.model.ejs",
+                "method": [
+                    "GET",
+                    "POST",
+                    "PUT",
+                    "DELETE",
+                    "PATCH"
+                ],
+                "module": true
+            },
+            "sign": "d16971587da25c3d458136abf914d20481f50ef8",
+            "position": {
+                "top": -93,
+                "left": -128
+            }
+        },
+        {
+            "collaped": false,
+            "filename": "/mnt/f/Node/ucsjs/workspace/src/blueprints/Network/httpOut.blueprint.ts",
+            "namespace": "HTTPOutBlueprint",
+            "extends": "Blueprint",
+            "publicVars": [],
+            "outputs": [
+                {
+                    "name": "output",
+                    "type": "Any",
+                    "namespace": "HTTPOutBlueprint::output",
+                    "id": "ff1a05ee2253e0619427f9dc06b34cd2b7d5687e"
+                }
+            ],
+            "inputs": [
+                {
+                    "name": "request",
+                    "type": "HTTPTypes.Request",
+                    "namespace": "HTTPOutBlueprint::request",
+                    "id": "c111f0d645a5b37b70464659b43122e3a0e66b26"
+                },
+                {
+                    "name": "contents",
+                    "type": "Any",
+                    "namespace": "HTTPOutBlueprint::contents",
+                    "id": "53546bd648df7f58e1a6a3bf0abce2d481c6e51b"
+                }
+            ],
+            "content": null,
+            "componentsDafaults": [],
+            "metadata": {
+                "namespace": "HTTP Out",
+                "group": "Network"
+            },
+            "sign": "274b8e24aed8af33fbda720b8b649bce5aa8f250",
+            "position": {
+                "top": -153,
+                "left": 891
+            }
+        },
+        {
+            "collaped": true,
+            "filename": "/mnt/f/Node/ucsjs/workspace/packages/mongodb/src/blueprints/mongoSchema.blueprint.ts",
+            "namespace": "MongoSchemaBlueprint",
+            "extends": "Blueprint",
+            "publicVars": [
+                {
+                    "name": "collection",
+                    "type": "string",
+                    "default": "",
+                    "namespace": "MongoSchemaBlueprint::collection",
+                    "id": "bceeb330f092a71447b8af58db6c9dbfb3102a46",
+                    "value": "todo"
+                },
+                {
+                    "name": "timestamps",
+                    "type": "boolean",
+                    "default": false,
+                    "namespace": "MongoSchemaBlueprint::timestamps",
+                    "id": "64b3301853201b9725f4d2986efcc0980698ee79",
+                    "value": true
+                },
+                {
+                    "name": "fields",
+                    "type": "object",
+                    "default": {
+                        "name": "string",
+                        "type": "string",
+                        "index": "boolean",
+                        "unique": "boolean",
+                        "required": "boolean",
+                        "multi": true
+                    },
+                    "namespace": "MongoSchemaBlueprint::fields",
+                    "id": "0201a0411d7de880c8bd40d11274259eb733a0a9",
+                    "value": [
+                        {
+                            "name": "title",
+                            "index": true,
+                            "required": true,
+                            "key": "0201a0411d7de880c8bd40d11274259eb733a0a9-3-0"
+                        }
+                    ]
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "schema",
+                    "type": "Schema",
+                    "namespace": "MongoSchemaBlueprint::schema",
+                    "id": "382e78e2ac7cb2424c03f8d2523531de42a9d722"
+                }
+            ],
+            "inputs": [
+                {
+                    "name": "connection",
+                    "type": "String",
+                    "namespace": "MongoSchemaBlueprint::connection",
+                    "id": "a9f3bbe4bc8f4385f02c69a420eb72d8b5e89e65"
+                }
+            ],
+            "content": null,
+            "componentsDafaults": [],
+            "metadata": {
+                "namespace": "Schema",
+                "group": "MongoDB",
+                "headerColor": "#419343",
+                "headerIcon": "fa-solid fa-database",
+                "type": [
+                    "String",
+                    "Number",
+                    "Date",
+                    "Buffer",
+                    "Boolean",
+                    "Mixed",
+                    "ObjectId",
+                    "Array",
+                    "Decimal128",
+                    "Map",
+                    "Schema"
+                ],
+                "TypeMongoDBConnection": {
+                    "color": "#419343"
+                },
+                "TypeMongoDBSchema": {
+                    "color": "#419343"
+                }
+            },
+            "sign": "09cdb4d12bdd66f57b49c8f1fc5a7c9ca71aeab6",
+            "position": {
+                "top": 92,
+                "left": -57
+            }
+        },
+        {
+            "collaped": true,
+            "filename": "/mnt/f/Node/ucsjs/workspace/packages/mongodb/src/blueprints/mongoFind.blueprint.ts",
+            "namespace": "MongoFindBlueprint",
+            "extends": "Blueprint",
+            "publicVars": [
+                {
+                    "name": "limit",
+                    "type": "number",
+                    "default": 10,
+                    "namespace": "MongoFindBlueprint::limit",
+                    "id": "9a74fa9ceb848c686d1ec59bcff6cc0edba16235"
+                },
+                {
+                    "name": "offset",
+                    "type": "number",
+                    "default": 0,
+                    "namespace": "MongoFindBlueprint::offset",
+                    "id": "95439d1dc1aa6b846cf3e6bcda653869c95bb427"
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "result",
+                    "type": "JSON",
+                    "namespace": "MongoFindBlueprint::result",
+                    "id": "aed9631a2e5337b7d139606e92fbfd388d0dae6b"
+                },
+                {
+                    "name": "error",
+                    "type": "Any",
+                    "namespace": "MongoFindBlueprint::error",
+                    "id": "84d4165a91330f8a7da02da71fdf7d1fac512de1"
+                }
+            ],
+            "inputs": [
+                {
+                    "name": "schema",
+                    "type": "TypeMongoDB.Schema",
+                    "namespace": "MongoFindBlueprint::schema",
+                    "id": "0c0677c8d5ff221068d340a38d3f78ee258d7ef8"
+                },
+                {
+                    "name": "query",
+                    "type": "JSON",
+                    "namespace": "MongoFindBlueprint::query",
+                    "id": "a61d7b0b0dc1ea8adef5e68313d1f5a9c772be0a",
+                    "value": {}
+                }
+            ],
+            "content": null,
+            "componentsDafaults": [],
+            "metadata": {
+                "namespace": "Find",
+                "group": "MongoDB",
+                "headerColor": "#419343",
+                "headerIcon": "fa-solid fa-database",
+                "TypeMongoDBSchema": {
+                    "color": "#419343"
+                }
+            },
+            "sign": "7cfd00b26def8b39f98065a630d76b410ccb3c74",
+            "position": {
+                "top": -24,
+                "left": 538
+            }
+        },
+        {
+            "filename": "/mnt/f/Node/ucsjs/workspace/packages/mongodb/src/blueprints/mongoFind.blueprint.ts",
+            "namespace": "MongoFindBlueprint",
+            "extends": "Blueprint",
+            "publicVars": [
+                {
+                    "name": "limit",
+                    "type": "number",
+                    "default": 10,
+                    "namespace": "MongoFindBlueprint::limit",
+                    "id": "9a74fa9ceb848c686d1ec59bcff6cc0edba16235"
+                },
+                {
+                    "name": "offset",
+                    "type": "number",
+                    "default": 0,
+                    "namespace": "MongoFindBlueprint::offset",
+                    "id": "95439d1dc1aa6b846cf3e6bcda653869c95bb427"
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "result",
+                    "type": "JSON",
+                    "namespace": "MongoFindBlueprint::result",
+                    "id": "aed9631a2e5337b7d139606e92fbfd388d0dae6b"
+                },
+                {
+                    "name": "error",
+                    "type": "Any",
+                    "namespace": "MongoFindBlueprint::error",
+                    "id": "84d4165a91330f8a7da02da71fdf7d1fac512de1"
+                }
+            ],
+            "inputs": [
+                {
+                    "name": "schema",
+                    "type": "TypeMongoDB.Schema",
+                    "namespace": "MongoFindBlueprint::schema",
+                    "id": "0c0677c8d5ff221068d340a38d3f78ee258d7ef8"
+                },
+                {
+                    "name": "query",
+                    "type": "JSON",
+                    "namespace": "MongoFindBlueprint::query",
+                    "id": "a61d7b0b0dc1ea8adef5e68313d1f5a9c772be0a"
+                }
+            ],
+            "content": null,
+            "componentsDafaults": [],
+            "metadata": {
+                "namespace": "Find",
+                "group": "MongoDB",
+                "headerColor": "#419343",
+                "headerIcon": "fa-solid fa-database",
+                "TypeMongoDBSchema": {
+                    "color": "#419343"
+                }
+            },
+            "sign": "7cfd00b26def8b39f98065a630d76b410ccb3c74",
+            "position": {
+                "top": 198,
+                "left": 542
+            },
+            "collaped": true
+        },
+        {
+            "filename": "/mnt/f/Node/ucsjs/workspace/src/blueprints/Network/httpParam.blueprint.ts",
+            "namespace": "HTTPParamBlueprint",
+            "extends": "Blueprint",
+            "publicVars": [
+                {
+                    "name": "name",
+                    "type": "string",
+                    "default": "",
+                    "namespace": "HTTPParamBlueprint::name",
+                    "id": "8c7cf29e0afac4558da5556f6cdabfe4a701c32b",
+                    "value": "id"
+                },
+                {
+                    "name": "toJSON",
+                    "type": "boolean",
+                    "default": false,
+                    "namespace": "HTTPParamBlueprint::toJSON",
+                    "id": "38a3299e3793a9a7ab66c4ee93bd43d6f7fb38e1",
+                    "value": true
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "result",
+                    "type": "Any",
+                    "namespace": "HTTPParamBlueprint::result",
+                    "id": "72e7784f113b824d4761104f2dd463bd18493279"
+                }
+            ],
+            "inputs": [
+                {
+                    "name": "request",
+                    "type": "HTTPTypes.Request",
+                    "namespace": "HTTPParamBlueprint::request",
+                    "id": "cfa0f923a7291ef65e0dd4caf9d8dc12e9ca1ba4"
+                }
+            ],
+            "content": null,
+            "componentsDafaults": [],
+            "metadata": {
+                "namespace": "HTTP Param",
+                "group": "Network",
+                "module": true,
+                "HTTPTypes_Request": {
+                    "color": "yellow"
+                }
+            },
+            "sign": "cd7802429e74ecdc687f6c6f8abeafdfe0a43dc5",
+            "position": {
+                "top": 152,
+                "left": 269
+            },
+            "collaped": true
+        },
+        {
+            "filename": "/mnt/f/Node/ucsjs/workspace/src/blueprints/Network/httpOut.blueprint.ts",
+            "namespace": "HTTPOutBlueprint",
+            "extends": "Blueprint",
+            "publicVars": [],
+            "outputs": [
+                {
+                    "name": "output",
+                    "type": "Any",
+                    "namespace": "HTTPOutBlueprint::output",
+                    "id": "ff1a05ee2253e0619427f9dc06b34cd2b7d5687e"
+                }
+            ],
+            "inputs": [
+                {
+                    "name": "request",
+                    "type": "HTTPTypes.Request",
+                    "namespace": "HTTPOutBlueprint::request",
+                    "id": "c111f0d645a5b37b70464659b43122e3a0e66b26"
+                },
+                {
+                    "name": "contents",
+                    "type": "Any",
+                    "namespace": "HTTPOutBlueprint::contents",
+                    "id": "53546bd648df7f58e1a6a3bf0abce2d481c6e51b"
+                }
+            ],
+            "content": null,
+            "componentsDafaults": [],
+            "metadata": {
+                "namespace": "HTTP Out",
+                "group": "Network"
+            },
+            "sign": "274b8e24aed8af33fbda720b8b649bce5aa8f250",
+            "position": {
+                "top": 158,
+                "left": 888
+            },
+            "collaped": false
+        }
+    ],
+    "connections": [
+        {
+            "from": {
+                "component": "HTTPInBlueprint",
+                "input": "c782a1bf7f74c0a22eb8d764d6b7c9ba20300670-1-0"
+            },
+            "to": {
+                "component": "HTTPOutBlueprint",
+                "input": "c111f0d645a5b37b70464659b43122e3a0e66b26-2"
+            }
+        },
+        {
+            "from": {
+                "component": "MongoConnectionBlueprint",
+                "input": "5b2ffef7707ef50925f90cd0a4704af95e61642a-0"
+            },
+            "to": {
+                "component": "MongoSchemaBlueprint",
+                "input": "a9f3bbe4bc8f4385f02c69a420eb72d8b5e89e65-3"
+            }
+        },
+        {
+            "from": {
+                "component": "MongoSchemaBlueprint",
+                "input": "382e78e2ac7cb2424c03f8d2523531de42a9d722-3"
+            },
+            "to": {
+                "component": "MongoFindBlueprint",
+                "input": "0c0677c8d5ff221068d340a38d3f78ee258d7ef8-4"
+            }
+        },
+        {
+            "from": {
+                "component": "MongoFindBlueprint",
+                "input": "aed9631a2e5337b7d139606e92fbfd388d0dae6b-4"
+            },
+            "to": {
+                "component": "HTTPOutBlueprint",
+                "input": "53546bd648df7f58e1a6a3bf0abce2d481c6e51b-2"
+            }
+        },
+        {
+            "from": {
+                "component": "HTTPInBlueprint",
+                "input": "c782a1bf7f74c0a22eb8d764d6b7c9ba20300670-1-1"
+            },
+            "to": {
+                "component": "HTTPParamBlueprint",
+                "input": "cfa0f923a7291ef65e0dd4caf9d8dc12e9ca1ba4-6"
+            }
+        },
+        {
+            "from": {
+                "component": "HTTPParamBlueprint",
+                "input": "72e7784f113b824d4761104f2dd463bd18493279-6"
+            },
+            "to": {
+                "component": "MongoFindBlueprint",
+                "input": "a61d7b0b0dc1ea8adef5e68313d1f5a9c772be0a-5"
+            }
+        },
+        {
+            "from": {
+                "component": "MongoSchemaBlueprint",
+                "input": "382e78e2ac7cb2424c03f8d2523531de42a9d722-3"
+            },
+            "to": {
+                "component": "MongoFindBlueprint",
+                "input": "0c0677c8d5ff221068d340a38d3f78ee258d7ef8-5"
+            }
+        },
+        {
+            "from": {
+                "component": "MongoFindBlueprint",
+                "input": "aed9631a2e5337b7d139606e92fbfd388d0dae6b-5"
+            },
+            "to": {
+                "component": "HTTPOutBlueprint",
+                "input": "53546bd648df7f58e1a6a3bf0abce2d481c6e51b-7"
+            }
+        },
+        {
+            "from": {
+                "component": "HTTPInBlueprint",
+                "input": "c782a1bf7f74c0a22eb8d764d6b7c9ba20300670-1-1"
+            },
+            "to": {
+                "component": "HTTPOutBlueprint",
+                "input": "c111f0d645a5b37b70464659b43122e3a0e66b26-7"
+            }
+        }
+    ],
+    "scale": 1,
+    "position": {
+        "x": 252,
+        "y": 207
+    },
+    "scrollOffset": {
+        "x": 0,
+        "y": 0
+    }
+}

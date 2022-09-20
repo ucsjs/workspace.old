@@ -35,6 +35,7 @@ export class ParserService {
             };
 
             for(let key in component.outputs){
+                component.outputs[key].label = this.fixedLabel(component.outputs.name);
                 component.outputs[key].namespace = `${component.namespace}::${component.outputs[key].name}`;
                 component.outputs[key].id = crypto
                 .createHash("sha1")
@@ -47,6 +48,7 @@ export class ParserService {
             });
 
             for(let key in component.inputs){
+                component.inputs[key].label = this.fixedLabel(component.inputs[key].name);
                 component.inputs[key].namespace = `${component.namespace}::${component.inputs[key].name}`;
                 component.inputs[key].id = crypto
                 .createHash("sha1")
@@ -64,6 +66,7 @@ export class ParserService {
                 if(changeStyle)
                     component.publicVars[key].changeStyle = changeStyle.data;
 
+                component.publicVars[key].label = this.fixedLabel(component.publicVars[key].name);
                 component.publicVars[key].namespace = `${component.namespace}::${component.publicVars[key].name}`;
                 component.publicVars[key].id = crypto
                 .createHash("sha1")
@@ -166,4 +169,8 @@ export class ParserService {
     uppercaseFirstLetter(string: string) {
 		return string.charAt(0).toUpperCase() + string.slice(1);
 	}
+
+    fixedLabel(value){
+        return this.uppercaseFirstLetter(value.replace(/([A-Z])/g, " $1"));
+    }
 }

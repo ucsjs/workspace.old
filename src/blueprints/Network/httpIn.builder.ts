@@ -48,6 +48,7 @@ export class ${$blueprint}Controller {
             let $output = null;
 
             for(let connection of $connections){
+                console.log(inputRef, connection.from.input)
                 if(connection.from.input == inputRef && connection.to.component == "HTTPOutBlueprint"){
                     $output = connection.to;
                 }
