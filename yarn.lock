@@ -7565,6 +7565,11 @@ ignore@^5.0.4, ignore@^5.2.0:
   resolved "https://registry.yarnpkg.com/ignore/-/ignore-5.2.0.tgz#6d3bac8fa7fe0d45d9f9be7bac2fc279577e345a"
   integrity sha512-CmxgYGiEPCLhfLnpPp1MoRmifwEIOgjcHXxOBjv7mY96c+eWScsOP9c112ZyLdWHi0FxHjI+4uVhKYp/gcdRmQ==
 
+image-to-uri@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/image-to-uri/-/image-to-uri-1.0.0.tgz#6ca7e193019fa453ec90a3d3eff51ba2a0072284"
+  integrity sha512-5bdajUwA9v581KwJAJF3YgomurzHGCeiARRc7+9/VJi/VVMWbr2kt8VN+j5DDNiwnYBQ34eoFUz4smfuRIUd+A==
+
 immutable@^3.8.1:
   version "3.8.2"
   resolved "https://registry.yarnpkg.com/immutable/-/immutable-3.8.2.tgz#c2439951455bb39913daf281376f1530e104adf3"

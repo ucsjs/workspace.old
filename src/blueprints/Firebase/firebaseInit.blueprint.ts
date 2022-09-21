@@ -6,7 +6,8 @@ export class FirebaseInitBlueprint extends Blueprint{
     //Metadata
     private __namespace = "Firebase Init";
     private __group = "Firebase";
-    private __headerIcon = "fa-solid fa-turn-down";
+    private __headerIcon = "./public/icons/firebase.png";
+    private __headerColor = "#b28910";    
 
     private _settings;
 

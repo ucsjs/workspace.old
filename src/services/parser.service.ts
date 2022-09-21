@@ -1,6 +1,7 @@
 import * as fs from "fs";
 import * as crypto from "crypto";
 import * as path from "path";
+import * as imageToUri from "image-to-uri";
 
 import { RegexService } from "./regex.services";
 
@@ -100,7 +101,7 @@ export class ParserService {
                 newMetadataObject = newMetadataObject.concat(newMetadataObjectOverride);
             }
             
-            let metadata = {};
+            let metadata: any = {};
 
             for(let meta of rawMetadata)
                 if(meta.name && meta.value)
@@ -173,6 +174,15 @@ export class ParserService {
                     }
                 }
                 catch(e){}
+            }
+
+            for(let keyMetadata in metadata){
+                if(keyMetadata == "headerIcon" && metadata[keyMetadata].includes("/")){
+                    try{
+                        metadata[keyMetadata] = imageToUri(path.resolve(metadata[keyMetadata]));
+                    }
+                    catch(e){}
+                }
             }
 
             component.metadata = metadata;

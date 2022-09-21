@@ -1,7 +1,6 @@
 import * as path from "path";
 import * as fs from "fs";
 import * as fg from "fast-glob";
-import * as crypto from "crypto";
 import { Injectable } from '@nestjs/common';
 import { Parser } from "@ucsjs/blueprint";
 

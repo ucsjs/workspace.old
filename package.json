@@ -57,6 +57,7 @@
     "fast-glob": "^3.2.11",
     "firebase-admin": "^11.0.1",
     "helmet": "^6.0.0",
+    "image-to-uri": "^1.0.0",
     "jsonwebtoken": "^8.5.1",
     "language-detect": "^1.1.0",
     "merge-stream": "^2.0.0",

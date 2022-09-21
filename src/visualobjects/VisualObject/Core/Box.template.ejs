@@ -1,0 +1,9 @@
+<div ref="<%= id %>" class="box<%= id %>">
+    <%- slot -%>
+</div>
+
+<style>
+.box<%= id %> {<% if(Style) { for(let keyStyle in Style){ %>
+    <%= keyStyle %>: <%= Style[keyStyle] %>; <% } } %>
+}
+</style>

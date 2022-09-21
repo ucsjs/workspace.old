@@ -1,5 +1,5 @@
-import { VisualObject } from "../Core/VisualObject.component";
-import { Background } from "../Core/Background.component";
+import { VisualObject } from "../../Core/VisualObject.component";
+import { Background } from "../../Core/Background.component";
 
 export class Box extends VisualObject {
     //Matadata
@@ -13,5 +13,9 @@ export class Box extends VisualObject {
    
     constructor($argv){
         super($argv);
+    }
+
+    public content(){
+        return "<div><slot/></div>";
     }
 }

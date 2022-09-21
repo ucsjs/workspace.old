@@ -1,13 +1,13 @@
-import { VisualObject } from "../Core/VisualObject.component";
-import { Font } from "../Core/Font.component";
-import { Content } from "../Core/Content.component";
-import { Background } from "../Core/Background.component";
+import { VisualObject } from "../../Core/VisualObject.component";
+import { Font } from "../../Core/Font.component";
+import { Content } from "../../Core/Content.component";
+import { Background } from "../../Core/Background.component";
 
 export class Text extends VisualObject {
     //Matadata
     protected override __namespace = "Text";
     protected override __group = "Core";
-    protected override __icon = "fa-solid fa-i-cursor";
+    protected override __icon = "fa-solid fa-align-center";
 
     public _background: Background;
     public _font: Font;
@@ -16,8 +16,8 @@ export class Text extends VisualObject {
     constructor($argv){
         super($argv);
 
-        this._dimensions._width = 240;
-        this._dimensions._height = 40;
+        this._transform._width = 240;
+        this._transform._height = 40;
     }
 
     public content(){

@@ -1,0 +1,16 @@
+{
+    "type": [
+        "text",
+        "password",
+        "email",
+        "file",
+        "hidden",
+        "month",
+        "number",
+        "tel",
+        "text",
+        "time",
+        "url",
+        "week"
+    ]
+}

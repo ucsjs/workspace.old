@@ -1,6 +1,6 @@
 import { Component } from "../Types/Component.type";
 import { Transform } from "./Transform.component";
-import { Dimensions } from "./Dimensions.component";
+import { Class } from "./Class.component";
 
 export class VisualObject extends Component {
     //Matadata
@@ -8,14 +8,15 @@ export class VisualObject extends Component {
     protected override __importable = false;
     protected __resizable = false;
     protected __moveble = false;
+    protected __opened = false;
 
     //Private scope
     protected scope = {
         components: []
     };
     
-    public _position: Transform;
-    public _dimensions: Dimensions;
+    public _class: Class;
+    public _transform: Transform;
 
     constructor($argv){
         super();

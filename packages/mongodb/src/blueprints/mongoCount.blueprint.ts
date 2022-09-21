@@ -8,7 +8,7 @@ export class MongoCountBlueprint extends Blueprint{
     private __namespace = "Count";
     private __group = "MongoDB";
     private __headerColor = "#419343";
-    private __headerIcon = "fa-solid fa-database";
+    private __headerIcon = "./public/icons/mongodb.png";
     private __TypeMongoDBSchema: object = { color: "#419343" };
 
     private state = { model: null, query: null };
