@@ -1,9 +1,11 @@
 <div ref="<%= id %>" class="box<%= id %>">
-    <%= slot %>
+    <%- slot -%>
 </div>
 
 <style>
 .box<%= id %> {
+    <% if(Style) { for(let keyStyle in Style){ %>
+    <%= keyStyle %>: <%= Style[keyStyle] %>; <% } } %>
     width: <% if(!Dimensions.widthAuto) { %><%= Dimensions.width %>px<% } else { %>auto<% } %>;
     height: <% if(!Dimensions.heightAuto) { %><%= Dimensions.height %>px<% } else { %>auto<% } %>;
     position: <%= Transform.position %>;

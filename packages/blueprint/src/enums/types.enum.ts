@@ -7,4 +7,5 @@ export enum Type {
     String,
     Any,
     JSON,
+    Date,
 }

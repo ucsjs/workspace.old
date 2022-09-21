@@ -28,7 +28,7 @@ export class VisualService extends ParserService {
             caseSensitiveMatch: false,
             followSymbolicLinks: true,
             absolute: true 
-        });
+        }); 
         
         for(let file of files){
             const component = this.getData(file, "Component", true);
@@ -139,6 +139,7 @@ export class VisualService extends ParserService {
 
             if((!metadata.importable && typeof metadata.importable !== "boolean") || metadata.importable === true) {
                 exportedComponents.push({
+                    filename: components[key].filename,
                     namespace: components[key].namespace,
                     extends: components[key].extends,
                     sign: components[key].sign,
@@ -149,6 +150,7 @@ export class VisualService extends ParserService {
                     content: components[key].content,
                     componentsDafaults: components[key]?.componentsDafaults,
                     properties: components[key]?.publicVars,
+                    default: this.generateDefault(components[key]?.publicVars, types)
                 }); 
             }
         }
@@ -347,7 +349,27 @@ export class LazyModule {}`;
         return result;
     }
 
-    async parseTemplate(item, namespace): Promise<string>{
+    async parseTemplate(item, namespace, paths: Array<string> = [], typesPaths: Array<string> = []): Promise<string>{
+        let dependenciesIndex = {};
+        let types = await this.loadTypes(typesPaths);
+
+        const files = await fg(paths, { 
+            dot: true, 
+            onlyFiles: false, 
+            deep: 5, 
+            caseSensitiveMatch: false,
+            followSymbolicLinks: true,
+            absolute: true 
+        });
+        
+        for(let file of files){
+            const component = this.getData(file, "Component", true);
+
+            if(component){
+                dependenciesIndex[component.namespace] = component;
+            }
+        }
+
         const metadata = JSON.parse(item.content);
 
         let injection = {
@@ -367,14 +389,14 @@ export class LazyModule {}`;
         <meta name="viewport" content="width=device-width, initial-scale=1">
     </head>
     <body>
-${await this.build(metadata.hierarchy)}
+${await this.build(metadata.hierarchy, 2, dependenciesIndex)}
     </body>
 </html>`; 
 
         return result;
     }
 
-    async build(hierarchy, tabsCount = 2){
+    async build(hierarchy, tabsCount = 2, dependenciesIndex = {}){
         let result = "";
         let tabs = "";
 
@@ -382,15 +404,32 @@ ${await this.build(metadata.hierarchy)}
             tabs += "\t";
         
         for(let component of hierarchy){
-            const subComponents = (component.hierarchy.length > 0) ? await this.build(component.hierarchy, tabsCount+1) : "";
-            const componentData = this.getComponentData(component);
+            const subComponents = (component.hierarchy.length > 0) ? await this.build(component.hierarchy, tabsCount+1, dependenciesIndex) : "";
+            const componentData: any = this.getComponentData(component);
 
             if(component.template){
                 const raw = fs.readFileSync(component.template, "utf8");
+                let styles = {};
+
+                for(let keyComponent in componentData){
+                    if(dependenciesIndex[keyComponent]){
+                        for(let property of dependenciesIndex[keyComponent].publicVars){
+                            if(componentData[keyComponent][property.name] && property.changeStyle){
+                                if(typeof componentData[keyComponent][property.name] == "object" && componentData[keyComponent][property.name].hex)
+                                    styles[property.changeStyle?.style] = componentData[keyComponent][property.name].hex;   
+                                else if(typeof typeof componentData[keyComponent][property.name] == "number")
+                                    styles[property.changeStyle?.style] = `${componentData[keyComponent][property.name]}px`;
+                                else
+                                    styles[property.changeStyle?.style] = componentData[keyComponent][property.name];
+                            }
+                        }
+                    }
+                }                
 
                 const template = ejs.render(raw, {
                     id: component.id,
                     slot: subComponents,
+                    Style: (styles) ? styles : [],
                     ...componentData   
                 });
 

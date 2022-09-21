@@ -5,6 +5,7 @@ export class HTTPOutBlueprint extends Blueprint{
     //Metadata
     private __namespace = "HTTP Out";
     private __group = "Network";
+    private __headerIcon = "fa-solid fa-turn-up";
 
     private state: any = {};
 

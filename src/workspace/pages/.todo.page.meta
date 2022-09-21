@@ -4,1406 +4,14 @@
     },
     "scale": 1,
     "position": {
-        "x": -28,
-        "y": 14
+        "x": 3,
+        "y": -16
     },
     "viewport": {
-        "width": 375,
-        "height": 667
+        "width": 768,
+        "height": 1024
     },
     "hierarchy": [
-        {
-            "0": false,
-            "1": true,
-            "id": "Text_58",
-            "namespace": "Text",
-            "extends": "VisualObject",
-            "sign": "6770d932f4c7684e56e861a9620259f6c9e86559",
-            "metadata": {
-                "namespace": "Text",
-                "group": "Core",
-                "icon": "fa-solid fa-i-cursor"
-            },
-            "components": [
-                {
-                    "component": "Transform",
-                    "fixed": true,
-                    "icon": "fa-solid fa-maximize",
-                    "sign": "08678785e840a5320a7ade28737931cd0a722b2e",
-                    "properties": [
-                        {
-                            "name": "position",
-                            "type": "string",
-                            "default": "absolute",
-                            "label": "Position",
-                            "namespace": "Transform::position",
-                            "id": "cb1ff5d5ac80d74b22809fcfc38165143b13e507"
-                        },
-                        {
-                            "name": "top",
-                            "type": "number",
-                            "default": 0,
-                            "label": "Top",
-                            "namespace": "Transform::top",
-                            "id": "84e9b008824d798f6281733cd9bd2972296e8049"
-                        },
-                        {
-                            "name": "left",
-                            "type": "number",
-                            "default": 0,
-                            "label": "Left",
-                            "namespace": "Transform::left",
-                            "id": "e3200ccfb22fd0650e6f26cc2742b09b3f965285"
-                        },
-                        {
-                            "name": "scale",
-                            "type": "Range",
-                            "default": {
-                                "default": 1,
-                                "min": -10,
-                                "max": 10,
-                                "step": 0.1
-                            },
-                            "label": "Scale",
-                            "namespace": "Transform::scale",
-                            "id": "1641e2e0b1265badde139ebbfe2f876e030a4797"
-                        },
-                        {
-                            "name": "rotate",
-                            "type": "Range",
-                            "default": {
-                                "default": 0,
-                                "min": -360,
-                                "max": 360,
-                                "step": 1
-                            },
-                            "label": "Rotate",
-                            "namespace": "Transform::rotate",
-                            "id": "1c074e2aa06c136fbfeefe25946894eea4038c6c"
-                        },
-                        {
-                            "name": "zIndex",
-                            "type": "number",
-                            "default": 1,
-                            "label": "Z Index",
-                            "namespace": "Transform::zIndex",
-                            "id": "cc7421f74b81fc5e2d39063ad4c0cc47ffd7d37e"
-                        }
-                    ],
-                    "default": {
-                        "position": "absolute",
-                        "top": 0,
-                        "left": 0,
-                        "scale": 1,
-                        "rotate": 0,
-                        "zIndex": 1
-                    },
-                    "metadata": {
-                        "position": [
-                            "absolute",
-                            "relative",
-                            "fixed",
-                            "static",
-                            "sticky"
-                        ]
-                    },
-                    "value": {
-                        "position": "absolute",
-                        "top": 64,
-                        "left": 83,
-                        "scale": 1,
-                        "rotate": "0",
-                        "zIndex": "0"
-                    },
-                    "open": false
-                },
-                {
-                    "component": "Dimensions",
-                    "fixed": true,
-                    "icon": "fa-solid fa-up-down-left-right",
-                    "sign": "bf477dc1022e7e720df13d8ad2ab2645b791af3d",
-                    "properties": [
-                        {
-                            "name": "width",
-                            "type": "number",
-                            "default": 240,
-                            "label": "Width",
-                            "namespace": "Dimensions::width",
-                            "id": "6951b48a05d0a69e51d3aec76c130883e8b671c3"
-                        },
-                        {
-                            "name": "widthAuto",
-                            "type": "boolean",
-                            "default": false,
-                            "label": "Width Auto",
-                            "namespace": "Dimensions::widthAuto",
-                            "id": "4fa8c3691d367173c32bae83043cd0f7df18b86e"
-                        },
-                        {
-                            "name": "height",
-                            "type": "number",
-                            "default": 240,
-                            "label": "Height",
-                            "namespace": "Dimensions::height",
-                            "id": "2784d0ccafcb78023ae4177df05ce77668ceb6e7"
-                        },
-                        {
-                            "name": "heightAuto",
-                            "type": "boolean",
-                            "default": false,
-                            "label": "Height Auto",
-                            "namespace": "Dimensions::heightAuto",
-                            "id": "50a06cb31cd5fb63f34edf761225df728e6eb4c4"
-                        }
-                    ],
-                    "default": {
-                        "width": "240",
-                        "widthAuto": false,
-                        "height": "40",
-                        "heightAuto": false
-                    },
-                    "metadata": {},
-                    "value": {
-                        "width": "240",
-                        "widthAuto": false,
-                        "height": "40",
-                        "heightAuto": false
-                    },
-                    "open": true
-                },
-                {
-                    "component": "Background",
-                    "fixed": true,
-                    "icon": "fa-solid fa-paint-roller",
-                    "sign": "6fd876093871f4124625203d09aec1bb43a75120",
-                    "properties": [
-                        {
-                            "name": "color",
-                            "type": "Color",
-                            "default": {
-                                "r": 0,
-                                "g": 0,
-                                "b": 0,
-                                "a": 1,
-                                "hex": "#FFFFFF"
-                            },
-                            "changeStyle": {
-                                "style": "background-color",
-                                "styleVue": "backgroundColor"
-                            },
-                            "label": "Color",
-                            "namespace": "Background::color",
-                            "id": "c3ce09e2abae62182f7730f3aa12264ca9b7af0a"
-                        },
-                        {
-                            "name": "attachment",
-                            "type": "string",
-                            "changeStyle": {
-                                "style": "background-attachment",
-                                "styleVue": "backgroundAttachment"
-                            },
-                            "label": "Attachment",
-                            "namespace": "Background::attachment",
-                            "id": "f5b365ac1ec978bcaeb5e1b97fc05feeaf87f308"
-                        },
-                        {
-                            "name": "blendMode",
-                            "type": "string",
-                            "changeStyle": {
-                                "style": "background-blend-mode",
-                                "styleVue": "background-blend-mode"
-                            },
-                            "label": "Blend Mode",
-                            "namespace": "Background::blendMode",
-                            "id": "438b2688d13d44a85ec716ec342b99ec46c79a24"
-                        },
-                        {
-                            "name": "clip",
-                            "type": "string",
-                            "changeStyle": {
-                                "style": "background-clip",
-                                "styleVue": "backgroundClip"
-                            },
-                            "label": "Clip",
-                            "namespace": "Background::clip",
-                            "id": "43fde3bbef308d91749b042813ee8e6333d42708"
-                        },
-                        {
-                            "name": "origin",
-                            "type": "string",
-                            "changeStyle": {
-                                "style": "background-origin",
-                                "styleVue": "backgroundOrigin"
-                            },
-                            "label": "Origin",
-                            "namespace": "Background::origin",
-                            "id": "713d74e8c99413e369922684ab7e54ec9d048170"
-                        },
-                        {
-                            "name": "position",
-                            "type": "string",
-                            "changeStyle": {
-                                "style": "background-position",
-                                "styleVue": "backgroundPosition"
-                            },
-                            "label": "Position",
-                            "namespace": "Background::position",
-                            "id": "4cd0cc8dfd1b69066659509f9f301df2b34b9aae"
-                        },
-                        {
-                            "name": "repeat",
-                            "type": "string",
-                            "changeStyle": {
-                                "style": "background-repeat",
-                                "styleVue": "backgroundRepeat"
-                            },
-                            "label": "Repeat",
-                            "namespace": "Background::repeat",
-                            "id": "42bd692396a630dc354bdfda72d1fa6a0096edd9"
-                        }
-                    ],
-                    "default": {
-                        "color": {
-                            "r": 0,
-                            "g": 0,
-                            "b": 0,
-                            "a": 1,
-                            "hex": "#FFFFFF"
-                        }
-                    },
-                    "metadata": {
-                        "namespace": "Background",
-                        "group": "Core",
-                        "icon": "fa-solid fa-paint-roller",
-                        "attachment": [
-                            "scroll",
-                            "fixed",
-                            "local",
-                            "initial",
-                            "inherit"
-                        ],
-                        "fixed": true,
-                        "importable": false,
-                        "blendMode": [
-                            "normal",
-                            "multiply",
-                            "screen",
-                            "overlay",
-                            "darken",
-                            "lighten",
-                            "color-dodge",
-                            "saturation",
-                            "color",
-                            "luminosity"
-                        ],
-                        "clip": [
-                            "border-box",
-                            "padding-box",
-                            "content-box",
-                            "initial",
-                            "inherit"
-                        ],
-                        "origin": [
-                            "border-box",
-                            "padding-box",
-                            "content-box",
-                            "initial",
-                            "inherit"
-                        ],
-                        "repeat": [
-                            "repeat",
-                            "repeat-x",
-                            "repeat-y",
-                            "no-repeat",
-                            "space",
-                            "round",
-                            "initial",
-                            "inherit"
-                        ]
-                    },
-                    "value": {
-                        "color": {
-                            "r": 0,
-                            "g": 0,
-                            "b": 0,
-                            "a": 1,
-                            "hex": "#FFFFFF"
-                        }
-                    },
-                    "open": false
-                },
-                {
-                    "component": "Font",
-                    "fixed": true,
-                    "icon": "fa-solid fa-font",
-                    "sign": "06ff35e91f2cd6e116d5f099c7dc3d36ae23f480",
-                    "properties": [
-                        {
-                            "name": "font",
-                            "type": "string",
-                            "default": "Arial, sans-serif",
-                            "changeStyle": {
-                                "style": "font-family",
-                                "styleVue": "fontFamily"
-                            },
-                            "label": "Font",
-                            "namespace": "Font::font",
-                            "id": "bc8ff01e5ac9e501b530fd05702ed150f06d133f"
-                        },
-                        {
-                            "name": "size",
-                            "type": "number",
-                            "default": 12,
-                            "changeStyle": {
-                                "style": "font-size",
-                                "styleVue": "fontSize",
-                                "subfix": "px"
-                            },
-                            "label": "Size",
-                            "namespace": "Font::size",
-                            "id": "8dfdd335121a336e936ff7497a3f6120ae4b64f4"
-                        },
-                        {
-                            "name": "color",
-                            "type": "Color",
-                            "default": {
-                                "r": 0,
-                                "g": 0,
-                                "b": 0,
-                                "a": 1,
-                                "hex": "#000000"
-                            },
-                            "changeStyle": {
-                                "style": "color",
-                                "styleVue": "color"
-                            },
-                            "label": "Color",
-                            "namespace": "Font::color",
-                            "id": "fd5d30235781a0cf0cd760964f49bf409ddcc0cf"
-                        },
-                        {
-                            "name": "style",
-                            "type": "string",
-                            "changeStyle": {
-                                "style": "font-style",
-                                "styleVue": "fontStyle"
-                            },
-                            "label": "Style",
-                            "namespace": "Font::style",
-                            "id": "9194b2a37b79bc13b02d13d1ec6614963b7a573c"
-                        },
-                        {
-                            "name": "variant",
-                            "type": "string",
-                            "changeStyle": {
-                                "style": "font-variant",
-                                "styleVue": "fontVariant"
-                            },
-                            "label": "Variant",
-                            "namespace": "Font::variant",
-                            "id": "6d761a49c1340bfb631b262ddffa440baf1894c1"
-                        },
-                        {
-                            "name": "variantCaps",
-                            "type": "string",
-                            "changeStyle": {
-                                "style": "font-variant-caps",
-                                "styleVue": "font-variant-caps"
-                            },
-                            "label": "Variant Caps",
-                            "namespace": "Font::variantCaps",
-                            "id": "39b4ed025f519ec230ce2148bb0e61604caf68ad"
-                        },
-                        {
-                            "name": "weight",
-                            "type": "string",
-                            "changeStyle": {
-                                "style": "font-weight",
-                                "styleVue": "fontWeight"
-                            },
-                            "label": "Weight",
-                            "namespace": "Font::weight",
-                            "id": "7b650d24af3f5ce5f5c7942bc895f4a21eef8a77"
-                        }
-                    ],
-                    "default": {
-                        "font": "Arial, sans-serif",
-                        "size": 12,
-                        "color": {
-                            "r": 0,
-                            "g": 0,
-                            "b": 0,
-                            "a": 1,
-                            "hex": "#000000"
-                        }
-                    },
-                    "metadata": {
-                        "namespace": "Font",
-                        "icon": "fa-solid fa-font",
-                        "style": [
-                            "normal",
-                            "italic",
-                            "oblique",
-                            "initial",
-                            "inherit"
-                        ],
-                        "variant": [
-                            "normal",
-                            "small-caps",
-                            "initial",
-                            "inherit"
-                        ],
-                        "fixed": true,
-                        "importable": false,
-                        "font": [
-                            "Arial, sans-serif",
-                            "Times, Times New Roman, serif",
-                            "Andale Mono, monospace",
-                            "Courier, monospace",
-                            "Comic Sans MS, Comic Sans, cursive",
-                            "Impact, fantasy"
-                        ],
-                        "variantCaps": [
-                            "normal",
-                            "small-caps",
-                            "all-small-caps",
-                            "petite-caps",
-                            "all-petite-caps",
-                            "unicase",
-                            "titling-caps",
-                            "initial",
-                            "inherit",
-                            "unset"
-                        ],
-                        "weight": [
-                            "normal",
-                            "bold",
-                            "bolder",
-                            "lighter",
-                            "100",
-                            "200",
-                            "300",
-                            "400",
-                            "500",
-                            "600",
-                            "700",
-                            "800",
-                            "900",
-                            "initial",
-                            "inherit"
-                        ]
-                    },
-                    "value": {
-                        "font": "Arial, sans-serif",
-                        "size": 12,
-                        "color": {
-                            "r": 0,
-                            "g": 0,
-                            "b": 0,
-                            "a": 1,
-                            "hex": "#000000"
-                        }
-                    },
-                    "open": false
-                },
-                {
-                    "component": "Content",
-                    "fixed": true,
-                    "icon": "fa-solid fa-align-justify",
-                    "sign": "8b699f4d63c84abf423897572acad50786563849",
-                    "properties": [
-                        {
-                            "name": "align",
-                            "type": "string",
-                            "default": "left",
-                            "changeStyle": {
-                                "style": "text-align",
-                                "styleVue": "textAlign"
-                            },
-                            "label": "Align",
-                            "namespace": "Content::align",
-                            "id": "863afaf5229ca37b9c00caa8c92c5f242b43c2b2"
-                        },
-                        {
-                            "name": "alignLast",
-                            "type": "string",
-                            "default": "",
-                            "changeStyle": {
-                                "style": "text-align-last",
-                                "styleVue": "text-align-last"
-                            },
-                            "label": "Align Last",
-                            "namespace": "Content::alignLast",
-                            "id": "9871d83ea88657cf82dee285e5ca4de6811d70e2"
-                        },
-                        {
-                            "name": "decorationColor",
-                            "type": "Color",
-                            "changeStyle": {
-                                "style": "text-decoration-color",
-                                "styleVue": "text-decoration-color"
-                            },
-                            "label": "Decoration Color",
-                            "namespace": "Content::decorationColor",
-                            "id": "09be35a0194083b92fcf19d4c8d71f00f5f488de"
-                        },
-                        {
-                            "name": "decorationLine",
-                            "type": "string",
-                            "default": "",
-                            "changeStyle": {
-                                "style": "text-decoration-line",
-                                "styleVue": "text-decoration-line"
-                            },
-                            "label": "Decoration Line",
-                            "namespace": "Content::decorationLine",
-                            "id": "492f527710c3b5c9f3a1c125b6de9ce25da39feb"
-                        },
-                        {
-                            "name": "content",
-                            "type": "BigText",
-                            "label": "Content",
-                            "namespace": "Content::content",
-                            "id": "ef8b63184ab5f995f87a0f6f4272ba911517f5b0"
-                        }
-                    ],
-                    "default": {
-                        "align": "left",
-                        "alignLast": "",
-                        "decorationColor": {
-                            "r": 255,
-                            "g": 255,
-                            "b": 255,
-                            "a": 1,
-                            "hex": "#FFFFFF"
-                        },
-                        "decorationLine": ""
-                    },
-                    "metadata": {
-                        "namespace": "Content",
-                        "icon": "fa-solid fa-align-justify",
-                        "align": [
-                            "left",
-                            "right",
-                            "center",
-                            "justify",
-                            "initial",
-                            "inherit"
-                        ],
-                        "alignLast": [
-                            "auto",
-                            "left",
-                            "right",
-                            "center",
-                            "justify",
-                            "start",
-                            "end",
-                            "initial",
-                            "inherit"
-                        ],
-                        "decorationLine": [
-                            "none",
-                            "underline",
-                            "overline",
-                            "line-through",
-                            "initial",
-                            "inherit"
-                        ],
-                        "fixed": true,
-                        "importable": false
-                    },
-                    "value": {
-                        "align": "left",
-                        "alignLast": null,
-                        "decorationColor": {
-                            "hsl": {
-                                "h": 0,
-                                "s": 0.5151515151515152,
-                                "l": 0.38583599999999996,
-                                "a": 1
-                            },
-                            "hex": "#953030",
-                            "hex8": "#953030FF",
-                            "rgba": {
-                                "r": 149,
-                                "g": 48,
-                                "b": 48,
-                                "a": 1
-                            },
-                            "hsv": {
-                                "h": 0,
-                                "s": 0.68,
-                                "v": 0.5846,
-                                "a": 1
-                            },
-                            "oldHue": 0,
-                            "source": "hsva",
-                            "a": 1
-                        },
-                        "decorationLine": null,
-                        "content": "teste"
-                    },
-                    "open": true
-                }
-            ],
-            "template": "/mnt/f/Node/ucsjs/workspace/src/visualobjects/VisualObject/Text.template.ejs",
-            "content": "{{component.Content?.content}}",
-            "componentsDafaults": [
-                {
-                    "component": "dimensions",
-                    "property": "width",
-                    "value": "240"
-                },
-                {
-                    "component": "dimensions",
-                    "property": "height",
-                    "value": "40"
-                }
-            ],
-            "position": {
-                "left": 118,
-                "top": 69
-            },
-            "hierarchy": [],
-            "label": "Text_58",
-            "visibility": true,
-            "static": false,
-            "lockBox": true,
-            "Transform": {
-                "position": "absolute",
-                "top": 64,
-                "left": 83,
-                "scale": 1,
-                "rotate": "0",
-                "zIndex": "0"
-            },
-            "Dimensions": {
-                "width": "240",
-                "widthAuto": false,
-                "height": "40",
-                "heightAuto": false
-            },
-            "Background": {
-                "color": {
-                    "r": 0,
-                    "g": 0,
-                    "b": 0,
-                    "a": 1,
-                    "hex": "#FFFFFF"
-                }
-            },
-            "Font": {
-                "font": "Arial, sans-serif",
-                "size": 12,
-                "color": {
-                    "r": 0,
-                    "g": 0,
-                    "b": 0,
-                    "a": 1,
-                    "hex": "#000000"
-                }
-            },
-            "Content": {
-                "align": "left",
-                "alignLast": null,
-                "decorationColor": {
-                    "hsl": {
-                        "h": 0,
-                        "s": 0.5151515151515152,
-                        "l": 0.38583599999999996,
-                        "a": 1
-                    },
-                    "hex": "#953030",
-                    "hex8": "#953030FF",
-                    "rgba": {
-                        "r": 149,
-                        "g": 48,
-                        "b": 48,
-                        "a": 1
-                    },
-                    "hsv": {
-                        "h": 0,
-                        "s": 0.68,
-                        "v": 0.5846,
-                        "a": 1
-                    },
-                    "oldHue": 0,
-                    "source": "hsva",
-                    "a": 1
-                },
-                "decorationLine": null,
-                "content": "teste"
-            },
-            "events": null
-        },
-        {
-            "0": false,
-            "1": true,
-            "id": "Text_62",
-            "namespace": "Text",
-            "extends": "VisualObject",
-            "sign": "6770d932f4c7684e56e861a9620259f6c9e86559",
-            "metadata": {
-                "namespace": "Text",
-                "group": "Core",
-                "icon": "fa-solid fa-i-cursor"
-            },
-            "components": [
-                {
-                    "component": "Transform",
-                    "fixed": true,
-                    "icon": "fa-solid fa-maximize",
-                    "sign": "08678785e840a5320a7ade28737931cd0a722b2e",
-                    "properties": [
-                        {
-                            "name": "position",
-                            "type": "string",
-                            "default": "absolute",
-                            "label": "Position",
-                            "namespace": "Transform::position",
-                            "id": "cb1ff5d5ac80d74b22809fcfc38165143b13e507"
-                        },
-                        {
-                            "name": "top",
-                            "type": "number",
-                            "default": 0,
-                            "label": "Top",
-                            "namespace": "Transform::top",
-                            "id": "84e9b008824d798f6281733cd9bd2972296e8049"
-                        },
-                        {
-                            "name": "left",
-                            "type": "number",
-                            "default": 0,
-                            "label": "Left",
-                            "namespace": "Transform::left",
-                            "id": "e3200ccfb22fd0650e6f26cc2742b09b3f965285"
-                        },
-                        {
-                            "name": "scale",
-                            "type": "Range",
-                            "default": {
-                                "default": 1,
-                                "min": -10,
-                                "max": 10,
-                                "step": 0.1
-                            },
-                            "label": "Scale",
-                            "namespace": "Transform::scale",
-                            "id": "1641e2e0b1265badde139ebbfe2f876e030a4797"
-                        },
-                        {
-                            "name": "rotate",
-                            "type": "Range",
-                            "default": {
-                                "default": 0,
-                                "min": -360,
-                                "max": 360,
-                                "step": 1
-                            },
-                            "label": "Rotate",
-                            "namespace": "Transform::rotate",
-                            "id": "1c074e2aa06c136fbfeefe25946894eea4038c6c"
-                        },
-                        {
-                            "name": "zIndex",
-                            "type": "number",
-                            "default": 1,
-                            "label": "Z Index",
-                            "namespace": "Transform::zIndex",
-                            "id": "cc7421f74b81fc5e2d39063ad4c0cc47ffd7d37e"
-                        }
-                    ],
-                    "default": {
-                        "position": "absolute",
-                        "top": 0,
-                        "left": 0,
-                        "scale": 1,
-                        "rotate": 0,
-                        "zIndex": 1
-                    },
-                    "metadata": {
-                        "position": [
-                            "absolute",
-                            "relative",
-                            "fixed",
-                            "static",
-                            "sticky"
-                        ]
-                    },
-                    "value": {
-                        "position": "absolute",
-                        "top": 292,
-                        "left": 110,
-                        "scale": 1,
-                        "rotate": 0,
-                        "zIndex": "10"
-                    },
-                    "open": true
-                },
-                {
-                    "component": "Dimensions",
-                    "fixed": true,
-                    "icon": "fa-solid fa-up-down-left-right",
-                    "sign": "bf477dc1022e7e720df13d8ad2ab2645b791af3d",
-                    "properties": [
-                        {
-                            "name": "width",
-                            "type": "number",
-                            "default": 240,
-                            "label": "Width",
-                            "namespace": "Dimensions::width",
-                            "id": "6951b48a05d0a69e51d3aec76c130883e8b671c3"
-                        },
-                        {
-                            "name": "widthAuto",
-                            "type": "boolean",
-                            "default": false,
-                            "label": "Width Auto",
-                            "namespace": "Dimensions::widthAuto",
-                            "id": "4fa8c3691d367173c32bae83043cd0f7df18b86e"
-                        },
-                        {
-                            "name": "height",
-                            "type": "number",
-                            "default": 240,
-                            "label": "Height",
-                            "namespace": "Dimensions::height",
-                            "id": "2784d0ccafcb78023ae4177df05ce77668ceb6e7"
-                        },
-                        {
-                            "name": "heightAuto",
-                            "type": "boolean",
-                            "default": false,
-                            "label": "Height Auto",
-                            "namespace": "Dimensions::heightAuto",
-                            "id": "50a06cb31cd5fb63f34edf761225df728e6eb4c4"
-                        }
-                    ],
-                    "default": {
-                        "width": "240",
-                        "widthAuto": false,
-                        "height": "40",
-                        "heightAuto": false
-                    },
-                    "metadata": {},
-                    "value": {
-                        "width": "240",
-                        "widthAuto": false,
-                        "height": "40",
-                        "heightAuto": false
-                    },
-                    "open": true
-                },
-                {
-                    "component": "Background",
-                    "fixed": true,
-                    "icon": "fa-solid fa-paint-roller",
-                    "sign": "6fd876093871f4124625203d09aec1bb43a75120",
-                    "properties": [
-                        {
-                            "name": "color",
-                            "type": "Color",
-                            "default": {
-                                "r": 0,
-                                "g": 0,
-                                "b": 0,
-                                "a": 1,
-                                "hex": "#FFFFFF"
-                            },
-                            "changeStyle": {
-                                "style": "background-color",
-                                "styleVue": "backgroundColor"
-                            },
-                            "label": "Color",
-                            "namespace": "Background::color",
-                            "id": "c3ce09e2abae62182f7730f3aa12264ca9b7af0a"
-                        },
-                        {
-                            "name": "attachment",
-                            "type": "string",
-                            "changeStyle": {
-                                "style": "background-attachment",
-                                "styleVue": "backgroundAttachment"
-                            },
-                            "label": "Attachment",
-                            "namespace": "Background::attachment",
-                            "id": "f5b365ac1ec978bcaeb5e1b97fc05feeaf87f308"
-                        },
-                        {
-                            "name": "blendMode",
-                            "type": "string",
-                            "changeStyle": {
-                                "style": "background-blend-mode",
-                                "styleVue": "background-blend-mode"
-                            },
-                            "label": "Blend Mode",
-                            "namespace": "Background::blendMode",
-                            "id": "438b2688d13d44a85ec716ec342b99ec46c79a24"
-                        },
-                        {
-                            "name": "clip",
-                            "type": "string",
-                            "changeStyle": {
-                                "style": "background-clip",
-                                "styleVue": "backgroundClip"
-                            },
-                            "label": "Clip",
-                            "namespace": "Background::clip",
-                            "id": "43fde3bbef308d91749b042813ee8e6333d42708"
-                        },
-                        {
-                            "name": "origin",
-                            "type": "string",
-                            "changeStyle": {
-                                "style": "background-origin",
-                                "styleVue": "backgroundOrigin"
-                            },
-                            "label": "Origin",
-                            "namespace": "Background::origin",
-                            "id": "713d74e8c99413e369922684ab7e54ec9d048170"
-                        },
-                        {
-                            "name": "position",
-                            "type": "string",
-                            "changeStyle": {
-                                "style": "background-position",
-                                "styleVue": "backgroundPosition"
-                            },
-                            "label": "Position",
-                            "namespace": "Background::position",
-                            "id": "4cd0cc8dfd1b69066659509f9f301df2b34b9aae"
-                        },
-                        {
-                            "name": "repeat",
-                            "type": "string",
-                            "changeStyle": {
-                                "style": "background-repeat",
-                                "styleVue": "backgroundRepeat"
-                            },
-                            "label": "Repeat",
-                            "namespace": "Background::repeat",
-                            "id": "42bd692396a630dc354bdfda72d1fa6a0096edd9"
-                        }
-                    ],
-                    "default": {
-                        "color": {
-                            "r": 0,
-                            "g": 0,
-                            "b": 0,
-                            "a": 1,
-                            "hex": "#FFFFFF"
-                        }
-                    },
-                    "metadata": {
-                        "namespace": "Background",
-                        "group": "Core",
-                        "icon": "fa-solid fa-paint-roller",
-                        "attachment": [
-                            "scroll",
-                            "fixed",
-                            "local",
-                            "initial",
-                            "inherit"
-                        ],
-                        "fixed": true,
-                        "importable": false,
-                        "blendMode": [
-                            "normal",
-                            "multiply",
-                            "screen",
-                            "overlay",
-                            "darken",
-                            "lighten",
-                            "color-dodge",
-                            "saturation",
-                            "color",
-                            "luminosity"
-                        ],
-                        "clip": [
-                            "border-box",
-                            "padding-box",
-                            "content-box",
-                            "initial",
-                            "inherit"
-                        ],
-                        "origin": [
-                            "border-box",
-                            "padding-box",
-                            "content-box",
-                            "initial",
-                            "inherit"
-                        ],
-                        "repeat": [
-                            "repeat",
-                            "repeat-x",
-                            "repeat-y",
-                            "no-repeat",
-                            "space",
-                            "round",
-                            "initial",
-                            "inherit"
-                        ]
-                    },
-                    "value": {
-                        "color": {
-                            "r": 0,
-                            "g": 0,
-                            "b": 0,
-                            "a": 1,
-                            "hex": "#FFFFFF"
-                        }
-                    },
-                    "open": true
-                },
-                {
-                    "component": "Font",
-                    "fixed": true,
-                    "icon": "fa-solid fa-font",
-                    "sign": "06ff35e91f2cd6e116d5f099c7dc3d36ae23f480",
-                    "properties": [
-                        {
-                            "name": "font",
-                            "type": "string",
-                            "default": "Arial, sans-serif",
-                            "changeStyle": {
-                                "style": "font-family",
-                                "styleVue": "fontFamily"
-                            },
-                            "label": "Font",
-                            "namespace": "Font::font",
-                            "id": "bc8ff01e5ac9e501b530fd05702ed150f06d133f"
-                        },
-                        {
-                            "name": "size",
-                            "type": "number",
-                            "default": 12,
-                            "changeStyle": {
-                                "style": "font-size",
-                                "styleVue": "fontSize",
-                                "subfix": "px"
-                            },
-                            "label": "Size",
-                            "namespace": "Font::size",
-                            "id": "8dfdd335121a336e936ff7497a3f6120ae4b64f4"
-                        },
-                        {
-                            "name": "color",
-                            "type": "Color",
-                            "default": {
-                                "r": 0,
-                                "g": 0,
-                                "b": 0,
-                                "a": 1,
-                                "hex": "#000000"
-                            },
-                            "changeStyle": {
-                                "style": "color",
-                                "styleVue": "color"
-                            },
-                            "label": "Color",
-                            "namespace": "Font::color",
-                            "id": "fd5d30235781a0cf0cd760964f49bf409ddcc0cf"
-                        },
-                        {
-                            "name": "style",
-                            "type": "string",
-                            "changeStyle": {
-                                "style": "font-style",
-                                "styleVue": "fontStyle"
-                            },
-                            "label": "Style",
-                            "namespace": "Font::style",
-                            "id": "9194b2a37b79bc13b02d13d1ec6614963b7a573c"
-                        },
-                        {
-                            "name": "variant",
-                            "type": "string",
-                            "changeStyle": {
-                                "style": "font-variant",
-                                "styleVue": "fontVariant"
-                            },
-                            "label": "Variant",
-                            "namespace": "Font::variant",
-                            "id": "6d761a49c1340bfb631b262ddffa440baf1894c1"
-                        },
-                        {
-                            "name": "variantCaps",
-                            "type": "string",
-                            "changeStyle": {
-                                "style": "font-variant-caps",
-                                "styleVue": "font-variant-caps"
-                            },
-                            "label": "Variant Caps",
-                            "namespace": "Font::variantCaps",
-                            "id": "39b4ed025f519ec230ce2148bb0e61604caf68ad"
-                        },
-                        {
-                            "name": "weight",
-                            "type": "string",
-                            "changeStyle": {
-                                "style": "font-weight",
-                                "styleVue": "fontWeight"
-                            },
-                            "label": "Weight",
-                            "namespace": "Font::weight",
-                            "id": "7b650d24af3f5ce5f5c7942bc895f4a21eef8a77"
-                        }
-                    ],
-                    "default": {
-                        "font": "Arial, sans-serif",
-                        "size": 12,
-                        "color": {
-                            "r": 0,
-                            "g": 0,
-                            "b": 0,
-                            "a": 1,
-                            "hex": "#000000"
-                        }
-                    },
-                    "metadata": {
-                        "namespace": "Font",
-                        "icon": "fa-solid fa-font",
-                        "style": [
-                            "normal",
-                            "italic",
-                            "oblique",
-                            "initial",
-                            "inherit"
-                        ],
-                        "variant": [
-                            "normal",
-                            "small-caps",
-                            "initial",
-                            "inherit"
-                        ],
-                        "fixed": true,
-                        "importable": false,
-                        "font": [
-                            "Arial, sans-serif",
-                            "Times, Times New Roman, serif",
-                            "Andale Mono, monospace",
-                            "Courier, monospace",
-                            "Comic Sans MS, Comic Sans, cursive",
-                            "Impact, fantasy"
-                        ],
-                        "variantCaps": [
-                            "normal",
-                            "small-caps",
-                            "all-small-caps",
-                            "petite-caps",
-                            "all-petite-caps",
-                            "unicase",
-                            "titling-caps",
-                            "initial",
-                            "inherit",
-                            "unset"
-                        ],
-                        "weight": [
-                            "normal",
-                            "bold",
-                            "bolder",
-                            "lighter",
-                            "100",
-                            "200",
-                            "300",
-                            "400",
-                            "500",
-                            "600",
-                            "700",
-                            "800",
-                            "900",
-                            "initial",
-                            "inherit"
-                        ]
-                    },
-                    "value": {
-                        "font": "Arial, sans-serif",
-                        "size": 12,
-                        "color": {
-                            "r": 0,
-                            "g": 0,
-                            "b": 0,
-                            "a": 1,
-                            "hex": "#000000"
-                        }
-                    },
-                    "open": true
-                },
-                {
-                    "component": "Content",
-                    "fixed": true,
-                    "icon": "fa-solid fa-align-justify",
-                    "sign": "8b699f4d63c84abf423897572acad50786563849",
-                    "properties": [
-                        {
-                            "name": "align",
-                            "type": "string",
-                            "default": "left",
-                            "changeStyle": {
-                                "style": "text-align",
-                                "styleVue": "textAlign"
-                            },
-                            "label": "Align",
-                            "namespace": "Content::align",
-                            "id": "863afaf5229ca37b9c00caa8c92c5f242b43c2b2"
-                        },
-                        {
-                            "name": "alignLast",
-                            "type": "string",
-                            "default": "",
-                            "changeStyle": {
-                                "style": "text-align-last",
-                                "styleVue": "text-align-last"
-                            },
-                            "label": "Align Last",
-                            "namespace": "Content::alignLast",
-                            "id": "9871d83ea88657cf82dee285e5ca4de6811d70e2"
-                        },
-                        {
-                            "name": "decorationColor",
-                            "type": "Color",
-                            "changeStyle": {
-                                "style": "text-decoration-color",
-                                "styleVue": "text-decoration-color"
-                            },
-                            "label": "Decoration Color",
-                            "namespace": "Content::decorationColor",
-                            "id": "09be35a0194083b92fcf19d4c8d71f00f5f488de"
-                        },
-                        {
-                            "name": "decorationLine",
-                            "type": "string",
-                            "default": "",
-                            "changeStyle": {
-                                "style": "text-decoration-line",
-                                "styleVue": "text-decoration-line"
-                            },
-                            "label": "Decoration Line",
-                            "namespace": "Content::decorationLine",
-                            "id": "492f527710c3b5c9f3a1c125b6de9ce25da39feb"
-                        },
-                        {
-                            "name": "content",
-                            "type": "BigText",
-                            "label": "Content",
-                            "namespace": "Content::content",
-                            "id": "ef8b63184ab5f995f87a0f6f4272ba911517f5b0"
-                        }
-                    ],
-                    "default": {
-                        "align": "left",
-                        "alignLast": "",
-                        "decorationColor": {
-                            "r": 255,
-                            "g": 255,
-                            "b": 255,
-                            "a": 1,
-                            "hex": "#FFFFFF"
-                        },
-                        "decorationLine": ""
-                    },
-                    "metadata": {
-                        "namespace": "Content",
-                        "icon": "fa-solid fa-align-justify",
-                        "align": [
-                            "left",
-                            "right",
-                            "center",
-                            "justify",
-                            "initial",
-                            "inherit"
-                        ],
-                        "alignLast": [
-                            "auto",
-                            "left",
-                            "right",
-                            "center",
-                            "justify",
-                            "start",
-                            "end",
-                            "initial",
-                            "inherit"
-                        ],
-                        "decorationLine": [
-                            "none",
-                            "underline",
-                            "overline",
-                            "line-through",
-                            "initial",
-                            "inherit"
-                        ],
-                        "fixed": true,
-                        "importable": false
-                    },
-                    "value": {
-                        "align": "left"
-                    },
-                    "open": true
-                }
-            ],
-            "template": "/mnt/f/Node/ucsjs/workspace/src/visualobjects/VisualObject/Text.template.ejs",
-            "content": "{{component.Content?.content}}",
-            "componentsDafaults": [
-                {
-                    "component": "dimensions",
-                    "property": "width",
-                    "value": "240"
-                },
-                {
-                    "component": "dimensions",
-                    "property": "height",
-                    "value": "40"
-                }
-            ],
-            "position": {
-                "left": 86,
-                "top": 182
-            },
-            "hierarchy": [],
-            "label": "Text_62",
-            "visibility": true,
-            "static": false,
-            "lockBox": true,
-            "Transform": {
-                "position": "absolute",
-                "top": 292,
-                "left": 110,
-                "scale": 1,
-                "rotate": 0,
-                "zIndex": "10"
-            },
-            "Dimensions": {
-                "width": "240",
-                "widthAuto": false,
-                "height": "40",
-                "heightAuto": false
-            },
-            "Background": {
-                "color": {
-                    "r": 0,
-                    "g": 0,
-                    "b": 0,
-                    "a": 1,
-                    "hex": "#FFFFFF"
-                }
-            },
-            "Font": {
-                "font": "Arial, sans-serif",
-                "size": 12,
-                "color": {
-                    "r": 0,
-                    "g": 0,
-                    "b": 0,
-                    "a": 1,
-                    "hex": "#000000"
-                }
-            },
-            "Content": {
-                "align": "left"
-            },
-            "open": true
-        },
         {
             "0": false,
             "1": true,
@@ -1502,9 +110,9 @@
                         ]
                     },
                     "value": {
-                        "position": "absolute",
-                        "top": 260,
-                        "left": 36,
+                        "position": "static",
+                        "top": 177,
+                        "left": 169,
                         "scale": 1,
                         "rotate": "0",
                         "zIndex": 1
@@ -1558,9 +166,9 @@
                     },
                     "metadata": {},
                     "value": {
-                        "width": 240,
-                        "widthAuto": false,
-                        "height": 240,
+                        "width": 415,
+                        "widthAuto": true,
+                        "height": 162,
                         "heightAuto": false
                     },
                     "open": true
@@ -1717,11 +325,29 @@
                     },
                     "value": {
                         "color": {
-                            "r": 0,
-                            "g": 0,
-                            "b": 0,
-                            "a": 1,
-                            "hex": "#FFFFFF"
+                            "hsl": {
+                                "h": 0,
+                                "s": 0,
+                                "l": 0,
+                                "a": 1
+                            },
+                            "hex": "#000000",
+                            "hex8": "#000000FF",
+                            "rgba": {
+                                "r": 0,
+                                "g": 0,
+                                "b": 0,
+                                "a": 1
+                            },
+                            "hsv": {
+                                "h": 0,
+                                "s": 0,
+                                "v": 0,
+                                "a": 1
+                            },
+                            "oldHue": 0,
+                            "source": "hsva",
+                            "a": 1
                         }
                     },
                     "open": true
@@ -1734,35 +360,869 @@
                 "left": 98,
                 "top": 276
             },
-            "hierarchy": [],
+            "hierarchy": [
+                {
+                    "0": false,
+                    "1": true,
+                    "id": "Text_64",
+                    "namespace": "Text",
+                    "extends": "VisualObject",
+                    "sign": "6770d932f4c7684e56e861a9620259f6c9e86559",
+                    "metadata": {
+                        "namespace": "Text",
+                        "group": "Core",
+                        "icon": "fa-solid fa-i-cursor"
+                    },
+                    "components": [
+                        {
+                            "component": "Transform",
+                            "fixed": true,
+                            "icon": "fa-solid fa-maximize",
+                            "sign": "08678785e840a5320a7ade28737931cd0a722b2e",
+                            "properties": [
+                                {
+                                    "name": "position",
+                                    "type": "string",
+                                    "default": "absolute",
+                                    "label": "Position",
+                                    "namespace": "Transform::position",
+                                    "id": "cb1ff5d5ac80d74b22809fcfc38165143b13e507"
+                                },
+                                {
+                                    "name": "top",
+                                    "type": "number",
+                                    "default": 0,
+                                    "label": "Top",
+                                    "namespace": "Transform::top",
+                                    "id": "84e9b008824d798f6281733cd9bd2972296e8049"
+                                },
+                                {
+                                    "name": "left",
+                                    "type": "number",
+                                    "default": 0,
+                                    "label": "Left",
+                                    "namespace": "Transform::left",
+                                    "id": "e3200ccfb22fd0650e6f26cc2742b09b3f965285"
+                                },
+                                {
+                                    "name": "scale",
+                                    "type": "Range",
+                                    "default": {
+                                        "default": 1,
+                                        "min": -10,
+                                        "max": 10,
+                                        "step": 0.1
+                                    },
+                                    "label": "Scale",
+                                    "namespace": "Transform::scale",
+                                    "id": "1641e2e0b1265badde139ebbfe2f876e030a4797"
+                                },
+                                {
+                                    "name": "rotate",
+                                    "type": "Range",
+                                    "default": {
+                                        "default": 0,
+                                        "min": -360,
+                                        "max": 360,
+                                        "step": 1
+                                    },
+                                    "label": "Rotate",
+                                    "namespace": "Transform::rotate",
+                                    "id": "1c074e2aa06c136fbfeefe25946894eea4038c6c"
+                                },
+                                {
+                                    "name": "zIndex",
+                                    "type": "number",
+                                    "default": 1,
+                                    "label": "Z Index",
+                                    "namespace": "Transform::zIndex",
+                                    "id": "cc7421f74b81fc5e2d39063ad4c0cc47ffd7d37e"
+                                }
+                            ],
+                            "default": {
+                                "position": "absolute",
+                                "top": 0,
+                                "left": 0,
+                                "scale": 1,
+                                "rotate": 0,
+                                "zIndex": 1
+                            },
+                            "metadata": {
+                                "position": [
+                                    "absolute",
+                                    "relative",
+                                    "fixed",
+                                    "static",
+                                    "sticky"
+                                ]
+                            },
+                            "value": {
+                                "position": "relative",
+                                "top": "0",
+                                "left": "0",
+                                "scale": 1,
+                                "rotate": 0,
+                                "zIndex": 1
+                            },
+                            "open": false
+                        },
+                        {
+                            "component": "Dimensions",
+                            "fixed": true,
+                            "icon": "fa-solid fa-up-down-left-right",
+                            "sign": "bf477dc1022e7e720df13d8ad2ab2645b791af3d",
+                            "properties": [
+                                {
+                                    "name": "width",
+                                    "type": "number",
+                                    "default": 240,
+                                    "label": "Width",
+                                    "namespace": "Dimensions::width",
+                                    "id": "6951b48a05d0a69e51d3aec76c130883e8b671c3"
+                                },
+                                {
+                                    "name": "widthAuto",
+                                    "type": "boolean",
+                                    "default": false,
+                                    "label": "Width Auto",
+                                    "namespace": "Dimensions::widthAuto",
+                                    "id": "4fa8c3691d367173c32bae83043cd0f7df18b86e"
+                                },
+                                {
+                                    "name": "height",
+                                    "type": "number",
+                                    "default": 240,
+                                    "label": "Height",
+                                    "namespace": "Dimensions::height",
+                                    "id": "2784d0ccafcb78023ae4177df05ce77668ceb6e7"
+                                },
+                                {
+                                    "name": "heightAuto",
+                                    "type": "boolean",
+                                    "default": false,
+                                    "label": "Height Auto",
+                                    "namespace": "Dimensions::heightAuto",
+                                    "id": "50a06cb31cd5fb63f34edf761225df728e6eb4c4"
+                                }
+                            ],
+                            "default": {
+                                "width": "240",
+                                "widthAuto": false,
+                                "height": "40",
+                                "heightAuto": false
+                            },
+                            "metadata": {},
+                            "value": {
+                                "width": 240,
+                                "widthAuto": true,
+                                "height": 85,
+                                "heightAuto": false
+                            },
+                            "open": true
+                        },
+                        {
+                            "component": "Background",
+                            "fixed": true,
+                            "icon": "fa-solid fa-paint-roller",
+                            "sign": "6fd876093871f4124625203d09aec1bb43a75120",
+                            "properties": [
+                                {
+                                    "name": "color",
+                                    "type": "Color",
+                                    "default": {
+                                        "r": 0,
+                                        "g": 0,
+                                        "b": 0,
+                                        "a": 1,
+                                        "hex": "#FFFFFF"
+                                    },
+                                    "changeStyle": {
+                                        "style": "background-color",
+                                        "styleVue": "backgroundColor"
+                                    },
+                                    "label": "Color",
+                                    "namespace": "Background::color",
+                                    "id": "c3ce09e2abae62182f7730f3aa12264ca9b7af0a",
+                                    "open": false
+                                },
+                                {
+                                    "name": "attachment",
+                                    "type": "string",
+                                    "changeStyle": {
+                                        "style": "background-attachment",
+                                        "styleVue": "backgroundAttachment"
+                                    },
+                                    "label": "Attachment",
+                                    "namespace": "Background::attachment",
+                                    "id": "f5b365ac1ec978bcaeb5e1b97fc05feeaf87f308"
+                                },
+                                {
+                                    "name": "blendMode",
+                                    "type": "string",
+                                    "changeStyle": {
+                                        "style": "background-blend-mode",
+                                        "styleVue": "background-blend-mode"
+                                    },
+                                    "label": "Blend Mode",
+                                    "namespace": "Background::blendMode",
+                                    "id": "438b2688d13d44a85ec716ec342b99ec46c79a24"
+                                },
+                                {
+                                    "name": "clip",
+                                    "type": "string",
+                                    "changeStyle": {
+                                        "style": "background-clip",
+                                        "styleVue": "backgroundClip"
+                                    },
+                                    "label": "Clip",
+                                    "namespace": "Background::clip",
+                                    "id": "43fde3bbef308d91749b042813ee8e6333d42708"
+                                },
+                                {
+                                    "name": "origin",
+                                    "type": "string",
+                                    "changeStyle": {
+                                        "style": "background-origin",
+                                        "styleVue": "backgroundOrigin"
+                                    },
+                                    "label": "Origin",
+                                    "namespace": "Background::origin",
+                                    "id": "713d74e8c99413e369922684ab7e54ec9d048170"
+                                },
+                                {
+                                    "name": "position",
+                                    "type": "string",
+                                    "changeStyle": {
+                                        "style": "background-position",
+                                        "styleVue": "backgroundPosition"
+                                    },
+                                    "label": "Position",
+                                    "namespace": "Background::position",
+                                    "id": "4cd0cc8dfd1b69066659509f9f301df2b34b9aae"
+                                },
+                                {
+                                    "name": "repeat",
+                                    "type": "string",
+                                    "changeStyle": {
+                                        "style": "background-repeat",
+                                        "styleVue": "backgroundRepeat"
+                                    },
+                                    "label": "Repeat",
+                                    "namespace": "Background::repeat",
+                                    "id": "42bd692396a630dc354bdfda72d1fa6a0096edd9"
+                                }
+                            ],
+                            "default": {
+                                "color": {
+                                    "r": 0,
+                                    "g": 0,
+                                    "b": 0,
+                                    "a": 1,
+                                    "hex": "#FFFFFF"
+                                }
+                            },
+                            "metadata": {
+                                "namespace": "Background",
+                                "group": "Core",
+                                "icon": "fa-solid fa-paint-roller",
+                                "attachment": [
+                                    "scroll",
+                                    "fixed",
+                                    "local",
+                                    "initial",
+                                    "inherit"
+                                ],
+                                "fixed": true,
+                                "importable": false,
+                                "blendMode": [
+                                    "normal",
+                                    "multiply",
+                                    "screen",
+                                    "overlay",
+                                    "darken",
+                                    "lighten",
+                                    "color-dodge",
+                                    "saturation",
+                                    "color",
+                                    "luminosity"
+                                ],
+                                "clip": [
+                                    "border-box",
+                                    "padding-box",
+                                    "content-box",
+                                    "initial",
+                                    "inherit"
+                                ],
+                                "origin": [
+                                    "border-box",
+                                    "padding-box",
+                                    "content-box",
+                                    "initial",
+                                    "inherit"
+                                ],
+                                "repeat": [
+                                    "repeat",
+                                    "repeat-x",
+                                    "repeat-y",
+                                    "no-repeat",
+                                    "space",
+                                    "round",
+                                    "initial",
+                                    "inherit"
+                                ]
+                            },
+                            "value": {
+                                "color": {
+                                    "hsl": {
+                                        "h": 0,
+                                        "s": 0,
+                                        "l": 0.1975,
+                                        "a": 1
+                                    },
+                                    "hex": "#323232",
+                                    "hex8": "#323232FF",
+                                    "rgba": {
+                                        "r": 50,
+                                        "g": 50,
+                                        "b": 50,
+                                        "a": 1
+                                    },
+                                    "hsv": {
+                                        "h": 0,
+                                        "s": 0,
+                                        "v": 0.1975,
+                                        "a": 1
+                                    },
+                                    "oldHue": 0,
+                                    "source": "hsva",
+                                    "a": 1
+                                }
+                            },
+                            "open": true
+                        },
+                        {
+                            "component": "Font",
+                            "fixed": true,
+                            "icon": "fa-solid fa-font",
+                            "sign": "06ff35e91f2cd6e116d5f099c7dc3d36ae23f480",
+                            "properties": [
+                                {
+                                    "name": "font",
+                                    "type": "string",
+                                    "default": "Arial, sans-serif",
+                                    "changeStyle": {
+                                        "style": "font-family",
+                                        "styleVue": "fontFamily"
+                                    },
+                                    "label": "Font",
+                                    "namespace": "Font::font",
+                                    "id": "bc8ff01e5ac9e501b530fd05702ed150f06d133f"
+                                },
+                                {
+                                    "name": "size",
+                                    "type": "number",
+                                    "default": 12,
+                                    "changeStyle": {
+                                        "style": "font-size",
+                                        "styleVue": "fontSize",
+                                        "subfix": "px"
+                                    },
+                                    "label": "Size",
+                                    "namespace": "Font::size",
+                                    "id": "8dfdd335121a336e936ff7497a3f6120ae4b64f4"
+                                },
+                                {
+                                    "name": "color",
+                                    "type": "Color",
+                                    "default": {
+                                        "r": 0,
+                                        "g": 0,
+                                        "b": 0,
+                                        "a": 1,
+                                        "hex": "#000000"
+                                    },
+                                    "changeStyle": {
+                                        "style": "color",
+                                        "styleVue": "color"
+                                    },
+                                    "label": "Color",
+                                    "namespace": "Font::color",
+                                    "id": "fd5d30235781a0cf0cd760964f49bf409ddcc0cf",
+                                    "open": false
+                                },
+                                {
+                                    "name": "style",
+                                    "type": "string",
+                                    "changeStyle": {
+                                        "style": "font-style",
+                                        "styleVue": "fontStyle"
+                                    },
+                                    "label": "Style",
+                                    "namespace": "Font::style",
+                                    "id": "9194b2a37b79bc13b02d13d1ec6614963b7a573c"
+                                },
+                                {
+                                    "name": "variant",
+                                    "type": "string",
+                                    "changeStyle": {
+                                        "style": "font-variant",
+                                        "styleVue": "fontVariant"
+                                    },
+                                    "label": "Variant",
+                                    "namespace": "Font::variant",
+                                    "id": "6d761a49c1340bfb631b262ddffa440baf1894c1"
+                                },
+                                {
+                                    "name": "variantCaps",
+                                    "type": "string",
+                                    "changeStyle": {
+                                        "style": "font-variant-caps",
+                                        "styleVue": "font-variant-caps"
+                                    },
+                                    "label": "Variant Caps",
+                                    "namespace": "Font::variantCaps",
+                                    "id": "39b4ed025f519ec230ce2148bb0e61604caf68ad"
+                                },
+                                {
+                                    "name": "weight",
+                                    "type": "string",
+                                    "changeStyle": {
+                                        "style": "font-weight",
+                                        "styleVue": "fontWeight"
+                                    },
+                                    "label": "Weight",
+                                    "namespace": "Font::weight",
+                                    "id": "7b650d24af3f5ce5f5c7942bc895f4a21eef8a77"
+                                }
+                            ],
+                            "default": {
+                                "font": "Arial, sans-serif",
+                                "size": 12,
+                                "color": {
+                                    "r": 0,
+                                    "g": 0,
+                                    "b": 0,
+                                    "a": 1,
+                                    "hex": "#000000"
+                                }
+                            },
+                            "metadata": {
+                                "namespace": "Font",
+                                "icon": "fa-solid fa-font",
+                                "style": [
+                                    "normal",
+                                    "italic",
+                                    "oblique",
+                                    "initial",
+                                    "inherit"
+                                ],
+                                "variant": [
+                                    "normal",
+                                    "small-caps",
+                                    "initial",
+                                    "inherit"
+                                ],
+                                "fixed": true,
+                                "importable": false,
+                                "font": [
+                                    "Arial, sans-serif",
+                                    "Times, Times New Roman, serif",
+                                    "Andale Mono, monospace",
+                                    "Courier, monospace",
+                                    "Comic Sans MS, Comic Sans, cursive",
+                                    "Impact, fantasy"
+                                ],
+                                "variantCaps": [
+                                    "normal",
+                                    "small-caps",
+                                    "all-small-caps",
+                                    "petite-caps",
+                                    "all-petite-caps",
+                                    "unicase",
+                                    "titling-caps",
+                                    "initial",
+                                    "inherit",
+                                    "unset"
+                                ],
+                                "weight": [
+                                    "normal",
+                                    "bold",
+                                    "bolder",
+                                    "lighter",
+                                    "100",
+                                    "200",
+                                    "300",
+                                    "400",
+                                    "500",
+                                    "600",
+                                    "700",
+                                    "800",
+                                    "900",
+                                    "initial",
+                                    "inherit"
+                                ]
+                            },
+                            "value": {
+                                "font": "Courier, monospace",
+                                "size": "15",
+                                "color": {
+                                    "hsl": {
+                                        "h": 0,
+                                        "s": 0,
+                                        "l": 1,
+                                        "a": 1
+                                    },
+                                    "hex": "#FFFFFF",
+                                    "hex8": "#FFFFFFFF",
+                                    "rgba": {
+                                        "r": 255,
+                                        "g": 255,
+                                        "b": 255,
+                                        "a": 1
+                                    },
+                                    "hsv": {
+                                        "h": 0,
+                                        "s": 0,
+                                        "v": 1,
+                                        "a": 1
+                                    },
+                                    "oldHue": 0,
+                                    "source": "hsva",
+                                    "a": 1
+                                }
+                            },
+                            "open": true
+                        },
+                        {
+                            "component": "Content",
+                            "fixed": true,
+                            "icon": "fa-solid fa-align-justify",
+                            "sign": "05eef2207e9c88416783768f53a2d26668582e82",
+                            "properties": [
+                                {
+                                    "name": "align",
+                                    "type": "string",
+                                    "default": "left",
+                                    "changeStyle": {
+                                        "style": "text-align",
+                                        "styleVue": "textAlign"
+                                    },
+                                    "label": "Align",
+                                    "namespace": "Content::align",
+                                    "id": "863afaf5229ca37b9c00caa8c92c5f242b43c2b2"
+                                },
+                                {
+                                    "name": "alignLast",
+                                    "type": "string",
+                                    "default": "",
+                                    "changeStyle": {
+                                        "style": "text-align-last",
+                                        "styleVue": "text-align-last"
+                                    },
+                                    "label": "Align Last",
+                                    "namespace": "Content::alignLast",
+                                    "id": "9871d83ea88657cf82dee285e5ca4de6811d70e2"
+                                },
+                                {
+                                    "name": "decorationColor",
+                                    "type": "Color",
+                                    "changeStyle": {
+                                        "style": "text-decoration-color",
+                                        "styleVue": "text-decoration-color"
+                                    },
+                                    "label": "Decoration Color",
+                                    "namespace": "Content::decorationColor",
+                                    "id": "09be35a0194083b92fcf19d4c8d71f00f5f488de"
+                                },
+                                {
+                                    "name": "decorationLine",
+                                    "type": "string",
+                                    "default": "",
+                                    "changeStyle": {
+                                        "style": "text-decoration-line",
+                                        "styleVue": "text-decoration-line"
+                                    },
+                                    "label": "Decoration Line",
+                                    "namespace": "Content::decorationLine",
+                                    "id": "492f527710c3b5c9f3a1c125b6de9ce25da39feb"
+                                },
+                                {
+                                    "name": "content",
+                                    "type": "BigText",
+                                    "label": "Content",
+                                    "namespace": "Content::content",
+                                    "id": "ef8b63184ab5f995f87a0f6f4272ba911517f5b0"
+                                }
+                            ],
+                            "default": {
+                                "align": "left",
+                                "alignLast": "",
+                                "decorationColor": {
+                                    "r": 255,
+                                    "g": 255,
+                                    "b": 255,
+                                    "a": 1,
+                                    "hex": "#FFFFFF"
+                                },
+                                "decorationLine": ""
+                            },
+                            "metadata": {
+                                "namespace": "Content",
+                                "icon": "fa-solid fa-align-justify",
+                                "align": [
+                                    "left",
+                                    "right",
+                                    "center",
+                                    "justify",
+                                    "initial",
+                                    "inherit"
+                                ],
+                                "alignLast": [
+                                    "auto",
+                                    "left",
+                                    "right",
+                                    "center",
+                                    "justify",
+                                    "start",
+                                    "end",
+                                    "initial",
+                                    "inherit"
+                                ],
+                                "decorationLine": [
+                                    "none",
+                                    "underline",
+                                    "overline",
+                                    "line-through",
+                                    "initial",
+                                    "inherit"
+                                ],
+                                "fixed": true,
+                                "importable": false
+                            },
+                            "value": {
+                                "align": "center",
+                                "alignLast": "",
+                                "decorationColor": {
+                                    "r": 255,
+                                    "g": 255,
+                                    "b": 255,
+                                    "a": 1,
+                                    "hex": "#FFFFFF"
+                                },
+                                "decorationLine": "underline",
+                                "content": "teste"
+                            },
+                            "open": true
+                        },
+                        {
+                            "filename": "/mnt/f/Node/ucsjs/workspace/src/workspace/scripts/counter.ts",
+                            "namespace": "Counter",
+                            "extends": "UCS",
+                            "sign": "c4e672825439d885612a1f62c5518e7627b9c47e",
+                            "metadata": {
+                                "namespace": "Counter",
+                                "group": "Scripts",
+                                "icon": "fa-solid fa-code"
+                            },
+                            "content": null,
+                            "componentsDafaults": [],
+                            "properties": [
+                                {
+                                    "name": "timeout",
+                                    "type": "number",
+                                    "default": 1000,
+                                    "label": "Timeout",
+                                    "namespace": "Counter::timeout",
+                                    "id": "be7db14adeca0f4114ad2a5f7627fe901d05b40d"
+                                },
+                                {
+                                    "name": "increment",
+                                    "type": "number",
+                                    "default": 1,
+                                    "label": "Increment",
+                                    "namespace": "Counter::increment",
+                                    "id": "f47c0eff137db9fd4ed8ec05cf6b469b25249b3e"
+                                }
+                            ],
+                            "default": {
+                                "timeout": 1000,
+                                "increment": 1
+                            },
+                            "value": {
+                                "timeout": "2000",
+                                "increment": 1
+                            },
+                            "open": true
+                        }
+                    ],
+                    "template": "/mnt/f/Node/ucsjs/workspace/src/visualobjects/VisualObject/Text.template.ejs",
+                    "editor": {
+                        "Content": {
+                            "align": {
+                                "0": false,
+                                "1": true,
+                                "content": "\r\n    <span class=\"isolate inline-flex shadow-sm w-full\">\r\n        <button \r\n            type=\"button\" \r\n            :class=\"[\r\n                (state === 'left') ? 'bg-neutral-900' :'bg-neutral-800', \r\n                'relative inline-flex items-center border border-black  px-2 text-sm font-medium text-neutral-100 hover:bg-neutral-700 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500'\r\n            ]\"\r\n            :title=\"$t('Align Left')\"\r\n            @click=\"() => $emit('change', 'left')\"\r\n        >\r\n            <client-only><font-awesome-icon icon=\"fa-solid fa-align-left\" /></client-only>\r\n        </button>\r\n        <button \r\n            type=\"button\" \r\n            :class=\"[\r\n                (state === 'center') ? 'bg-neutral-900' :'bg-neutral-800', \r\n                'relative -ml-px inline-flex items-center border border-black px-2 text-sm font-medium text-neutral-100 hover:bg-neutral-700 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500'\r\n            ]\"\r\n            :title=\"$t('Align Center')\"\r\n            @click=\"() => $emit('change', 'center')\"\r\n        >\r\n            <client-only><font-awesome-icon icon=\"fa-solid fa-align-center\" /></client-only>\r\n        </button>\r\n        <button \r\n            type=\"button\" \r\n            :class=\"[\r\n                (state === 'right') ? 'bg-neutral-900' :'bg-neutral-800', \r\n                'relative -ml-px inline-flex items-center border border-black px-2 text-sm font-medium text-neutral-100 hover:bg-neutral-700 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500'\r\n            ]\"\r\n            :title=\"$t('Align Right')\"\r\n            @click=\"() => $emit('change', 'right')\"\r\n        >\r\n            <client-only><font-awesome-icon icon=\"fa-solid fa-align-right\" /></client-only>\r\n        </button>\r\n        <button \r\n            type=\"button\" \r\n            :class=\"[\r\n                (state === 'justify') ? 'bg-neutral-900' :'bg-neutral-800', \r\n                'relative -ml-px inline-flex items-center border border-black px-2 text-sm font-medium text-neutral-100 hover:bg-neutral-700 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500'\r\n            ]\"\r\n            :title=\"$t('Align Justify')\"\r\n            @click=\"() => $emit('change', 'justify')\"\r\n        >\r\n            <client-only><font-awesome-icon icon=\"fa-solid fa-align-justify\" /></client-only>\r\n        </button>\r\n    </span>\r\n"
+                            }
+                        }
+                    },
+                    "content": "{{component.Content?.content}}",
+                    "componentsDafaults": [
+                        {
+                            "component": "dimensions",
+                            "property": "width",
+                            "value": "240"
+                        },
+                        {
+                            "component": "dimensions",
+                            "property": "height",
+                            "value": "40"
+                        }
+                    ],
+                    "position": {
+                        "left": 329.5,
+                        "top": 187
+                    },
+                    "hierarchy": [],
+                    "label": "Text_64",
+                    "visibility": true,
+                    "static": false,
+                    "lockBox": true,
+                    "Transform": {
+                        "position": "relative",
+                        "top": "0",
+                        "left": "0",
+                        "scale": 1,
+                        "rotate": 0,
+                        "zIndex": 1
+                    },
+                    "Dimensions": {
+                        "width": 240,
+                        "widthAuto": true,
+                        "height": 85,
+                        "heightAuto": false
+                    },
+                    "Background": {
+                        "color": {
+                            "hsl": {
+                                "h": 0,
+                                "s": 0,
+                                "l": 0.1975,
+                                "a": 1
+                            },
+                            "hex": "#323232",
+                            "hex8": "#323232FF",
+                            "rgba": {
+                                "r": 50,
+                                "g": 50,
+                                "b": 50,
+                                "a": 1
+                            },
+                            "hsv": {
+                                "h": 0,
+                                "s": 0,
+                                "v": 0.1975,
+                                "a": 1
+                            },
+                            "oldHue": 0,
+                            "source": "hsva",
+                            "a": 1
+                        }
+                    },
+                    "Font": {
+                        "font": "Courier, monospace",
+                        "size": "15",
+                        "color": {
+                            "hsl": {
+                                "h": 0,
+                                "s": 0,
+                                "l": 1,
+                                "a": 1
+                            },
+                            "hex": "#FFFFFF",
+                            "hex8": "#FFFFFFFF",
+                            "rgba": {
+                                "r": 255,
+                                "g": 255,
+                                "b": 255,
+                                "a": 1
+                            },
+                            "hsv": {
+                                "h": 0,
+                                "s": 0,
+                                "v": 1,
+                                "a": 1
+                            },
+                            "oldHue": 0,
+                            "source": "hsva",
+                            "a": 1
+                        }
+                    },
+                    "Content": {
+                        "align": "center",
+                        "alignLast": "",
+                        "decorationColor": {
+                            "r": 255,
+                            "g": 255,
+                            "b": 255,
+                            "a": 1,
+                            "hex": "#FFFFFF"
+                        },
+                        "decorationLine": "underline",
+                        "content": "teste"
+                    },
+                    "undefined": {
+                        "timeout": "2000",
+                        "increment": 1
+                    }
+                }
+            ],
             "label": "Box_63",
             "visibility": true,
             "static": false,
             "lockBox": true,
             "Transform": {
-                "position": "absolute",
-                "top": 260,
-                "left": 36,
+                "position": "static",
+                "top": 177,
+                "left": 169,
                 "scale": 1,
                 "rotate": "0",
                 "zIndex": 1
             },
             "Dimensions": {
-                "width": 240,
-                "widthAuto": false,
-                "height": 240,
+                "width": 415,
+                "widthAuto": true,
+                "height": 162,
                 "heightAuto": false
             },
             "Background": {
                 "color": {
-                    "r": 0,
-                    "g": 0,
-                    "b": 0,
-                    "a": 1,
-                    "hex": "#FFFFFF"
+                    "hsl": {
+                        "h": 0,
+                        "s": 0,
+                        "l": 0,
+                        "a": 1
+                    },
+                    "hex": "#000000",
+                    "hex8": "#000000FF",
+                    "rgba": {
+                        "r": 0,
+                        "g": 0,
+                        "b": 0,
+                        "a": 1
+                    },
+                    "hsv": {
+                        "h": 0,
+                        "s": 0,
+                        "v": 0,
+                        "a": 1
+                    },
+                    "oldHue": 0,
+                    "source": "hsva",
+                    "a": 1
                 }
-            }
+            },
+            "open": true
         }
     ],
-    "componentIndex": 63
+    "componentIndex": 64
 }

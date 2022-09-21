@@ -1,14 +1,12 @@
-import { Logger } from "@nestjs/common";
 import { Blueprint, Type } from "@ucsjs/blueprint";
-import { Request } from "express";
 import { HTTPTypes } from "./httpTypes.enum";
 
-export class HTTPParamsBlueprint extends Blueprint{
+export class HTTPHeadersBlueprint extends Blueprint{
     //Metadata
-    private __namespace = "HTTP Params";
+    private __namespace = "HTTP Headers";
     private __group = "Network";
     private __module = true;
-    private __headerIcon = "fa-solid fa-list-ul";
+    private __headerIcon = "fa-solid fa-table-list";
     private __HTTPTypes_Request: object = { color: "yellow" };
  
     constructor(metadata?: any){
@@ -18,9 +16,9 @@ export class HTTPParamsBlueprint extends Blueprint{
 
         this.input("request", HTTPTypes.Request, null).subscribe((request) => {
             if(request)
-                this.next("result", request.params);
+                this.next("result", request.headers);
         });
 
-        this.output("params", Type.JSON, null);
+        this.output("headers", Type.JSON, null);
     }
 }

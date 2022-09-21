@@ -7,10 +7,11 @@ export class HTTPInBlueprint extends Blueprint{
     private __group = "Network";
     private __model = "./models/httpin.model.ejs";
     private __module = true;
+    private __headerIcon = "fa-solid fa-turn-down";
     private __method = ["GET", "POST", "PUT", "DELETE", "PATCH"];
     
     public _controller: string = "/";  
-    public _routes: object = {url: "string", method: "string", multi: true, createOutputs: true}; 
+    public _routes: object = {url: "string", method: "string", auth: "boolean", multi: true, createOutputs: true}; 
 
     constructor(metadata?: any){
         super();

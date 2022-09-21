@@ -7,6 +7,7 @@ export class HTTPBodyBlueprint extends Blueprint{
     private __namespace = "HTTP Body";
     private __group = "Network";
     private __module = true;
+    private __headerIcon = "fa-solid fa-list";
     private __HTTPTypes_Request: object = { color: "yellow" };
  
     constructor(metadata?: any){

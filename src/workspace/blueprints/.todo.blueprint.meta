@@ -111,8 +111,8 @@
             },
             "sign": "1fb4062ace00ca5b968d64e0db292b88f965ca3e",
             "position": {
-                "top": 95,
-                "left": -239
+                "top": 92,
+                "left": -260
             }
         },
         {
@@ -160,6 +160,7 @@
                 "namespace": "HTTP In",
                 "group": "Network",
                 "model": "./models/httpin.model.ejs",
+                "headerIcon": "fa-solid fa-turn-down",
                 "method": [
                     "GET",
                     "POST",
@@ -171,8 +172,8 @@
             },
             "sign": "d16971587da25c3d458136abf914d20481f50ef8",
             "position": {
-                "top": -93,
-                "left": -128
+                "top": -45,
+                "left": -189
             }
         },
         {
@@ -207,12 +208,13 @@
             "componentsDafaults": [],
             "metadata": {
                 "namespace": "HTTP Out",
-                "group": "Network"
+                "group": "Network",
+                "headerIcon": "fa-solid fa-turn-up"
             },
             "sign": "274b8e24aed8af33fbda720b8b649bce5aa8f250",
             "position": {
-                "top": -153,
-                "left": 891
+                "top": -46,
+                "left": 776
             }
         },
         {
@@ -372,77 +374,12 @@
             },
             "sign": "7cfd00b26def8b39f98065a630d76b410ccb3c74",
             "position": {
-                "top": -24,
-                "left": 538
+                "top": -46,
+                "left": 523
             }
         },
         {
-            "filename": "/mnt/f/Node/ucsjs/workspace/packages/mongodb/src/blueprints/mongoFind.blueprint.ts",
-            "namespace": "MongoFindBlueprint",
-            "extends": "Blueprint",
-            "publicVars": [
-                {
-                    "name": "limit",
-                    "type": "number",
-                    "default": 10,
-                    "namespace": "MongoFindBlueprint::limit",
-                    "id": "9a74fa9ceb848c686d1ec59bcff6cc0edba16235"
-                },
-                {
-                    "name": "offset",
-                    "type": "number",
-                    "default": 0,
-                    "namespace": "MongoFindBlueprint::offset",
-                    "id": "95439d1dc1aa6b846cf3e6bcda653869c95bb427"
-                }
-            ],
-            "outputs": [
-                {
-                    "name": "result",
-                    "type": "JSON",
-                    "namespace": "MongoFindBlueprint::result",
-                    "id": "aed9631a2e5337b7d139606e92fbfd388d0dae6b"
-                },
-                {
-                    "name": "error",
-                    "type": "Any",
-                    "namespace": "MongoFindBlueprint::error",
-                    "id": "84d4165a91330f8a7da02da71fdf7d1fac512de1"
-                }
-            ],
-            "inputs": [
-                {
-                    "name": "schema",
-                    "type": "TypeMongoDB.Schema",
-                    "namespace": "MongoFindBlueprint::schema",
-                    "id": "0c0677c8d5ff221068d340a38d3f78ee258d7ef8"
-                },
-                {
-                    "name": "query",
-                    "type": "JSON",
-                    "namespace": "MongoFindBlueprint::query",
-                    "id": "a61d7b0b0dc1ea8adef5e68313d1f5a9c772be0a"
-                }
-            ],
-            "content": null,
-            "componentsDafaults": [],
-            "metadata": {
-                "namespace": "Find",
-                "group": "MongoDB",
-                "headerColor": "#419343",
-                "headerIcon": "fa-solid fa-database",
-                "TypeMongoDBSchema": {
-                    "color": "#419343"
-                }
-            },
-            "sign": "7cfd00b26def8b39f98065a630d76b410ccb3c74",
-            "position": {
-                "top": 198,
-                "left": 542
-            },
-            "collaped": true
-        },
-        {
+            "collaped": true,
             "filename": "/mnt/f/Node/ucsjs/workspace/src/blueprints/Network/httpParam.blueprint.ts",
             "namespace": "HTTPParamBlueprint",
             "extends": "Blueprint",
@@ -485,6 +422,7 @@
             "metadata": {
                 "namespace": "HTTP Param",
                 "group": "Network",
+                "headerIcon": "fa-solid fa-list-check",
                 "module": true,
                 "HTTPTypes_Request": {
                     "color": "yellow"
@@ -492,12 +430,12 @@
             },
             "sign": "cd7802429e74ecdc687f6c6f8abeafdfe0a43dc5",
             "position": {
-                "top": 152,
-                "left": 269
-            },
-            "collaped": true
+                "top": 115,
+                "left": 256
+            }
         },
         {
+            "collaped": false,
             "filename": "/mnt/f/Node/ucsjs/workspace/src/blueprints/Network/httpOut.blueprint.ts",
             "namespace": "HTTPOutBlueprint",
             "extends": "Blueprint",
@@ -528,14 +466,86 @@
             "componentsDafaults": [],
             "metadata": {
                 "namespace": "HTTP Out",
-                "group": "Network"
+                "group": "Network",
+                "headerIcon": "fa-solid fa-turn-up"
             },
             "sign": "274b8e24aed8af33fbda720b8b649bce5aa8f250",
             "position": {
-                "top": 158,
-                "left": 888
+                "top": 85,
+                "left": 778
+            }
+        },
+        {
+            "collaped": true,
+            "filename": "/mnt/f/Node/ucsjs/workspace/packages/mongodb/src/blueprints/mongoFind.blueprint.ts",
+            "namespace": "MongoFindBlueprint",
+            "extends": "Blueprint",
+            "publicVars": [
+                {
+                    "name": "limit",
+                    "type": "number",
+                    "default": 10,
+                    "label": "Limit",
+                    "namespace": "MongoFindBlueprint::limit",
+                    "id": "9a74fa9ceb848c686d1ec59bcff6cc0edba16235"
+                },
+                {
+                    "name": "offset",
+                    "type": "number",
+                    "default": 0,
+                    "label": "Offset",
+                    "namespace": "MongoFindBlueprint::offset",
+                    "id": "95439d1dc1aa6b846cf3e6bcda653869c95bb427"
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "result",
+                    "type": "JSON",
+                    "label": "",
+                    "namespace": "MongoFindBlueprint::result",
+                    "id": "aed9631a2e5337b7d139606e92fbfd388d0dae6b"
+                },
+                {
+                    "name": "error",
+                    "type": "Any",
+                    "label": "",
+                    "namespace": "MongoFindBlueprint::error",
+                    "id": "84d4165a91330f8a7da02da71fdf7d1fac512de1"
+                }
+            ],
+            "inputs": [
+                {
+                    "name": "schema",
+                    "type": "TypeMongoDB.Schema",
+                    "label": "Schema",
+                    "namespace": "MongoFindBlueprint::schema",
+                    "id": "0c0677c8d5ff221068d340a38d3f78ee258d7ef8"
+                },
+                {
+                    "name": "query",
+                    "type": "JSON",
+                    "label": "Query",
+                    "namespace": "MongoFindBlueprint::query",
+                    "id": "a61d7b0b0dc1ea8adef5e68313d1f5a9c772be0a"
+                }
+            ],
+            "content": null,
+            "componentsDafaults": [],
+            "metadata": {
+                "namespace": "Find",
+                "group": "MongoDB",
+                "headerColor": "#419343",
+                "headerIcon": "fa-solid fa-database",
+                "TypeMongoDBSchema": {
+                    "color": "#419343"
+                }
             },
-            "collaped": false
+            "sign": "a71f26c2591a3d1603fe3e11b9847308ed7d54cf",
+            "position": {
+                "top": 82,
+                "left": 524
+            }
         }
     ],
     "connections": [
@@ -586,37 +596,7 @@
             },
             "to": {
                 "component": "HTTPParamBlueprint",
-                "input": "cfa0f923a7291ef65e0dd4caf9d8dc12e9ca1ba4-6"
-            }
-        },
-        {
-            "from": {
-                "component": "HTTPParamBlueprint",
-                "input": "72e7784f113b824d4761104f2dd463bd18493279-6"
-            },
-            "to": {
-                "component": "MongoFindBlueprint",
-                "input": "a61d7b0b0dc1ea8adef5e68313d1f5a9c772be0a-5"
-            }
-        },
-        {
-            "from": {
-                "component": "MongoSchemaBlueprint",
-                "input": "382e78e2ac7cb2424c03f8d2523531de42a9d722-3"
-            },
-            "to": {
-                "component": "MongoFindBlueprint",
-                "input": "0c0677c8d5ff221068d340a38d3f78ee258d7ef8-5"
-            }
-        },
-        {
-            "from": {
-                "component": "MongoFindBlueprint",
-                "input": "aed9631a2e5337b7d139606e92fbfd388d0dae6b-5"
-            },
-            "to": {
-                "component": "HTTPOutBlueprint",
-                "input": "53546bd648df7f58e1a6a3bf0abce2d481c6e51b-7"
+                "input": "cfa0f923a7291ef65e0dd4caf9d8dc12e9ca1ba4-5"
             }
         },
         {
@@ -626,14 +606,44 @@
             },
             "to": {
                 "component": "HTTPOutBlueprint",
-                "input": "c111f0d645a5b37b70464659b43122e3a0e66b26-7"
+                "input": "c111f0d645a5b37b70464659b43122e3a0e66b26-6"
+            }
+        },
+        {
+            "from": {
+                "component": "HTTPParamBlueprint",
+                "input": "72e7784f113b824d4761104f2dd463bd18493279-5"
+            },
+            "to": {
+                "component": "MongoFindBlueprint",
+                "input": "a61d7b0b0dc1ea8adef5e68313d1f5a9c772be0a-7"
+            }
+        },
+        {
+            "from": {
+                "component": "MongoSchemaBlueprint",
+                "input": "382e78e2ac7cb2424c03f8d2523531de42a9d722-3"
+            },
+            "to": {
+                "component": "MongoFindBlueprint",
+                "input": "0c0677c8d5ff221068d340a38d3f78ee258d7ef8-7"
+            }
+        },
+        {
+            "from": {
+                "component": "MongoFindBlueprint",
+                "input": "aed9631a2e5337b7d139606e92fbfd388d0dae6b-7"
+            },
+            "to": {
+                "component": "HTTPOutBlueprint",
+                "input": "53546bd648df7f58e1a6a3bf0abce2d481c6e51b-6"
             }
         }
     ],
     "scale": 1,
     "position": {
-        "x": 252,
-        "y": 207
+        "x": 357,
+        "y": 316
     },
     "scrollOffset": {
         "x": 0,

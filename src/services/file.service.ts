@@ -136,7 +136,16 @@ export class FileService {
 				await fs.writeFileSync(`${dirname}/.${basename}.meta`, metadata);
 
 				//Template
-				const contentsTemplate = await this.visualService.parseTemplate(item, parserBasename[0]);
+				const contentsTemplate = await this.visualService.parseTemplate(item, parserBasename[0], [
+					'./packages/**/*.component.ts',
+					'./src/visualobjects/**/*.component.ts',
+					'./.metadata/visualobjects/**/*.component.ts'
+				], [
+					'./packages/**/*.type.ts',
+					'./src/visualobjects/**/*.type.ts',
+					'./.metadata/visualobjects/**/*.type.ts'
+				]);
+
 				await fs.writeFileSync(`${dirname}/${basename}.html`, contentsTemplate);
 
 				//Controller

@@ -1,13 +1,11 @@
-<div ref="<%= id %>" class="box<%= id %>">
+<div ref="<%= id %>" class="text<%= id %>">
     <%= Content.content %>
 </div>
 
 <style>
-.box<%= id %> {
-    font-family: <%= Font.font %>;
-    font-size: <%= Font.size %>px;
-    color: <%= Font.color.hex %>;
-    background-color: <%= Background.color.hex %>;
+.text<%= id %> {
+    <% if(Style) { for(let keyStyle in Style){ %>
+    <%= keyStyle %>: <%= Style[keyStyle] %>; <% } } %>
     width: <% if(!Dimensions.widthAuto) { %><%= Dimensions.width %>px<% } else { %>auto<% } %>;
     height: <% if(!Dimensions.heightAuto) { %><%= Dimensions.height %>px<% } else { %>auto<% } %>;
     position: <%= Transform.position %>;

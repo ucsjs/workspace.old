@@ -144,10 +144,10 @@ export class ParserService {
 
                     for(let key in editorSettings){
                         const rawEditor = fs.readFileSync(path.resolve(editorSettings[key]), "utf-8");
-                        const template = this.regexService.getDataRaw(/<template>(.*?)<\/template>/isg, rawEditor)[1];
+                        const content = this.regexService.getDataRaw(/<template>(.*?)<\/template>/isg, rawEditor)[1];
                         const style = this.regexService.getDataRaw(/<style>(.*?)<\/style>/isg, rawEditor)[1];
                         const script = this.regexService.getDataRaw(/<script>.*?export default (.*?)<\/script>/isg, rawEditor)[1];
-                        editorSettings[key] = { template, style, script };
+                        editorSettings[key] = { content, style, script };
                     }
 
                     component.editor = editorSettings;
