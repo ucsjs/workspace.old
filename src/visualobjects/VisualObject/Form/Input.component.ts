@@ -1,9 +1,9 @@
-import { VisualObject } from "../../Core/VisualObject.component";
-import { Font } from "../../Core/Font.component";
-import { Input } from "../../Core/Input.component";
-import { Background } from "../../Core/Background.component";
+import { VisualObject } from "../../Components/VisualObject.component";
+import { Font } from "../../Components/Font.component";
+import { Input } from "../../Components/Input.component";
+import { Background } from "../../Components/Background.component";
 
-export class InputForm extends VisualObject {
+export class InputVisual extends VisualObject {
     //Matadata
     protected override __namespace = "Input";
     protected override __group = "Form";

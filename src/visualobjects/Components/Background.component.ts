@@ -1,6 +1,6 @@
 import { Component } from "../Types/Component.type";
 import { Color } from "../Types/Color.type";
-import { Image } from "../Types/Image.type";
+import { ImageType } from "../Types/Image.type";
 
 export class Background extends Component {
     //Matadata
@@ -12,7 +12,7 @@ export class Background extends Component {
 
     private __attachment = ["scroll", "fixed", "local", "initial", "inherit"];
 
-    public _image: Image = { src: "" };
+    public _image: ImageType = { src: "" };
     private __imageHelp = "https://www.w3schools.com/cssref/pr_background-image.asp";
     private _imageChangeStyle = { style: "background-image", styleVue: "background-image" };
 

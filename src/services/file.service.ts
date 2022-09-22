@@ -16,10 +16,10 @@ export class FileService {
 		private visualService: VisualService
 	){}
 
-	async getFiles(pathname: string = "") {
+	async getFiles(pathname: string = "", onlyDirectories: boolean = false, onlyFiles: boolean = false){
 		const resolvePath = (pathname) ? pathname : path.resolve(`./`);
-		const directories = await fg([`${resolvePath}/*`], { dot: false, onlyDirectories: true });
-		const files = await fg([`${resolvePath}/*`], { dot: true, onlyFiles: true });
+		const directories = (!onlyFiles) ? await fg([`${resolvePath}/*`], { dot: false, onlyDirectories: true }) : [];
+		const files = (!onlyDirectories) ? await fg([`${resolvePath}/*`], { dot: true, onlyFiles: true }) : [];
 		let result = [];
 
 		for(let diretory of directories) {

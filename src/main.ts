@@ -1,7 +1,6 @@
 import * as compression from 'compression';
 import * as express from "express";
 import * as cookieParser from 'cookie-parser';
-import helmet from 'helmet';
 import * as csurf from 'express-csrf-double-submit-cookie';
 import * as path from "path";
 import * as fg from "fast-glob";
@@ -42,10 +41,9 @@ async function bootstrap() {
 	app.useWebSocketAdapter(new WsAdapter(app));
 	app.enableCors();
 	app.use(express.static("public"));
-	app.use(helmet());
 	app.use(compression());
 	app.use(cookieParser());
-	//app.use(csurf());
+	app.use(csurf());
 	app.use(express.json({ limit: '50mb' }));
   	app.use(express.urlencoded({ extended: true, limit: '50mb' }));
 

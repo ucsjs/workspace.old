@@ -1,7 +1,7 @@
-import { VisualObject } from "../../Core/VisualObject.component";
-import { Background } from "../../Core/Background.component";
+import { VisualObject } from "../../Components/VisualObject.component";
+import { Background } from "../../Components/Background.component";
 
-export class Box extends VisualObject {
+export class BoxVisual extends VisualObject {
     //Matadata
     protected override __namespace = "Box";
     protected override __resizable = true;
@@ -16,6 +16,18 @@ export class Box extends VisualObject {
     }
 
     public content(){
-        return "<div><slot/></div>";
+        return `<div><div v-if="component.hierarchy.length > 0">
+    <visual-component 
+        v-for="(subcomponent, key) in component.hierarchy" 
+        :key="key" 
+        :componentIndex="key"
+        :settings="subcomponent"
+        :editorOffset="editorOffset"
+        :selectedComponent="selectedComponent"
+        :tab="tab"
+        @selectItem="$emit('selectItem', subcomponent?.id)"
+        @saveState="$emit('saveState')"
+    ></visual-component>  
+</div></div>`;
     }
 }

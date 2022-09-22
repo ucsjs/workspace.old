@@ -4,7 +4,6 @@ import { VisualService } from 'src/services/visual.service';
 import { RegexService } from 'src/services/regex.services';
 
 @Module({
-	imports: [],
 	controllers: [VisualController],
 	providers: [VisualService, RegexService]
 })

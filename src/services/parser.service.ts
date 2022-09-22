@@ -14,7 +14,7 @@ export class ParserService {
         const contents = fs.readFileSync(file, "utf8").toString();
         const namespaceRegex = new RegExp(`class (.*?) extends (.*?){`, "isg");
         const classInfo = this.regexService.getData(namespaceRegex, contents, ["name", "extends"], true);
-        const content = this.regexService.getDataRaw(/content\(\){.*?return ['"](.*?)['"];/gms, contents)[1];
+        const content = this.regexService.getDataRaw(/content\(\){.*?return ['"`](.*?)['"`];/gms, contents)[1];
 
         if(contents){
             let component: any = {

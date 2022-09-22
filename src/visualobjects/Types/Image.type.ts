@@ -1,4 +1,4 @@
-export class Image {
+export class ImageType {
     public src: string;
 
     constructor($argv) {

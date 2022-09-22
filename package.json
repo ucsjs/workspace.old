@@ -56,6 +56,7 @@
     "express-csrf-double-submit-cookie": "^1.1.0",
     "fast-glob": "^3.2.11",
     "firebase-admin": "^11.0.1",
+    "g-i-s": "^2.1.6",
     "helmet": "^6.0.0",
     "image-to-uri": "^1.0.0",
     "jsonwebtoken": "^8.5.1",

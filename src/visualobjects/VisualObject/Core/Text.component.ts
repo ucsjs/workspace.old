@@ -1,9 +1,9 @@
-import { VisualObject } from "../../Core/VisualObject.component";
-import { Font } from "../../Core/Font.component";
-import { Content } from "../../Core/Content.component";
-import { Background } from "../../Core/Background.component";
+import { VisualObject } from "../../Components/VisualObject.component";
+import { Font } from "../../Components/Font.component";
+import { Content } from "../../Components/Content.component";
+import { Background } from "../../Components/Background.component";
 
-export class Text extends VisualObject {
+export class TextVisual extends VisualObject {
     //Matadata
     protected override __namespace = "Text";
     protected override __group = "Core";

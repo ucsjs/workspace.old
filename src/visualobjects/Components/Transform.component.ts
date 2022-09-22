@@ -15,15 +15,19 @@ export class Transform extends Component {
     
     public _position: string = "absolute";
     private __positionHelp = "https://www.w3schools.com/css/css_positioning.asp";
+    private _positionChangeStyle = { style: "position", styleVue: "position" };
 
     public _top: number = 0;
     private __topHelp = "https://www.w3schools.com/cssref/pr_pos_top.asp";
+    private _topChangeStyle = { style: "top", styleVue: "top" };
 
     public _left: number = 0;
     private __leftHelp = "https://www.w3schools.com/cssref/pr_pos_left.asp";
+    private _leftChangeStyle = { style: "left", styleVue: "left" };
 
     public _zIndex: number = 1;
     private __zIndexHelp = "https://www.w3schools.com/cssref/pr_pos_z-index.asp";
+    private _zIndexChangeStyle = { style: "z-index", styleVue: "z-index" };
 
     public _width: number = 240;
     private __widthHelp = "https://www.w3schools.com/cssref/pr_dim_width.asp";

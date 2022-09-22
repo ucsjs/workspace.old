@@ -6,7 +6,6 @@ import { VisualService } from "src/services/visual.service";
 import { RegexService } from "src/services/regex.services";
 
 @Module({
-	imports: [],
 	controllers: [FileController],
 	providers: [FileService, BlueprintsService, VisualService, RegexService]
 })

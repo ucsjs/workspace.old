@@ -6,8 +6,8 @@ export class FileController {
 	constructor(private readonly fileService: FileService) {}
 
 	@Get()
-	async index(@Query("path") path: string) {
-		return await this.fileService.getFiles(path);
+	async index(@Query("path") path: string, @Query("onlyDir") onlyDir: boolean, @Query("onlyFiles") onlyFiles: boolean) {
+		return await this.fileService.getFiles(path, onlyDir, onlyFiles);
 	}
 
 	@Get("stream")

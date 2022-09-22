@@ -387,6 +387,7 @@ export class LazyModule {}`;
         <title>${metadata.title}</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta http-equiv="Content-Security-Policy" content="default-src *;img-src * 'self' data: https:; script-src 'self' 'unsafe-inline' 'unsafe-eval' *; style-src  'self' 'unsafe-inline' *">
     </head>
     <body>
 ${await this.build(metadata.hierarchy, 2, dependenciesIndex)}
@@ -415,17 +416,22 @@ ${await this.build(metadata.hierarchy, 2, dependenciesIndex)}
                     if(dependenciesIndex[keyComponent]){
                         for(let property of dependenciesIndex[keyComponent].publicVars){
                             if(componentData[keyComponent][property.name] && property.changeStyle){
-                                if(typeof componentData[keyComponent][property.name] == "object" && componentData[keyComponent][property.name].hex)
-                                    styles[property.changeStyle?.style] = componentData[keyComponent][property.name].hex;   
-                                else if(typeof typeof componentData[keyComponent][property.name] == "number")
+                                if(typeof componentData[keyComponent][property.name] == "object" && componentData[keyComponent][property.name].hex){
+                                    styles[property.changeStyle?.style] = componentData[keyComponent][property.name].hex;
+                                }                                       
+                                else if(typeof componentData[keyComponent][property.name] == "object" && componentData[keyComponent][property.name].src !== undefined){
+                                    if(componentData[keyComponent][property.name].src)
+                                        styles[property.changeStyle?.style] = `url(${componentData[keyComponent][property.name].src})`;
+                                }                                      
+                                else if(typeof componentData[keyComponent][property.name] == "number")
                                     styles[property.changeStyle?.style] = `${componentData[keyComponent][property.name]}px`;
                                 else
                                     styles[property.changeStyle?.style] = componentData[keyComponent][property.name];
                             }
                         }
                     }
-                }                
-
+                }   
+                
                 const template = ejs.render(raw, {
                     id: component.id,
                     slot: subComponents,

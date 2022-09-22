@@ -8,9 +8,9 @@ export class VisualController {
 	@Get()
 	async index() {
 		return await this.visualService.getComponents([
-			'./packages/**/*.component.ts',
-			'./src/visualobjects/**/*.component.ts',
-			'./.metadata/visualobjects/**/*.component.ts'
+			'./packages/**/*.ts',
+			'./src/visualobjects/**/*.ts',
+			'./.metadata/visualobjects/**/*.ts'
 		], [
 			'./packages/**/*.type.ts',
 			'./src/visualobjects/**/*.type.ts',
