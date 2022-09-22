@@ -1,6 +1,6 @@
 {
   "name": "@ucsjs/engine",
-  "version": "0.0.31",
+  "version": "0.0.32",
   "description": "UCS.js: Module (@engine)",
   "author": "Andre Ferreira",
   "license": "MIT",
@@ -22,7 +22,7 @@
     "typescript": "^4.7.2"
   },
   "dependencies": {
-    "@ucsjs/blueprint": "0.0.31",
+    "@ucsjs/blueprint": "0.0.32",
     "rxjs": "^7.5.6"
   },
   "gitHead": "d42971028a71148c5163415e2a857be1094e4cd8"
