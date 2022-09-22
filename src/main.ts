@@ -6,6 +6,7 @@ import * as path from "path";
 import * as fg from "fast-glob";
 
 import { NestFactory, LazyModuleLoader, HttpAdapterHost } from '@nestjs/core';
+import { NestExpressApplication } from '@nestjs/platform-express';
 import { AppModule } from 'src/modules/app.module';
 
 import { WsAdapter } from "src/adapters/ws-adapter";
@@ -13,7 +14,7 @@ import { Terminal } from "src/adapters/terminal";
 import { VSCodeLS } from "src/adapters/vscode";
 
 async function bootstrap() {
-	const app = await NestFactory.create(AppModule, { cors: true });
+	const app = await NestFactory.create<NestExpressApplication>(AppModule, { cors: true });
   	//app.useGlobalFilters(new AllExceptionsFilter());
 
 	app.use(express.static(path.resolve(__dirname, '../dist/workspace/pages')));
@@ -28,14 +29,19 @@ async function bootstrap() {
 	for(let file of files){
 		try{
 			const filename = path.resolve(file.replace(".ts", "").replace("./", "").replace("src/", "dist/"));
+			console.log(filename);
 			const { LazyModule } = await import(filename);
 			await lazyModuleLoader.load(() => LazyModule);
 		}
 		catch(err){
-			//console.log(err);
+			console.log(err);
 		}
 	}
-	
+
+	app.useStaticAssets(path.join(__dirname, '..', 'public'));
+	app.setBaseViewsDir(path.join(__dirname, '..', 'views'));
+	app.setViewEngine('ejs');
+
 	app.useWebSocketAdapter(new WsAdapter(app));
 	app.enableCors();
 	app.use(express.static("public"));

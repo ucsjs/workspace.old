@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>UCS.js Documentation</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" rel="stylesheet" />
+        <link href="styles/docs.css" rel="stylesheet" />
+        <script src="https://cdn.tailwindcss.com"></script>
+        <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    </head>
+
+    <body>
+        <div id="app">
+            <div class="bg-neutral-800 h-16 top-0 w-full fixed">
+
+            </div>
+
+            <div class="w-screen h-screen">
+                <div class="w-60 bg-neutral-200 fixed top-16" style="height: calc(100% - 64px)">
+                    <%- include('../../views/docs/navbar'); -%>
+                </div>
+
+                <div class="mt-20 ml-64 content" style="width: calc(100% - 240px)">
+                    <div class="m-4 p-4 px-20" style="width: calc(100% - 300px)">
+                        <%- index -%>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="scripts/docs.js"></script>
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/styles/default.min.css">
+        <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script>
+    </body>
+</html>
+

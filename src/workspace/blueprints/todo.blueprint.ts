@@ -2,11 +2,11 @@
 
 import { Subject } from 'rxjs';
 import { Blueprint, Flow } from "@ucsjs/blueprint";
-import { MongoConnectionBlueprint } from "packages/mongodb/src/blueprints/mongoConnection.blueprint";
+import { MongoConnectionBlueprint } from "node_modules/@ucsjs/mongodb/src/blueprints/mongoConnection.blueprint";
 import { HTTPInBlueprint } from "src/blueprints/Network/httpIn.blueprint";
 import { HTTPOutBlueprint } from "src/blueprints/Network/httpOut.blueprint";
-import { MongoSchemaBlueprint } from "packages/mongodb/src/blueprints/mongoSchema.blueprint";
-import { MongoFindBlueprint } from "packages/mongodb/src/blueprints/mongoFind.blueprint";
+import { MongoSchemaBlueprint } from "node_modules/@ucsjs/mongodb/src/blueprints/mongoSchema.blueprint";
+import { MongoFindBlueprint } from "node_modules/@ucsjs/mongodb/src/blueprints/mongoFind.blueprint";
 import { HTTPParamBlueprint } from "src/blueprints/Network/httpParam.blueprint";
 
 export class TodoBlueprint extends Blueprint {
@@ -14,12 +14,12 @@ export class TodoBlueprint extends Blueprint {
 		const subject = new Subject<any>();
 
 		const flow = new Flow({
-			mongoconnectionblueprint0: new MongoConnectionBlueprint({"stateId":1663810200680,"itemKey":"0","protocol":"mongodb+srv","host":"soucrypto-ea71c61c.mongo.ondigitalocean.com","ignorePort":true,"user":"doadmin","pass":"2w6yh91t3J7pA4L5","db":"soucrypto","replicaSet":"soucrypto","tls":true}),
-			httpinblueprint1: new HTTPInBlueprint({"stateId":1663810200680,"itemKey":"1","controller":"/todo","routes":[{"url":"/","key":"c782a1bf7f74c0a22eb8d764d6b7c9ba20300670-1-0"},{"url":"/:id","key":"c782a1bf7f74c0a22eb8d764d6b7c9ba20300670-1-1"}]}),
+			mongoconnectionblueprint0: new MongoConnectionBlueprint({"stateId":1663848850050,"itemKey":"0","protocol":"mongodb+srv","host":"soucrypto-ea71c61c.mongo.ondigitalocean.com","ignorePort":true,"user":"doadmin","pass":"2w6yh91t3J7pA4L5","db":"soucrypto","replicaSet":"soucrypto","tls":true}),
+			httpinblueprint1: new HTTPInBlueprint({"stateId":1663848850050,"itemKey":"1","controller":"/todo","routes":[{"url":"/","key":"c782a1bf7f74c0a22eb8d764d6b7c9ba20300670-1-0"},{"url":"/:id","key":"c782a1bf7f74c0a22eb8d764d6b7c9ba20300670-1-1"}]}),
 			httpoutblueprint2: new HTTPOutBlueprint(),
-			mongoschemablueprint3: new MongoSchemaBlueprint({"stateId":1663810200680,"itemKey":"3","collection":"todo","timestamps":true,"fields":[{"name":"title","index":true,"required":true,"key":"0201a0411d7de880c8bd40d11274259eb733a0a9-3-0"}]}),
-			mongofindblueprint4: new MongoFindBlueprint({"stateId":1663810200680,"itemKey":"4","query":{}}),
-			httpparamblueprint5: new HTTPParamBlueprint({"stateId":1663810200680,"itemKey":"5","name":"id","toJSON":true}),
+			mongoschemablueprint3: new MongoSchemaBlueprint({"stateId":1663848850050,"itemKey":"3","collection":"todo","timestamps":true,"fields":[{"name":"title","index":true,"required":true,"key":"0201a0411d7de880c8bd40d11274259eb733a0a9-3-0"}]}),
+			mongofindblueprint4: new MongoFindBlueprint({"stateId":1663848850050,"itemKey":"4","query":{}}),
+			httpparamblueprint5: new HTTPParamBlueprint({"stateId":1663848850050,"itemKey":"5","name":"id","toJSON":true}),
 			httpoutblueprint6: new HTTPOutBlueprint(),
 			mongofindblueprint7: new MongoFindBlueprint(),
 		}, subject, args);

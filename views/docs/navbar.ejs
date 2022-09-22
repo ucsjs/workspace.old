@@ -1,0 +1,33 @@
+<ul class="p-4" style="font-family: Source Sans Pro,Helvetica Neue,sans-serif;">
+    <% navbar.forEach(function(item){ %>
+        <li>
+            <div class="flex hover:text-blue-700">
+                <div class="flex flex-1 font-bold text-sm cursor-pointer">
+                    <% if(!item.isDir){ %>
+                    <a href="<%= item.uri %>"><%= item.name %></a>
+                    <% } else { %>
+                        <%= item.name %>
+                    <% }; %>
+                </div>
+
+                <% if(item.isDir){ %>
+                <div class="justify-between">
+                    <i class="fa-solid fa-angle-down"></i>
+                </div>
+                <% }; %>
+            </div>
+
+            <% if(item.children.length > 0){ %>
+                <ul class="p-2 py-1 text-sm" style="font-family: Source Sans Pro,Helvetica Neue,sans-serif;">
+                <% item.children.forEach(function(child){ %>
+                    <li>
+                        <div class="hover:text-blue-700" style="font-size: 12px">
+                            <a href="<%= child.uri %>"><%= child.name %></a>
+                        </div>
+                    </li>
+                <% }); %>
+                </ul>
+            <% }; %>
+        </li>
+    <% }); %>
+</ul>

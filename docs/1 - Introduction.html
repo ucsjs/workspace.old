@@ -1,1 +1,23 @@
-<p>sd asda&nbsp; asdsdasd</p>
+<h2>Introduction</h2>
+<p><span style="font-size: 10pt;">UCS (UCS.js) is a tool that brings together several programming concepts in a graphical structure that manages and generates codes through an interface that simplifies the construction of systems, pages, applications or even codes giving the freedom for anyone to create complex systems without the need for programming knowledge.</span></p>
+<p><span style="font-size: 10pt;">The project is divided into two distinct parts, the first part called the <strong>Workspace </strong>which consists of all the backend functionality, then every file manager, parsers, code generators, integrations, plugins, even interactions with tools such as databases, cloud server, among others, is your responsibility, this part of the project is registered in Typescript (<a href="https://www.typescriptlang.org/">https://www.typescriptlang.org/</a>) + Node.js (<a href="https://nodejs.org/en/">https://nodejs.org/</a>) using the Nestjs (<a href="https://nestjs.com/)" aria-invalid="true">https://nestjs.com/)</a>&nbsp; framework.The second part of the project called <strong>Editor </strong>is the graphic part of the development responsible for interacting with users at the frontend level, using Vue 3 (<a href="https://vuejs.org/)" aria-invalid="true">https://vuejs.org/)</a> + Nuxt 3 (<a href="https://v3.nuxtjs" aria-invalid="true">https://v3.nuxtjs</a>. org/).</span></p>
+<p><span style="font-size: 10pt;">However, regardless of the application's base structure, UCS can generate codes in any language or framework using official or community-developed plugins, the <strong>Editor </strong>has native support for several languages using the VSCode's native Monaco (<a href="https://microsoft.github.io/monaco-editor/">https://microsoft.github.io/monaco-editor/</a>) editor, so it is possible to write plugins in any language and parsers for export as all metadata is stored in JSON.</span></p>
+<p><span style="font-size: 10pt;">At first, the application format may seem strange because it brings together a series of concepts from different areas such as games, the concept of Blueprints is to create flows without using code in a graphic form existing in Unreal Engine (<a href="https://www.unrealengine.com/en-US/?sessionInvalidated=true">https://www.unrealengine.com)</a> and Unity (<a href="https://unity.com/">https://unity.com/</a>) applied to the scenario of web applications, format of componetization as usual in Delphi in the 2000s with the objective of breaking a little of the paradigm of how we develop websites, web systems, applications, landing pages, even email templates, who knows even in the future, development of native games with WebGL and Canvas who knows?</span></p>
+<p><span style="font-size: 10pt;">This project brings together concepts from more than 20 years of experience in different areas and languages, and the biggest references of the project are Delphi, Unity, C#, Javascript, Node, Typescript, VSCode, Photoshop.</span></p>
+<p><span style="font-size: 10pt;">I hope you enjoy this work that took almost 10 years to finally come true</span></p>
+<p><span style="font-size: 10pt;"><strong>Andr&eacute; Ferreira (CEO UCS.js)</strong><!-- pagebreak --></span></p>
+<h2>Installation</h2>
+<p><span style="font-size: 10pt;">As mentioned before, the project has two layers called Workspace and Editor, both need to be installed individually and configured for integration, this architecture was defined so that a single <strong>Editor </strong>will be able to integrate several <strong>Workspaces </strong>locally or remotely hosted, so it is possible to manage several local projects or on cloud server.</span></p>
+<p><span style="font-size: 10pt;">I recommend using Node.js 16+ (LTS) preferably using the latest available LTS version, and using YARN (<a href="https://www.npmjs.com/package/yarn)" aria-invalid="true">https://www.npmjs.com/package/yarn)</a> for dependency management</span></p>
+<h3>Worspace</h3>
+<pre class="language-markup"><code>$ git clone https://github.com/ucsjs/workspace
+$ cd workspace
+$ yarn || npm install
+$ yarn dev || npm run dev
+</code></pre>
+<p><span style="font-size: 10pt;">Currently the workspace does not require an authentication configuration as the project is under development and does not have a stable version, however access control is provided through an SSH certificate as the Workspace has full access to the host machine, including the possibility of sending terminal commands.</span></p>
+<h3>Editor</h3>
+<pre class="language-markup"><code>$ git clone https://github.com/ucsjs/editor
+$ cd editor
+$ yarn || npm install
+$ yarn dev || npm run dev</code></pre>

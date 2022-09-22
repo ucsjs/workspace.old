@@ -44,7 +44,7 @@ export class Terminal {
         this.wss.on('connection', (ws) => {
             Logger.log("Connection established", "Terminal");
 
-            this.onopened();
+            //this.onopened();
 
             this.tty.write('\r');
 

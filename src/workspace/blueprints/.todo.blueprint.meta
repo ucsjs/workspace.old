@@ -111,8 +111,8 @@
             },
             "sign": "1fb4062ace00ca5b968d64e0db292b88f965ca3e",
             "position": {
-                "top": 109,
-                "left": -263
+                "top": 94,
+                "left": -388
             }
         },
         {
@@ -218,7 +218,7 @@
             }
         },
         {
-            "collaped": true,
+            "collaped": false,
             "filename": "/mnt/f/Node/ucsjs/workspace/packages/mongodb/src/blueprints/mongoSchema.blueprint.ts",
             "namespace": "MongoSchemaBlueprint",
             "extends": "Blueprint",
@@ -307,8 +307,8 @@
             },
             "sign": "09cdb4d12bdd66f57b49c8f1fc5a7c9ca71aeab6",
             "position": {
-                "top": 107,
-                "left": -67
+                "top": 92,
+                "left": -171
             }
         },
         {
@@ -642,8 +642,8 @@
     ],
     "scale": 1,
     "position": {
-        "x": 319,
-        "y": 197
+        "x": 411,
+        "y": 299
     },
     "scrollOffset": {
         "x": 0,
