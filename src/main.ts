@@ -5,14 +5,12 @@ import * as csurf from 'express-csrf-double-submit-cookie';
 import * as path from "path";
 import * as fg from "fast-glob";
 
-import { Logger } from '@nestjs/common';
 import { NestFactory, LazyModuleLoader, HttpAdapterHost } from '@nestjs/core';
 import { AppModule } from 'src/modules/app.module';
 
-import { AllExceptionsFilter } from "./filters/allExceptionsFilter.filter";
-import { WsAdapter } from "./adapters/ws-adapter";
-import { Terminal } from "./adapters/terminal";
-import { launch } from "./adapters/vscode";
+import { WsAdapter } from "src/adapters/ws-adapter";
+import { Terminal } from "src/adapters/terminal";
+import { VSCodeLS } from "src/adapters/vscode";
 
 async function bootstrap() {
 	const app = await NestFactory.create(AppModule, { cors: true });
@@ -50,26 +48,14 @@ async function bootstrap() {
 	await app.listen(process.env.PORT || 5001);
 
 	//Terminal
-	let terminalServer = new Terminal({
+	new Terminal({
 		shell: (process.platform === "win32") ? "cmd.exe" : "bash",
 		port: parseInt(process.env.PORT) + 1 || 5002
 	});
-	
-	terminalServer.onclosed = (code, signal) => {
-		//console.log("Terminal closed - "+code+", "+signal);
-	};
 
-	terminalServer.onopened = () => {
-		//console.log("Connected to remote");
-	};
-
-	terminalServer.onresized = (cols, rows) => {
-		//console.log("Resized terminal to "+cols+"x"+rows);
-	};
-
-	terminalServer.ondisconnected = () => {
-		//console.log("Remote disconnected");
-	};
+	/*new VSCodeLS({
+		port: parseInt(process.env.PORT) + 2 || 5003
+	});*/
 }
 
 bootstrap();

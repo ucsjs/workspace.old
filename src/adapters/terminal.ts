@@ -1,3 +1,4 @@
+import { Logger } from "@nestjs/common";
 import * as Pty from "node-pty";
 import { Server } from "ws";
 
@@ -41,6 +42,8 @@ export class Terminal {
         });
 
         this.wss.on('connection', (ws) => {
+            Logger.log("Connection established", "Terminal");
+
             this.onopened();
 
             this.tty.write('\r');
