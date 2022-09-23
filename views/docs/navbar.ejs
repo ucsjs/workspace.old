@@ -1,7 +1,7 @@
 <ul class="p-4 select-none">
     <% navbar.forEach(function(item){ %>
         <li>
-            <div class="flex hover:text-blue-700" opened="false" id="<%= item.name.replace(/\s/,'_') %>" onclick="toggle('#<%= item.name.replace(/\s/, `_`) %>')">
+            <div class="flex hover:text-blue-700 itemRoot" opened="false" id="<%= item.name.replace(/\s/,'_') %>" onclick="toggle('#<%= item.name.replace(/\s/, `_`) %>')">
                 <div class="flex flex-1 font-bold text-sm cursor-pointer">
                     <% if(!item.isDir){ %>
                     <a href="<%= item.uri %>"><%= item.name %></a>
@@ -47,5 +47,39 @@ function toggle(id, value){
         $(`${id}_open`).css("display", 'block');
         $(`${id}_close`).css("display", 'none');
     }
+
+    saveState();
 }
+
+function saveState(){
+    const state = {};
+
+    $('.itemRoot').each(function(){
+        state[$(this).attr('id')] = $(this).attr('opened');
+    });
+
+    localStorage.setItem('navbar', JSON.stringify(state));
+}
+
+function loadState(){
+    const state = JSON.parse(localStorage.getItem('navbar'));
+
+    if(state){
+        for(const key in state){
+            $(`#${key}`).attr('opened', state[key]);
+            $(`#${key}_contents`).css("display", (state[key] === "true") ? 'block' : 'none');
+
+            if(state[key] === "false"){
+                $(`#${key}_open`).css("display", 'none');
+                $(`#${key}_close`).css("display", 'block');        
+            }
+            else{
+                $(`#${key}_open`).css("display", 'block');
+                $(`#${key}_close`).css("display", 'none');
+            }
+        }
+    }
+}
+
+loadState();
 </script>
