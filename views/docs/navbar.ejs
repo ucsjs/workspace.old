@@ -1,7 +1,7 @@
-<ul class="p-4" style="font-family: Source Sans Pro,Helvetica Neue,sans-serif;">
+<ul class="p-4 select-none">
     <% navbar.forEach(function(item){ %>
         <li>
-            <div class="flex hover:text-blue-700">
+            <div class="flex hover:text-blue-700" opened="false" id="<%= item.name.replace(/\s/,'_') %>" onclick="toggle('#<%= item.name.replace(/\s/, `_`) %>')">
                 <div class="flex flex-1 font-bold text-sm cursor-pointer">
                     <% if(!item.isDir){ %>
                     <a href="<%= item.uri %>"><%= item.name %></a>
@@ -11,14 +11,15 @@
                 </div>
 
                 <% if(item.isDir){ %>
-                <div class="justify-between">
-                    <i class="fa-solid fa-angle-down"></i>
+                <div class="justify-between cursor-pointer">
+                    <i class="fa-solid fa-angle-down" id="<%= item.name.replace(/\s/, `_`) %>_open"></i>
+                    <i class="fa-solid fa-angle-up"style="display: none;" id="<%= item.name.replace(/\s/, `_`) %>_close"></i>
                 </div>
                 <% }; %>
             </div>
 
             <% if(item.children.length > 0){ %>
-                <ul class="p-2 py-1 text-sm" style="font-family: Source Sans Pro,Helvetica Neue,sans-serif;">
+                <ul id="<%= item.name.replace(/\s/, `_`) %>_contents" class="p-2 py-1 text-sm" style="display: none">
                 <% item.children.forEach(function(child){ %>
                     <li>
                         <div class="hover:text-blue-700" style="font-size: 12px">
@@ -31,3 +32,20 @@
         </li>
     <% }); %>
 </ul>
+
+<script>
+function toggle(id, value){
+    const opened = ($(id).attr('opened') === "true");
+    $(id).attr('opened', !opened)
+    $(`${id}_contents`).css("display", !opened ? 'block' : 'none');
+
+    if(!opened){
+        $(`${id}_open`).css("display", 'none');
+        $(`${id}_close`).css("display", 'block');        
+    }
+    else{
+        $(`${id}_open`).css("display", 'block');
+        $(`${id}_close`).css("display", 'none');
+    }
+}
+</script>

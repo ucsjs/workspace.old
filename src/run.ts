@@ -12,7 +12,7 @@ const args = argv.option({
 
 const Blueprint = require(path.resolve(args.options.blueprint)).default;
 const blueprint = new Blueprint();
-const subject = blueprint.exec();
+const { subject } = blueprint.exec();
 
 subject.subscribe((data) => {
     stdout.write(`${data}\n`);

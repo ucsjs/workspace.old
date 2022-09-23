@@ -27,6 +27,8 @@
 		"node_modules",
 		"dist",
 		"public",
-		"http"
+		"http",
+		"docs",
+		"views"
 	]
 }

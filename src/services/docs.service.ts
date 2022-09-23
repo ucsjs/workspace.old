@@ -4,14 +4,31 @@ import * as path from "path";
 export class DocsService {
     constructor(){}
 
-    async getDocsStrutucture(){
+    async getDocsStrutucture(file = null){
         let strutucture = {
             index: "",
-            navbar: []
+            navbar: [],
+            breadcrumb: [],
+            anchors: []
         };
 
         const filesAndDirsIndex = await fg(path.resolve("./docs/*"), { dot: false, onlyFiles: false });
 
+        if(file){
+            const pathDivider = (process.platform === "win32") ? "\\" : "/";
+            const [root, content] = file.replace(path.join(process.cwd(), "/docs/"), "").split(pathDivider);
+            strutucture.breadcrumb[0] = root.split("-")[1]?.trim();
+
+            if(typeof content == "string")
+                strutucture.breadcrumb[1] = content.split("-")[1]?.trim();
+
+            if(strutucture.breadcrumb[0] && strutucture.breadcrumb[0].includes("."))
+                strutucture.breadcrumb[0] = strutucture.breadcrumb[0].split(".")[0];
+
+            if(strutucture.breadcrumb[1] && strutucture.breadcrumb[1].includes("."))
+                strutucture.breadcrumb[1] = strutucture.breadcrumb[1].split(".")[0];
+        }
+     
         for(let fileOrDir of filesAndDirsIndex){
             let basename = path.basename(fileOrDir);
             let [indexRaw, nameRaw] = basename.split("-");
@@ -20,7 +37,7 @@ export class DocsService {
             const isDir = fs.lstatSync(fileOrDir).isDirectory();
 
             if(index == 1)
-                strutucture.index = fs.readFileSync(fileOrDir, "utf8");
+                strutucture.index = (file) ? fs.readFileSync(file, "utf8") : fs.readFileSync(fileOrDir, "utf8");
             
             strutucture.navbar[index-1] = {
                 filename: fileOrDir,
@@ -49,6 +66,17 @@ export class DocsService {
             }
         }
 
+        if(strutucture.index){
+            const regex = /<a id="(.*?)".*?>/g;
+            let match;
+
+            while ((match = regex.exec(strutucture.index)) !== null) {
+                strutucture.anchors.push({
+                    id: match[1]
+                });
+            }
+        }
+        
         return strutucture;
     }
    
