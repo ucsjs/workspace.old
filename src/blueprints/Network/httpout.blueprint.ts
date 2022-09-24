@@ -6,6 +6,7 @@ export class HTTPOutBlueprint extends Blueprint{
     private __namespace = "HTTP Out";
     private __group = "Network";
     private __headerIcon = "fa-solid fa-turn-up";
+    private __HTTPTypes_Request: object = { color: "yellow" };
 
     private state: any = {};
 
@@ -17,7 +18,6 @@ export class HTTPOutBlueprint extends Blueprint{
             this.changeState(v, "request", this)
         });
         this.input("contents", Type.Any, null, (v) => this.changeState(v, "contents", this));
-        this.output("output", Type.Any, null);
     }
 
     changeState(v, name, scope){

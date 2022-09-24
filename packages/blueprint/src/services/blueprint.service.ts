@@ -78,6 +78,15 @@ export class Blueprint {
             output.value?.next(value);
     }
 
+    get(key: string){
+        const input = this._inputs.find(input => input.key === key);
+
+        if(input)
+            return input.value?.value;
+        else
+            return null;
+    }
+
     error(context, message){
         
     }
