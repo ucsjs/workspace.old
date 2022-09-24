@@ -13,8 +13,10 @@ export class IfElseBlueprint extends Blueprint {
         this.setup(metadata);
 
         this.input("condition", Type.Boolean, null, (b: boolean) => {
-            if(b) this.next("true", true);
-            else this.next("false", false);
+            if(b !== undefined && typeof b === "boolean"){
+                if(b) this.next("true", true);
+                else this.next("false", true);
+            }
         });
 
         this.output("true", Type.Any, null);

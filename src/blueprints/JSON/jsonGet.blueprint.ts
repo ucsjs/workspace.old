@@ -18,12 +18,10 @@ export class JSONGetBlueprint extends Blueprint{
         this.setup(metadata);
 
         this.input("JSON", Type.JSON, null).subscribe((json) => {
-            if(json){
-                if(json.hasOwnProperty(this._key)){
-                    const json = {};
-                    json[this._key] = json[this._key];
-                    this.next("result", json);
-                }
+            if(typeof json === "object" && json !== null && json[this._key]){
+                const newJSON = {};
+                newJSON[this._key] = json[this._key];
+                this.next("result", newJSON);
             }
         });
 

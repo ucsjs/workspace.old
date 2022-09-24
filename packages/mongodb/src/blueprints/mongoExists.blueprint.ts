@@ -37,7 +37,6 @@ export class MongoExistsBlueprint extends Blueprint{
         });
 
         this.output("result", Type.Boolean, null);
-        this.output("error", Type.Any, null);
     }
 
     public async run(scope){
@@ -45,12 +44,11 @@ export class MongoExistsBlueprint extends Blueprint{
             Logger.log(`Exists in MongoDB: ${JSON.stringify(scope.state.query)}`, "MongoExistsBlueprint");
 
             try{
-                const exists = await scope.state.model.exists(scope.state.query);
-                scope.next("result", exists);
+                const exists = await scope.state.model.exists(scope.state.query).lean();
+                scope.next("result", (typeof exists == "object" && exists !== null));
             }
             catch(e){
-                Logger.error(e, "MongoExistsBlueprint");
-                scope.next("error", e);
+                scope.next("result", false);
             }
         }
     }

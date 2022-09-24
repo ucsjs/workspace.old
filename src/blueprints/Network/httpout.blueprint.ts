@@ -17,12 +17,12 @@ export class HTTPOutBlueprint extends Blueprint{
         this.setup(metadata);
 
         this.input("request", HTTPTypes.Request, null, (v) => {
-            Logger.log(`Recive Request`, "HTTPOutBlueprint");
+            //Logger.log(`Recive Request`, "HTTPOutBlueprint");
             this.changeState(v, "request", this);
         });
 
         this.input("contents", Type.Any, null, (v) => {
-            Logger.log(`Recive Contents: ${JSON.stringify(v)}`, "HTTPOutBlueprint");
+            //Logger.log(`Recive Contents: ${JSON.stringify(v)}`, "HTTPOutBlueprint");
             this.changeState(v, "contents", this);
         });
 

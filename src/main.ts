@@ -28,11 +28,17 @@ async function bootstrap() {
 
 	for(let file of files){
 		try{
-			const filename = path.resolve(file.replace(".ts", "").replace("./", "").replace("src/", "dist/"));
+			const filename = "." + path.resolve(file.replace(".ts", "")
+				.replace("./", "")
+				.replace("src/", ""))
+				.replace(process.cwd(), "");
+
 			const { LazyModule } = await import(filename);
 			await lazyModuleLoader.load(() => LazyModule);
 		}
-		catch(err){}
+		catch(err){
+			console.error(err);
+		}
 	}
 
 	app.useStaticAssets(path.join(__dirname, '..', 'public'));

@@ -12,16 +12,14 @@ export class MongoInsertBlueprint extends Blueprint{
     private __TypeMongoDB_Schema: object = { color: "#6d0000" };
 
     private state = { model: null, document: null, conditional: false };
+    private finish = false;
 
     constructor(metadata?: any){
         super();
         this.setup(metadata);
 
-        if(metadata.conditional)
-            this.state["conditional"] = metadata.conditional;
-
         this.input("conditional", Type.Boolean, false, async (conditional: boolean) => {
-            if(conditional){
+            if(conditional !== undefined && typeof conditional === "boolean"){
                 this.state["conditional"] = conditional;
                 await this.run(this);
             }
@@ -48,7 +46,8 @@ export class MongoInsertBlueprint extends Blueprint{
     }
 
     public async run(scope){
-        if(scope.state.model && scope.state.document && scope.state.conditional){
+        if(scope.state.model && scope.state.document && scope.state.conditional === true && !this.finish){
+            this.finish = true;
             Logger.log(`Insert into MongoDB: ${JSON.stringify(scope.state.document)}`, "MongoInsertBlueprint");
 
             try{

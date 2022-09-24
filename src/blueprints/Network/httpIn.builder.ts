@@ -54,8 +54,13 @@ export class ${$blueprint}Controller {
             let $output = null;
 
             for(let connection of $connections){
-                if(connection.to.component == "HTTPOutBlueprint")
+                if(
+                    connection.to.component == "HTTPOutBlueprint" && 
+                    connection.from.componentKey == $metadata.componentKey && 
+                    route.key.replace(/-.*?-/, '-routes-') == connection.from.input
+                ){
                     $output = connection.to;
+                } 
             }
 
             $module += `\n    @${methodNest}("${route.url}")
