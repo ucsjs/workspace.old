@@ -57,8 +57,11 @@ import { Blueprint, Flow } from "@ucsjs/blueprint";\n`;
                     }                        
                 }
 
-                if(this._metadata.items[key].namespace != "OutputBlueprint")
-                    scriptText += `\t\t\t${this._metadata.items[key].namespace.toLowerCase()}${key}: new ${this._metadata.items[key].namespace}(${(hasInputs) ? JSON.stringify(newDefaults) : ''}),\n`;
+                if(this._metadata.items[key].namespace != "OutputBlueprint"){
+                    const componentKey = (this._metadata.items[key].componentKey) ? this._metadata.items[key].componentKey : `${this._metadata.items[key].namespace.toLowerCase()}${key}`;
+                    scriptText += `\t\t\t"${componentKey}": new ${this._metadata.items[key].namespace}(${(hasInputs) ? JSON.stringify(newDefaults) : ''}),\n`;
+                }
+                    
             }
 
             scriptText += `\t\t}, subject, args);\n\n`;
@@ -67,11 +70,14 @@ import { Blueprint, Flow } from "@ucsjs/blueprint";\n`;
                 for(let connection of this._metadata.connections){
                     const input = this.getInput(connection.from.component, connection.from.input);
                     const output = this.getInput(connection.to.component, connection.to.input);
-
+                    
                     if(connection.to.component == "OutputBlueprint")
                         scriptText += `\t\tflow.output("${connection.from.component.toLowerCase()}${connection.from.input.split("-")[1]}", "${input}")\n`;
-                    else if(input && output)
-                        scriptText += `\t\tflow.subscribe("${connection.from.component.toLowerCase()}${connection.from.input.split("-")[1]}", "${input}", "${connection.to.component.toLowerCase()}${connection.to.input.split("-")[1]}", "${output}")\n`;                    
+                    else if(input && output){
+                        const componentFrom = (connection.from.componentKey) ? connection.from.componentKey : `${connection.from.component.toLowerCase()}${connection.from.input.split("-")[1]}`;
+                        const componentTo = (connection.to.componentKey) ? connection.to.componentKey : `${connection.to.component.toLowerCase()}${connection.to.input.split("-")[1]}`;
+                        scriptText += `\t\tflow.subscribe("${componentFrom}", "${input}", "${componentTo}", "${output}")\n`;                    
+                    }
                 }
             }
 

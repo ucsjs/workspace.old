@@ -1,3 +1,4 @@
+import { Logger } from "@nestjs/common";
 import { Blueprint, Type } from "@ucsjs/blueprint";
 import { HTTPTypes } from "./httpTypes.enum";
 
@@ -8,23 +9,31 @@ export class HTTPOutBlueprint extends Blueprint{
     private __headerIcon = "fa-solid fa-turn-up";
     private __HTTPTypes_Request: object = { color: "yellow" };
 
-    private state: any = {};
+    private state: any = { contents: null, request: null };
 
     constructor(metadata?: any){
         super();
         
         this.setup(metadata);
+
         this.input("request", HTTPTypes.Request, null, (v) => {
-            this.changeState(v, "request", this)
+            Logger.log(`Recive Request`, "HTTPOutBlueprint");
+            this.changeState(v, "request", this);
         });
-        this.input("contents", Type.Any, null, (v) => this.changeState(v, "contents", this));
+
+        this.input("contents", Type.Any, null, (v) => {
+            Logger.log(`Recive Contents: ${JSON.stringify(v)}`, "HTTPOutBlueprint");
+            this.changeState(v, "contents", this);
+        });
+
+        this.output("output", Type.Any, null);
     }
 
     changeState(v, name, scope){
         if(v && name)
             scope.state[name] = v;
 
-        if(scope.state.request && scope.state.contents)
+        if(scope.state.request !== null && scope.state.contents !== null)
             scope.next("output", scope.state.contents);
     }
 }

@@ -9,22 +9,24 @@ export class HTTPInBlueprint extends Blueprint{
     private __module = true;
     private __headerIcon = "fa-solid fa-turn-down";
     private __method = ["GET", "POST", "PUT", "DELETE", "PATCH"];
+    private __HTTPTypes_Request: object = { color: "yellow" };
     
     public _controller: string = "/";  
-    public _routes: object = {url: "string", method: "string", auth: "boolean", multi: true, createOutputs: true}; 
+    public _routes: object = {realType: "HTTPTypes.Request", url: "string", method: "string", auth: "boolean", multi: true, createOutputs: true}; 
 
     constructor(metadata?: any){
         super();
 
         this.setup(metadata);
-        this.output("payload", HTTPTypes.Request, null);
-
+  
         if(Array.isArray(metadata.routes)){
             for(let route of metadata.routes){
                 const method = (route.method) ? route.method : "GET";
 
-                if(route.key)   
+                if(route.key) {
                     this.output(route.key, HTTPTypes.Request, null);
+                    this.output(`${route.key.replace(/-.*?-/, "-routes-")}`, HTTPTypes.Request, null);
+                }                       
                 else
                     this.output(`${method}-${route.url.replace(/\//img,'-')}`, HTTPTypes.Request, null);
             }

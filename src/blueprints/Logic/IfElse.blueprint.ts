@@ -14,7 +14,7 @@ export class IfElseBlueprint extends Blueprint {
 
         this.input("condition", Type.Boolean, null, (b: boolean) => {
             if(b) this.next("true", true);
-            else this.next("false", true);
+            else this.next("false", false);
         });
 
         this.output("true", Type.Any, null);

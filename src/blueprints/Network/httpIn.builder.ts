@@ -1,6 +1,7 @@
 exports.default = async ($metadata, $blueprint, $itemKey, $moduleInjection, $stateId, $context, $connections) => {
     let $module = "";
     let $controller = "";
+    let $routeKey = "";
     let $routes = [];
 
     for(let publicVar of $metadata.publicVars){
@@ -10,6 +11,8 @@ exports.default = async ($metadata, $blueprint, $itemKey, $moduleInjection, $sta
                     $controller = publicVar.value || publicVar.default;
                 break;
                 case "routes":
+                    $routeKey = publicVar.name;
+
                     for(let route of publicVar.value){
                         $routes.push(route);
                     }   
@@ -43,14 +46,16 @@ export class ${$blueprint}Controller {
         for(let route of $routes){
             const method = (route.method) ? route.method : "GET";
             const methodNest = method.charAt(0).toUpperCase() + method.slice(1).toLowerCase();
-            const inputRef = (route.key) ? route.key : `${method}-${route.url.replace(/\//img,'-')}`;
+            let inputRef = (route.key) ? route.key : `${method}-${route.url.replace(/\//img,'-')}`;
+            
+            if(inputRef.includes(`-${$itemKey}-`))
+                inputRef = inputRef.replace(/-.*?-/img, `-${$routeKey}-`);
 
             let $output = null;
 
             for(let connection of $connections){
-                if(connection.from.input == inputRef && connection.to.component == "HTTPOutBlueprint"){
+                if(connection.to.component == "HTTPOutBlueprint")
                     $output = connection.to;
-                }
             }
 
             $module += `\n    @${methodNest}("${route.url}")
@@ -59,15 +64,17 @@ export class ${$blueprint}Controller {
 
             if($output){
                 const [input, keyComponent] = $output.input.split("-");
-                $module +=`\n\t\tflow.get("${$output.component.toLowerCase()}${keyComponent}").subscribe("output", (data) => { 
+                const componentKey = ($output.componentKey) ? $output.componentKey : `${$output.component.toLowerCase()}${keyComponent}`;
+                $module +=`\n\t\tflow.get("${componentKey}").subscribe("output", (data) => { 
             if(data){
-                flow.get("${$output.component.toLowerCase()}${keyComponent}")?.unsubscribe("output");
+                flow.get("${componentKey}")?.unsubscribe("output");
                 res.status(200).send(data); 
             }
         });\n`
             }
         
-            $module += `\n\t\tflow.get("${$metadata.namespace.toLowerCase()}${$itemKey}").next("${inputRef}", req);
+            const componentKey = ($metadata.componentKey) ? $metadata.componentKey : `${$metadata.namespace.toLowerCase()}${$itemKey}`;
+            $module += `\n\t\tflow.get("${componentKey}").next("${inputRef}", req);
     }\n`;
         }
         
