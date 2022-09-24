@@ -1,6 +1,5 @@
 import { Logger } from "@nestjs/common";
-import { Connection, model, Model } from "mongoose";
-import { Blueprint, Type } from "@ucsjs/blueprint";
+import { Blueprint } from "@ucsjs/blueprint";
 import { TypeMongoDB } from "./mongoTypes.enum";
 
 export class MongoSchemaBlueprint extends Blueprint{
@@ -9,8 +8,8 @@ export class MongoSchemaBlueprint extends Blueprint{
     private __group = "MongoDB";
     private __headerColor = "#419343";
     private __headerIcon = "./public/icons/mongodb.png";
-    private __TypeMongoDBConnection: object = { color: "#419343" };
-    private __TypeMongoDBSchema: object = { color: "#419343" };
+    private __TypeMongoDB_Connection: object = { color: "#419343" };
+    private __TypeMongoDB_Schema: object = { color: "#6d0000" };
     private __type = ["String", "Number", "Date", "Buffer", "Boolean", "Mixed", "ObjectId", "Array", "Decimal128", "Map", "Schema"];
 
     public _collection: string = "";
@@ -21,7 +20,7 @@ export class MongoSchemaBlueprint extends Blueprint{
         super();
         this.setup(metadata);
 
-        this.input("connection", Type.String, null, (connectionName: string) => {
+        this.input("connection", TypeMongoDB.Connection, null, (connectionName: string) => {
             if(connectionName){
                 const collectionClassName = this._collection.charAt(0).toUpperCase() + this._collection.slice(1).toLowerCase();
                 

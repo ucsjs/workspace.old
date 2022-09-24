@@ -9,7 +9,7 @@ export class MongoUpdateBlueprint extends Blueprint{
     private __group = "MongoDB";
     private __headerColor = "#419343";
     private __headerIcon = "./public/icons/mongodb.png";
-    private __TypeMongoDBSchema: object = { color: "#419343" };
+    private __TypeMongoDB_Schema: object = { color: "#6d0000" };
 
     public _multi: boolean = false;
     public _upsert: boolean = false;

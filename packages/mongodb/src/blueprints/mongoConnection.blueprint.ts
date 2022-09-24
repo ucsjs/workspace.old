@@ -8,7 +8,7 @@ export class MongoConnectionBlueprint extends Blueprint{
     private __group = "MongoDB";
     private __headerColor = "#419343";
     private __headerIcon = "./public/icons/mongodb.png";
-    private __TypeMongoDBConnection: object = { color: "#419343" };
+    private __TypeMongoDB_Connection: object = { color: "#419343" };
     private __protocol = ["mongodb", "mongodb+srv"];
  
     public _protocol: string = "mongodb";

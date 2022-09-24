@@ -9,7 +9,7 @@ export class MongoFindBlueprint extends Blueprint{
     private __group = "MongoDB";
     private __headerColor = "#419343";
     private __headerIcon = "./public/icons/mongodb.png";
-    private __TypeMongoDBSchema: object = { color: "#419343" };
+    private __TypeMongoDB_Schema: object = { color: "#6d0000" };
 
     public _limit: number = 10;
     public _offset: number = 0;

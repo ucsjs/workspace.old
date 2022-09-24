@@ -25,17 +25,17 @@ export class ParserService {
                     /public\s_(.*?)[:]\s(.*?)[\s;][=][\s](.*?)[;]/isg,
                     /public\s_(.*?)[:]\s(.*?);/isg
                 ], contents, ["name", "type", "default"], true),
-                outputs: this.regexService.getData(/this\.output\(["'](.*?)["'],[\s]Type.*?\.(.*?),.*?\)/isg, contents, ["name", "type"], true),
-                inputs: this.regexService.getData([
-                    /this\.input\(["'](.*?)["'],[\s]Type\.(.*?),.*?\)/isg,
-                    /this\.input\(["'](.*?)["'],[\s](.*?),.*?\)/isg
-                ], contents, ["name", "type"], true),
+                outputs: this.regexService.getData(/this\.output\(["'](.*?)["'],[\s](.*?),.*?\)/isg, contents, ["name", "type"], true),
+                inputs: this.regexService.getData(/this\.input\(["'](.*?)["'],[\s](.*?),.*?\)/isg, contents, ["name", "type"], true),
                 content: (content) ? content : null,
                 componentsDafaults: this.regexService.getData(/this._(.*?)._(.*?) = (.*?);/gms, contents, ["component", "property", "value"], true),
                 metadata: {}
             };
 
             for(let key in component.outputs){
+                if(component.outputs[key].type.includes("Type."))
+                    component.outputs[key].type = component.outputs[key].type.replace("Type.", "");
+
                 component.outputs[key].label = this.fixedLabel(component.outputs.name);
                 component.outputs[key].namespace = `${component.namespace}::${component.outputs[key].name}`;
                 component.outputs[key].id = crypto
@@ -49,6 +49,9 @@ export class ParserService {
             });
 
             for(let key in component.inputs){
+                if(component.inputs[key].type.includes("Type."))
+                    component.inputs[key].type = component.inputs[key].type.replace("Type.", "");
+
                 component.inputs[key].label = this.fixedLabel(component.inputs[key].name);
                 component.inputs[key].namespace = `${component.namespace}::${component.inputs[key].name}`;
                 component.inputs[key].id = crypto

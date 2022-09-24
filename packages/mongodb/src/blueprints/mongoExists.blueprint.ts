@@ -9,7 +9,7 @@ export class MongoExistsBlueprint extends Blueprint{
     private __group = "MongoDB";
     private __headerColor = "#419343";
     private __headerIcon = "./public/icons/mongodb.png";
-    private __TypeMongoDBSchema: object = { color: "#419343" };
+    private __TypeMongoDB_Schema: object = { color: "#6d0000" };
 
     private state = { model: null, query: null };
 
@@ -49,7 +49,7 @@ export class MongoExistsBlueprint extends Blueprint{
                 scope.next("result", exists);
             }
             catch(e){
-                Logger.error(e, "MongoFindBlueprint");
+                Logger.error(e, "MongoExistsBlueprint");
                 scope.next("error", e);
             }
         }
