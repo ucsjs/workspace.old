@@ -7,7 +7,6 @@
 <p align="center">
     <a href="https://www.npmjs.com/~ucsjs" target="_blank"><img src="https://img.shields.io/npm/v/@ucsjs/workspace.svg" alt="NPM Version" /></a>
     <a href="https://www.npmjs.com/~ucsjs" target="_blank"><img src="https://img.shields.io/npm/l/@ucsjs/workspace.svg" alt="Package License" /></a>
-    <a href="https://www.npmjs.com/~ucsjs" target="_blank"><img src="https://img.shields.io/npm/dm/@ucsjs/workspace/common.svg" alt="NPM Downloads" /></a>
     <a href="https://discord.com/invite/XtUH9sJP" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
 </p>
 
