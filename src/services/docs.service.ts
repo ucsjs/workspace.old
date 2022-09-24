@@ -72,12 +72,21 @@ export class DocsService {
 
             while ((match = regex.exec(strutucture.index)) !== null) {
                 strutucture.anchors.push({
-                    id: match[1]
+                    id: match[1],
+                    label: this.fixedLabel(match[1])
                 });
             }
         }
         
         return strutucture;
+    }
+
+    uppercaseFirstLetter(string) {
+        return string.charAt(0).toUpperCase() + string.slice(1);
+    }
+
+    fixedLabel(value) {
+        return (value) ? this.uppercaseFirstLetter(value === null || value === void 0 ? void 0 : value.replace(/([A-Z])/g, " $1")) : '';
     }
    
 }

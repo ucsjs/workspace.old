@@ -12,17 +12,17 @@ export class DateBlueprint extends Blueprint {
     private _input: string = "";
     public _type: string = "";
 
-    constructor(metadata?: any){
+    constructor(metadata?: any) {
         super();
         this.setup(metadata);
         this.input("input", Type.String, null, (v) => this._input = v);
         this.output("output", Type.Any, null);
     }
 
-    start(){
+    start() {
         const date = new Date(this._input);
 
-        switch(this._type){
+        switch(this._type) {
             case "UTCString": this.next("output", date.toUTCString());
             case "ISOString": this.next("output", date.toISOString());
             case "JSON": this.next("output", date.toJSON());

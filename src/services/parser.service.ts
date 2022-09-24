@@ -136,6 +136,17 @@ export class ParserService {
                 catch(e){}
             }
 
+            //Metadata File
+            const medatadaModuleBlueprint = file.replace(".blueprint", ".metadata").replace(".ts", "");
+         
+            if(fs.existsSync(path.resolve(`${medatadaModuleBlueprint}.json`))){
+                try{
+                    const metadataJson = JSON.parse(fs.readFileSync(path.resolve(`${medatadaModuleBlueprint}.json`), "utf-8"));
+                    metadata = { ...metadata, ...metadataJson };
+                }
+                catch(e){}
+            }
+
             //Editor File
             const editorModule = file.replace(".component", ".editor").replace(".ts", "");
          

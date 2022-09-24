@@ -10,6 +10,27 @@ body{
     overflow-x: hidden;
 }
 
+* {
+    scrollbar-width: auto;
+    scrollbar-color: #171717 #000000;
+}
+
+*::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+*::-webkit-scrollbar-track, *::-webkit-scrollbar-corner {
+    background: #1E1E1E;
+}
+
+*::-webkit-scrollbar-thumb {
+    background-color: #383838;
+    border-radius: 0px;
+    border: 3px solid #383838;
+    border-radius: 30px;
+}
+
 .content a {
     color: cornflowerblue !important;
 }
@@ -65,6 +86,8 @@ p {
     left: 0;
     width: 2px;
     background: #efefef;
+    list-style-type: disc;
+    padding: 0;
 }
 
 .anchor li {
@@ -74,6 +97,7 @@ p {
     font-size: 14px;
     line-height: 24px;
     margin-bottom: 6px;
+    text-align: -webkit-match-parent;
 }
 
 .anchor li :before{
@@ -91,9 +115,20 @@ p {
 }
 
 .anchor li a {
+    display: block;
     color: #404040;
     text-decoration: none;
     margin-top: -20px;
+    font-size: 12px !important;
+    text-decoration: none;
+    min-width: 200px;
+    height: 40px;
+    padding-top: 12px;
+}
+
+.current a {
+    color: cornflowerblue !important;
+    font-weight: 600;
 }
 
 .anchor li a:hover {

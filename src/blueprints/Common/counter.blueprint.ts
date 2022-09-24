@@ -1,10 +1,11 @@
 import { BehaviorSubject } from 'rxjs';
 import { Blueprint, Type } from "@ucsjs/blueprint";
 
-export class CounterBlueprint extends Blueprint {
+export class IntervalBlueprint extends Blueprint {
     //Metadata
-    private __namespace = "Counter";
+    private __namespace = "Interval";
     private __group = "Common";
+    private __headerIcon = "fa-solid fa-clock";
 
     private _count: BehaviorSubject<number>;
     private _interval;

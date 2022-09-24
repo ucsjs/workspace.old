@@ -64,7 +64,8 @@ export class BlueprintsService extends ParserService{
             providers: [],
             constructors: [],
             controllers: [],
-            extras: []
+            extras: [],
+            metadata: []
         };
 
         let moduleExtra = "";
