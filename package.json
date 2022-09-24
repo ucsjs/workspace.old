@@ -55,6 +55,7 @@
     "cookie-parser": "^1.4.6",
     "cscript": "^1.0.26",
     "csurf": "^1.11.0",
+    "dotenv": "^16.0.2",
     "express-csrf-double-submit-cookie": "^1.1.0",
     "fast-glob": "^3.2.11",
     "firebase-admin": "^11.0.1",

@@ -23,6 +23,9 @@ export class FileController {
 
 	@Put("save")
 	async save(@Body() body){
-		return await this.fileService.saveFile(body);
+		if(process.env.ALLOW_SAVEFILE !== "false")
+			return await this.fileService.saveFile(body);
+		else
+			return false;
 	}
 }

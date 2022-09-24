@@ -13,6 +13,8 @@ import { WsAdapter } from "src/adapters/ws-adapter";
 import { Terminal } from "src/adapters/terminal";
 import { VSCodeLS } from "src/adapters/vscode";
 
+require('dotenv').config();
+
 async function bootstrap() {
 	const app = await NestFactory.create<NestExpressApplication>(AppModule, { cors: true });
   	//app.useGlobalFilters(new AllExceptionsFilter());
@@ -57,11 +59,13 @@ async function bootstrap() {
 	await app.listen(process.env.PORT || 5001);
 
 	//Terminal
-	new Terminal({
-		shell: (process.platform === "win32") ? "cmd.exe" : "bash",
-		port: parseInt(process.env.PORT) + 1 || 5002
-	});
-
+	if(process.env.ALLOW_TERMINAL !== "false"){
+		new Terminal({
+			shell: (process.platform === "win32") ? "cmd.exe" : "bash",
+			port: parseInt(process.env.PORT) + 1 || 5002
+		});
+	}
+	
 	/*new VSCodeLS({
 		port: parseInt(process.env.PORT) + 2 || 5003
 	});*/
