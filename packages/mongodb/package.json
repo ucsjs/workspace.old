@@ -1,6 +1,6 @@
 {
   "name": "@ucsjs/mongodb",
-  "version": "0.0.36",
+  "version": "0.0.37",
   "description": "UCS.js: Module (@mongodb)",
   "author": "Andre Ferreira",
   "license": "MIT",
@@ -23,7 +23,7 @@
   },
   "dependencies": {
     "@nestjs/mongoose": "^9.2.0",
-    "@ucsjs/blueprint": "0.0.36",
+    "@ucsjs/blueprint": "0.0.37",
     "mongodb": "^4.9.1",
     "mongoose": "^6.6.0",
     "rxjs": "^7.5.6"
