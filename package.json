@@ -17,6 +17,7 @@
   "publishConfig": {
     "access": "public"
   },
+  "keywords": ["ucs", "ucsjs", "visual editor", "blueprints"],
   "scripts": {
     "prebuild": "rimraf dist",
     "build:packages": "gulp build --dist node_modules/@ucsjs && gulp browserify --dist node_modules/@ucsjs",
