@@ -8,7 +8,7 @@ export class NumberToStringBlueprint extends Blueprint{
 
     constructor(){
         super();
-        this.input("number", Type.Float, null, (v) => this.parse(v, this));
+        this.input("number", Type.Int, null, (v) => this.parse(v, this));
         this.output("result", Type.String, null);
     }
 

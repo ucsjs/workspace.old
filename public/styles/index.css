@@ -1,3 +1,10 @@
+body{
+    font-family: Montserrat,sans-serif;
+    font-size: 17.5px;
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+}
+
 .grid-background{
     background-color: #434343;
     background-image:linear-gradient(#434343, #282828);

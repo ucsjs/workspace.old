@@ -9,33 +9,130 @@
     </head>
     <body>
         <div class="grid-background">
-            <header class="w-full h-[350px] bg-neutral-800 grid-contents">
+            <header class="w-full bg-neutral-800 grid-contents text-white">
                 <navbar class="flex max-w-screen-lg m-auto pt-7">
                     <div class="flex flex-1">
-                        <a>
+                        <a href="/" title="UCS.js">
                             <img src="/android-icon-48x48.png" />
                         </a>
                     </div>
 
                     <div class="justify-between flex text-white">
-                        <a href="/docs" class="font-bold py-4 mx-4">DOCUMENTATION</a>
+                        <a href="/docs" target="_blank" class="font-bold py-4 pt-3 mx-4 flex">DOCUMENTATION</a>
 
-                        <a href="/demo" class="font-bold py-4 mx-4">DEMO</a>
+                        <a href="/demo" target="_blank" class="font-bold py-4 pt-3 mx-4 flex">DEMO</a>
 
-                        <a href="https://github.com/ucsjs" target="_blank" class="font-bold py-2 mx-4 text-2xl">
+                        <a href="https://github.com/ucsjs" target="_blank" class="font-bold py-2 mx-4 text-2xl hover:text-neutral-300">
                             <i class="fa-brands fa-github"></i>
                         </a>
 
-                        <a href="https://www.linkedin.com/company/ucs-js" target="_blank" class="font-bold py-2 mx-4 text-2xl">
+                        <a href="https://www.linkedin.com/company/ucs-js" target="_blank" class="font-bold py-2 mx-4 text-2xl hover:text-neutral-300">
                             <i class="fa-brands fa-linkedin"></i>
                         </a>
 
-                        <a href="https://discord.gg/XtUH9sJP" target="_blank" class="font-bold py-2 mx-4 text-2xl">
+                        <a href="https://discord.gg/XtUH9sJP" target="_blank" class="font-bold py-2 mx-4 mr-0 text-2xl hover:text-neutral-300">
                             <i class="fa-brands fa-discord"></i>
                         </a>
                     </div>
                 </navbar>
+
+                <div class="pt-[80px] pb-[60px] max-w-screen-lg m-auto relative">
+                    <h1 class="text-[55px] text-white font-bold">Hello, UCS.js</h1>
+                    <h4 class="text-[16px] max-w-[500px]">Create complex solutions in a simple, visual, modular and scalable way. A complete tool to create robust systems without the need for complex code.</h4>
+                    <div class="py-[60px] flex">
+                        <a 
+                            href="/docs" 
+                            target="_blank" 
+                            class="rounded-full text-center align-middle hover:bg-blue-800 bg-blue-700 text-[16px] mr-[20px] px-[28px] py-[14px] w-[230px]"
+                        >
+                            Documentation
+                        </a>
+
+                        <a 
+                            href="https://github.com/ucsjs" 
+                            target="_blank" 
+                            class="rounded-full text-center align-middle hover:border-blue-800 hover:text-blue-800 bg-black border-2 border-white text-[16px] mr-[20px] px-[28px] py-[14px] w-[230px]"
+                        >
+                            <i class="fa-brands fa-github mr-2"></i> Source code
+                        </a>
+                    </div>
+
+                    <div class="absolute bottom-6 right-0">
+                        <img src="/index-editor.png" alt="editor" />
+                    </div>
+                </div>
             </header>
+        </div>
+
+        <div class="flex max-w-screen-lg m-auto bg-white py-[100px] space-x-8">
+            <div class="w-1/3 text-center">
+                <i class="fa-solid fa-object-group text-8xl mb-8 text-neutral-300"></i>
+                <h2 class="text-[18px] uppercase text-neutral-500 font-bold mb-8">Drag n Drop</h2>
+                <h4 class="text-[16px]" style="line-height: 30px;">Visually edit pages, systems, apps by dragging and dropping components, edit properties simply and quickly.</h4>
+            </div>
+
+            <div class="w-1/3 text-center">
+                <i class="fa-solid fa-sitemap text-8xl mb-8 text-neutral-300"></i>
+                <h2 class="text-[18px] uppercase text-neutral-500 font-bold mb-8">Blueprints</h2>
+                <h4 class="text-[16px]" style="line-height: 30px;">Create complex flows through the Blueprints system, including database integrations, service triggers, scheduling, and much more.</h4>
+            </div>
+
+            <div class="w-1/3 text-center">
+                <i class="fa-solid fa-clock-rotate-left text-8xl mb-8 text-neutral-300"></i>
+                <h2 class="text-[18px] uppercase text-neutral-500 font-bold mb-8">Realtime</h2>
+                <h4 class="text-[16px]" style="line-height: 30px;">All changes are propagated in real time without the need to restart the application.</h4>
+            </div>
+        </div>
+
+        <div class="bg-black py-[100px] space-x-8 m-auto">
+            <div class="max-w-screen-lg m-auto text-center">
+                <h1 class="text-white m-auto font-bold text-[36px] mb-20">Live Preview</h1>
+
+                <div class="text-center items-center">
+                    <iframe src="https://stackblitz.com/edit/ucsjs?embed=1&amp;file=README.md&amp;hideNavigation=1" style="width:100%;height:600px;border:0;border-radius:4px;overflow:hidden; margin:auto" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin" data-gtm-yt-inspected-4="true"></iframe>
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-neutral-300 w-full h-40 pt-[44px] pb-[44px] text-neutral-600">
+            <div class="max-w-screen-xl flex">
+                <div class=" m-auto flex flex-col">
+                    <div class="font-[17px] text-neutral-800 font-bold flex flex-1">
+                        Join our Newsletter
+                    </div>
+                    <div>Subscribe to stay up to date with the latest UCS.js updates, features, and videos!</div>
+                </div>
+
+                <div class="justify-between flex relative">
+                    <input class="bg-white rounded-md p-1 pl-4 pr-10 border min-w-[300px] border-neutral-300 text-sm" placeholder="Email address..." />
+                
+                    <div class="absolute right-1 top-1.5">
+                        <button class="text-white bg-blue-700 px-4 py-2 rounded-md">
+                            <i class="fa-solid fa-paper-plane"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-white w-full h-36 pt-[44px] pb-[44px] text-neutral-600">
+            <div class="max-w-screen-lg text-center m-auto">
+                <a href="https://github.com/ucsjs" target="_blank" class="font-bold py-2 mx-4 text-2xl hover:text-neutral-800">
+                    <i class="fa-brands fa-github"></i>
+                </a>
+
+                <a href="https://www.linkedin.com/company/ucs-js" target="_blank" class="font-bold py-2 mx-4 text-2xl hover:text-neutral-800">
+                    <i class="fa-brands fa-linkedin"></i>
+                </a>
+
+                <a href="https://discord.gg/XtUH9sJP" target="_blank" class="font-bold py-2 mx-4 text-2xl hover:text-neutral-800">
+                    <i class="fa-brands fa-discord"></i>
+                </a>
+            </div>
+
+            <div class="max-w-screen-lg text-center m-auto mt-7 text-sm">
+                Copyright © 2022 MIT by André Ferreira
+            </div>
         </div>
     </body>
 </html>

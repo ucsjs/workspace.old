@@ -12,6 +12,8 @@ export class Blueprint {
     protected _inputs: Input<any>[] = [];
     protected _output: Output<any>[] = [];
 
+    constructor(){}
+
     setup(metadata: any){
         if(metadata){
             for(const key in metadata){

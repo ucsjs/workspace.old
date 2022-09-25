@@ -2010,6 +2010,11 @@
   dependencies:
     "@sinonjs/commons" "^1.7.0"
 
+"@stackblitz/sdk@^1.8.0":
+  version "1.8.0"
+  resolved "https://registry.yarnpkg.com/@stackblitz/sdk/-/sdk-1.8.0.tgz#9bd5f028ccfc1a921d66f914d1e7ea2761139c1e"
+  integrity sha512-hbS4CpQVF3bxJ+ZD8qu8lAjTZVLTPToLbMtgxbxUmp1AIgqm7i0gMFM1POBA8BqY84CT1A3z74gdCd1bsro7qA==
+
 "@sweet-js/cli@^3.0.13":
   version "3.0.13"
   resolved "https://registry.yarnpkg.com/@sweet-js/cli/-/cli-3.0.13.tgz#5bb1b9e15d9977cda045602c3268f32f89b6528e"

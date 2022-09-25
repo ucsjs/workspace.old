@@ -2,7 +2,7 @@
   <a href="https://github.com/ucsjs" target="blank"><img src="https://ucsjs.io/logo_invert.png" width="300" alt="UCS.js Logo" /></a>
 </p>
 
-<p align="center">UCS.js (@engine)</p>
+<p align="center">UCS.js (@regine)</p>
 
 <p align="center">
     <a href="https://www.npmjs.com/~ucsjs" target="_blank"><img src="https://img.shields.io/npm/v/@ucsjs/engine.svg" alt="NPM Version" /></a>
@@ -10,14 +10,15 @@
     <a href="https://discord.com/invite/XtUH9sJP" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
 </p>
 
+## Documentation
+
+https://ucsjs.io/docs
+
 ## Instalation
 
 ```
-$ yarn add @ucsjs/engine
-```
-
-or
-
-```
-$ run i @ucsjs/engine
+$ git clone https://github.com/ucsjs/workspace
+$ cd workspace
+$ yarn || npm install
+$ yarn dev || npm run dev
 ```
