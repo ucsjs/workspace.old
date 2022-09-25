@@ -36,7 +36,7 @@ export class MongoDeleteBlueprint extends Blueprint{
         });
 
         this.output("result", Type.JSON, null);
-        this.output("error", Type.Any, null);
+        this.output("error", Type.String, null);
     }
 
     public async run(scope){
@@ -55,7 +55,7 @@ export class MongoDeleteBlueprint extends Blueprint{
             }
             catch(e){
                 Logger.error(e, "MongoDeleteBlueprint");
-                scope.next("error", e);
+                scope.next("error", e.message);
             }
         }
     }

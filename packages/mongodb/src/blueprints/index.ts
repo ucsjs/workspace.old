@@ -5,3 +5,5 @@ export * from './mongoFind.blueprint';
 export * from './mongoInsert.blueprint';
 export * from './mongoUpdate.blueprint';
 export * from './mongoDelete.blueprint';
+export * from './mongoExists.blueprint';
+export * from './mongoCount.blueprint';

@@ -6,17 +6,18 @@ export class DbConnectionBlueprint extends Blueprint{
     //Metadata
     private __namespace = "Conn";
     private __group = "Database";
-    private __headerColor = "#002a7f";
+    private __headerColor = "#d100c6";
     private __headerIcon = "fa-solid fa-database";
-    private __TypeDatabase_Connection: object = { color: "#419343" };
+    private __TypeDatabase_Connection: object = { color: "#6b0099" };
  
     public _type: string = "mysql";
     public _host: string = "localhost";
     public _port: number = 27017;
-    public _ignorePort: boolean = false;
     public _user: string = "";
     public _pass: string = "";
     public _db: string = "";
+    public _synchronize: boolean = true;
+    public _logging: boolean = true;
 
     constructor(metadata?: any){
         super();

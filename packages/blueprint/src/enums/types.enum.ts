@@ -8,5 +8,7 @@ export enum Type {
     Any,
     JSON,
     Date,
-    Boolean
+    Boolean,
+    Array,
+    Object
 }

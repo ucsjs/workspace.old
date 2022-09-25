@@ -3,7 +3,7 @@ import { Blueprint, Type } from "@ucsjs/blueprint";
 
 export class StringToNumberBlueprint extends Blueprint{
     //Metadata
-    private __namespace = "String To Number";
+    private __namespace = "Str To Int";
     private __group = "Converters";
 
     constructor(){

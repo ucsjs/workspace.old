@@ -37,7 +37,7 @@ export class MongoCountBlueprint extends Blueprint{
         });
 
         this.output("result", Type.Int, null);
-        this.output("error", Type.Any, null);
+        this.output("error", Type.String, null);
     }
 
     public async run(scope){
@@ -50,7 +50,7 @@ export class MongoCountBlueprint extends Blueprint{
             }
             catch(e){
                 Logger.error(e, "MongoCountBlueprint");
-                scope.next("error", e);
+                scope.next("error", e.message);
             }
         }
     }

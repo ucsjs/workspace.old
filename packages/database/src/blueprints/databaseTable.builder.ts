@@ -20,6 +20,7 @@ exports.default = async ($metadata) => {
                 const index = $item.index || false;
                 const required = $item.required || false;
                 const unique = $item.unique || false;
+                const nullable = $item.nullable || false;
                 let typeInterface= "";
     
                 switch(type){
@@ -38,10 +39,10 @@ exports.default = async ($metadata) => {
     
                 if(primary)
                     fields += `\n\t@PrimaryGeneratedColumn()
-        ${$item.name}: ${typeInterface};\n`;     
+    ${$item.name}: ${typeInterface};\n`;     
                 else
-                    fields += `\n\t@Column({ required: ${required}, index:${index}, unique: ${unique} })
-        ${$item.name}: ${typeInterface};\n`;            
+                    fields += `\n\t@Column({ unique: ${unique}, nullable: ${nullable} })
+    ${$item.name}: ${typeInterface};\n`;            
             }
         }
 
@@ -50,10 +51,10 @@ exports.default = async ($metadata) => {
                 `import { Entity, PrimaryGeneratedColumn, Column } from "typeorm";`
             ],
             constructors: [{
-                injection: `${collectionClassName}Table`
+                injection: `${collectionClassName}Entity`
             }],
-            extras: [`@Entity()
-export class ${collectionClassName}Entity {${fields}};`]
+            extras: [`\n\n@Entity()
+export class ${collectionClassName}Entity {${fields}};\n\n`]
         };
     }   
 
