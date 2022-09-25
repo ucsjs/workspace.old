@@ -16,7 +16,8 @@ import * as buffer from 'vinyl-buffer';
 const packages = {
 	blueprint: ts.createProject('packages/blueprint/tsconfig.json'),
 	mongodb: ts.createProject('packages/mongodb/tsconfig.json'),
-	engine: ts.createProject('packages/engine/tsconfig.json')
+	engine: ts.createProject('packages/engine/tsconfig.json'),
+	database: ts.createProject('packages/database/tsconfig.json')
 };
 
 const packagesBrowserify = {

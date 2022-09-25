@@ -23,20 +23,32 @@ exports.default = async ($metadata, $blueprint, $itemKey, $moduleInjection, $sta
         ];
         
         $settings.port = parseInt($settings.port);
+        let $dbConfig : any = {};
+    
+        if(!localdatabase.includes(type)){
+            $dbConfig = {
+                type,
+                host: $settings.host,
+                port: $settings.port,
+                database: $settings.db
+            };
+
+            if($settings.user)
+                $dbConfig.username = $settings.user;
+
+            if($settings.pass)
+                $dbConfig.password = $settings.pass;
+        }
+        else{
+            $dbConfig = { type, database: $settings.db };
+        }
 
         return {
             imports: [
                 `import { DataSource } from "typeorm";`,
                 `\nlet ${$settings.connectionName} = null;
 try{ 
-    const dataSource${$settings.connectionName} = new DataSource(${JSON.stringify({
-        type,
-        host: (!localdatabase.includes(type)) ? $settings.host : null,
-        port: (!localdatabase.includes(type)) ? $settings.port : null,
-        database: $settings.db,
-        username: (!localdatabase.includes(type)) ? $settings.user : null,
-        password: (!localdatabase.includes(type)) ? $settings.pass : null,
-    })}); 
+    const dataSource${$settings.connectionName} = new DataSource(${JSON.stringify($dbConfig)}); 
 
     dataSource${$settings.connectionName}.initialize().then(async (dataSource) => {
         ${$settings.connectionName} = dataSource;

@@ -46,6 +46,7 @@
     "@nestjs/mongoose": "^9.2.0",
     "@nestjs/platform-express": "^8.0.0",
     "@nestjs/schedule": "^2.1.0",
+    "@nestjs/swagger": "^6.1.2",
     "@nestjs/websockets": "^9.0.11",
     "@stackblitz/sdk": "^1.8.0",
     "@ucsjs/blueprint": "^0.0.37",

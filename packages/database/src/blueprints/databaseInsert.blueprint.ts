@@ -11,19 +11,11 @@ export class DatabaseInsertBlueprint extends Blueprint{
     private __headerIcon = "fa-solid fa-database";
     private __TypeDatabase_Table: object = { color: "#750073" };
 
-    public _limit: number = 10;
-    public _offset: number = 0;
-    public _groupBy: string = "";
-
     private state = { table: null, document: null };
 
     constructor(metadata?: any){
         super();
-        this.setup(metadata);
-
-        if(metadata && metadata.query)
-            this.state["query"] = metadata.query;
-        
+      
         this.input("schema", TypeDatabase.Table, null, async (table: Model<any>) => {
             if(table){
                 Logger.log(`Recive table`, "DatabaseInsertBlueprint");
