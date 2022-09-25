@@ -86,7 +86,9 @@ import { Blueprint, Flow } from "@ucsjs/blueprint";\n`;
             scriptText += `\t}\n`;
         }
 
-        scriptText += `}\n\n`;
+        scriptText += `}
+
+export default ${this._namespace};\n\n`;
 
         return scriptText;
     }
