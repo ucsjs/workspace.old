@@ -23,7 +23,7 @@ export class Blueprint {
         }
     }
 
-    input(key: string, type: any, startValue: any, next?){
+    input(key: string, type: any, startValue: any = null, next?){
         if(!this._inputs.find(input => input.key === key)){
             const subject = new BehaviorSubject(startValue);
 
@@ -39,7 +39,7 @@ export class Blueprint {
         }
     }
 
-    output(key: string, type: any, startValue: any, next?){
+    output(key: string, type: any, startValue: any = null, next?){
         if(!this._output.find(output => output.key === key)){
             const subject = new BehaviorSubject(startValue);
 
