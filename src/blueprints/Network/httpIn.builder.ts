@@ -87,9 +87,9 @@ export class ${$blueprint}Controller {
 
         return {
             extras: [$module],
-            imports: [
+            imports: [                
+                `import { Request, Response } from "express";`,
                 `import { Controller, Req, Res, Get, Post, Put, Delete, Patch } from "@nestjs/common";`,
-                `import { Request, Response } from "express";`
             ],
             controllers: [`${$blueprint}Controller`]
         };

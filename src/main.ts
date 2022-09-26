@@ -38,7 +38,9 @@ async function bootstrap() {
 			const { LazyModule } = await import(filename);
 			await lazyModuleLoader.load(() => LazyModule);
 		}
-		catch(err){}
+		catch(err){
+			console.log(err);
+		}
 	}
 
 	app.useStaticAssets(path.join(__dirname, '..', 'public'));

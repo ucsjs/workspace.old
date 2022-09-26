@@ -30,6 +30,17 @@ import { Blueprint, Flow } from "@ucsjs/blueprint";\n`;
 
         scriptText += `\nexport class ${this._namespace} extends Blueprint {\n`;
 
+        if(this._metadata.metadata){
+            for(let key in this._metadata.metadata){
+                switch(key){
+                    case "namespace": scriptText += `private __namespace = "${this._metadata.metadata[key]}";`; break;
+                    case "group": scriptText += `private __group = "${this._metadata.metadata[key]}";`; break;
+                    case "headerColor": scriptText += `private __headerColor = "${this._metadata.metadata[key].hex}";`; break;
+                    case "headerIcon": scriptText += `private __headerIcon = "${this._metadata.metadata[key]}";`; break;
+                }
+            }
+        }
+
         if(this._metadata.items){
             scriptText += `\texec(args?: any){\n`;
             scriptText += `\t\tconst subject = new Subject<any>();\n\n`;
