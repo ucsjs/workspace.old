@@ -10,7 +10,8 @@ export class BlueprintsController {
 		return await this.blueprintsService.getBlueprints([
 			'./packages/**/*.blueprint.ts',
 			'./src/blueprints/**/*.blueprint.ts',
-			'./.metadata/blueprints/**/*.blueprint.ts'
+			'./.metadata/blueprints/**/*.blueprint.ts',
+			'./src/workspace/blueprints/**/*.blueprint.ts'
 		]);
 	}
 }
