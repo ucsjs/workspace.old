@@ -10,6 +10,11 @@ export class FileController {
 		return await this.fileService.getFiles(path, onlyDir, onlyFiles);
 	}
 
+	@Get("open")
+	async openFile(@Query("filename") filename: string){
+		return await this.fileService.openFile(filename);
+	}
+
 	@Get("stream")
 	async stream(@Query("filename") filename: string) {
 		const file = this.fileService.steamFile(filename);

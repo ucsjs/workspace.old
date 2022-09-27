@@ -33,9 +33,15 @@ export class ParserService {
             };
 
             for(let key in component.outputs){
-                if(component.outputs[key].type.includes("Type."))
+                if(
+                    component.outputs[key] && 
+                    typeof component.outputs[key].type == "string" && 
+                    typeof component.outputs[key].type?.includes == "function" &&
+                    component.outputs[key].type?.includes("Type.")
+                ) {
                     component.outputs[key].type = component.outputs[key].type.replace("Type.", "");
-
+                }
+                
                 component.outputs[key].label = this.fixedLabel(component.outputs.name);
                 component.outputs[key].namespace = `${component.namespace}::${component.outputs[key].name}`;
                 component.outputs[key].id = crypto
@@ -49,9 +55,15 @@ export class ParserService {
             });
 
             for(let key in component.inputs){
-                if(component.inputs[key].type.includes("Type."))
+                if(
+                    component.inputs[key] &&
+                    typeof component.inputs[key].type == "string" && 
+                    typeof component.inputs[key].type?.includes == "function" &&
+                    component.inputs[key].type?.includes("Type.")
+                ) {
                     component.inputs[key].type = component.inputs[key].type.replace("Type.", "");
-
+                }
+                
                 component.inputs[key].label = this.fixedLabel(component.inputs[key].name);
                 component.inputs[key].namespace = `${component.namespace}::${component.inputs[key].name}`;
                 component.inputs[key].id = crypto
@@ -191,7 +203,7 @@ export class ParserService {
             }
 
             for(let keyMetadata in metadata){
-                if(keyMetadata == "headerIcon" && metadata[keyMetadata].includes("/")){
+                if(keyMetadata == "headerIcon" && typeof metadata[keyMetadata] == "string" && metadata[keyMetadata].includes("/")){
                     try{
                         metadata[keyMetadata] = imageToUri(path.resolve(metadata[keyMetadata]));
                     }
@@ -216,6 +228,6 @@ export class ParserService {
 	}
 
     fixedLabel(value){
-        return (value) ? this.uppercaseFirstLetter(value?.replace(/([A-Z])/g, " $1")) : '';
+        return (typeof value == "string") ? this.uppercaseFirstLetter(value?.replace(/([A-Z])/g, " $1")) : '';
     }
 }

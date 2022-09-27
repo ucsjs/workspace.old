@@ -83,6 +83,32 @@ export class FileService {
 		) ? fs.createReadStream(`${filename.replace(basename, `.${basename.replace(".ts", "")}`)}.meta`) : fs.createReadStream(filename);
 	}
 
+	openFile(filename){
+		const info = fs.lstatSync(filename);
+		const basename = path.basename(filename);
+		let language = info.isFile() ? languageDetect.filename(filename)?.toLowerCase() : null;
+
+		switch(path.extname(filename).replace(".", "")){
+			case "ts": language = "typescript"; break;
+		}
+
+		return {
+			name: basename.replace(/\//s, ""),
+			path: filename,
+			filename: filename,
+			isDirectory: info.isDirectory(),
+			isFile: info.isFile(),
+			ext: path.extname(filename).replace(".", ""),
+			mime: mime.lookup(filename),				
+			sha256: crypto.createHash('sha256').update(JSON.stringify(info)).digest('hex'),
+			pathHash: crypto.createHash('sha1').update(filename).digest('hex'),
+			hasMetadata: fs.existsSync(`${filename.replace(basename, `.${basename.replace(".ts", "")}`)}.meta`),
+			language,
+			content: fs.readFileSync(filename, "utf8"),
+			lastModified: info.mtime
+		}
+	}
+
 	async createFile(pathname: string, filename: string){
 		const filenameFull = path.resolve(`${pathname}/${filename}`);
 
