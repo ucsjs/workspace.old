@@ -21,6 +21,6 @@ export class TextVisual extends VisualObject {
     }
 
     public content(){
-        return "{{component.Content?.content}}";
+        return "<div :style='component.style'>{{component.Content?.content}}</div>";
     }
 }

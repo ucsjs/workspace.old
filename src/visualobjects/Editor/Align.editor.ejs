@@ -3,7 +3,7 @@
         <button 
             type="button" 
             :class="[
-                (state === 'left') ? 'bg-neutral-900' :'bg-neutral-800', 
+                ((component?.value || 'left') === 'left') ? 'bg-neutral-900' :'bg-neutral-800', 
                 'relative inline-flex items-center border border-black  px-2 text-sm font-medium text-neutral-100 hover:bg-neutral-700 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500'
             ]"
             :title="$t('Align Left')"
@@ -14,7 +14,7 @@
         <button 
             type="button" 
             :class="[
-                (state === 'center') ? 'bg-neutral-900' :'bg-neutral-800', 
+                ((component?.value || 'left') === 'center') ? 'bg-neutral-900' :'bg-neutral-800', 
                 'relative -ml-px inline-flex items-center border border-black px-2 text-sm font-medium text-neutral-100 hover:bg-neutral-700 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500'
             ]"
             :title="$t('Align Center')"
@@ -25,7 +25,7 @@
         <button 
             type="button" 
             :class="[
-                (state === 'right') ? 'bg-neutral-900' :'bg-neutral-800', 
+                ((component?.value || 'left') === 'right') ? 'bg-neutral-900' :'bg-neutral-800', 
                 'relative -ml-px inline-flex items-center border border-black px-2 text-sm font-medium text-neutral-100 hover:bg-neutral-700 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500'
             ]"
             :title="$t('Align Right')"
@@ -36,7 +36,7 @@
         <button 
             type="button" 
             :class="[
-                (state === 'justify') ? 'bg-neutral-900' :'bg-neutral-800', 
+                ((component?.value || 'left') === 'justify') ? 'bg-neutral-900' :'bg-neutral-800', 
                 'relative -ml-px inline-flex items-center border border-black px-2 text-sm font-medium text-neutral-100 hover:bg-neutral-700 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500'
             ]"
             :title="$t('Align Justify')"
@@ -49,10 +49,6 @@
 
 <script>
 export default {
-    data(){
-        return {
-            state: 'left'
-        };
-    },
+    props: ["component"]
 }
 </script>
