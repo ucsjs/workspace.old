@@ -38,6 +38,7 @@ import { Blueprint, Flow, Type } from "@ucsjs/blueprint";\n`;
         if(this._metadata.metadata){
             for(let key in this._metadata.metadata){
                 switch(key){
+                    case "importable": scriptText += `\tprivate __importable = ${this._metadata.metadata[key]};\n`; break;
                     case "namespace": scriptText += `\tprivate __namespace = "${this._metadata.metadata[key]}";\n`; break;
                     case "group": scriptText += `\tprivate __group = "${this._metadata.metadata[key]}";\n`; break;
                     case "headerColor": scriptText += `\tprivate __headerColor = "${this._metadata.metadata[key].hex}";\n`; break;

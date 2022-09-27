@@ -17,7 +17,12 @@
   "publishConfig": {
     "access": "public"
   },
-  "keywords": ["ucs", "ucsjs", "visual editor", "blueprints"],
+  "keywords": [
+    "ucs",
+    "ucsjs",
+    "visual editor",
+    "blueprints"
+  ],
   "scripts": {
     "prebuild": "rimraf dist",
     "build:packages": "gulp build --dist node_modules/@ucsjs && gulp browserify --dist node_modules/@ucsjs",
@@ -50,9 +55,10 @@
     "@nestjs/swagger": "^6.1.2",
     "@nestjs/websockets": "^9.0.11",
     "@stackblitz/sdk": "^1.8.0",
-    "@ucsjs/blueprint": "^0.0.39",
-    "@ucsjs/engine": "^0.0.39",
-    "@ucsjs/mongodb": "^0.0.39",
+    "@ucsjs/blueprint": "^0.0.40",
+    "@ucsjs/database": "^0.0.40",
+    "@ucsjs/engine": "^0.0.40",
+    "@ucsjs/mongodb": "^0.0.40",
     "argv": "^0.0.2",
     "compression": "^1.7.4",
     "cookie-parser": "^1.4.6",
