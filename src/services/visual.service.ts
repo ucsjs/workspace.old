@@ -1,7 +1,6 @@
 import * as path from "path";
 import * as fs from "fs";
 import * as fg from "fast-glob";
-import * as crypto from "crypto";
 import * as ejs from "ejs";
 import { Injectable } from '@nestjs/common';
 
@@ -400,6 +399,7 @@ ${await this.build(metadata.hierarchy, 2, dependenciesIndex)}
     async build(hierarchy, tabsCount = 2, dependenciesIndex = {}){
         let result = "";
         let tabs = "";
+        const pixelAttr = ["width", "height", "top", "left", "right", "bottom", "margin-top", "margin-left", "margin-right", "margin-bottom", "padding-top", "padding-left", "padding-right", "padding-bottom", "border-top-width", "border-left-width", "border-right-width", "border-bottom-width", "font-size"];
 
         for(let i = 0; i < tabsCount; i++)
             tabs += "\t";
@@ -423,8 +423,12 @@ ${await this.build(metadata.hierarchy, 2, dependenciesIndex)}
                                     if(componentData[keyComponent][property.name].src)
                                         styles[property.changeStyle?.style] = `url(${componentData[keyComponent][property.name].src})`;
                                 }                                      
-                                else if(typeof componentData[keyComponent][property.name] == "number")
+                                else if(
+                                    typeof componentData[keyComponent][property.name] == "number" ||
+                                    (pixelAttr.includes(property.changeStyle?.style) && !componentData[keyComponent][property.name].includes("px"))
+                                ) {
                                     styles[property.changeStyle?.style] = `${componentData[keyComponent][property.name]}px`;
+                                }
                                 else
                                     styles[property.changeStyle?.style] = componentData[keyComponent][property.name];
                             }

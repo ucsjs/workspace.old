@@ -212,8 +212,8 @@
                         ]
                     },
                     "value": {
-                        "display": "",
-                        "position": "static",
+                        "display": "flex",
+                        "position": "null",
                         "top": 7,
                         "left": 4,
                         "zIndex": 1,
@@ -222,7 +222,7 @@
                         "scale": 1,
                         "rotate": 0
                     },
-                    "open": false
+                    "open": true
                 },
                 {
                     "component": "Background",
@@ -458,8 +458,8 @@
             "lockBox": true,
             "Class": {},
             "Transform": {
-                "display": "",
-                "position": "static",
+                "display": "flex",
+                "position": "null",
                 "top": 7,
                 "left": 4,
                 "zIndex": 1,
@@ -701,7 +701,7 @@
                         ]
                     },
                     "value": {
-                        "display": "",
+                        "display": "flex",
                         "position": "absolute",
                         "top": "64",
                         "left": "0",
@@ -711,7 +711,7 @@
                         "scale": 1,
                         "rotate": 0
                     },
-                    "open": false
+                    "open": true
                 },
                 {
                     "component": "Image",
@@ -803,7 +803,7 @@
             "lockBox": true,
             "Class": {},
             "Transform": {
-                "display": "",
+                "display": "flex",
                 "position": "absolute",
                 "top": "64",
                 "left": "0",
@@ -826,7 +826,7 @@
         {
             "0": false,
             "1": true,
-            "id": "TextVisual_10",
+            "id": "TextVisual_12",
             "namespace": "TextVisual",
             "extends": "VisualObject",
             "sign": "1eb1988979f9a19db35d32ec83a485df9d485c07",
@@ -1027,15 +1027,15 @@
                     "value": {
                         "display": "",
                         "position": "absolute",
-                        "top": 295,
-                        "left": 25,
+                        "top": 356,
+                        "left": 73,
                         "zIndex": 1,
-                        "width": 240,
-                        "height": 240,
+                        "width": "240",
+                        "height": "40",
                         "scale": 1,
                         "rotate": 0
                     },
-                    "open": true
+                    "open": false
                 },
                 {
                     "component": "Background",
@@ -1236,7 +1236,7 @@
                             "hex": "#FFFFFF"
                         }
                     },
-                    "open": true
+                    "open": false
                 },
                 {
                     "component": "Font",
@@ -1416,7 +1416,7 @@
                     "component": "Content",
                     "fixed": true,
                     "icon": "fa-solid fa-align-justify",
-                    "sign": "56e51edb5ec90901bd07785a2c9efbe1458400d9",
+                    "sign": "359daf1c4bf0e49c7baf466f62ca4f5a88786fb4",
                     "properties": [
                         {
                             "name": "align",
@@ -1519,7 +1519,7 @@
                         "importable": false
                     },
                     "value": {
-                        "align": "left",
+                        "align": "center",
                         "alignLast": "",
                         "decorationColor": {
                             "r": 255,
@@ -1529,7 +1529,7 @@
                             "hex": "#FFFFFF"
                         },
                         "decorationLine": "",
-                        "content": "te"
+                        "content": "teste"
                     },
                     "open": true
                 }
@@ -1538,8 +1538,8 @@
             "editor": {
                 "Content": {
                     "align": {
-                        "content": "\r\n    <span class=\"isolate inline-flex shadow-sm w-full\">\r\n        <button \r\n            type=\"button\" \r\n            :class=\"[\r\n                (state === 'left') ? 'bg-neutral-900' :'bg-neutral-800', \r\n                'relative inline-flex items-center border border-black  px-2 text-sm font-medium text-neutral-100 hover:bg-neutral-700 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500'\r\n            ]\"\r\n            :title=\"$t('Align Left')\"\r\n            @click=\"() => $emit('change', 'left')\"\r\n        >\r\n            <client-only><font-awesome-icon icon=\"fa-solid fa-align-left\" /></client-only>\r\n        </button>\r\n        <button \r\n            type=\"button\" \r\n            :class=\"[\r\n                (state === 'center') ? 'bg-neutral-900' :'bg-neutral-800', \r\n                'relative -ml-px inline-flex items-center border border-black px-2 text-sm font-medium text-neutral-100 hover:bg-neutral-700 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500'\r\n            ]\"\r\n            :title=\"$t('Align Center')\"\r\n            @click=\"() => $emit('change', 'center')\"\r\n        >\r\n            <client-only><font-awesome-icon icon=\"fa-solid fa-align-center\" /></client-only>\r\n        </button>\r\n        <button \r\n            type=\"button\" \r\n            :class=\"[\r\n                (state === 'right') ? 'bg-neutral-900' :'bg-neutral-800', \r\n                'relative -ml-px inline-flex items-center border border-black px-2 text-sm font-medium text-neutral-100 hover:bg-neutral-700 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500'\r\n            ]\"\r\n            :title=\"$t('Align Right')\"\r\n            @click=\"() => $emit('change', 'right')\"\r\n        >\r\n            <client-only><font-awesome-icon icon=\"fa-solid fa-align-right\" /></client-only>\r\n        </button>\r\n        <button \r\n            type=\"button\" \r\n            :class=\"[\r\n                (state === 'justify') ? 'bg-neutral-900' :'bg-neutral-800', \r\n                'relative -ml-px inline-flex items-center border border-black px-2 text-sm font-medium text-neutral-100 hover:bg-neutral-700 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500'\r\n            ]\"\r\n            :title=\"$t('Align Justify')\"\r\n            @click=\"() => $emit('change', 'justify')\"\r\n        >\r\n            <client-only><font-awesome-icon icon=\"fa-solid fa-align-justify\" /></client-only>\r\n        </button>\r\n    </span>\r\n",
-                        "script": "{\r\n    data(){\r\n        return {\r\n            state: 'left'\r\n        };\r\n    },\r\n}\r\n"
+                        "content": "\r\n    <span class=\"isolate inline-flex shadow-sm w-full\">\r\n        <button \r\n            type=\"button\" \r\n            :class=\"[\r\n                ((component?.value || 'left') === 'left') ? 'bg-neutral-900' :'bg-neutral-800', \r\n                'relative inline-flex items-center border border-black  px-2 text-sm font-medium text-neutral-100 hover:bg-neutral-700 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500'\r\n            ]\"\r\n            :title=\"$t('Align Left')\"\r\n            @click=\"() => $emit('change', 'left')\"\r\n        >\r\n            <client-only><font-awesome-icon icon=\"fa-solid fa-align-left\" /></client-only>\r\n        </button>\r\n        <button \r\n            type=\"button\" \r\n            :class=\"[\r\n                ((component?.value || 'left') === 'center') ? 'bg-neutral-900' :'bg-neutral-800', \r\n                'relative -ml-px inline-flex items-center border border-black px-2 text-sm font-medium text-neutral-100 hover:bg-neutral-700 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500'\r\n            ]\"\r\n            :title=\"$t('Align Center')\"\r\n            @click=\"() => $emit('change', 'center')\"\r\n        >\r\n            <client-only><font-awesome-icon icon=\"fa-solid fa-align-center\" /></client-only>\r\n        </button>\r\n        <button \r\n            type=\"button\" \r\n            :class=\"[\r\n                ((component?.value || 'left') === 'right') ? 'bg-neutral-900' :'bg-neutral-800', \r\n                'relative -ml-px inline-flex items-center border border-black px-2 text-sm font-medium text-neutral-100 hover:bg-neutral-700 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500'\r\n            ]\"\r\n            :title=\"$t('Align Right')\"\r\n            @click=\"() => $emit('change', 'right')\"\r\n        >\r\n            <client-only><font-awesome-icon icon=\"fa-solid fa-align-right\" /></client-only>\r\n        </button>\r\n        <button \r\n            type=\"button\" \r\n            :class=\"[\r\n                ((component?.value || 'left') === 'justify') ? 'bg-neutral-900' :'bg-neutral-800', \r\n                'relative -ml-px inline-flex items-center border border-black px-2 text-sm font-medium text-neutral-100 hover:bg-neutral-700 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500'\r\n            ]\"\r\n            :title=\"$t('Align Justify')\"\r\n            @click=\"() => $emit('change', 'justify')\"\r\n        >\r\n            <client-only><font-awesome-icon icon=\"fa-solid fa-align-justify\" /></client-only>\r\n        </button>\r\n    </span>\r\n",
+                        "script": "{\r\n    props: [\"component\"]\r\n}\r\n"
                     }
                 }
             },
@@ -1557,11 +1557,11 @@
                 }
             ],
             "position": {
-                "left": 64.890625,
-                "top": 310.5
+                "left": 42.890625,
+                "top": 277.5
             },
             "hierarchy": [],
-            "label": "TextVisual_10",
+            "label": "TextVisual_12",
             "visibility": true,
             "static": false,
             "lockBox": true,
@@ -1569,11 +1569,11 @@
             "Transform": {
                 "display": "",
                 "position": "absolute",
-                "top": 295,
-                "left": 25,
+                "top": 356,
+                "left": 73,
                 "zIndex": 1,
-                "width": 240,
-                "height": 240,
+                "width": "240",
+                "height": "40",
                 "scale": 1,
                 "rotate": 0
             },
@@ -1601,7 +1601,7 @@
                 }
             },
             "Content": {
-                "align": "left",
+                "align": "center",
                 "alignLast": "",
                 "decorationColor": {
                     "r": 255,
@@ -1611,9 +1611,9 @@
                     "hex": "#FFFFFF"
                 },
                 "decorationLine": "",
-                "content": "te"
+                "content": "teste"
             }
         }
     ],
-    "componentIndex": 10
+    "componentIndex": 12
 }
