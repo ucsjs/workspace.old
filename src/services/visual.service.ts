@@ -427,7 +427,7 @@ ${await this.build(metadata.hierarchy, 2, dependenciesIndex)}
                                     typeof componentData[keyComponent][property.name] == "number" ||
                                     (pixelAttr.includes(property.changeStyle?.style) && !componentData[keyComponent][property.name].includes("px"))
                                 ) {
-                                    styles[property.changeStyle?.style] = `${componentData[keyComponent][property.name]}px`;
+                                    styles[property.changeStyle?.style] = this.returnValueWithSuffix(property.name, componentData[keyComponent]);
                                 }
                                 else
                                     styles[property.changeStyle?.style] = componentData[keyComponent][property.name];
@@ -435,11 +435,18 @@ ${await this.build(metadata.hierarchy, 2, dependenciesIndex)}
                         }
                     }
                 }   
+
+                let styleRemoveNulls = {};
+
+                for(let key in styles){
+                    if(styles[key])
+                        styleRemoveNulls[key] = styles[key]
+                }
                 
                 const template = ejs.render(raw, {
                     id: component.id,
                     slot: subComponents,
-                    Style: (styles) ? styles : [],
+                    Style: (styleRemoveNulls) ? styleRemoveNulls : {},
                     ...componentData   
                 });
 
@@ -463,5 +470,17 @@ ${await this.build(metadata.hierarchy, 2, dependenciesIndex)}
             result[component.components[key].component] = component.components[key].value;
         
         return result;
+    }
+
+    returnValueWithSuffix(namespace, data){
+        const sufix = data[`${namespace}Sufix`] || 'px';
+
+        switch(sufix){
+            case "px":
+            case "em":
+            case "%":
+            case "rem": return `${data[namespace]}${sufix}`;
+            default : return sufix;
+        }
     }
 }
