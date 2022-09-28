@@ -9,6 +9,8 @@ export class VisualObject extends Component {
     protected __resizable = false;
     protected __moveble = false;
     protected __opened = false;
+    protected __removeClass = false;
+    protected __removeTransform = false;
 
     //Private scope
     protected scope = {

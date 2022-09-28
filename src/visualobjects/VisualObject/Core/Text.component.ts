@@ -9,16 +9,17 @@ export class TextVisual extends BoxVisual {
     protected override __icon = "fa-solid fa-align-center";
 
     public _font: Font;
-    public _text: Content;
+    public _content: Content;
     
     constructor($argv){
         super($argv);
 
         this._transform._width = 240;
         this._transform._height = 40;
+        this._content._text = { content: "Text..." };
     }
 
     public content(){
-        return "<div :style='component.style'>{{component.Content?.text}}</div>";
+        return "<div :style='component.style'>{{ component.Content?.text.content }}</div>";
     }
 }

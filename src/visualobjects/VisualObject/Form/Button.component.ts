@@ -27,10 +27,10 @@ export class ButtonVisual extends BoxVisual {
         this._background._color = { a: 1, b: 229, g: 70, r: 79, hex: "#4f46e5" };
         this._font._color = { a: 1, b: 255, g: 255, r: 255, hex: "#ffffff" };
         this._content._align = "center";
-        this._content._text.content = "Button";
+        this._content._text = { content: "Button" };
     }
 
     public content(){
-        return "<button :type='component.Button.type' :style='component.style'><font-awesome-icon :icon='component.Button?.icon.icon' v-if='component.Button?.icon.icon' style='margin-right: 5px' />{{ component.Content?.text }}</button>";
+        return "<button :type='component.Button.type' :style='component.style'><font-awesome-icon :icon='component.Button?.icon.icon' v-if='component.Button?.icon.icon' style='margin-right: 5px' />{{ component.Content?.text.content }}</button>";
     }
 }

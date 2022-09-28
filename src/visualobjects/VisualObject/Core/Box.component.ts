@@ -18,18 +18,6 @@ export class BoxVisual extends VisualObject {
     }
 
     public content(){
-        return `<div><div v-if="component.hierarchy.length > 0">
-    <visual-component 
-        v-for="(subcomponent, key) in component.hierarchy" 
-        :key="key" 
-        :componentIndex="key"
-        :settings="subcomponent"
-        :editorOffset="editorOffset"
-        :selectedComponent="selectedComponent"
-        :tab="tab"
-        @selectItem="$emit('selectItem', subcomponent?.id)"
-        @saveState="$emit('saveState')"
-    ></visual-component>  
-</div></div>`;
+        return `<div><slot></slot></div>`;
     }
 }
