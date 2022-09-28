@@ -1,9 +1,8 @@
-import { VisualObject } from "../../Components/VisualObject.component";
+import { BoxVisual } from "../Core/Box.component";
 import { Font } from "../../Components/Font.component";
 import { Input } from "../../Components/Input.component";
-import { Background } from "../../Components/Background.component";
 
-export class InputVisual extends VisualObject {
+export class InputVisual extends BoxVisual {
     //Matadata
     protected override __namespace = "Input";
     protected override __group = "Form";
@@ -11,7 +10,6 @@ export class InputVisual extends VisualObject {
     protected override __resizable = true;
     protected override __moveble = true;
 
-    public _background: Background;
     public _font: Font;
     public _input: Input;
     

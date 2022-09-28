@@ -49,6 +49,7 @@ async function bootstrap() {
 
 	app.useWebSocketAdapter(new WsAdapter(app));
 	app.enableCors();
+	app.use(express.static("node_modules"));
 	app.use(express.static("public"));
 	app.use(compression());
 	app.use(cookieParser());

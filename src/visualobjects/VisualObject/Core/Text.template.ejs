@@ -1,9 +1,3 @@
-<div ref="<%= id %>" class="text<%= id %>">
-    <%= Content.content %>
+<div ref="<%= id %>" class="<%= styleId %>">
+    <span ref="Content_content"><%= Content.text %></span>
 </div>
-
-<style>
-.text<%= id %> {<% if(Style) { for(let keyStyle in Style){ %>
-    <%= keyStyle %>: <%= Style[keyStyle] %>; <% } } %>
-}
-</style>

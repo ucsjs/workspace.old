@@ -1,6 +1,6 @@
 <input 
     ref="input<%= id %>"
-    class="input<%= id %>"
+    class="<%= styleId %>"
     type="<%= Input.type %>" 
     value="<%= Input.value %>"
     <% if(Input.name) { %>name="<%= Input.name %>"<% } %>
@@ -10,9 +10,3 @@
     <% if(Input.readonly) { %>readonly="<%= Input.readonly %>"<% } %>
     <% if(Input.required) { %>required="<%= Input.required %>"<% } %>
 />
-
-<style>
-.input<%= id %> {<% if(Style) { for(let keyStyle in Style){ %>
-    <%= keyStyle %>: <%= Style[keyStyle] %>; <% } } %>
-}
-</style>

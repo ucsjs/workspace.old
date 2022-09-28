@@ -2,6 +2,8 @@ import * as path from "path";
 import * as fs from "fs";
 import * as fg from "fast-glob";
 import * as ejs from "ejs";
+import * as tsc from 'node-typescript-compiler';
+import { jsmin } from "jsmin"; 
 import { Injectable } from '@nestjs/common';
 
 import { ParserService } from "./parser.service";
@@ -44,13 +46,13 @@ export class VisualService extends ParserService {
         let exportedComponents = [];
 
         for(let key in components){
-            if(components[key].metadata.importable || components[key].extends == "VisualObject"){
+            if(components[key].metadata.importable || components[key].extends == "VisualObject" || await this.rootIsVisualObject(components[key].extends, dependenciesIndex)){
                 const importModule = components[key].filename.replace(`${process.cwd()}/`, "").replace(".ts", "");
                 const builderModule = importModule.replace(".component", ".template");
                 const medatadaModule = importModule.replace(".component", ".metadata");
                 const editorModule = importModule.replace(".component", ".editor");
                 let metadataJson = null;
-
+                
                 if(fs.existsSync(path.resolve(`${builderModule}.ejs`)))
                     components[key].template = path.resolve(`${builderModule}.ejs`);
 
@@ -63,6 +65,9 @@ export class VisualService extends ParserService {
                     }
                     catch(e){}
                 }
+
+                if(components[key].extends)
+                    components[key] = await this.injectRootDependencies(components[key], dependenciesIndex);
                 
                 exportedComponents.push({
                     namespace: components[key].namespace,
@@ -79,6 +84,47 @@ export class VisualService extends ParserService {
         }
 
         return exportedComponents;
+    }
+
+    async rootIsVisualObject(extendsType: string, dependenciesIndex){
+        let result = false;
+
+        if(extendsType == "VisualObject")
+            return true;
+        
+        const dependencyExtends = (dependenciesIndex[extendsType]?.extends) ? await this.rootIsVisualObject(dependenciesIndex[extendsType].extends, dependenciesIndex) : false;
+
+        if(dependencyExtends)
+            return true;
+
+        return false;
+    }
+
+    async injectRootDependencies(component, dependenciesIndex){
+        if(component?.extends){
+            const rootDepentencies = await this.injectRootDependencies(dependenciesIndex[component.extends], dependenciesIndex);
+            let newComponent = { ...component };
+
+            if(rootDepentencies){
+                if(rootDepentencies?.editor)
+                    newComponent.editor = { ...rootDepentencies?.editor, ...component?.editor };
+
+                if(rootDepentencies?.components){
+                    newComponent.components = [ ...rootDepentencies?.components, ...component?.components];
+                    newComponent.components = [...new Map(newComponent.components.map(item => [item["component"], item])).values()];
+                }
+                    
+                if(rootDepentencies?.componentsDafaults){
+                    newComponent.componentsDafaults = [ ...rootDepentencies?.componentsDafaults, ...component?.componentsDafaults ];
+                    newComponent.componentsDafaults = [...new Map(newComponent.componentsDafaults.map(item => [`${item["component"]}-${item["property"]}`, item])).values()];
+                }    
+            }
+
+            return newComponent;
+        }
+        else {
+            return component;
+        }
     }
 
     async getSubcomponents(paths: Array<string> = [], typesPaths: Array<string> = []){
@@ -232,10 +278,10 @@ export class VisualService extends ParserService {
         if(component.extends != "Component"){
             const parent = dependenciesIndex[component.extends];
 
-            if(parent){
-                if(!component.components)
+            if(!component.components)
                     component.components = [];
 
+            if(parent){
                 for(let key in parent.publicVars){
                     if(dependenciesIndex[parent.publicVars[key].type]){
                         const metadata = {};
@@ -364,9 +410,8 @@ export class LazyModule {}`;
         for(let file of files){
             const component = this.getData(file, "Component", true);
 
-            if(component){
+            if(component)
                 dependenciesIndex[component.namespace] = component;
-            }
         }
 
         const metadata = JSON.parse(item.content);
@@ -387,8 +432,18 @@ export class LazyModule {}`;
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta http-equiv="Content-Security-Policy" content="default-src *;img-src * 'self' data: https:; script-src 'self' 'unsafe-inline' 'unsafe-eval' *; style-src  'self' 'unsafe-inline' *">
+        <script src="/@ucsjs/engine/engine.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/rxjs/7.5.7/rxjs.umd.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
     </head>
     <body>
+        <script>
+            define("@ucsjs/engine/engine.min", ["require", "exports"], function(require, exports) {
+                exports.UCS = UCS;
+                exports.Application = Application;
+            });
+        </script>
 ${await this.build(metadata.hierarchy, 2, dependenciesIndex)}
     </body>
 </html>`; 
@@ -399,7 +454,14 @@ ${await this.build(metadata.hierarchy, 2, dependenciesIndex)}
     async build(hierarchy, tabsCount = 2, dependenciesIndex = {}){
         let result = "";
         let tabs = "";
-        const pixelAttr = ["width", "height", "top", "left", "right", "bottom", "margin-top", "margin-left", "margin-right", "margin-bottom", "padding-top", "padding-left", "padding-right", "padding-bottom", "border-top-width", "border-left-width", "border-right-width", "border-bottom-width", "font-size"];
+        const pixelAttr = [
+            "width", "height", "top", "left", "right", "bottom", 
+            "margin-top", "margin-left", "margin-right", "margin-bottom", 
+            "padding-top", "padding-left", "padding-right", "padding-bottom", 
+            "border-top-width", "border-left-width", "border-right-width", "border-bottom-width", 
+            "border-top-left-radius", "border-top-right-radius", "border-bottom-right-radius", "border-bottom-left-radius",
+            "font-size"
+        ];
 
         for(let i = 0; i < tabsCount; i++)
             tabs += "\t";
@@ -443,10 +505,16 @@ ${await this.build(metadata.hierarchy, 2, dependenciesIndex)}
                         styleRemoveNulls[key] = styles[key]
                 }
                 
-                const template = ejs.render(raw, {
+                const template = ejs.render(`${raw}
+<style>
+.${component.id} {<% if(style) { for(let keyStyle in style){ %>
+    <%= keyStyle %>: <%= style[keyStyle] %>; <% } } %>
+}
+</style>`, {
                     id: component.id,
                     slot: subComponents,
-                    Style: (styleRemoveNulls) ? styleRemoveNulls : {},
+                    style: (styleRemoveNulls) ? styleRemoveNulls : {},
+                    styleId: component.id,
                     ...componentData   
                 });
 
@@ -457,6 +525,43 @@ ${await this.build(metadata.hierarchy, 2, dependenciesIndex)}
             }
             else{
                 result += `${tabs}<div ref="${component.id}">${subComponents}</div>\n`;
+            }
+
+            if(component.components.length > 0){
+                for(let subComponent of component.components){
+                    if(fs.existsSync(subComponent.filename)){//Script
+                        const bundleFile = subComponent.filename.replace(path.basename(subComponent.filename), "bundle.js");
+                        const requirePath = subComponent.filename
+                            .replace(process.cwd() + "/src/", "")
+                            .replace(process.cwd() + "\\src\\", "")
+                            .replace(".ts", "");
+
+                        await tsc.compile({
+                            "module": "amd",
+                            "moduleResolution": "Node",                                
+                            "removeComments": true,
+                            "preserveConstEnums": true,
+                            "sourceMap": false,
+                            "target": "ES6",
+                            "watch": false,
+                            "allowJs": false,
+                            "allowUmdGlobalAccess": true,
+                            "allowSyntheticDefaultImports": true,
+                            outFile: bundleFile
+                        }, [subComponent.filename], {
+                            verbose: false
+                        });
+
+                        result += `<script>${fs.readFileSync(bundleFile, "utf8")}
+        require(["${requirePath}"], ({ ${subComponent.namespace} }) => {
+            const ${subComponent.namespace.toLowerCase()} = new ${subComponent.namespace}(${JSON.stringify(subComponent.value)});
+            ${subComponent.namespace.toLowerCase()}.Start();
+        });                            
+    </script>\n`;
+
+                        fs.unlinkSync(bundleFile);
+                    }
+                }
             }
         }
 

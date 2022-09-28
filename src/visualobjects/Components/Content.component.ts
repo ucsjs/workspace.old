@@ -13,17 +13,25 @@ export class Content extends Component {
     private __decorationLine = ["none", "underline", "overline", "line-through", "initial", "inherit"];
     
     public _align: string = "left";
+    private __alignHelp = "https://www.w3schools.com/cssref/pr_text_text-align.asp";
     private _alignChangeStyle = { style: "text-align", styleVue: "textAlign" };
 
     public _alignLast: string = "";
+    private __alignLastHelp = "https://www.w3schools.com/cssref/css3_pr_text-align-last.asp";
     private _alignLastChangeStyle = { style: "text-align-last", styleVue: "text-align-last" };
 
     public _decorationColor: Color;
+    private __decorationColorHelp = "https://www.w3schools.com/cssref/css3_pr_text-decoration-color.asp";
     private _decorationColorChangeStyle = { style: "text-decoration-color", styleVue: "text-decoration-color" };
 
     public _decorationLine: string = "";
+    private __decorationLineHelp = "https://www.w3schools.com/cssref/css3_pr_text-decoration-line.asp";
     private _decorationLineChangeStyle = { style: "text-decoration-line", styleVue: "text-decoration-line" };
 
-    public _content: BigText;
+    public _text: BigText;
 
+    constructor(){
+        super();
+        this._text = { content: '' };
+    }
 }

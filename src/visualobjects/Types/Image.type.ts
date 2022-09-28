@@ -1,7 +1,7 @@
 export class ImageType {
-    public src: string;
+    public src?: string;
 
     constructor($argv) {
-        this.src = $argv.src;
+        this.src = $argv?.src;
     }
 }

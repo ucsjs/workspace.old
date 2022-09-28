@@ -1,4 +1,5 @@
 import { VisualObject } from "../../Components/VisualObject.component";
+import { Border } from "../../Components/Border.component";
 import { Background } from "../../Components/Background.component";
 
 export class BoxVisual extends VisualObject {
@@ -9,6 +10,7 @@ export class BoxVisual extends VisualObject {
     protected override __group = "Core";
     protected override __icon = "fa-regular fa-square-full";
 
+    public _border: Border;
     public _background: Background;
    
     constructor($argv){

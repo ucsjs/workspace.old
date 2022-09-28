@@ -1,0 +1,22 @@
+{
+    "borderStyleTop": [
+        "solid", "dotted", "dashed", 
+        "double", "groove", "ridge", "inset", 
+        "outset", "none", "hidden"
+    ],
+    "borderStyleLeft": [
+        "solid", "dotted", "dashed", 
+        "double", "groove", "ridge", "inset", 
+        "outset", "none", "hidden"
+    ],
+    "borderStyleBottom": [
+        "solid", "dotted", "dashed", 
+        "double", "groove", "ridge", "inset", 
+        "outset", "none", "hidden"
+    ],
+    "borderStyleRight": [
+        "solid", "dotted", "dashed", 
+        "double", "groove", "ridge", "inset", 
+        "outset", "none", "hidden"
+    ]
+}

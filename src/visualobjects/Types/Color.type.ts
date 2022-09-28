@@ -6,10 +6,10 @@ export class Color {
     public hex: string = "#FFFFFF";
 
     constructor($argv) {
-        this.r = $argv.red;
-        this.g = $argv.green;
-        this.b = $argv.blue;
-        this.a = $argv.a;
+        this.r = $argv?.r;
+        this.g = $argv?.g;
+        this.b = $argv?.b;
+        this.a = $argv?.a;
         this.hex = $argv.hex;
     }
 }

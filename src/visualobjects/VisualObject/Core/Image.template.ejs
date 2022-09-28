@@ -1,12 +1,6 @@
 <img 
     ref="img<%= id %>"
-    class="img<%= id %>"
+    class="<%= styleId %>"
     src="<%= Image.image.src %>" 
     alt="<%= Image.alt %>"
 />
-
-<style>
-.img<%= id %> {<% if(Style) { for(let keyStyle in Style){ %>
-    <%= keyStyle %>: <%= Style[keyStyle] %>; <% } } %>
-}
-</style>

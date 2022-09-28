@@ -1,15 +1,13 @@
-import { VisualObject } from "../../Components/VisualObject.component";
 import { Font } from "../../Components/Font.component";
 import { Content } from "../../Components/Content.component";
-import { Background } from "../../Components/Background.component";
+import { BoxVisual } from "./Box.component";
 
-export class TextVisual extends VisualObject {
+export class TextVisual extends BoxVisual {
     //Matadata
     protected override __namespace = "Text";
     protected override __group = "Core";
     protected override __icon = "fa-solid fa-align-center";
 
-    public _background: Background;
     public _font: Font;
     public _text: Content;
     
@@ -21,6 +19,6 @@ export class TextVisual extends VisualObject {
     }
 
     public content(){
-        return "<div :style='component.style'>{{component.Content?.content}}</div>";
+        return "<div :style='component.style'>{{component.Content?.text}}</div>";
     }
 }

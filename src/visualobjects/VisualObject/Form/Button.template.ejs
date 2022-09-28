@@ -1,0 +1,10 @@
+<button 
+    ref="button<%= id %>"
+    class="<%= styleId %>"
+    type="<%= Button.type %>" 
+>
+<% if(Button && Button.icon && Button.icon.icon){ %>
+<i class="<%= Button.icon.icon %>" style="margin-right:5px"></i>
+<% } %>
+<%= Content.text %>
+</button>

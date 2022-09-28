@@ -41,7 +41,17 @@ export class UCS implements UcsInterface{
         OnException: []
     };
 
+    constructor($args?: any){
+        for(let key in $args){
+            if(typeof $args[key] == "object" && $args[key].id)
+                this.Bind(key, $args[key]);
+            else
+                this[`_${key}`] = $args[key]
+        }  
+    }
+
     public OnApplicationStart(): void | Promise<void> {}
+    public Bind(key, specs): void {}
     
     public static OnUpdateProfile(c) {
         if(c) this.__updateProfile.subscribe(c);

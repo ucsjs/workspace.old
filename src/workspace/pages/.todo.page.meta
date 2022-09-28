@@ -11,10 +11,10 @@
         {
             "0": false,
             "1": true,
-            "id": "BoxVisual_5",
+            "id": "BoxVisual_27",
             "namespace": "BoxVisual",
             "extends": "VisualObject",
-            "sign": "e070a3839f567fdd0fd7f0378dfd62cc24abca20",
+            "sign": "afd0691abee0040779957973660e539d8876a517",
             "metadata": {
                 "namespace": "Box",
                 "group": "Core",
@@ -213,14 +213,385 @@
                     },
                     "value": {
                         "display": "",
-                        "position": "static",
-                        "top": 7,
-                        "left": 4,
+                        "position": "absolute",
+                        "top": "0",
+                        "left": "0",
                         "zIndex": 1,
-                        "width": "400",
-                        "height": 64,
+                        "width": 100,
+                        "height": 88,
                         "scale": 1,
-                        "rotate": 0
+                        "rotate": 0,
+                        "leftSufix": "px",
+                        "widthSufix": "%"
+                    },
+                    "open": false
+                },
+                {
+                    "component": "Border",
+                    "fixed": true,
+                    "icon": "fa-solid fa-border-top-left",
+                    "sign": "7f701850e1b0d6bac56c3cc1e6d82bca1e0fb309",
+                    "properties": [
+                        {
+                            "name": "borderStyleTop",
+                            "type": "string",
+                            "default": "",
+                            "changeStyle": {
+                                "style": "border-top-style",
+                                "styleVue": "border-top-style"
+                            },
+                            "label": "Border Style Top",
+                            "namespace": "Border::borderStyleTop",
+                            "id": "209573bbb6b6557557e18127fd66b284535fa01c"
+                        },
+                        {
+                            "name": "borderWidthTop",
+                            "type": "number",
+                            "default": 0,
+                            "changeStyle": {
+                                "style": "border-top-width",
+                                "styleVue": "border-top-width"
+                            },
+                            "label": "Border Width Top",
+                            "namespace": "Border::borderWidthTop",
+                            "id": "3c304bcd49e5f1ff19b7cb3a3b0aa1d5f4fda355"
+                        },
+                        {
+                            "name": "borderColorTop",
+                            "type": "Color",
+                            "default": {
+                                "r": 0,
+                                "g": 0,
+                                "b": 0,
+                                "a": 1,
+                                "hex": "#FFFFFF"
+                            },
+                            "changeStyle": {
+                                "style": "border-top-color",
+                                "styleVue": "border-top-color"
+                            },
+                            "label": "Border Color Top",
+                            "namespace": "Border::borderColorTop",
+                            "id": "93606d4c9313ea0952768a218870c0fddeeaef09"
+                        },
+                        {
+                            "name": "borderStyleLeft",
+                            "type": "string",
+                            "default": "",
+                            "changeStyle": {
+                                "style": "border-left-style",
+                                "styleVue": "border-left-style"
+                            },
+                            "label": "Border Style Left",
+                            "namespace": "Border::borderStyleLeft",
+                            "id": "6d937a2f87626c3a5f884a549c497d3f062c214e"
+                        },
+                        {
+                            "name": "borderWidthLeft",
+                            "type": "number",
+                            "default": 0,
+                            "changeStyle": {
+                                "style": "border-left-width",
+                                "styleVue": "border-left-width"
+                            },
+                            "label": "Border Width Left",
+                            "namespace": "Border::borderWidthLeft",
+                            "id": "497540b9a33aa0f97841dc172db13198084481f4"
+                        },
+                        {
+                            "name": "borderColorLeft",
+                            "type": "Color",
+                            "default": {
+                                "r": 0,
+                                "g": 0,
+                                "b": 0,
+                                "a": 1,
+                                "hex": "#FFFFFF"
+                            },
+                            "changeStyle": {
+                                "style": "border-left-color",
+                                "styleVue": "border-left-color"
+                            },
+                            "label": "Border Color Left",
+                            "namespace": "Border::borderColorLeft",
+                            "id": "8204d499b2b58afbca6c70a186b7f7204e9a562b"
+                        },
+                        {
+                            "name": "borderStyleBottom",
+                            "type": "string",
+                            "default": "",
+                            "changeStyle": {
+                                "style": "border-bottom-style",
+                                "styleVue": "border-bottom-style"
+                            },
+                            "label": "Border Style Bottom",
+                            "namespace": "Border::borderStyleBottom",
+                            "id": "99335fe732a060c0059231ed979e3cbee71162f2"
+                        },
+                        {
+                            "name": "borderWidthBottom",
+                            "type": "number",
+                            "default": 0,
+                            "changeStyle": {
+                                "style": "border-bottom-width",
+                                "styleVue": "border-bottom-width"
+                            },
+                            "label": "Border Width Bottom",
+                            "namespace": "Border::borderWidthBottom",
+                            "id": "5740bf3532a648822776eee3ff6c47cdceec5313"
+                        },
+                        {
+                            "name": "borderColorBottom",
+                            "type": "Color",
+                            "default": {
+                                "r": 0,
+                                "g": 0,
+                                "b": 0,
+                                "a": 1,
+                                "hex": "#FFFFFF"
+                            },
+                            "changeStyle": {
+                                "style": "border-bottom-color",
+                                "styleVue": "border-bottom-color"
+                            },
+                            "label": "Border Color Bottom",
+                            "namespace": "Border::borderColorBottom",
+                            "id": "2acf3340b9ff8386d48012f8a49cf86c5f8c2229"
+                        },
+                        {
+                            "name": "borderStyleRight",
+                            "type": "string",
+                            "default": "",
+                            "changeStyle": {
+                                "style": "border-right-style",
+                                "styleVue": "border-right-style"
+                            },
+                            "label": "Border Style Right",
+                            "namespace": "Border::borderStyleRight",
+                            "id": "60293040476cad09f1e024533cd1852522115a97"
+                        },
+                        {
+                            "name": "borderWidthRight",
+                            "type": "number",
+                            "default": 0,
+                            "changeStyle": {
+                                "style": "border-right-width",
+                                "styleVue": "border-right-width"
+                            },
+                            "label": "Border Width Right",
+                            "namespace": "Border::borderWidthRight",
+                            "id": "853731627d759aff467d21135c458141db364310"
+                        },
+                        {
+                            "name": "borderColorRight",
+                            "type": "Color",
+                            "default": {
+                                "r": 0,
+                                "g": 0,
+                                "b": 0,
+                                "a": 1,
+                                "hex": "#FFFFFF"
+                            },
+                            "changeStyle": {
+                                "style": "border-right-color",
+                                "styleVue": "border-right-color"
+                            },
+                            "label": "Border Color Right",
+                            "namespace": "Border::borderColorRight",
+                            "id": "8166b10cbd13e7dbeecb415e4cbf21c8e0580b5d"
+                        },
+                        {
+                            "name": "radiusTopLeft",
+                            "type": "number",
+                            "default": 0,
+                            "changeStyle": {
+                                "style": "border-top-left-radius",
+                                "styleVue": "border-top-left-radius"
+                            },
+                            "label": "Radius Top Left",
+                            "namespace": "Border::radiusTopLeft",
+                            "id": "f6c4ac2b410e568077ec2e0567111af0d5e46371"
+                        },
+                        {
+                            "name": "radiusTopRight",
+                            "type": "number",
+                            "default": 0,
+                            "changeStyle": {
+                                "style": "border-top-right-radius",
+                                "styleVue": "border-top-right-radius"
+                            },
+                            "label": "Radius Top Right",
+                            "namespace": "Border::radiusTopRight",
+                            "id": "8f3eb5a7d87b86d40aed14dd572e9db4c33e7d2a"
+                        },
+                        {
+                            "name": "radiusBottomRight",
+                            "type": "number",
+                            "default": 0,
+                            "changeStyle": {
+                                "style": "border-bottom-right-radius",
+                                "styleVue": "border-bottom-right-radius"
+                            },
+                            "label": "Radius Bottom Right",
+                            "namespace": "Border::radiusBottomRight",
+                            "id": "ea107a865346341a1cfd1a6ed52ad7bad60c4c58"
+                        },
+                        {
+                            "name": "radiusBottomLeft",
+                            "type": "number",
+                            "default": 0,
+                            "changeStyle": {
+                                "style": "border-bottom-left-radius",
+                                "styleVue": "border-bottom-left-radius"
+                            },
+                            "label": "Radius Bottom Left",
+                            "namespace": "Border::radiusBottomLeft",
+                            "id": "383afdc1e7fa0599a2e2f9baf004dbad1cb3ce8f"
+                        }
+                    ],
+                    "default": {
+                        "borderStyleTop": "",
+                        "borderWidthTop": 0,
+                        "borderColorTop": {
+                            "r": 0,
+                            "g": 0,
+                            "b": 0,
+                            "a": 1,
+                            "hex": "#FFFFFF"
+                        },
+                        "borderStyleLeft": "",
+                        "borderWidthLeft": 0,
+                        "borderColorLeft": {
+                            "r": 0,
+                            "g": 0,
+                            "b": 0,
+                            "a": 1,
+                            "hex": "#FFFFFF"
+                        },
+                        "borderStyleBottom": "",
+                        "borderWidthBottom": 0,
+                        "borderColorBottom": {
+                            "r": 0,
+                            "g": 0,
+                            "b": 0,
+                            "a": 1,
+                            "hex": "#FFFFFF"
+                        },
+                        "borderStyleRight": "",
+                        "borderWidthRight": 0,
+                        "borderColorRight": {
+                            "r": 0,
+                            "g": 0,
+                            "b": 0,
+                            "a": 1,
+                            "hex": "#FFFFFF"
+                        },
+                        "radiusTopLeft": 0,
+                        "radiusTopRight": 0,
+                        "radiusBottomRight": 0,
+                        "radiusBottomLeft": 0
+                    },
+                    "metadata": {
+                        "namespace": "Border",
+                        "group": "Core",
+                        "icon": "fa-solid fa-border-top-left",
+                        "fixed": true,
+                        "importable": false,
+                        "borderStyleTop": [
+                            "solid",
+                            "dotted",
+                            "dashed",
+                            "double",
+                            "groove",
+                            "ridge",
+                            "inset",
+                            "outset",
+                            "none",
+                            "hidden"
+                        ],
+                        "borderStyleLeft": [
+                            "solid",
+                            "dotted",
+                            "dashed",
+                            "double",
+                            "groove",
+                            "ridge",
+                            "inset",
+                            "outset",
+                            "none",
+                            "hidden"
+                        ],
+                        "borderStyleBottom": [
+                            "solid",
+                            "dotted",
+                            "dashed",
+                            "double",
+                            "groove",
+                            "ridge",
+                            "inset",
+                            "outset",
+                            "none",
+                            "hidden"
+                        ],
+                        "borderStyleRight": [
+                            "solid",
+                            "dotted",
+                            "dashed",
+                            "double",
+                            "groove",
+                            "ridge",
+                            "inset",
+                            "outset",
+                            "none",
+                            "hidden"
+                        ]
+                    },
+                    "value": {
+                        "borderStyleTop": "",
+                        "borderWidthTop": "0",
+                        "borderColorTop": {
+                            "r": 0,
+                            "g": 0,
+                            "b": 0,
+                            "a": 1,
+                            "hex": "#FFFFFF"
+                        },
+                        "borderStyleLeft": "",
+                        "borderWidthLeft": 0,
+                        "borderColorLeft": {
+                            "r": 0,
+                            "g": 0,
+                            "b": 0,
+                            "a": 1,
+                            "hex": "#FFFFFF"
+                        },
+                        "borderStyleBottom": "",
+                        "borderWidthBottom": 0,
+                        "borderColorBottom": {
+                            "r": 0,
+                            "g": 0,
+                            "b": 0,
+                            "a": 1,
+                            "hex": "#FFFFFF"
+                        },
+                        "borderStyleRight": "",
+                        "borderWidthRight": 0,
+                        "borderColorRight": {
+                            "r": 0,
+                            "g": 0,
+                            "b": 0,
+                            "a": 1,
+                            "hex": "#FFFFFF"
+                        },
+                        "radiusTopLeft": "10",
+                        "radiusTopRight": "10",
+                        "radiusBottomRight": "10",
+                        "radiusBottomLeft": "10",
+                        "borderWidthTopSufix": "px",
+                        "radiusTopLeftSufix": "px",
+                        "radiusTopRightSufix": "px",
+                        "radiusBottomRightSufix": "px",
+                        "radiusBottomLeftSufix": "px"
                     },
                     "open": false
                 },
@@ -418,22 +789,22 @@
                         "color": {
                             "hsl": {
                                 "h": 0,
-                                "s": 0.7577781683951486,
-                                "l": 0.24081537,
+                                "s": 0.6446015952635474,
+                                "l": 0.424114875,
                                 "a": 1
                             },
-                            "hex": "#6200ea",
-                            "hex8": "#6C0F0FFF",
+                            "hex": "#B22626",
+                            "hex8": "#B22626FF",
                             "rgba": {
-                                "r": 108,
-                                "g": 15,
-                                "b": 15,
+                                "r": 178,
+                                "g": 38,
+                                "b": 38,
                                 "a": 1
                             },
                             "hsv": {
                                 "h": 0,
-                                "s": 0.8622,
-                                "v": 0.4233,
+                                "s": 0.7839,
+                                "v": 0.6975,
                                 "a": 1
                             },
                             "oldHue": 0,
@@ -448,25 +819,74 @@
             "content": "<div><div v-if=\"component.hierarchy.length > 0\">\r\n    <visual-component \r\n        v-for=\"(subcomponent, key) in component.hierarchy\" \r\n        :key=\"key\" \r\n        :componentIndex=\"key\"\r\n        :settings=\"subcomponent\"\r\n        :editorOffset=\"editorOffset\"\r\n        :selectedComponent=\"selectedComponent\"\r\n        :tab=\"tab\"\r\n        @selectItem=\"$emit('selectItem', subcomponent?.id)\"\r\n        @saveState=\"$emit('saveState')\"\r\n    ></visual-component>  \r\n</div></div>",
             "componentsDafaults": [],
             "position": {
-                "left": 106,
-                "top": 136.5
+                "left": 61.390625,
+                "top": 144
             },
             "hierarchy": [],
-            "label": "BoxVisual_5",
+            "label": "BoxVisual_27",
             "visibility": true,
             "static": false,
             "lockBox": true,
             "Class": {},
             "Transform": {
                 "display": "",
-                "position": "static",
-                "top": 7,
-                "left": 4,
+                "position": "absolute",
+                "top": "0",
+                "left": "0",
                 "zIndex": 1,
-                "width": "400",
-                "height": 64,
+                "width": 100,
+                "height": 88,
                 "scale": 1,
-                "rotate": 0
+                "rotate": 0,
+                "leftSufix": "px",
+                "widthSufix": "%"
+            },
+            "Border": {
+                "borderStyleTop": "",
+                "borderWidthTop": "0",
+                "borderColorTop": {
+                    "r": 0,
+                    "g": 0,
+                    "b": 0,
+                    "a": 1,
+                    "hex": "#FFFFFF"
+                },
+                "borderStyleLeft": "",
+                "borderWidthLeft": 0,
+                "borderColorLeft": {
+                    "r": 0,
+                    "g": 0,
+                    "b": 0,
+                    "a": 1,
+                    "hex": "#FFFFFF"
+                },
+                "borderStyleBottom": "",
+                "borderWidthBottom": 0,
+                "borderColorBottom": {
+                    "r": 0,
+                    "g": 0,
+                    "b": 0,
+                    "a": 1,
+                    "hex": "#FFFFFF"
+                },
+                "borderStyleRight": "",
+                "borderWidthRight": 0,
+                "borderColorRight": {
+                    "r": 0,
+                    "g": 0,
+                    "b": 0,
+                    "a": 1,
+                    "hex": "#FFFFFF"
+                },
+                "radiusTopLeft": "10",
+                "radiusTopRight": "10",
+                "radiusBottomRight": "10",
+                "radiusBottomLeft": "10",
+                "borderWidthTopSufix": "px",
+                "radiusTopLeftSufix": "px",
+                "radiusTopRightSufix": "px",
+                "radiusBottomRightSufix": "px",
+                "radiusBottomLeftSufix": "px"
             },
             "Background": {
                 "image": {
@@ -475,22 +895,22 @@
                 "color": {
                     "hsl": {
                         "h": 0,
-                        "s": 0.7577781683951486,
-                        "l": 0.24081537,
+                        "s": 0.6446015952635474,
+                        "l": 0.424114875,
                         "a": 1
                     },
-                    "hex": "#6200ea",
-                    "hex8": "#6C0F0FFF",
+                    "hex": "#B22626",
+                    "hex8": "#B22626FF",
                     "rgba": {
-                        "r": 108,
-                        "g": 15,
-                        "b": 15,
+                        "r": 178,
+                        "g": 38,
+                        "b": 38,
                         "a": 1
                     },
                     "hsv": {
                         "h": 0,
-                        "s": 0.8622,
-                        "v": 0.4233,
+                        "s": 0.7839,
+                        "v": 0.6975,
                         "a": 1
                     },
                     "oldHue": 0,
@@ -502,14 +922,16 @@
         {
             "0": false,
             "1": true,
-            "id": "ImageVisual_6",
-            "namespace": "ImageVisual",
-            "extends": "VisualObject",
-            "sign": "79ec31773e6e6e1c01f04a71dd4c1c1891fb83fd",
+            "id": "ButtonVisual_72",
+            "namespace": "ButtonVisual",
+            "extends": "BoxVisual",
+            "sign": "56bbf08499b57b566496b90384005744747bfdc0",
             "metadata": {
-                "namespace": "Image",
-                "group": "Core",
-                "icon": "fa-regular fa-image"
+                "namespace": "Button",
+                "group": "Form",
+                "icon": "fa-regular fa-hand-pointer",
+                "resizable": true,
+                "moveble": true
             },
             "components": [
                 {
@@ -651,334 +1073,10 @@
                     "default": {
                         "display": "",
                         "position": "absolute",
-                        "top": 0,
-                        "left": 0,
+                        "top": 150.8958330154419,
+                        "left": 117.6978759765625,
                         "zIndex": 1,
-                        "width": 240,
-                        "height": 240,
-                        "scale": 1,
-                        "rotate": 0
-                    },
-                    "metadata": {
-                        "displayHelp": "https://www.w3schools.com/cssref/pr_class_display.asp",
-                        "positionHelp": "https://www.w3schools.com/css/css_positioning.asp",
-                        "topHelp": "https://www.w3schools.com/cssref/pr_pos_top.asp",
-                        "leftHelp": "https://www.w3schools.com/cssref/pr_pos_left.asp",
-                        "zIndexHelp": "https://www.w3schools.com/cssref/pr_pos_z-index.asp",
-                        "widthHelp": "https://www.w3schools.com/cssref/pr_dim_width.asp",
-                        "heightHelp": "https://www.w3schools.com/cssref/pr_dim_height.asp",
-                        "position": [
-                            "absolute",
-                            "relative",
-                            "fixed",
-                            "static",
-                            "sticky"
-                        ],
-                        "display": [
-                            "inline",
-                            "block",
-                            "contents",
-                            "flex",
-                            "grid",
-                            "inline-block",
-                            "inline-flex",
-                            "inline-grid",
-                            "inline-table",
-                            "list-item",
-                            "run-in",
-                            "table",
-                            "table-caption",
-                            "table-column-group",
-                            "table-header-group",
-                            "table-footer-group",
-                            "table-row-group",
-                            "table-cell",
-                            "table-column",
-                            "table-row",
-                            "none",
-                            "initial",
-                            "inherit"
-                        ]
-                    },
-                    "value": {
-                        "display": "",
-                        "position": "absolute",
-                        "top": "64",
-                        "left": "0",
-                        "zIndex": 1,
-                        "width": 375,
-                        "height": 240,
-                        "scale": 1,
-                        "rotate": 0
-                    },
-                    "open": false
-                },
-                {
-                    "component": "Image",
-                    "fixed": true,
-                    "icon": "fa-regular fa-image",
-                    "sign": "b1b0dfd200ffe734f7f573b3d916129a2d3cd9dc",
-                    "properties": [
-                        {
-                            "name": "image",
-                            "type": "ImageType",
-                            "default": {
-                                "src": ""
-                            },
-                            "label": "Image",
-                            "namespace": "Image::image",
-                            "id": "38fd25d0148fde2be07a6b7b4f6431b14dc82cf0"
-                        },
-                        {
-                            "name": "alt",
-                            "type": "string",
-                            "default": "",
-                            "label": "Alt",
-                            "namespace": "Image::alt",
-                            "id": "290790045515108f34075e2fafda997466388138"
-                        },
-                        {
-                            "name": "title",
-                            "type": "string",
-                            "default": "",
-                            "label": "Title",
-                            "namespace": "Image::title",
-                            "id": "3b112256a946a4d153ddde5575e83a6662ffe233"
-                        },
-                        {
-                            "name": "width",
-                            "type": "number",
-                            "default": 0,
-                            "label": "Width",
-                            "namespace": "Image::width",
-                            "id": "6c139f9e2be0a38745071226e378359c2510087c"
-                        },
-                        {
-                            "name": "height",
-                            "type": "number",
-                            "default": 0,
-                            "label": "Height",
-                            "namespace": "Image::height",
-                            "id": "5f872f7217d6eef995020c87364c2eb0efd09386"
-                        }
-                    ],
-                    "default": {
-                        "image": {
-                            "src": ""
-                        },
-                        "alt": "",
-                        "title": "",
-                        "width": 0,
-                        "height": 0
-                    },
-                    "metadata": {
-                        "namespace": "Image",
-                        "icon": "fa-regular fa-image",
-                        "fixed": true,
-                        "importable": false
-                    },
-                    "value": {
-                        "image": {
-                            "src": "https://i.pinimg.com/originals/49/d3/67/49d367bf851f21f8e5b3b7aed275bd05.jpg"
-                        },
-                        "alt": "",
-                        "title": "",
-                        "width": 0,
-                        "height": 0
-                    },
-                    "open": true
-                }
-            ],
-            "template": "/mnt/f/Node/ucsjs/workspace/src/visualobjects/VisualObject/Core/Image.template.ejs",
-            "content": "<img :src='component.Image.image.src' :style='component.style' :alt='component.Image.alt' :title='component.Image.title' :width='component.Image.width' :height='component.Image.height' />",
-            "componentsDafaults": [],
-            "position": {
-                "left": 59,
-                "top": 113.5
-            },
-            "hierarchy": [],
-            "label": "ImageVisual_6",
-            "visibility": true,
-            "static": false,
-            "lockBox": true,
-            "Class": {},
-            "Transform": {
-                "display": "",
-                "position": "absolute",
-                "top": "64",
-                "left": "0",
-                "zIndex": 1,
-                "width": 375,
-                "height": 240,
-                "scale": 1,
-                "rotate": 0
-            },
-            "Image": {
-                "image": {
-                    "src": "https://i.pinimg.com/originals/49/d3/67/49d367bf851f21f8e5b3b7aed275bd05.jpg"
-                },
-                "alt": "",
-                "title": "",
-                "width": 0,
-                "height": 0
-            }
-        },
-        {
-            "0": false,
-            "1": true,
-            "id": "TextVisual_10",
-            "namespace": "TextVisual",
-            "extends": "VisualObject",
-            "sign": "1eb1988979f9a19db35d32ec83a485df9d485c07",
-            "metadata": {
-                "namespace": "Text",
-                "group": "Core",
-                "icon": "fa-solid fa-align-center"
-            },
-            "components": [
-                {
-                    "component": "Class",
-                    "fixed": true,
-                    "icon": "fa-solid fa-paintbrush",
-                    "sign": "bd5aaeaeaa3b0688479b6365ef22a8031a80caa0",
-                    "properties": [
-                        {
-                            "name": "content",
-                            "type": "BigText",
-                            "label": "Content",
-                            "namespace": "Class::content",
-                            "id": "bf3c16abc21980dac2b5064acdca74dd54a76da4"
-                        }
-                    ],
-                    "default": {},
-                    "metadata": {},
-                    "value": {},
-                    "open": false
-                },
-                {
-                    "component": "Transform",
-                    "fixed": true,
-                    "icon": "fa-solid fa-maximize",
-                    "sign": "91c1255b920efd0aee2f18f312213b92aa6d0bb9",
-                    "properties": [
-                        {
-                            "name": "display",
-                            "type": "string",
-                            "default": "",
-                            "changeStyle": {
-                                "style": "display",
-                                "styleVue": "display"
-                            },
-                            "label": "Display",
-                            "namespace": "Transform::display",
-                            "id": "6ab4003ade0f96338bd996b965ed651aacf109c5"
-                        },
-                        {
-                            "name": "position",
-                            "type": "string",
-                            "default": "absolute",
-                            "changeStyle": {
-                                "style": "position",
-                                "styleVue": "position"
-                            },
-                            "label": "Position",
-                            "namespace": "Transform::position",
-                            "id": "cb1ff5d5ac80d74b22809fcfc38165143b13e507"
-                        },
-                        {
-                            "name": "top",
-                            "type": "number",
-                            "default": 0,
-                            "changeStyle": {
-                                "style": "top",
-                                "styleVue": "top"
-                            },
-                            "label": "Top",
-                            "namespace": "Transform::top",
-                            "id": "84e9b008824d798f6281733cd9bd2972296e8049"
-                        },
-                        {
-                            "name": "left",
-                            "type": "number",
-                            "default": 0,
-                            "changeStyle": {
-                                "style": "left",
-                                "styleVue": "left"
-                            },
-                            "label": "Left",
-                            "namespace": "Transform::left",
-                            "id": "e3200ccfb22fd0650e6f26cc2742b09b3f965285"
-                        },
-                        {
-                            "name": "zIndex",
-                            "type": "number",
-                            "default": 1,
-                            "changeStyle": {
-                                "style": "z-index",
-                                "styleVue": "z-index"
-                            },
-                            "label": "Z Index",
-                            "namespace": "Transform::zIndex",
-                            "id": "cc7421f74b81fc5e2d39063ad4c0cc47ffd7d37e"
-                        },
-                        {
-                            "name": "width",
-                            "type": "number",
-                            "default": 240,
-                            "changeStyle": {
-                                "style": "width",
-                                "styleVue": "width"
-                            },
-                            "label": "Width",
-                            "namespace": "Transform::width",
-                            "id": "e8fb4827f89d2c36842d585dc84ac1c99144aff5"
-                        },
-                        {
-                            "name": "height",
-                            "type": "number",
-                            "default": 240,
-                            "changeStyle": {
-                                "style": "height",
-                                "styleVue": "height"
-                            },
-                            "label": "Height",
-                            "namespace": "Transform::height",
-                            "id": "c7a6bd20bc698fab649f13bfacce58c175a54c10"
-                        },
-                        {
-                            "name": "scale",
-                            "type": "Range",
-                            "default": {
-                                "default": 1,
-                                "min": -10,
-                                "max": 10,
-                                "step": 0.1
-                            },
-                            "label": "Scale",
-                            "namespace": "Transform::scale",
-                            "id": "1641e2e0b1265badde139ebbfe2f876e030a4797"
-                        },
-                        {
-                            "name": "rotate",
-                            "type": "Range",
-                            "default": {
-                                "default": 0,
-                                "min": -360,
-                                "max": 360,
-                                "step": 1
-                            },
-                            "label": "Rotate",
-                            "namespace": "Transform::rotate",
-                            "id": "1c074e2aa06c136fbfeefe25946894eea4038c6c"
-                        }
-                    ],
-                    "default": {
-                        "display": "",
-                        "position": "absolute",
-                        "top": 0,
-                        "left": 0,
-                        "zIndex": 1,
-                        "width": "240",
+                        "width": "150",
                         "height": "40",
                         "scale": 1,
                         "rotate": 0
@@ -1027,15 +1125,375 @@
                     "value": {
                         "display": "",
                         "position": "absolute",
-                        "top": 295,
-                        "left": 25,
+                        "top": 150.8958330154419,
+                        "left": 117.6978759765625,
                         "zIndex": 1,
-                        "width": 240,
-                        "height": 240,
+                        "width": "150",
+                        "height": "40",
                         "scale": 1,
                         "rotate": 0
                     },
-                    "open": true
+                    "open": false
+                },
+                {
+                    "component": "Border",
+                    "fixed": true,
+                    "icon": "fa-solid fa-border-top-left",
+                    "sign": "7f701850e1b0d6bac56c3cc1e6d82bca1e0fb309",
+                    "properties": [
+                        {
+                            "name": "borderStyleTop",
+                            "type": "string",
+                            "default": "",
+                            "changeStyle": {
+                                "style": "border-top-style",
+                                "styleVue": "border-top-style"
+                            },
+                            "label": "Border Style Top",
+                            "namespace": "Border::borderStyleTop",
+                            "id": "209573bbb6b6557557e18127fd66b284535fa01c"
+                        },
+                        {
+                            "name": "borderWidthTop",
+                            "type": "number",
+                            "default": 0,
+                            "changeStyle": {
+                                "style": "border-top-width",
+                                "styleVue": "border-top-width"
+                            },
+                            "label": "Border Width Top",
+                            "namespace": "Border::borderWidthTop",
+                            "id": "3c304bcd49e5f1ff19b7cb3a3b0aa1d5f4fda355"
+                        },
+                        {
+                            "name": "borderColorTop",
+                            "type": "Color",
+                            "default": {
+                                "r": 0,
+                                "g": 0,
+                                "b": 0,
+                                "a": 1,
+                                "hex": "#FFFFFF"
+                            },
+                            "changeStyle": {
+                                "style": "border-top-color",
+                                "styleVue": "border-top-color"
+                            },
+                            "label": "Border Color Top",
+                            "namespace": "Border::borderColorTop",
+                            "id": "93606d4c9313ea0952768a218870c0fddeeaef09"
+                        },
+                        {
+                            "name": "borderStyleLeft",
+                            "type": "string",
+                            "default": "",
+                            "changeStyle": {
+                                "style": "border-left-style",
+                                "styleVue": "border-left-style"
+                            },
+                            "label": "Border Style Left",
+                            "namespace": "Border::borderStyleLeft",
+                            "id": "6d937a2f87626c3a5f884a549c497d3f062c214e"
+                        },
+                        {
+                            "name": "borderWidthLeft",
+                            "type": "number",
+                            "default": 0,
+                            "changeStyle": {
+                                "style": "border-left-width",
+                                "styleVue": "border-left-width"
+                            },
+                            "label": "Border Width Left",
+                            "namespace": "Border::borderWidthLeft",
+                            "id": "497540b9a33aa0f97841dc172db13198084481f4"
+                        },
+                        {
+                            "name": "borderColorLeft",
+                            "type": "Color",
+                            "default": {
+                                "r": 0,
+                                "g": 0,
+                                "b": 0,
+                                "a": 1,
+                                "hex": "#FFFFFF"
+                            },
+                            "changeStyle": {
+                                "style": "border-left-color",
+                                "styleVue": "border-left-color"
+                            },
+                            "label": "Border Color Left",
+                            "namespace": "Border::borderColorLeft",
+                            "id": "8204d499b2b58afbca6c70a186b7f7204e9a562b"
+                        },
+                        {
+                            "name": "borderStyleBottom",
+                            "type": "string",
+                            "default": "",
+                            "changeStyle": {
+                                "style": "border-bottom-style",
+                                "styleVue": "border-bottom-style"
+                            },
+                            "label": "Border Style Bottom",
+                            "namespace": "Border::borderStyleBottom",
+                            "id": "99335fe732a060c0059231ed979e3cbee71162f2"
+                        },
+                        {
+                            "name": "borderWidthBottom",
+                            "type": "number",
+                            "default": 0,
+                            "changeStyle": {
+                                "style": "border-bottom-width",
+                                "styleVue": "border-bottom-width"
+                            },
+                            "label": "Border Width Bottom",
+                            "namespace": "Border::borderWidthBottom",
+                            "id": "5740bf3532a648822776eee3ff6c47cdceec5313"
+                        },
+                        {
+                            "name": "borderColorBottom",
+                            "type": "Color",
+                            "default": {
+                                "r": 0,
+                                "g": 0,
+                                "b": 0,
+                                "a": 1,
+                                "hex": "#FFFFFF"
+                            },
+                            "changeStyle": {
+                                "style": "border-bottom-color",
+                                "styleVue": "border-bottom-color"
+                            },
+                            "label": "Border Color Bottom",
+                            "namespace": "Border::borderColorBottom",
+                            "id": "2acf3340b9ff8386d48012f8a49cf86c5f8c2229"
+                        },
+                        {
+                            "name": "borderStyleRight",
+                            "type": "string",
+                            "default": "",
+                            "changeStyle": {
+                                "style": "border-right-style",
+                                "styleVue": "border-right-style"
+                            },
+                            "label": "Border Style Right",
+                            "namespace": "Border::borderStyleRight",
+                            "id": "60293040476cad09f1e024533cd1852522115a97"
+                        },
+                        {
+                            "name": "borderWidthRight",
+                            "type": "number",
+                            "default": 0,
+                            "changeStyle": {
+                                "style": "border-right-width",
+                                "styleVue": "border-right-width"
+                            },
+                            "label": "Border Width Right",
+                            "namespace": "Border::borderWidthRight",
+                            "id": "853731627d759aff467d21135c458141db364310"
+                        },
+                        {
+                            "name": "borderColorRight",
+                            "type": "Color",
+                            "default": {
+                                "r": 0,
+                                "g": 0,
+                                "b": 0,
+                                "a": 1,
+                                "hex": "#FFFFFF"
+                            },
+                            "changeStyle": {
+                                "style": "border-right-color",
+                                "styleVue": "border-right-color"
+                            },
+                            "label": "Border Color Right",
+                            "namespace": "Border::borderColorRight",
+                            "id": "8166b10cbd13e7dbeecb415e4cbf21c8e0580b5d"
+                        },
+                        {
+                            "name": "radiusTopLeft",
+                            "type": "number",
+                            "default": 0,
+                            "changeStyle": {
+                                "style": "border-top-left-radius",
+                                "styleVue": "border-top-left-radius"
+                            },
+                            "label": "Radius Top Left",
+                            "namespace": "Border::radiusTopLeft",
+                            "id": "f6c4ac2b410e568077ec2e0567111af0d5e46371"
+                        },
+                        {
+                            "name": "radiusTopRight",
+                            "type": "number",
+                            "default": 0,
+                            "changeStyle": {
+                                "style": "border-top-right-radius",
+                                "styleVue": "border-top-right-radius"
+                            },
+                            "label": "Radius Top Right",
+                            "namespace": "Border::radiusTopRight",
+                            "id": "8f3eb5a7d87b86d40aed14dd572e9db4c33e7d2a"
+                        },
+                        {
+                            "name": "radiusBottomRight",
+                            "type": "number",
+                            "default": 0,
+                            "changeStyle": {
+                                "style": "border-bottom-right-radius",
+                                "styleVue": "border-bottom-right-radius"
+                            },
+                            "label": "Radius Bottom Right",
+                            "namespace": "Border::radiusBottomRight",
+                            "id": "ea107a865346341a1cfd1a6ed52ad7bad60c4c58"
+                        },
+                        {
+                            "name": "radiusBottomLeft",
+                            "type": "number",
+                            "default": 0,
+                            "changeStyle": {
+                                "style": "border-bottom-left-radius",
+                                "styleVue": "border-bottom-left-radius"
+                            },
+                            "label": "Radius Bottom Left",
+                            "namespace": "Border::radiusBottomLeft",
+                            "id": "383afdc1e7fa0599a2e2f9baf004dbad1cb3ce8f"
+                        }
+                    ],
+                    "default": {
+                        "borderStyleTop": "",
+                        "borderWidthTop": 0,
+                        "borderColorTop": {
+                            "r": 0,
+                            "g": 0,
+                            "b": 0,
+                            "a": 1,
+                            "hex": "#FFFFFF"
+                        },
+                        "borderStyleLeft": "",
+                        "borderWidthLeft": 0,
+                        "borderColorLeft": {
+                            "r": 0,
+                            "g": 0,
+                            "b": 0,
+                            "a": 1,
+                            "hex": "#FFFFFF"
+                        },
+                        "borderStyleBottom": "",
+                        "borderWidthBottom": 0,
+                        "borderColorBottom": {
+                            "r": 0,
+                            "g": 0,
+                            "b": 0,
+                            "a": 1,
+                            "hex": "#FFFFFF"
+                        },
+                        "borderStyleRight": "",
+                        "borderWidthRight": 0,
+                        "borderColorRight": {
+                            "r": 0,
+                            "g": 0,
+                            "b": 0,
+                            "a": 1,
+                            "hex": "#FFFFFF"
+                        },
+                        "radiusTopLeft": "5",
+                        "radiusTopRight": "5",
+                        "radiusBottomRight": "5",
+                        "radiusBottomLeft": "5"
+                    },
+                    "metadata": {
+                        "group": "Core",
+                        "borderStyleTop": [
+                            "solid",
+                            "dotted",
+                            "dashed",
+                            "double",
+                            "groove",
+                            "ridge",
+                            "inset",
+                            "outset",
+                            "none",
+                            "hidden"
+                        ],
+                        "borderStyleLeft": [
+                            "solid",
+                            "dotted",
+                            "dashed",
+                            "double",
+                            "groove",
+                            "ridge",
+                            "inset",
+                            "outset",
+                            "none",
+                            "hidden"
+                        ],
+                        "borderStyleBottom": [
+                            "solid",
+                            "dotted",
+                            "dashed",
+                            "double",
+                            "groove",
+                            "ridge",
+                            "inset",
+                            "outset",
+                            "none",
+                            "hidden"
+                        ],
+                        "borderStyleRight": [
+                            "solid",
+                            "dotted",
+                            "dashed",
+                            "double",
+                            "groove",
+                            "ridge",
+                            "inset",
+                            "outset",
+                            "none",
+                            "hidden"
+                        ]
+                    },
+                    "value": {
+                        "borderStyleTop": "",
+                        "borderWidthTop": 0,
+                        "borderColorTop": {
+                            "r": 0,
+                            "g": 0,
+                            "b": 0,
+                            "a": 1,
+                            "hex": "#FFFFFF"
+                        },
+                        "borderStyleLeft": "",
+                        "borderWidthLeft": 0,
+                        "borderColorLeft": {
+                            "r": 0,
+                            "g": 0,
+                            "b": 0,
+                            "a": 1,
+                            "hex": "#FFFFFF"
+                        },
+                        "borderStyleBottom": "",
+                        "borderWidthBottom": 0,
+                        "borderColorBottom": {
+                            "r": 0,
+                            "g": 0,
+                            "b": 0,
+                            "a": 1,
+                            "hex": "#FFFFFF"
+                        },
+                        "borderStyleRight": "",
+                        "borderWidthRight": 0,
+                        "borderColorRight": {
+                            "r": 0,
+                            "g": 0,
+                            "b": 0,
+                            "a": 1,
+                            "hex": "#FFFFFF"
+                        },
+                        "radiusTopLeft": "5",
+                        "radiusTopRight": "5",
+                        "radiusBottomRight": "5",
+                        "radiusBottomLeft": "5"
+                    },
+                    "open": false
                 },
                 {
                     "component": "Background",
@@ -1158,11 +1616,11 @@
                             "src": ""
                         },
                         "color": {
-                            "r": 0,
-                            "g": 0,
-                            "b": 0,
                             "a": 1,
-                            "hex": "#FFFFFF"
+                            "b": 229,
+                            "g": 70,
+                            "r": 79,
+                            "hex": "#4f46e5"
                         }
                     },
                     "metadata": {
@@ -1175,9 +1633,7 @@
                         "positionHelp": "https://www.w3schools.com/cssref/pr_background-position.asp",
                         "repeatHelp": "https://www.w3schools.com/cssref/pr_background-repeat.asp",
                         "sizeHelp": "https://www.w3schools.com/cssref/css3_pr_background-size.asp",
-                        "namespace": "Background",
                         "group": "Core",
-                        "icon": "fa-solid fa-paint-roller",
                         "attachment": [
                             "scroll",
                             "fixed",
@@ -1185,8 +1641,6 @@
                             "initial",
                             "inherit"
                         ],
-                        "fixed": true,
-                        "importable": false,
                         "blendMode": [
                             "normal",
                             "multiply",
@@ -1229,20 +1683,20 @@
                             "src": ""
                         },
                         "color": {
-                            "r": 0,
-                            "g": 0,
-                            "b": 0,
                             "a": 1,
-                            "hex": "#FFFFFF"
+                            "b": 229,
+                            "g": 70,
+                            "r": 79,
+                            "hex": "#4f46e5"
                         }
                     },
-                    "open": true
+                    "open": false
                 },
                 {
                     "component": "Font",
                     "fixed": true,
                     "icon": "fa-solid fa-font",
-                    "sign": "f0eb3414d05fc266fe1a3f5f7aec03952c452157",
+                    "sign": "24e5e457745d2fb571c722b843f8e82d203e8e32",
                     "properties": [
                         {
                             "name": "font",
@@ -1336,14 +1790,21 @@
                         "font": "Arial, sans-serif",
                         "size": 12,
                         "color": {
-                            "r": 0,
-                            "g": 0,
-                            "b": 0,
                             "a": 1,
-                            "hex": "#000000"
+                            "b": 255,
+                            "g": 255,
+                            "r": 255,
+                            "hex": "#ffffff"
                         }
                     },
                     "metadata": {
+                        "fontHelp": "https://www.w3schools.com/css/css_font.asp",
+                        "sizeHelp": "https://www.w3schools.com/css/css_font_size.asp",
+                        "colorHelp": "https://www.w3schools.com/css/css_text.asp",
+                        "styleHelp": "https://www.w3schools.com/css/css_font_style.asp",
+                        "variantHelp": "https://www.w3schools.com/cssref/pr_font_font-variant.asp",
+                        "variantCapsHelp": "https://www.w3schools.com/cssref/css3_pr_font-variant-caps.asp",
+                        "weightHelp": "https://www.w3schools.com/cssref/pr_font_weight.asp",
                         "namespace": "Font",
                         "icon": "fa-solid fa-font",
                         "style": [
@@ -1403,20 +1864,20 @@
                         "font": "Arial, sans-serif",
                         "size": 12,
                         "color": {
-                            "r": 0,
-                            "g": 0,
-                            "b": 0,
                             "a": 1,
-                            "hex": "#000000"
+                            "b": 255,
+                            "g": 255,
+                            "r": 255,
+                            "hex": "#ffffff"
                         }
                     },
-                    "open": true
+                    "open": false
                 },
                 {
                     "component": "Content",
                     "fixed": true,
                     "icon": "fa-solid fa-align-justify",
-                    "sign": "56e51edb5ec90901bd07785a2c9efbe1458400d9",
+                    "sign": "c372d99dd4900f5224c429d47e9e6c61342610f5",
                     "properties": [
                         {
                             "name": "align",
@@ -1466,15 +1927,15 @@
                             "id": "492f527710c3b5c9f3a1c125b6de9ce25da39feb"
                         },
                         {
-                            "name": "content",
+                            "name": "text",
                             "type": "BigText",
-                            "label": "Content",
-                            "namespace": "Content::content",
-                            "id": "ef8b63184ab5f995f87a0f6f4272ba911517f5b0"
+                            "label": "Text",
+                            "namespace": "Content::text",
+                            "id": "71d45afa7c600b4fb45c2e9b11d93a6bf4b3fee5"
                         }
                     ],
                     "default": {
-                        "align": "left",
+                        "align": "center",
                         "alignLast": "",
                         "decorationColor": {
                             "r": 255,
@@ -1483,9 +1944,14 @@
                             "a": 1,
                             "hex": "#FFFFFF"
                         },
-                        "decorationLine": ""
+                        "decorationLine": "",
+                        "text.content": "Button"
                     },
                     "metadata": {
+                        "alignHelp": "https://www.w3schools.com/cssref/pr_text_text-align.asp",
+                        "alignLastHelp": "https://www.w3schools.com/cssref/css3_pr_text-align-last.asp",
+                        "decorationColorHelp": "https://www.w3schools.com/cssref/css3_pr_text-decoration-color.asp",
+                        "decorationLineHelp": "https://www.w3schools.com/cssref/css3_pr_text-decoration-line.asp",
                         "namespace": "Content",
                         "icon": "fa-solid fa-align-justify",
                         "align": [
@@ -1519,7 +1985,7 @@
                         "importable": false
                     },
                     "value": {
-                        "align": "left",
+                        "align": "center",
                         "alignLast": "",
                         "decorationColor": {
                             "r": 255,
@@ -1529,39 +1995,146 @@
                             "hex": "#FFFFFF"
                         },
                         "decorationLine": "",
-                        "content": "te"
+                        "text.content": "Button",
+                        "text": "teste"
+                    },
+                    "open": false
+                },
+                {
+                    "component": "Button",
+                    "fixed": true,
+                    "icon": "fa-regular fa-hand-pointer",
+                    "sign": "00aa13d9b3244bef7a330a956e3a2077791e1425",
+                    "properties": [
+                        {
+                            "name": "type",
+                            "type": "string",
+                            "default": "button",
+                            "label": "Type",
+                            "namespace": "Button::type",
+                            "id": "f3057606611e2bc79e1d7071e81ec4099fb70e41"
+                        },
+                        {
+                            "name": "icon",
+                            "type": "IconType",
+                            "default": {
+                                "icon": ""
+                            },
+                            "label": "Icon",
+                            "namespace": "Button::icon",
+                            "id": "2ee437413f4c589277e01555a41876b1ffe112a4"
+                        }
+                    ],
+                    "default": {
+                        "type": "button",
+                        "icon": {
+                            "icon": ""
+                        }
+                    },
+                    "metadata": {
+                        "typeHelp": "https://www.w3schools.com/tags/att_button_type.asp",
+                        "namespace": "Button",
+                        "icon": "fa-regular fa-hand-pointer",
+                        "type": [
+                            "button",
+                            "reset",
+                            "submit"
+                        ],
+                        "fixed": true,
+                        "importable": false
+                    },
+                    "value": {
+                        "type": "button",
+                        "icon": {
+                            "icon": "fas fa-address-card",
+                            "open": false
+                        }
                     },
                     "open": true
                 }
             ],
-            "template": "/mnt/f/Node/ucsjs/workspace/src/visualobjects/VisualObject/Core/Text.template.ejs",
+            "template": "/mnt/f/Node/ucsjs/workspace/src/visualobjects/VisualObject/Form/Button.template.ejs",
             "editor": {
                 "Content": {
                     "align": {
-                        "content": "\r\n    <span class=\"isolate inline-flex shadow-sm w-full\">\r\n        <button \r\n            type=\"button\" \r\n            :class=\"[\r\n                (state === 'left') ? 'bg-neutral-900' :'bg-neutral-800', \r\n                'relative inline-flex items-center border border-black  px-2 text-sm font-medium text-neutral-100 hover:bg-neutral-700 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500'\r\n            ]\"\r\n            :title=\"$t('Align Left')\"\r\n            @click=\"() => $emit('change', 'left')\"\r\n        >\r\n            <client-only><font-awesome-icon icon=\"fa-solid fa-align-left\" /></client-only>\r\n        </button>\r\n        <button \r\n            type=\"button\" \r\n            :class=\"[\r\n                (state === 'center') ? 'bg-neutral-900' :'bg-neutral-800', \r\n                'relative -ml-px inline-flex items-center border border-black px-2 text-sm font-medium text-neutral-100 hover:bg-neutral-700 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500'\r\n            ]\"\r\n            :title=\"$t('Align Center')\"\r\n            @click=\"() => $emit('change', 'center')\"\r\n        >\r\n            <client-only><font-awesome-icon icon=\"fa-solid fa-align-center\" /></client-only>\r\n        </button>\r\n        <button \r\n            type=\"button\" \r\n            :class=\"[\r\n                (state === 'right') ? 'bg-neutral-900' :'bg-neutral-800', \r\n                'relative -ml-px inline-flex items-center border border-black px-2 text-sm font-medium text-neutral-100 hover:bg-neutral-700 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500'\r\n            ]\"\r\n            :title=\"$t('Align Right')\"\r\n            @click=\"() => $emit('change', 'right')\"\r\n        >\r\n            <client-only><font-awesome-icon icon=\"fa-solid fa-align-right\" /></client-only>\r\n        </button>\r\n        <button \r\n            type=\"button\" \r\n            :class=\"[\r\n                (state === 'justify') ? 'bg-neutral-900' :'bg-neutral-800', \r\n                'relative -ml-px inline-flex items-center border border-black px-2 text-sm font-medium text-neutral-100 hover:bg-neutral-700 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500'\r\n            ]\"\r\n            :title=\"$t('Align Justify')\"\r\n            @click=\"() => $emit('change', 'justify')\"\r\n        >\r\n            <client-only><font-awesome-icon icon=\"fa-solid fa-align-justify\" /></client-only>\r\n        </button>\r\n    </span>\r\n",
-                        "script": "{\r\n    data(){\r\n        return {\r\n            state: 'left'\r\n        };\r\n    },\r\n}\r\n"
+                        "content": "\r\n    <span class=\"isolate inline-flex shadow-sm w-full\">\r\n        <button \r\n            type=\"button\" \r\n            :class=\"[\r\n                ((component?.value || 'left') === 'left') ? 'bg-neutral-900' :'bg-neutral-800', \r\n                'relative inline-flex items-center border border-black  px-2 text-sm font-medium text-neutral-100 hover:bg-neutral-700 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500'\r\n            ]\"\r\n            :title=\"$t('Align Left')\"\r\n            @click=\"() => $emit('change', 'left')\"\r\n        >\r\n            <client-only><font-awesome-icon icon=\"fa-solid fa-align-left\" /></client-only>\r\n        </button>\r\n        <button \r\n            type=\"button\" \r\n            :class=\"[\r\n                ((component?.value || 'left') === 'center') ? 'bg-neutral-900' :'bg-neutral-800', \r\n                'relative -ml-px inline-flex items-center border border-black px-2 text-sm font-medium text-neutral-100 hover:bg-neutral-700 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500'\r\n            ]\"\r\n            :title=\"$t('Align Center')\"\r\n            @click=\"() => $emit('change', 'center')\"\r\n        >\r\n            <client-only><font-awesome-icon icon=\"fa-solid fa-align-center\" /></client-only>\r\n        </button>\r\n        <button \r\n            type=\"button\" \r\n            :class=\"[\r\n                ((component?.value || 'left') === 'right') ? 'bg-neutral-900' :'bg-neutral-800', \r\n                'relative -ml-px inline-flex items-center border border-black px-2 text-sm font-medium text-neutral-100 hover:bg-neutral-700 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500'\r\n            ]\"\r\n            :title=\"$t('Align Right')\"\r\n            @click=\"() => $emit('change', 'right')\"\r\n        >\r\n            <client-only><font-awesome-icon icon=\"fa-solid fa-align-right\" /></client-only>\r\n        </button>\r\n        <button \r\n            type=\"button\" \r\n            :class=\"[\r\n                ((component?.value || 'left') === 'justify') ? 'bg-neutral-900' :'bg-neutral-800', \r\n                'relative -ml-px inline-flex items-center border border-black px-2 text-sm font-medium text-neutral-100 hover:bg-neutral-700 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500'\r\n            ]\"\r\n            :title=\"$t('Align Justify')\"\r\n            @click=\"() => $emit('change', 'justify')\"\r\n        >\r\n            <client-only><font-awesome-icon icon=\"fa-solid fa-align-justify\" /></client-only>\r\n        </button>\r\n    </span>\r\n",
+                        "props": [
+                            "component"
+                        ]
                     }
                 }
             },
-            "content": "<div :style='component.style'>{{component.Content?.content}}</div>",
+            "content": "<button :type='component.Button.type' :style='component.style'><font-awesome-icon :icon='component.Button?.icon.icon' v-if='component.Button?.icon.icon' style='margin-right: 5px' />{{ component.Content?.text }}</button>",
             "componentsDafaults": [
                 {
                     "component": "transform",
                     "property": "width",
-                    "value": "240"
+                    "value": "150"
                 },
                 {
                     "component": "transform",
                     "property": "height",
                     "value": "40"
+                },
+                {
+                    "component": "border",
+                    "property": "radiusBottomLeft",
+                    "value": "5"
+                },
+                {
+                    "component": "border",
+                    "property": "radiusBottomRight",
+                    "value": "5"
+                },
+                {
+                    "component": "border",
+                    "property": "radiusTopLeft",
+                    "value": "5"
+                },
+                {
+                    "component": "border",
+                    "property": "radiusTopRight",
+                    "value": "5"
+                },
+                {
+                    "component": "background",
+                    "property": "color",
+                    "value": {
+                        "a": 1,
+                        "b": 229,
+                        "g": 70,
+                        "r": 79,
+                        "hex": "#4f46e5"
+                    }
+                },
+                {
+                    "component": "font",
+                    "property": "color",
+                    "value": {
+                        "a": 1,
+                        "b": 255,
+                        "g": 255,
+                        "r": 255,
+                        "hex": "#ffffff"
+                    }
+                },
+                {
+                    "component": "content",
+                    "property": "align",
+                    "value": "center"
+                },
+                {
+                    "component": "content",
+                    "property": "text.content",
+                    "value": "Button"
                 }
             ],
             "position": {
-                "left": 64.890625,
-                "top": 310.5
+                "left": 117.6978759765625,
+                "top": 150.8958330154419
             },
             "hierarchy": [],
-            "label": "TextVisual_10",
+            "label": "ButtonVisual_72",
             "visibility": true,
             "static": false,
             "lockBox": true,
@@ -1569,39 +2142,81 @@
             "Transform": {
                 "display": "",
                 "position": "absolute",
-                "top": 295,
-                "left": 25,
+                "top": 150.8958330154419,
+                "left": 117.6978759765625,
                 "zIndex": 1,
-                "width": 240,
-                "height": 240,
+                "width": "150",
+                "height": "40",
                 "scale": 1,
                 "rotate": 0
+            },
+            "Border": {
+                "borderStyleTop": "",
+                "borderWidthTop": 0,
+                "borderColorTop": {
+                    "r": 0,
+                    "g": 0,
+                    "b": 0,
+                    "a": 1,
+                    "hex": "#FFFFFF"
+                },
+                "borderStyleLeft": "",
+                "borderWidthLeft": 0,
+                "borderColorLeft": {
+                    "r": 0,
+                    "g": 0,
+                    "b": 0,
+                    "a": 1,
+                    "hex": "#FFFFFF"
+                },
+                "borderStyleBottom": "",
+                "borderWidthBottom": 0,
+                "borderColorBottom": {
+                    "r": 0,
+                    "g": 0,
+                    "b": 0,
+                    "a": 1,
+                    "hex": "#FFFFFF"
+                },
+                "borderStyleRight": "",
+                "borderWidthRight": 0,
+                "borderColorRight": {
+                    "r": 0,
+                    "g": 0,
+                    "b": 0,
+                    "a": 1,
+                    "hex": "#FFFFFF"
+                },
+                "radiusTopLeft": "5",
+                "radiusTopRight": "5",
+                "radiusBottomRight": "5",
+                "radiusBottomLeft": "5"
             },
             "Background": {
                 "image": {
                     "src": ""
                 },
                 "color": {
-                    "r": 0,
-                    "g": 0,
-                    "b": 0,
                     "a": 1,
-                    "hex": "#FFFFFF"
+                    "b": 229,
+                    "g": 70,
+                    "r": 79,
+                    "hex": "#4f46e5"
                 }
             },
             "Font": {
                 "font": "Arial, sans-serif",
                 "size": 12,
                 "color": {
-                    "r": 0,
-                    "g": 0,
-                    "b": 0,
                     "a": 1,
-                    "hex": "#000000"
+                    "b": 255,
+                    "g": 255,
+                    "r": 255,
+                    "hex": "#ffffff"
                 }
             },
             "Content": {
-                "align": "left",
+                "align": "center",
                 "alignLast": "",
                 "decorationColor": {
                     "r": 255,
@@ -1611,9 +2226,17 @@
                     "hex": "#FFFFFF"
                 },
                 "decorationLine": "",
-                "content": "te"
+                "text.content": "Button",
+                "text": "teste"
+            },
+            "Button": {
+                "type": "button",
+                "icon": {
+                    "icon": "fas fa-address-card",
+                    "open": false
+                }
             }
         }
     ],
-    "componentIndex": 10
+    "componentIndex": 72
 }

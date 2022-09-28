@@ -8,4 +8,9 @@ export class Class extends Component {
     protected override __importable = false;
     
     public _content: BigText;
+
+    constructor(){
+        super();
+        this._content = { content: '' };
+    }
 }

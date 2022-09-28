@@ -1,7 +1,7 @@
-import { VisualObject } from "../../Components/VisualObject.component";
+import { BoxVisual } from "./Box.component";
 import { Image } from "../../Components/Image.component";
 
-export class ImageVisual extends VisualObject {
+export class ImageVisual extends BoxVisual {
     //Matadata
     protected override __namespace = "Image";
     protected override __group = "Core";
