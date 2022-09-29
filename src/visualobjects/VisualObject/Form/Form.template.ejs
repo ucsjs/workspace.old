@@ -1,6 +1,13 @@
 <form 
     ref="<%= id %>"
-    accept-charset="<%= Form.acceptCharset %>" 
+    <% if(Form.acceptCharset) { %>accept-charset="<%= Form.acceptCharset %>"<% } %>
+    action="<%= Form.action %>"
+    enctype="<%= Form.enctype %>"
+    method="<%= Form.method %>"    
+    <% if(Form.name) { %>name="<%= Form.name %>"<% } %>
+    <% if(Form.novalidate) { %>novalidate<% } %>
+    <% if(Form.rel) { %>rel="<%= Form.rel %>"<% } %>
+    <% if(Form.target) { %>target="<%= Form.target %>"<% } %>
 >
     <%- slot -%>
 </form>

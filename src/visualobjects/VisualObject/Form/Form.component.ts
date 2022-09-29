@@ -10,14 +10,26 @@ export class FormVisual extends VisualObject {
     protected override __moveble = false;
     protected override __removeClass = true;
     protected override __removeTransform = true;
+    protected override __static = true;
+
+    private __transform_widthSufix = "%";
+    private __transform_heightSufix = "%";
 
     public _form: Form;
      
     constructor($argv){
         super($argv);
+
+        this._transform._position = "";
+        this._transform._width = 100;
+        this._transform._height = 100;
+        this._transform._left = 0;
+        this._transform._top = 0;
     }
 
     public content(){
-        return "<form :type='component.Button.type'><slot></slot></form>";
+        return `<form :type='component.Form.type'>
+        <slot></slot>
+    </form>`;
     }
 }

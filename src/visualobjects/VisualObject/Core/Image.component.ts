@@ -11,6 +11,8 @@ export class ImageVisual extends BoxVisual {
     
     constructor($argv){
         super($argv);
+
+        this._transform._position = "absolute";
     }
 
     public content(){

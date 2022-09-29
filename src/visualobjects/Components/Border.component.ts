@@ -5,7 +5,6 @@ import { ImageType } from "../Types/Image.type";
 export class Border extends Component {
     //Matadata
     protected override __namespace = "Border";
-    protected override __group = "Core";
     protected override __icon = "fa-solid fa-border-top-left";
     protected override __fixed = true;
     protected override __importable = false;

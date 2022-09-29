@@ -15,6 +15,8 @@ export class BoxVisual extends VisualObject {
    
     constructor($argv){
         super($argv);
+
+        this._transform._position = "absolute";
     }
 
     public content(){

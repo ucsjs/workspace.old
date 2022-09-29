@@ -14,6 +14,7 @@ export class TextVisual extends BoxVisual {
     constructor($argv){
         super($argv);
 
+        this._transform._position = "absolute";
         this._transform._width = 240;
         this._transform._height = 40;
         this._content._text = { content: "Text..." };

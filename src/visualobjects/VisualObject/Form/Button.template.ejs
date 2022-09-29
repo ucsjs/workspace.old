@@ -7,7 +7,10 @@
     <% if(Button.name) { %>name="<%= Button.name %>"<% } %> 
 >
 <% if(Button && Button.icon && Button.icon.icon){ %>
-<i class="<%= Button.icon.icon %>" style="margin-right:5px"></i>
+<i 
+    class="<%= Button.icon.icon %>" 
+    <% if(Content.text.content){ %>style="margin-right:5px"<% } %>
+></i>
 <% } %>
 <%= Content.text.content %>
 </button>

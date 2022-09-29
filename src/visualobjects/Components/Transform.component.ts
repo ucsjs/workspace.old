@@ -13,7 +13,7 @@ export class Transform extends Component {
     private __displayHelp = "https://www.w3schools.com/cssref/pr_class_display.asp";
     private _displayChangeStyle = { style: "display", styleVue: "display" };
     
-    public _position: string = "absolute";
+    public _position: string = "";
     private __positionHelp = "https://www.w3schools.com/css/css_positioning.asp";
     private _positionChangeStyle = { style: "position", styleVue: "position" };
 

@@ -16,6 +16,7 @@ export class InputVisual extends BoxVisual {
     constructor($argv){
         super($argv);
 
+        this._transform._position = "absolute";
         this._transform._width = 240;
         this._transform._height = 40;
     }

@@ -82,7 +82,7 @@ export class ParserService {
                 if(changeStyle)
                     component.publicVars[key].changeStyle = changeStyle.data;
 
-                component.publicVars[key].label = this.fixedLabel(component.publicVars[key].name);
+                component.publicVars[key].label = this.fixedLabel(component.publicVars[key].name).replace('Border ', '');
                 component.publicVars[key].namespace = `${component.namespace}::${component.publicVars[key].name}`;
                 component.publicVars[key].id = crypto
                 .createHash("sha1")
@@ -94,6 +94,7 @@ export class ParserService {
                 return component.publicVars.find(a => a.namespace === namespace)
             });
 
+            //Medatada
             let rawMetadata = [];
             let rawMetadataList = [];
             let rawMetadataBool = [];
@@ -208,6 +209,17 @@ export class ParserService {
                         metadata[keyMetadata] = imageToUri(path.resolve(metadata[keyMetadata]));
                     }
                     catch(e){}
+                }
+
+                //Sufix
+                if(keyMetadata.includes("Sufix")){
+                    const [componentName, propertyName] = keyMetadata.split("_");
+    
+                    component.componentsDafaults.push({
+                        "component": componentName,
+                        "property": propertyName,
+                        "value": metadata[keyMetadata]
+                    });
                 }
             }
 

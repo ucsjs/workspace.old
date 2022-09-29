@@ -18,8 +18,17 @@ export class ButtonVisual extends BoxVisual {
     constructor($argv){
         super($argv);
 
+        this._transform._position = "absolute";
         this._transform._width = 150;
         this._transform._height = 40;
+        this._border._borderWidthBottom = 1;
+        this._border._borderWidthLeft = 1;
+        this._border._borderWidthRight = 1;
+        this._border._borderWidthTop = 1;
+        this._border._borderColorBottom = { a: 1, b: 229, g: 70, r: 79, hex: "#4f46e5" };
+        this._border._borderColorLeft = { a: 1, b: 229, g: 70, r: 79, hex: "#4f46e5" };
+        this._border._borderColorRight = { a: 1, b: 229, g: 70, r: 79, hex: "#4f46e5" };
+        this._border._borderColorTop = { a: 1, b: 229, g: 70, r: 79, hex: "#4f46e5" };
         this._border._radiusBottomLeft = 5;
         this._border._radiusBottomRight = 5;
         this._border._radiusTopLeft = 5;
@@ -32,16 +41,16 @@ export class ButtonVisual extends BoxVisual {
 
     public content(){
         return `<button 
-        :type='component.Button.type' 
-        :disabled='component.Button.disabled' 
-        :autofocus='component.Button.autofocus' 
-        :name='component.Button.name' 
-        :style='component.style'
+        :type="component.Button.type" 
+        :disabled="component.Button.disabled" 
+        :autofocus="component.Button.autofocus" 
+        :name="component.Button.name" 
+        :style="component.style"
         >
             <font-awesome-icon 
-                :icon='component.Button?.icon.icon' 
-                v-if='component.Button?.icon.icon' 
-                style='margin-right: 5px' 
+                :icon="component.Button?.icon.icon" 
+                v-if="component.Button?.icon.icon" 
+                :style="{'margin-right': (component.Content?.text.content) ? '5px' : '0px' }" 
             />
             {{ component.Content?.text.content }}
         </button>`;
