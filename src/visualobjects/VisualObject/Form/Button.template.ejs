@@ -2,6 +2,9 @@
     ref="button<%= id %>"
     class="<%= styleId %>"
     type="<%= Button.type %>" 
+    <% if(Button.disabled) { %>disabled<% } %>
+    <% if(Button.autofocus) { %>autofocus<% } %>
+    <% if(Button.name) { %>name="<%= Button.name %>"<% } %> 
 >
 <% if(Button && Button.icon && Button.icon.icon){ %>
 <i class="<%= Button.icon.icon %>" style="margin-right:5px"></i>

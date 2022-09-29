@@ -1,5 +1,5 @@
 import { VisualObject } from "../../Components/VisualObject.component";
-import { Form } from "../../Components/Form.conponent";
+import { Form } from "../../Components/Form.component";
 
 export class FormVisual extends VisualObject {
     //Matadata
@@ -18,6 +18,6 @@ export class FormVisual extends VisualObject {
     }
 
     public content(){
-        return "<form :type='component.Button.type'></form>";
+        return "<form :type='component.Button.type'><slot></slot></form>";
     }
 }

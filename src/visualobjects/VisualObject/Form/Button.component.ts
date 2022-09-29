@@ -31,6 +31,19 @@ export class ButtonVisual extends BoxVisual {
     }
 
     public content(){
-        return "<button :type='component.Button.type' :style='component.style'><font-awesome-icon :icon='component.Button?.icon.icon' v-if='component.Button?.icon.icon' style='margin-right: 5px' />{{ component.Content?.text.content }}</button>";
+        return `<button 
+        :type='component.Button.type' 
+        :disabled='component.Button.disabled' 
+        :autofocus='component.Button.autofocus' 
+        :name='component.Button.name' 
+        :style='component.style'
+        >
+            <font-awesome-icon 
+                :icon='component.Button?.icon.icon' 
+                v-if='component.Button?.icon.icon' 
+                style='margin-right: 5px' 
+            />
+            {{ component.Content?.text.content }}
+        </button>`;
     }
 }
