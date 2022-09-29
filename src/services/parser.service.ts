@@ -28,7 +28,7 @@ export class ParserService {
                 outputs: this.regexService.getData(/this\.output\(["'](.*?)["'],[\s](.*?),.*?\)/isg, contents, ["name", "type"], true),
                 inputs: this.regexService.getData(/this\.input\(["'](.*?)["'],[\s](.*?),.*?\)/isg, contents, ["name", "type"], true),
                 content: (content) ? content : null,
-                componentsDafaults: this.regexService.getData(/this._(.*?)._(.*?) = (.*?);/gms, contents, ["component", "property", "value"]),
+                componentsDefaults: this.regexService.getData(/this._(.*?)._(.*?) = (.*?);/gms, contents, ["component", "property", "value"]),
                 metadata: {}
             };
 
@@ -215,7 +215,7 @@ export class ParserService {
                 if(keyMetadata.includes("Sufix")){
                     const [componentName, propertyName] = keyMetadata.split("_");
     
-                    component.componentsDafaults.push({
+                    component.componentsDefaults.push({
                         "component": componentName,
                         "property": propertyName,
                         "value": metadata[keyMetadata]

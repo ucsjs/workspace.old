@@ -15,7 +15,7 @@ export class Background extends Component {
     private __imageHelp = "https://www.w3schools.com/cssref/pr_background-image.asp";
     private _imageChangeStyle = { style: "background-image", styleVue: "background-image" };
 
-    public _color: Color = { r: 0, g: 0, b: 0, a: 1, hex: "#FFFFFF" };
+    public _color: Color = { r: 0, g: 0, b: 0, a: 1, hex: "" };
     private __colorHelp = "https://www.w3schools.com/cssref/pr_background-color.asp";
     private _colorChangeStyle = { style: "background-color", styleVue: "background-color" };
 

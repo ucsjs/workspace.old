@@ -1,9 +1,9 @@
 export class Color {
-    public r: number = 255;
-    public g: number = 255;
-    public b: number = 255;
+    public r: number = 0;
+    public g: number = 0;
+    public b: number = 0;
     public a: number = 1;
-    public hex: string = "#FFFFFF";
+    public hex: string = "";
 
     constructor($argv) {
         this.r = $argv?.r;

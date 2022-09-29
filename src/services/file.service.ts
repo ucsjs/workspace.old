@@ -133,7 +133,7 @@ export class FileService {
 	async saveFile(item){
 		if(item.filename.includes(".blueprint.ts")){
 			let metadata = null;
-			try{ metadata = JSON.stringify(JSON.parse(item.content), null, 4); } catch(e){}
+			try{ metadata = JSON.stringify(JSON.parse(item.content)); } catch(e){}
 
 			if(metadata){
 				//Metadata
@@ -152,7 +152,7 @@ export class FileService {
 		}
 		else if(item.filename.includes(".page.ts")){
 			let metadata = null;
-			try{ metadata = JSON.stringify(JSON.parse(item.content), null, 4); } catch(e){}
+			try{ metadata = JSON.stringify(JSON.parse(item.content)); } catch(e){}
 
 			if(metadata){
 				//Metadata

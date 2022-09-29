@@ -17,6 +17,10 @@ export class Body extends VisualObject {
     constructor($argv){
         super($argv);
 
+        this._margin._marginBottom = 0;
+        this._margin._marginTop = 0;
+        this._margin._marginLeft = 0;
+        this._margin._marginRight = 0;
         this._transform._position = "";
     }
 }

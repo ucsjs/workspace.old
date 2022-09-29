@@ -16,7 +16,7 @@ export class Border extends Component {
     public _borderWidthTop: number = 0;
     private _borderWidthTopChangeStyle = { style: "border-top-width", styleVue: "border-top-width" };
 
-    public _borderColorTop: Color = { r: 0, g: 0, b: 0, a: 1, hex: "#FFFFFF" };
+    public _borderColorTop: Color = { r: 0, g: 0, b: 0, a: 1, hex: "" };
     private _borderColorTopChangeStyle = { style: "border-top-color", styleVue: "border-top-color" };
 
     //Left
@@ -26,7 +26,7 @@ export class Border extends Component {
     public _borderWidthLeft: number = 0;
     private _borderWidthLeftChangeStyle = { style: "border-left-width", styleVue: "border-left-width" };
 
-    public _borderColorLeft: Color = { r: 0, g: 0, b: 0, a: 1, hex: "#FFFFFF" };
+    public _borderColorLeft: Color = { r: 0, g: 0, b: 0, a: 1, hex: "" };
     private _borderColorLeftChangeStyle = { style: "border-left-color", styleVue: "border-left-color" };
 
     //Bottom
@@ -36,7 +36,7 @@ export class Border extends Component {
     public _borderWidthBottom: number = 0;
     private _borderWidthBottomChangeStyle = { style: "border-bottom-width", styleVue: "border-bottom-width" };
 
-    public _borderColorBottom: Color = { r: 0, g: 0, b: 0, a: 1, hex: "#FFFFFF" };
+    public _borderColorBottom: Color = { r: 0, g: 0, b: 0, a: 1, hex: "" };
     private _borderColorBottomChangeStyle = { style: "border-bottom-color", styleVue: "border-bottom-color" };
 
     //Right
@@ -46,7 +46,7 @@ export class Border extends Component {
     public _borderWidthRight: number = 0;
     private _borderWidthRightChangeStyle = { style: "border-right-width", styleVue: "border-right-width" };
 
-    public _borderColorRight: Color = { r: 0, g: 0, b: 0, a: 1, hex: "#FFFFFF" };
+    public _borderColorRight: Color = { r: 0, g: 0, b: 0, a: 1, hex: "" };
     private _borderColorRightChangeStyle = { style: "border-right-color", styleVue: "border-right-color" };
 
     //Radius
