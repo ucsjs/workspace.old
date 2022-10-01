@@ -210,10 +210,10 @@ export default ${this._namespace};\n\n`;
         
         for(let file of files){
             const content = fs.readFileSync(file, "utf-8");
+            const regex = new RegExp(`export class ${namespace} extends`, "g");
             
-            if(content.indexOf(namespace) > -1){
+            if(regex.test(content))
                 return file.replace(`${this._cwd}/`, "");
-            }
         }
 
         return "";

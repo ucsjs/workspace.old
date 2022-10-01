@@ -12,7 +12,7 @@ export class BlueprintsController {
 			'./packages/**/*.blueprint.ts',
 			'./src/blueprints/**/*.blueprint.ts',
 			'./.metadata/blueprints/**/*.blueprint.ts',
-			'./src/workspace/blueprints/**/*.blueprint.ts'
+			'./src/workspace/**/*.blueprint.ts'
 		]);
 	}
 
