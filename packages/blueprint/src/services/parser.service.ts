@@ -42,7 +42,7 @@ import { Blueprint, Flow, Type } from "@ucsjs/blueprint";\n`;
                     case "namespace": scriptText += `\tprivate __namespace = "${this._metadata.metadata[key]}";\n`; break;
                     case "group": scriptText += `\tprivate __group = "${this._metadata.metadata[key]}";\n`; break;
                     case "headerColor": scriptText += `\tprivate __headerColor = "${this._metadata.metadata[key].hex}";\n`; break;
-                    case "headerIcon": scriptText += `\tprivate __headerIcon = "${this._metadata.metadata[key]}";\n`; break;
+                    case "headerIcon": scriptText += `\tprivate __headerIcon = "${(this._metadata.metadata[key]?.icon) ? this._metadata.metadata[key].icon :this._metadata.metadata[key]}";\n`; break;
                     case "publicVars":
                         for(let keypublicVar in this._metadata.metadata[key]){
                             const name = this._metadata.metadata[key][keypublicVar].name;

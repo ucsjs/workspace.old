@@ -1,0 +1,33 @@
+{
+    "referrerPolicy": [
+        "no-referrer", "no-referrer-when-downgrade",
+        "origin", "origin-when-cross-origin",
+        "same-origin", "strict-origin",
+        "strict-origin-when-cross-origin", "unsafe-url"
+    ],
+    "headerKey": [
+        "WWW-Authenticate", "Authorization", "Proxy-Authenticate",
+        "Proxy-Authorization", "Age", "Cache-Control", "Clear-Site-Data",
+        "Expires", "Pragma", "Warning", "Downlink", "ECT", "RTT", "Last-Modified",
+        "ETag", "Vary", "If-Match", "If-None-Match", "If-Modified-Since",
+        "If-Unmodified-Since", "Connection", "Keep-Alive", "Accept",
+        "Accept-Encoding", "Accept-Language", "Expect", "Max-Forwards",
+        "Set-Cookie", "Access-Control-Allow-Origin", "Access-Control-Allow-Credentials",
+        "Access-Control-Allow-Headers", "Access-Control-Allow-Methods",
+        "Access-Control-Expose-Headers", "Access-Control-Max-Age",
+        "Access-Control-Request-Headers", "Access-Control-Request-Method",
+        "Origin", "Timing-Allow-Origin", "Content-Disposition", "Content-Length",
+        "Content-Type", "Content-Encoding", "Content-Language", "Content-Location",
+        "Forwarded", "Via", "Location", "From", "Host", "Referer", "Referrer-Policy",
+        "User-Agent", "Allow", "Server", "Accept-Ranges", "Range", "Content-Range",
+        "If-Range", "Cross-Origin-Embedder-Policy", "Cross-Origin-Opener-Policy",
+        "Cross-Origin-Resource-Policy", "Cross-Origin-Resource-Policy-Report-Only",
+        "Cross-Origin-Embedder-Policy-Report-Only", "Cross-Origin-Opener-Policy-Report-Only",
+        "Content-Security-Policy", "Content-Security-Policy-Report-Only",
+        "Public-Key-Pins", "Public-Key-Pins-Report-Only", "X-Content-Type-Options",
+        "X-Frame-Options", "X-XSS-Protection", "X-WebKit-CSP", "X-WebKit-CSP-Report-Only",
+        "Sec-Fetch-Site", "Sec-Fetch-Mode", "Sec-Fetch-Dest", "Sec-Fetch-User",
+        "Service-Worker-Navigation-Preload", "Alt-Svc", "Date", "Link",
+        "Retry-After", "Server-Timing", "SourceMap", "Upgrade", "X-DNS-Prefetch-Control"
+    ]
+}

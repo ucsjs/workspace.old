@@ -212,12 +212,19 @@ export class ParserService {
             }
 
             for(let keyMetadata in metadata){
-                if(keyMetadata == "headerIcon" && typeof metadata[keyMetadata] == "string" && metadata[keyMetadata].includes("/")){
+                if(keyMetadata == "headerIcon" && metadata[keyMetadata]?.icon) {
+                    metadata[keyMetadata] = metadata[keyMetadata]?.icon;
+                }
+                else if(
+                    keyMetadata == "headerIcon" && 
+                    typeof metadata[keyMetadata] == "string" && 
+                    metadata[keyMetadata].includes("/")
+                ){
                     try{
                         metadata[keyMetadata] = imageToUri(path.resolve(metadata[keyMetadata]));
                     }
                     catch(e){}
-                }
+                }  
 
                 //Sufix
                 if(keyMetadata.includes("Sufix")){
@@ -236,6 +243,8 @@ export class ParserService {
             component.sign = crypto.createHash("sha1")
             .update(Buffer.from(JSON.stringify(component)))
             .digest("hex");
+
+            //console.log(component);
 
             return component
         }

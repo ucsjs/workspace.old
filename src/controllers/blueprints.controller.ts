@@ -1,4 +1,5 @@
-import { Body, Controller, Get } from '@nestjs/common';
+import * as fs from "fs";
+import { Controller, Get } from '@nestjs/common';
 import { BlueprintsService } from 'src/services/blueprints.service';
 
 @Controller("blueprints")
@@ -17,8 +18,13 @@ export class BlueprintsController {
 
 	@Get("frontend")
 	async getFrontendBlueprints() {
-		return await this.blueprintsService.getBlueprints([
-			'./**/*.blueprint.client.ts'
-		]);
+		let blueprints = await this.blueprintsService.getBlueprints(['./**/*.blueprint.client.ts']);
+
+		for(let key in blueprints){
+			if(fs.existsSync(blueprints[key].filename?.replace(".blueprint", "").replace(".ts", ".js")))
+				blueprints[key].content = await fs.readFileSync(blueprints[key].filename?.replace(".blueprint", "").replace(".ts", ".js"), "utf8");
+		}
+		
+		return blueprints;
 	}
 }

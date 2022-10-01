@@ -1,4 +1,4 @@
-import { Blueprint } from "@ucsjs/blueprint";
+import { Blueprint, Type } from "@ucsjs/blueprint";
 
 export class ButtonVisualBlueprint extends Blueprint{
     //Metadata
@@ -10,6 +10,7 @@ export class ButtonVisualBlueprint extends Blueprint{
     constructor(metadata?: any){
         super();
         this.setup(metadata);
+        this.input("disabled", Type.Boolean, true);
         this.event("click");
     }
 }
