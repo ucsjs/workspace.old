@@ -1,6 +1,6 @@
-import { Component } from "../Types/Component.type";
-import { Color } from "../Types/Color.type";
-import { ImageType } from "../Types/Image.type";
+import { Component } from "../../Types/Component.type";
+import { Color } from "../../Types/Color.type";
+import { ImageType } from "../../Types/Image.type";
 
 export class Border extends Component {
     //Matadata

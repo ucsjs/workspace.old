@@ -1,5 +1,5 @@
-import { Component } from "../Types/Component.type";
-import { Range } from "../Types/Range.type";
+import { Component } from "../../Types/Component.type";
+import { Range } from "../../Types/Range.type";
 
 export class Transform extends Component {
     protected override __namespace = "Transform";

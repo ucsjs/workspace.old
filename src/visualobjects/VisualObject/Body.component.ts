@@ -1,8 +1,11 @@
-import { VisualObject } from "../Components/VisualObject.component";
-import { Border } from "../Components/Border.component";
-import { Background } from "../Components/Background.component";
+import { CoreObject } from "../Components/Core/CoreObject.componen";
+import { Border } from "../Components/Style/Border.component";
+import { Background } from "../Components/Style/Background.component";
+import { Transform } from "../Components/Style/Transform.component";
+import { Class } from "../Components/Style/Class.component";
+import { Margin } from "../Components/Style/Margin.component";
 
-export class Body extends VisualObject {
+export class Body extends CoreObject {
     //Matadata
     protected override __importable = false;
     protected override __namespace = "Body";
@@ -11,6 +14,9 @@ export class Body extends VisualObject {
     protected override __group = "";
     protected override __icon = "fa-regular fa-square-full";
 
+    public _class: Class;
+    public _transform: Transform;
+    public _margin: Margin;
     public _border: Border;
     public _background: Background;
    

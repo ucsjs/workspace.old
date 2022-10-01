@@ -10,8 +10,11 @@ export class MongoInsertBlueprint extends Blueprint{
     private __headerColor = "#419343";
     private __headerIcon = "./public/icons/mongodb.png";
     private __TypeMongoDB_Schema: object = { color: "#6d0000" };
+    private __trigger = true;
 
     private state = { model: null, document: null, conditional: false };
+
+    public _awaitTrigger: boolean = false;
 
     constructor(metadata?: any){
         super();
@@ -44,8 +47,13 @@ export class MongoInsertBlueprint extends Blueprint{
         this.output("error", Type.String, null);
     }
 
+    public async trigger(scope){
+        scope._awaitTrigger = false;
+        await scope.run(scope);
+    }
+
     public async run(scope){
-        if(scope.state.model && scope.state.document && scope.state.conditional === true){
+        if(scope.state.model && scope.state.document && !scope._awaitTrigger && scope.state.conditional === true){
             Logger.log(`Insert into MongoDB: ${JSON.stringify(scope.state.document)}`, "MongoInsertBlueprint");
 
             try{

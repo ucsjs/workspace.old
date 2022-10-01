@@ -6,6 +6,7 @@ export class IntervalBlueprint extends Blueprint {
     private __namespace = "Interval";
     private __group = "Common";
     private __headerIcon = "fa-solid fa-clock";
+    private __help = "https://www.w3schools.com/jsref/met_win_setinterval.asp";
 
     private _count: BehaviorSubject<number>;
     private _interval;

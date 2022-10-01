@@ -7,6 +7,7 @@ export class HTTPInBlueprint extends Blueprint{
     private __group = "Network";
     private __model = "./models/httpin.model.ejs";
     private __headerIcon = "fa-solid fa-turn-down";
+    private __help = "https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods";
     private __method = ["GET", "POST", "PUT", "DELETE", "PATCH"];
     private __HTTPTypes_Request: object = { color: "yellow" };
     

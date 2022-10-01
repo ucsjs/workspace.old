@@ -1,5 +1,5 @@
 import { BoxVisual } from "./Box.component";
-import { Image } from "../../Components/Image.component";
+import { Image } from "../../Components/HTML/Image.component";
 
 export class ImageVisual extends BoxVisual {
     //Matadata

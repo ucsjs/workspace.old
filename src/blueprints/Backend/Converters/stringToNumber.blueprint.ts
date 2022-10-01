@@ -5,6 +5,7 @@ export class StringToNumberBlueprint extends Blueprint{
     //Metadata
     private __namespace = "Str To Int";
     private __group = "Converters";
+    private __help = "https://www.w3schools.com/jsref/jsref_parsefloat.asp";
 
     constructor(){
         super();

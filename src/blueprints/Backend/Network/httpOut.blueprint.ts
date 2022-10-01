@@ -8,6 +8,7 @@ export class HTTPOutBlueprint extends Blueprint{
     private __group = "Network";
     private __headerIcon = "fa-solid fa-turn-up";
     private __HTTPTypes_Request: object = { color: "yellow" };
+    private __help = "https://developer.mozilla.org/en-US/docs/Web/HTTP/Status";
 
     private state: any = { contents: null, request: null };
 

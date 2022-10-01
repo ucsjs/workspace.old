@@ -1,5 +1,5 @@
-import { Component } from "../Types/Component.type";
-import { BigText } from "../Interfaces/BigText.interface";
+import { Component } from "../../Types/Component.type";
+import { BigText } from "../../Interfaces/BigText.interface";
 
 export class Class extends Component {
     protected override __namespace = "Class";

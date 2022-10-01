@@ -1,5 +1,5 @@
-import { Component } from "../Types/Component.type";
-import { ImageType } from "../Types/Image.type";
+import { Component } from "../../Types/Component.type";
+import { ImageType } from "../../Types/Image.type";
 
 export class Image extends Component {
     protected override __namespace = "Image";

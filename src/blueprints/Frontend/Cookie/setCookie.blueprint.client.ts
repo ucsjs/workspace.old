@@ -7,6 +7,7 @@ export class SetCookieClientBlueprint extends Blueprint{
     private __headerColor = "#5e5a32";
     private __headerIcon = "fa-solid fa-cookie";
     private __sameSite = ["Strict", "Lax", "None"];
+    private __help = "https://developer.mozilla.org/en-US/docs/Web/API/Document/cookie";
 
     public _key: string = "";
     public _expires: number = 0;

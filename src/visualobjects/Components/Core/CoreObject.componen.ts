@@ -1,11 +1,11 @@
-import { Component } from "../Types/Component.type";
-import { Transform } from "./Transform.component";
-import { Class } from "./Class.component";
-import { Margin } from "./Margin.component";
+import { Component } from "../../Types/Component.type";
+import { Transform } from "../Style/Transform.component";
+import { Class } from "../Style/Class.component";
+import { Margin } from "../Style/Margin.component";
 
-export class VisualObject extends Component {
+export class CoreObject extends Component {
     //Matadata
-    protected override __namespace = "VisualObject";
+    protected override __namespace = "CoreObject";
     protected override __importable = false;
     protected __static = false;
     protected __resizable = false;
@@ -19,11 +19,7 @@ export class VisualObject extends Component {
     protected scope = {
         components: []
     };
-    
-    public _class: Class;
-    public _transform: Transform;
-    public _margin: Margin;
-    
+        
     constructor($argv){
         super();
 

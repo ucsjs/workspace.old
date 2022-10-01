@@ -1,15 +1,13 @@
-import { Logger } from "@nestjs/common";
 import { Blueprint, Type } from "@ucsjs/blueprint";
-import { Request } from "express";
 import { HTTPTypes } from "./httpTypes.enum";
 
-export class HTTPParamBlueprint extends Blueprint{
+export class HTTPHeaderBlueprint extends Blueprint{
     //Metadata
-    private __namespace = "HTTP Param";
+    private __namespace = "HTTP Header";
     private __group = "Network";
-    private __headerIcon = "fa-solid fa-list-check";
+    private __headerIcon = "fa-solid fa-table-list";
+    private __help = "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers";
     private __HTTPTypes_Request: object = { color: "yellow" };
-    private __help = "https://docs.nestjs.com/controllers#route-parameters";
 
     public _name: string = "";
     public _toJSON: boolean = false;
@@ -21,16 +19,14 @@ export class HTTPParamBlueprint extends Blueprint{
 
         this.input("request", HTTPTypes.Request, null).subscribe((request) => {
             if(request){
-                Logger.log(`Recive connection, check param exists ${this._name} : ${request.params.hasOwnProperty(this._name)}`, "HTTPParamBlueprint");
-
                 if(request.params.hasOwnProperty(this._name)){
                     if(this._toJSON){
                         const json = {};
-                        json[this._name] = request.params[this._name];
+                        json[this._name] = request.headers[this._name];
                         this.next("result", json);
                     }
                     else{
-                        this.next("result", request.params[this._name]);
+                        this.next("result", request.headers[this._name]);
                     }
                 }
             }

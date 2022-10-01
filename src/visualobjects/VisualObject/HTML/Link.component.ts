@@ -1,4 +1,4 @@
-import { Link } from "../../Components/Link.component";
+import { Link } from "../../Components/HTML/Link.component";
 import { TextVisual } from "./Text.component";
 
 export class LinkVisual extends TextVisual {

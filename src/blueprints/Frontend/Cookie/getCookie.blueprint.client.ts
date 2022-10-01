@@ -6,6 +6,7 @@ export class GetCookieClientBlueprint extends Blueprint{
     private __group = "Cookie";
     private __headerColor = "#5e5a32";
     private __headerIcon = "fa-solid fa-cookie";
+    private __help = "https://www.w3schools.com/js/js_cookies.asp";
 
     public _key: string = "";
     public _returnJSON: boolean = false;

@@ -1,5 +1,5 @@
-import { Component } from "../Types/Component.type";
-import { IconType } from "../Types/Icon.type";
+import { Component } from "../../Types/Component.type";
+import { IconType } from "../../Types/Icon.type";
 
 export class Button extends Component {
     protected override __namespace = "Button";

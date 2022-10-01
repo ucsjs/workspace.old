@@ -1,7 +1,7 @@
-import { BoxVisual } from "../Core/Box.component";
-import { Font } from "../../Components/Font.component";
-import { Content } from "../../Components/Content.component";
-import { Button } from "../../Components/Button.component";
+import { BoxVisual } from "../HTML/Box.component";
+import { Font } from "../../Components/Style/Font.component";
+import { Content } from "../../Components/HTML/Content.component";
+import { Button } from "../../Components/Form/Button.component";
 
 export class ButtonVisual extends BoxVisual {
     //Matadata

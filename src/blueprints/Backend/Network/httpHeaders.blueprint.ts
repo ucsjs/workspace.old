@@ -6,6 +6,7 @@ export class HTTPHeadersBlueprint extends Blueprint{
     private __namespace = "HTTP Headers";
     private __group = "Network";
     private __headerIcon = "fa-solid fa-table-list";
+    private __help = "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers";
     private __HTTPTypes_Request: object = { color: "yellow" };
  
     constructor(metadata?: any){

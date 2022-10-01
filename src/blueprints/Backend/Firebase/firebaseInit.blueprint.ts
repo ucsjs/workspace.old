@@ -8,6 +8,7 @@ export class FirebaseInitBlueprint extends Blueprint{
     private __group = "Firebase";
     private __headerIcon = "./public/icons/firebase.png";
     private __headerColor = "#b28910";    
+    private __help = "https://firebase.google.com/docs/web/setup";
 
     private _settings;
 

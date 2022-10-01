@@ -1,7 +1,7 @@
-import { Font } from "../../Components/Font.component";
-import { Content } from "../../Components/Content.component";
-import { Animation } from "../../Components/Animation.component";
-import { BoxVisual } from "../Core/Box.component";
+import { Font } from "../../Components/Style/Font.component";
+import { Content } from "../../Components/HTML/Content.component";
+import { Animation } from "../../Components/Scripts/Animation.component";
+import { BoxVisual } from "../HTML/Box.component";
 
 export class NotificationVisual extends BoxVisual {
     //Matadata

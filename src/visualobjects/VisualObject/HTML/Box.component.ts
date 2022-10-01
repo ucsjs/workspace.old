@@ -1,6 +1,6 @@
-import { VisualObject } from "../../Components/VisualObject.component";
-import { Border } from "../../Components/Border.component";
-import { Background } from "../../Components/Background.component";
+import { VisualObject } from "../../Components/Core/VisualObject.component";
+import { Border } from "../../Components/Style/Border.component";
+import { Background } from "../../Components/Style/Background.component";
 
 export class BoxVisual extends VisualObject {
     //Matadata

@@ -1,5 +1,5 @@
-import { Font } from "../../Components/Font.component";
-import { Content } from "../../Components/Content.component";
+import { Font } from "../../Components/Style/Font.component";
+import { Content } from "../../Components/HTML/Content.component";
 import { BoxVisual } from "./Box.component";
 
 export class TextVisual extends BoxVisual {

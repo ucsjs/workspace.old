@@ -9,6 +9,7 @@ export class HTTPParamsBlueprint extends Blueprint{
     private __group = "Network";
     private __headerIcon = "fa-solid fa-list-ul";
     private __HTTPTypes_Request: object = { color: "yellow" };
+    private __help = "https://docs.nestjs.com/controllers#route-parameters";
  
     constructor(metadata?: any){
         super();

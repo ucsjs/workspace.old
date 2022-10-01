@@ -1,4 +1,4 @@
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Subject } from 'rxjs';
 
 import { Type } from '../enums/types.enum';
 import { Input } from "../interfaces/input.interface";
@@ -53,15 +53,19 @@ export class Blueprint {
 
     event(name: string){
         if(!this._events.find(event => event.name === name)){
-            this._events.push({ name });
+            this._events.push({ name, subject: new Subject() });
         }
     }
     
     subscribe(key: string, callback: (value: any) => void){
         const output = this._output.find(output => output.key === key);
+        const event = this._events.find(event => event.key === key);
 
         if(output)
             output.value?.subscribe(callback);
+
+        if(event)
+            event.subject.subscribe(callback);
     }
 
     unsubscribe(key: string){
@@ -85,6 +89,13 @@ export class Blueprint {
 
         if(output)
             output.value?.next(value);
+    }
+
+    trigger(key: string){
+        const event = this._events.find(event => event.key === key);
+
+        if(event)
+            event.subject.next(true);
     }
 
     get(key: string){

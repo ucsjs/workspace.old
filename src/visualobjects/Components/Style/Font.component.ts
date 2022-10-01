@@ -1,5 +1,5 @@
-import { Component } from "../Types/Component.type";
-import { Color } from "../Types/Color.type";
+import { Component } from "../../Types/Component.type";
+import { Color } from "../../Types/Color.type";
 
 export class Font extends Component {
     protected override __namespace = "Font";

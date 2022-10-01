@@ -79,17 +79,19 @@ export class VisualService extends ParserService {
                 if(components[key].extends)
                     components[key] = await this.injectRootDependencies(components[key], dependenciesIndex);
                 
-                exportedComponents.push({
-                    namespace: components[key].namespace,
-                    extends: components[key].extends,
-                    sign: components[key].sign,
-                    metadata: (metadataJson) ? { ...metadataJson, ...components[key].metadata } : components[key].metadata,
-                    components: components[key].components,
-                    template: components[key].template,
-                    editor: components[key].editor,
-                    content: components[key].content,
-                    componentsDefaults: components[key]?.componentsDefaults,
-                });
+                if(!components[key].metadata.script){
+                    exportedComponents.push({
+                        namespace: components[key].namespace,
+                        extends: components[key].extends,
+                        sign: components[key].sign,
+                        metadata: (metadataJson) ? { ...metadataJson, ...components[key].metadata } : components[key].metadata,
+                        components: components[key].components,
+                        template: components[key].template,
+                        editor: components[key].editor,
+                        content: components[key].content,
+                        componentsDefaults: components[key]?.componentsDefaults,
+                    });
+                }
             } 
         }
 

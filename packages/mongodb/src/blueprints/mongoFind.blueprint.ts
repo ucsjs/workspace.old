@@ -10,7 +10,9 @@ export class MongoFindBlueprint extends Blueprint{
     private __headerColor = "#419343";
     private __headerIcon = "./public/icons/mongodb.png";
     private __TypeMongoDB_Schema: object = { color: "#6d0000" };
+    private __trigger = true;
 
+    public _awaitTrigger: boolean = false;
     public _limit: number = 10;
     public _offset: number = 0;
 
@@ -43,8 +45,13 @@ export class MongoFindBlueprint extends Blueprint{
         this.output("error", Type.String, null);
     }
 
+    public async trigger(scope){
+        scope._awaitTrigger = false;
+        await scope.run(scope);
+    }
+
     public async run(scope){
-        if(scope.state.model && scope.state.query){
+        if(scope.state.model && scope.state.query && !scope._awaitTrigger){
             Logger.log(`Find in MongoDB: ${JSON.stringify(scope.state.query)}`, "MongoFindBlueprint");
 
             try{

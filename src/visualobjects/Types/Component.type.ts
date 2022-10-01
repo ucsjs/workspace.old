@@ -6,4 +6,5 @@ export class Component {
     protected __importable: boolean = true;
     protected __icon: string = "fa-solid fa-cube";
     protected __group: string = "";
+    protected __script: boolean = false;
 }

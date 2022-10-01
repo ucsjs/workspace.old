@@ -10,7 +10,9 @@ export class MongoUpdateBlueprint extends Blueprint{
     private __headerColor = "#419343";
     private __headerIcon = "./public/icons/mongodb.png";
     private __TypeMongoDB_Schema: object = { color: "#6d0000" };
+    private __trigger = true;
 
+    public _awaitTrigger: boolean = false;
     public _multi: boolean = false;
     public _upsert: boolean = false;
 
@@ -48,8 +50,13 @@ export class MongoUpdateBlueprint extends Blueprint{
         this.output("error", Type.String, null);
     }
 
+    public async trigger(scope){
+        scope._awaitTrigger = false;
+        await scope.run(scope);
+    }
+
     public async run(scope){
-        if(scope.state.model && scope.state.set && scope.state.query){
+        if(scope.state.model && scope.state.set && scope.state.query && !scope._awaitTrigger){
             Logger.log(`Update ${JSON.stringify(scope.state.query)} MongoDB: ${JSON.stringify(scope.state.set)}`, "MongoUpdateBlueprint");
 
             try{

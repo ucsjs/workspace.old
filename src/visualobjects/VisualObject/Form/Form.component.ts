@@ -1,5 +1,5 @@
-import { VisualObject } from "../../Components/VisualObject.component";
-import { Form } from "../../Components/Form.component";
+import { VisualObject } from "../../Components/Core/VisualObject.component";
+import { Form } from "../../Components/Form/Form.component";
 
 export class FormVisual extends VisualObject {
     //Matadata

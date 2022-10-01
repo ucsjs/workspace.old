@@ -1,6 +1,6 @@
-import { BoxVisual } from "../Core/Box.component";
-import { Font } from "../../Components/Font.component";
-import { Input } from "../../Components/Input.component";
+import { BoxVisual } from "../HTML/Box.component";
+import { Font } from "../../Components/Style/Font.component";
+import { Input } from "../../Components/Form/Input.component";
 
 export class InputVisual extends BoxVisual {
     //Matadata

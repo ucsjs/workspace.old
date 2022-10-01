@@ -7,6 +7,7 @@ export class HashBlueprint extends Blueprint {
     private __group = "Encoding";
     private __algorithm = ["sha1", "sha256", "sha512", "md5"];
     private __encoding = ["hex", "base64", "binary", "utf8"];
+    private __help = "https://nodejs.org/api/crypto.html";
 
     public _algorithm: string = "sha256";
     public _encoding: crypto.BinaryToTextEncoding = "hex";

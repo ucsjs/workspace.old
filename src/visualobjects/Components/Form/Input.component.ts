@@ -1,4 +1,4 @@
-import { Component } from "../Types/Component.type";
+import { Component } from "../../Types/Component.type";
 
 export class Input extends Component {
     protected override __namespace = "Input";

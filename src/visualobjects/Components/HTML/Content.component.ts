@@ -1,6 +1,6 @@
-import { Component } from "../Types/Component.type";
-import { BigText } from "../Interfaces/BigText.interface";
-import { Color } from "../Types/Color.type";
+import { Component } from "../../Types/Component.type";
+import { BigText } from "../../Interfaces/BigText.interface";
+import { Color } from "../../Types/Color.type";
 
 export class Content extends Component {
     protected override __namespace = "Content";

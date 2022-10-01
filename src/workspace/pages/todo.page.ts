@@ -6,7 +6,7 @@ class TodoPageController {
     @Get()
     @Header('Content-Type', 'text/html')
     async index(){
-        return readFileSync('./src/workspace/pages/todo.page.html', "utf8");
+        return readFileSync('src/workspace/pages/todo.page.html', "utf8");
     }
 }
 
