@@ -11,6 +11,7 @@ export class Blueprint {
     protected _itemKey: string = "";
     protected _inputs: Input<any>[] = [];
     protected _output: Output<any>[] = [];
+    protected _events = [];
 
     constructor(){}
 
@@ -47,6 +48,12 @@ export class Blueprint {
                 subject.subscribe(next);
 
             this._output.push({key, type, value: subject});
+        }
+    }
+
+    event(name: string){
+        if(!this._events.find(event => event.name === name)){
+            this._events.push({ name });
         }
     }
     

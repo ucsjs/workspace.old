@@ -5,7 +5,6 @@ export class HTTPHeadersBlueprint extends Blueprint{
     //Metadata
     private __namespace = "HTTP Headers";
     private __group = "Network";
-    private __module = true;
     private __headerIcon = "fa-solid fa-table-list";
     private __HTTPTypes_Request: object = { color: "yellow" };
  

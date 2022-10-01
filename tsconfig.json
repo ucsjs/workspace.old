@@ -13,15 +13,14 @@
 	  "baseUrl": "./",
 	  "incremental": true,
 	  "skipLibCheck": true,
+	  "esModuleInterop": false,
 	  "strictNullChecks": false,
 	  "noImplicitAny": false,
 	  "strictBindCallApply": false,
 	  "forceConsistentCasingInFileNames": false,
 	  "noFallthroughCasesInSwitch": false,
 	},
-	"include": [
-	  "src/**/*.ts",
-	],
+	"include": ["src/**/*.ts"],
 	"exclude": [
 		"src/workspace/**/*.ts",
 		"node_modules",
@@ -29,6 +28,7 @@
 		"public",
 		"http",
 		"docs",
-		"views"
+		"views",
+		"test"
 	]
 }

@@ -7,7 +7,6 @@ export class HTTPParamBlueprint extends Blueprint{
     //Metadata
     private __namespace = "HTTP Param";
     private __group = "Network";
-    private __module = true;
     private __headerIcon = "fa-solid fa-list-check";
     private __HTTPTypes_Request: object = { color: "yellow" };
 

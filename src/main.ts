@@ -43,15 +43,15 @@ async function bootstrap() {
 		}
 	}
 
+	app.use(compression());
 	app.useStaticAssets(path.join(__dirname, '..', 'public'));
-	app.setBaseViewsDir(path.join(__dirname, '..', 'views'));
+	app.setBaseViewsDir('views');
 	app.setViewEngine('ejs');
 
 	app.useWebSocketAdapter(new WsAdapter(app));
 	app.enableCors();
 	app.use(express.static("node_modules"));
-	app.use(express.static("public"));
-	app.use(compression());
+	app.use(express.static("public"));	
 	app.use(cookieParser());
 	app.use(csurf());
 	app.use(express.json({ limit: '50mb' }));

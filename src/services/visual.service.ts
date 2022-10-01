@@ -4,6 +4,7 @@ import * as fg from "fast-glob";
 import * as ejs from "ejs";
 import * as tsc from 'node-typescript-compiler';
 import { jsmin } from "jsmin"; 
+import { minify } from "html-minifier";
 import { Injectable } from '@nestjs/common';
 
 import { ParserService } from "./parser.service";
@@ -17,7 +18,7 @@ export class VisualService extends ParserService {
         "padding-top", "padding-left", "padding-right", "padding-bottom", 
         "border-top-width", "border-left-width", "border-right-width", "border-bottom-width", 
         "border-top-left-radius", "border-top-right-radius", "border-bottom-right-radius", "border-bottom-left-radius",
-        "font-size"
+        "font-size", "margin", "padding"
     ];
     
     constructor(
@@ -442,29 +443,68 @@ export class LazyModule {}`;
                     <meta charset="utf-8">
                     <meta name="viewport" content="width=device-width, initial-scale=1">
                     <meta http-equiv="Content-Security-Policy" content="default-src *;img-src * 'self' data: https:; script-src 'self' 'unsafe-inline' 'unsafe-eval' *; style-src  'self' 'unsafe-inline' *">
-                    <script src="/@ucsjs/engine/engine.min.js"></script>
-                    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js"></script>
-                    <script src="https://cdnjs.cloudflare.com/ajax/libs/rxjs/7.5.7/rxjs.umd.min.js"></script>
-                    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+                    <link rel="stylesheet" href="/bundle.css">
                 </head>
                 <body class="Body">
+                    <div id="app">
+                        ${await this.build(metadata.hierarchy, 2, dependenciesIndex)}
+                        ${bodyStyle}
+                    </div>
+                    <script src="/@ucsjs/engine/engine.min.js"></script>
+                    <script src="/bundle.min.js"></script>
                     <script>
                         define("@ucsjs/engine/engine.min", ["require", "exports"], function(require, exports) {
                             exports.UCS = UCS;
                             exports.Application = Application;
                         });
                     </script>
-                    ${await this.build(metadata.hierarchy, 2, dependenciesIndex)}
-                    ${bodyStyle}
+                    <script>
+                        if ('serviceWorker' in navigator) {
+                            window.addEventListener('load', () => {
+                                navigator.serviceWorker.register('/workbox-sw.min.js')
+                                .then(registration => {
+                                    console.log("Service Worker registered! Scope:");
+                                })
+                                .catch(err => {
+                                    console.log(err);
+                                });
+                            });
+                        }
+
+                        const { createApp } = Vue;
+
+                        createApp({
+                            data() {
+                                return {}
+                            }
+                        }).mount('#app');
+                    </script>
                 </body>
             </html>`; 
 
         return result;
+
+        /*return minify(result, {
+            removeComments: true,
+            removeCommentsFromCDATA: true,
+            collapseWhitespace: true,
+            collapseBooleanAttributes: true,
+            removeAttributeQuotes: true,
+            removeRedundantAttributes: true,
+            useShortDoctype: true,
+            removeEmptyAttributes: true,
+            removeOptionalTags: true,
+            minifyJS: true,
+            minifyCSS: true
+        });*/
     }
 
     async getStyle(component, dependenciesIndex, ignoreStyles = []){
         let result = "";
-        let styles = {};
+        let styles = {
+            margin: "0px",
+            padding: "0px",
+        };
 
         for(let subComponent of component.components){
             const componentData: any = subComponent.value;
@@ -472,19 +512,15 @@ export class LazyModule {}`;
             for(let keyComponent in componentData){
                 for(let property of dependenciesIndex[subComponent.component].publicVars){
                     if(componentData[property.name] && property.changeStyle){
-                        if(typeof componentData[property.name] == "object" && componentData[property.name].hex){
+                        if(typeof componentData[property.name] == "object" && typeof componentData[property.name].hex == "string"){
                             styles[property.changeStyle?.style] = componentData[property.name].hex;
                         }                                       
                         else if(typeof componentData[property.name] == "object" && componentData[property.name].src !== undefined){
                             if(componentData[property.name].src)
                                 styles[property.changeStyle?.style] = `url(${componentData[property.name].src})`;
                         }                                      
-                        else if(
-                            (this.pixelAttr.includes(property.changeStyle?.style) && typeof componentData[property.name] == "number") ||
-                            (this.pixelAttr.includes(property.changeStyle?.style) && !componentData[property.name].includes("px"))
-                        ) {
+                        else if(this.pixelAttr.includes(property.changeStyle?.style) && componentData[property.name] !== undefined) 
                             styles[property.changeStyle?.style] = this.returnValueWithSuffix(property.name, componentData[property.name]);
-                        }
                         else
                             styles[property.changeStyle?.style] = componentData[property.name];
                     }
@@ -531,21 +567,14 @@ export class LazyModule {}`;
                 for(let keyComponent in componentData){
                     if(dependenciesIndex[keyComponent]){
                         for(let property of dependenciesIndex[keyComponent].publicVars){
-                            if(componentData[keyComponent][property.name] && property.changeStyle){
-                                if(typeof componentData[keyComponent][property.name] == "object" && componentData[keyComponent][property.name].hex){
-                                    styles[property.changeStyle?.style] = componentData[keyComponent][property.name].hex;
-                                }                                       
-                                else if(typeof componentData[keyComponent][property.name] == "object" && componentData[keyComponent][property.name].src !== undefined){
-                                    if(componentData[keyComponent][property.name].src)
-                                        styles[property.changeStyle?.style] = `url(${componentData[keyComponent][property.name].src})`;
-                                }                                      
-                                else if(
-                                    typeof componentData[keyComponent][property.name] == "number" ||
-                                    (this.pixelAttr.includes(property.changeStyle?.style) && !componentData[keyComponent][property.name].includes("px"))
-                                ) {
-                                    styles[property.changeStyle?.style] = this.returnValueWithSuffix(property.name, componentData[keyComponent]);
-                                }
-                                else
+                            if(property.changeStyle){
+                                if(componentData[keyComponent][property.name]?.hex)
+                                    styles[property.changeStyle?.style] = componentData[keyComponent][property.name].hex;                                                                   
+                                else if(componentData[keyComponent][property.name]?.src)
+                                    styles[property.changeStyle?.style] = `url(${componentData[keyComponent][property.name].src})`;                                                                     
+                                else if(this.pixelAttr.includes(property.changeStyle?.style)) 
+                                    styles[property.changeStyle?.style] = this.returnValueWithSuffix(property.name, componentData[keyComponent]);                                
+                                else if(typeof componentData[keyComponent][property.name] !== "object")
                                     styles[property.changeStyle?.style] = componentData[keyComponent][property.name];
                             }
                         }
@@ -558,13 +587,16 @@ export class LazyModule {}`;
                     if(styles[key])
                         styleRemoveNulls[key] = styles[key]
                 }
-                
-                const template = ejs.render(`${raw}
+
+                /**
                     <style>
                     .${component.id} {<% if(style) { for(let keyStyle in style){ %>
                         <%= keyStyle %>: <%= style[keyStyle] %>; <% } } %>
                     }
-                    </style>`, {
+                    </style>
+                 */
+                
+                const template = ejs.render(`${raw}`, {
                     id: component.id,
                     slot: subComponents,
                     style: (styleRemoveNulls) ? styleRemoveNulls : {},
@@ -636,6 +668,9 @@ export class LazyModule {}`;
         const lengths = ["px", "cm", "mm", "in", "pt", "pc", "em", "ex", "ch", "rem", "vw", "vh", "vmin", "vmax", "%"]
 
         if(data[namespace] != undefined){
+            if(typeof data[namespace] == "string" && data[namespace].includes("px"))
+                data[namespace] = data[namespace].replace("px", "");
+
             if(lengths.includes(sufix))
                 return `${data[namespace]}${sufix}`;
             else
@@ -643,8 +678,9 @@ export class LazyModule {}`;
         }
         else if(lengths.includes(sufix))
             return `0${sufix}`;
-        else{
+        else if(sufix)
+            return sufix;
+        else
             return null;
-        }
     }
 }

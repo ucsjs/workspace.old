@@ -27,6 +27,7 @@ export class ParserService {
                 ], contents, ["name", "type", "default"], true),
                 outputs: this.regexService.getData(/this\.output\(["'](.*?)["'],[\s](.*?),.*?\)/isg, contents, ["name", "type"], true),
                 inputs: this.regexService.getData(/this\.input\(["'](.*?)["'],[\s](.*?),.*?\)/isg, contents, ["name", "type"], true),
+                events: this.regexService.getData(/this\.event\(["'](.*?)["']\)/isg, contents, ["name"], true),
                 content: (content) ? content : null,
                 componentsDefaults: this.regexService.getData(/this._(.*?)._(.*?) = (.*?);/gms, contents, ["component", "property", "value"]),
                 metadata: {}

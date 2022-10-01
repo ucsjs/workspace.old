@@ -9,4 +9,5 @@
     <% if(Input.multiple) { %>multiple="<%= Input.multiple %>"<% } %>
     <% if(Input.readonly) { %>readonly="<%= Input.readonly %>"<% } %>
     <% if(Input.required) { %>required="<%= Input.required %>"<% } %>
+    :style="<%= JSON.stringify(style) %>"
 />

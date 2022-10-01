@@ -92,6 +92,18 @@ export class FileService {
 			case "ts": language = "typescript"; break;
 		}
 
+		if(filename.includes("blueprint.ts"))
+			language = "blueprint";
+		else if(filename.includes("page.ts"))
+			language = "page";
+
+		const content = (
+			(filename.includes("blueprint.ts") &&
+			fs.existsSync(`${filename.replace(basename, `.${basename.replace(".ts", "")}`)}.meta`)) || 
+			(filename.includes("page.ts") &&
+			fs.existsSync(`${filename.replace(basename, `.${basename.replace(".ts", "")}`)}.meta`))
+		) ? fs.readFileSync(`${filename.replace(basename, `.${basename.replace(".ts", "")}`)}.meta`, "utf8") : fs.readFileSync(filename, "utf8");
+
 		return {
 			name: basename.replace(/\//s, ""),
 			path: filename,
@@ -104,30 +116,54 @@ export class FileService {
 			pathHash: crypto.createHash('sha1').update(filename).digest('hex'),
 			hasMetadata: fs.existsSync(`${filename.replace(basename, `.${basename.replace(".ts", "")}`)}.meta`),
 			language,
-			content: fs.readFileSync(filename, "utf8"),
+			content: content,
 			lastModified: info.mtime
 		}
 	}
 
 	async createFile(pathname: string, filename: string){
+		const resolvePath = path.resolve(`./`);
 		const filenameFull = path.resolve(`${pathname}/${filename}`);
 
-		if(filenameFull.includes(".blueprint.ts") || filenameFull.includes(".page.ts")){
-			const dirname = path.dirname(filenameFull);
-			const basename = path.basename(filenameFull, ".ts");
-			const parserBasename = basename.split(".");
-			await fs.writeFileSync(`${dirname}/.${basename}.meta`, "{}");
+		if(!fs.existsSync(filenameFull)){
+			if(filenameFull.includes(".blueprint.ts") || filenameFull.includes(".page.ts")){
+				const dirname = path.dirname(filenameFull);
+				const basename = path.basename(filenameFull, ".ts");
+				await fs.writeFileSync(`${dirname}/.${basename}.meta`, "{}");
+			}
+	
+			await fs.writeFileSync(filenameFull, "");
+			const info = fs.lstatSync(filenameFull);
+	
+			return {		
+				filename: "./" + filenameFull.replace(resolvePath, "").replace(/\//s, ""),
+				pathHash: crypto.createHash('sha1').update(filenameFull).digest('hex'),		
+				sha256: crypto.createHash('sha256').update(JSON.stringify(info)).digest('hex'),
+				lastModified: info.mtime
+			};
 		}
+		else {
+			return {
+				error: "File already exists"
+			}
+		}
+	}
 
-		await fs.writeFileSync(filenameFull, "");
+	async createDir(pathname: string, name: string){
+		const resolvePath = path.resolve(`./`);
+		const dirnameFull = path.resolve(`${pathname}/${name}`);
 
-		const info = fs.lstatSync(filenameFull);
+		if(!fs.existsSync(dirnameFull)){
+			await fs.mkdirSync(dirnameFull);
+			const info = fs.lstatSync(dirnameFull);
 
-		return {		
-			pathHash: crypto.createHash('sha1').update(filenameFull).digest('hex'),		
-			sha256: crypto.createHash('sha256').update(JSON.stringify(info)).digest('hex'),
-			lastModified: info.mtime
-		};
+			return {		
+				dirname: "./" + dirnameFull.replace(resolvePath, "").replace(/\//s, ""),
+				pathHash: crypto.createHash('sha1').update(dirnameFull).digest('hex'),		
+				sha256: crypto.createHash('sha256').update(JSON.stringify(info)).digest('hex'),
+				lastModified: info.mtime
+			};
+		}
 	}
 
 	async saveFile(item){
@@ -192,6 +228,26 @@ export class FileService {
 			sha256: crypto.createHash('sha256').update(JSON.stringify(info)).digest('hex'),
 			lastModified: info.mtime
 		};
+	}
+
+	async deleteFile(filename){
+		if(fs.existsSync(filename)){
+			await fs.unlinkSync(filename);
+			return true;
+		}
+		else{
+			return false; 
+		}
+	}
+
+	async deleteDir(dirname){
+		if(fs.existsSync(dirname)){
+			await fs.rmSync(dirname, { recursive: true, force: true });
+			return true;
+		}
+		else{
+			return false;
+		}
 	}
 
 	checksum(filename: string){

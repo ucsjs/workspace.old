@@ -6,7 +6,6 @@ export class HTTPInBlueprint extends Blueprint{
     private __namespace = "HTTP In";
     private __group = "Network";
     private __model = "./models/httpin.model.ejs";
-    private __module = true;
     private __headerIcon = "fa-solid fa-turn-down";
     private __method = ["GET", "POST", "PUT", "DELETE", "PATCH"];
     private __HTTPTypes_Request: object = { color: "yellow" };

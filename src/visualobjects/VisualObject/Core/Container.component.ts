@@ -23,6 +23,6 @@ export class ContainerVisual extends BoxVisual {
     }
 
     public content(){
-        return `<div><slot></slot></div>`;
+        return `<div><slot /></div>`;
     }
 }

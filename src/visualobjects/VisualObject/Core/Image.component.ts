@@ -6,6 +6,8 @@ export class ImageVisual extends BoxVisual {
     protected override __namespace = "Image";
     protected override __group = "Core";
     protected override __icon = "fa-regular fa-image";
+    protected override __resizable = true;
+    protected override __moveble = true;
 
     public _image: Image;
     

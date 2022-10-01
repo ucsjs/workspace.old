@@ -1,0 +1,14 @@
+<a 
+    ref="<%= id %>"  
+    <% if(Link.href) { %>href="<%= Link.href %>"<% } %>
+    <% if(Link.hreflang) { %>hreflang="<%= Link.hreflang %>"<% } %>
+    <% if(Link.media) { %>media="<%= Link.media %>"<% } %>
+    <% if(Link.ping) { %>ping="<%= Link.ping %>"<% } %>
+    <% if(Link.referrerpolicy) { %>referrerpolicy="<%= Link.referrerpolicy %>"<% } %>
+    <% if(Link.rel) { %>rel="<%= Link.rel %>"<% } %>
+    <% if(Link.target) { %>target="<%= Link.target %>"<% } %>
+    <% if(Link.type) { %>type="<%= Link.type %>"<% } %>
+    :style="<%= JSON.stringify(style) %>"
+>
+    <%= Content.text.content %>
+</a>

@@ -5,6 +5,7 @@
     <% if(Button.disabled) { %>disabled<% } %>
     <% if(Button.autofocus) { %>autofocus<% } %>
     <% if(Button.name) { %>name="<%= Button.name %>"<% } %> 
+    :style="<%= JSON.stringify(style) %>"
 >
 <% if(Button && Button.icon && Button.icon.icon){ %>
 <i 

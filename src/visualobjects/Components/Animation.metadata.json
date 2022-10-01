@@ -1,0 +1,10 @@
+{
+    "entrance": [
+        "animate__backInDown", "animate__backInLeft", "animate__backInRight",
+        "animate__backInUp"
+    ],
+    "exit": [
+        "animate__backOutDown", "animate__backOutLeft", "animate__backOutRight",
+        "animate__backOutUp"
+    ]
+}

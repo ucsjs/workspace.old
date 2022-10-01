@@ -13,7 +13,7 @@ export class Border extends Component {
     public _borderStyleTop: string = "";
     private _borderStyleTopChangeStyle = { style: "border-top-style", styleVue: "border-top-style" };
 
-    public _borderWidthTop: number = 0;
+    public _borderWidthTop: number;
     private _borderWidthTopChangeStyle = { style: "border-top-width", styleVue: "border-top-width" };
 
     public _borderColorTop: Color = { r: 0, g: 0, b: 0, a: 1, hex: "" };
@@ -23,7 +23,7 @@ export class Border extends Component {
     public _borderStyleLeft: string = "";
     private _borderStyleLeftChangeStyle = { style: "border-left-style", styleVue: "border-left-style" };
 
-    public _borderWidthLeft: number = 0;
+    public _borderWidthLeft: number;
     private _borderWidthLeftChangeStyle = { style: "border-left-width", styleVue: "border-left-width" };
 
     public _borderColorLeft: Color = { r: 0, g: 0, b: 0, a: 1, hex: "" };
@@ -33,7 +33,7 @@ export class Border extends Component {
     public _borderStyleBottom: string = "";
     private _borderStyleBottomChangeStyle = { style: "border-bottom-style", styleVue: "border-bottom-style" };
 
-    public _borderWidthBottom: number = 0;
+    public _borderWidthBottom: number;
     private _borderWidthBottomChangeStyle = { style: "border-bottom-width", styleVue: "border-bottom-width" };
 
     public _borderColorBottom: Color = { r: 0, g: 0, b: 0, a: 1, hex: "" };
@@ -43,7 +43,7 @@ export class Border extends Component {
     public _borderStyleRight: string = "";
     private _borderStyleRightChangeStyle = { style: "border-right-style", styleVue: "border-right-style" };
 
-    public _borderWidthRight: number = 0;
+    public _borderWidthRight: number;
     private _borderWidthRightChangeStyle = { style: "border-right-width", styleVue: "border-right-width" };
 
     public _borderColorRight: Color = { r: 0, g: 0, b: 0, a: 1, hex: "" };

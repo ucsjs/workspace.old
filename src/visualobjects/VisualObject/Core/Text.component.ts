@@ -7,6 +7,8 @@ export class TextVisual extends BoxVisual {
     protected override __namespace = "Text";
     protected override __group = "Core";
     protected override __icon = "fa-solid fa-align-center";
+    protected override __resizable = true;
+    protected override __moveble = true;
 
     public _font: Font;
     public _content: Content;
@@ -21,6 +23,6 @@ export class TextVisual extends BoxVisual {
     }
 
     public content(){
-        return "<div :style='component.style'>{{ component.Content?.text.content }}</div>";
+        return "<div :style='component.style'>{{ component.Content.text?.content }}</div>";
     }
 }
