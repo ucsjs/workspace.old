@@ -26,7 +26,7 @@ exports.default = async ($metadata, $blueprint, $itemKey, $moduleInjection, $sta
         for(let key in $settings){
             const queryParams = ["replicaSet", "tls", "authSource"];
 
-            if(queryParams.includes(key))
+            if(queryParams.includes(key) && $settings[key] && $settings[key] != "")
                 query.push(`${key}=${$settings[key]}`);
         }
 

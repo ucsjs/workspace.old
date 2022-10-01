@@ -33,6 +33,7 @@ export class ParserService {
                 metadata: {}
             };
 
+            //Outputs
             for(let key in component.outputs){
                 if(
                     component.outputs[key] && 
@@ -55,6 +56,7 @@ export class ParserService {
                 return component.outputs.find(a => a.namespace === namespace)
             });
 
+            //Inputs
             for(let key in component.inputs){
                 if(
                     component.inputs[key] &&
@@ -77,6 +79,11 @@ export class ParserService {
                 return component.inputs.find(a => a.namespace === namespace)
             });
 
+            //Events
+            for(let key in component.events)
+                component.events[key].type = "Event";
+
+            //Public vars
             for(let key in component.publicVars){
                 const changeStyle = this.regexService.getData(new RegExp(`private _${component.publicVars[key].name}ChangeStyle = (.*?);`, "gms"), contents, ["data"], true)[0];
                 
