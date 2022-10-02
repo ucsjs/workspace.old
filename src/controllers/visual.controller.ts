@@ -28,4 +28,9 @@ export class VisualController {
 			'./src/workspace/**/*.type.ts'
 		]);
 	}
+
+	@Get("frontend")
+	async getFrontendBlueprints() {
+		return await this.visualparser.getFrontendBlueprints(['./src/**/*.blueprint.meta']);
+	}
 }

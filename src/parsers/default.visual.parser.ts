@@ -5,7 +5,7 @@ import * as ejs from "ejs";
 import * as tsc from 'node-typescript-compiler';
 import { jsmin } from "jsmin"; 
 import { minify } from "html-minifier";
-import { Injectable } from '@nestjs/common';
+import { Injectable, Logger } from '@nestjs/common';
 
 import { DefaultParser } from "./default.parser";
 import { RegexService } from "../services/regex.services";
@@ -42,7 +42,7 @@ export class DefaultVisualParser extends DefaultParser {
         }); 
         
         for(let file of files){
-            const component = this.getData(file, "Component", true);
+            const component = this.getData(file, "*", true);
 
             if(component){
                 components.push(component);
@@ -155,7 +155,7 @@ export class DefaultVisualParser extends DefaultParser {
         });
 
         for(let file of files){
-            const component = this.getData(file, "UCS", true);
+            const component = this.getData(file, "*", true);
 
             if(component && (component.extends == "UCS" || component.extends == "Component")){
                 components.push(component);
@@ -213,6 +213,39 @@ export class DefaultVisualParser extends DefaultParser {
         }
 
         return exportedComponents;
+    }
+
+    async getFrontendBlueprints(paths: Array<string> = []){
+        const files = await fg(paths, { 
+            dot: true, 
+            onlyFiles: true, 
+            deep: 5, 
+            caseSensitiveMatch: false,
+            followSymbolicLinks: true,
+            absolute: true 
+        });
+
+        let blueprints = [];
+
+        for(let file of files){
+            const metadata = JSON.parse(fs.readFileSync(file, "utf-8"));
+
+            if(metadata.itemsClient && metadata.itemsClient.length > 0){
+                if(metadata.metadata.importable){
+                    blueprints.push({
+                        namespace: metadata.metadata.namespace,
+                        group: metadata.metadata.group,
+                        icon: metadata.metadata.headerIcon.icon,
+                        color: metadata.metadata.headerColor.color,                        
+                        items: metadata.itemsClient,
+                        connections: metadata.connectionsClient,
+                        metadata: metadata.metadata,
+                    });
+                }
+            }
+        }
+
+        return blueprints;
     }
 
     async loadTypes(typesPaths: Array<string> = []){
@@ -559,95 +592,102 @@ export class LazyModule {}`;
             tabs += "\t";
         
         for(let component of hierarchy){
-            const subComponents = (!onlyStyle) ? await this.build(component.hierarchy, tabsCount+1, dependenciesIndex) : "";
-            const componentData: any = this.getComponentData(component);
+            if(component){
+                const subComponents = (!onlyStyle) ? await this.build(component?.hierarchy, tabsCount+1, dependenciesIndex) : "";
+                const componentData: any = this.getComponentData(component);
 
-            if(component.template || onlyStyle){
-                const raw = (component.template) ? fs.readFileSync(component.template, "utf8") : "";
-                let styles = {};
+                if(component.template || onlyStyle){
+                    if(fs.existsSync(component.template)){
+                        const raw = (component.template) ? fs.readFileSync(component.template, "utf8") : "";
+                        let styles = {};
 
-                for(let keyComponent in componentData){
-                    if(dependenciesIndex[keyComponent]){
-                        for(let property of dependenciesIndex[keyComponent].publicVars){
-                            if(property.changeStyle){
-                                if(componentData[keyComponent][property.name]?.hex)
-                                    styles[property.changeStyle?.style] = componentData[keyComponent][property.name].hex;                                                                   
-                                else if(componentData[keyComponent][property.name]?.src)
-                                    styles[property.changeStyle?.style] = `url(${componentData[keyComponent][property.name].src})`;                                                                     
-                                else if(this.pixelAttr.includes(property.changeStyle?.style)) 
-                                    styles[property.changeStyle?.style] = this.returnValueWithSuffix(property.name, componentData[keyComponent]);                                
-                                else if(typeof componentData[keyComponent][property.name] !== "object")
-                                    styles[property.changeStyle?.style] = componentData[keyComponent][property.name];
+                        for(let keyComponent in componentData){
+                            if(dependenciesIndex[keyComponent]){
+                                for(let property of dependenciesIndex[keyComponent].publicVars){
+                                    if(property.changeStyle){
+                                        if(componentData[keyComponent][property.name]?.hex)
+                                            styles[property.changeStyle?.style] = componentData[keyComponent][property.name].hex;                                                                   
+                                        else if(componentData[keyComponent][property.name]?.src)
+                                            styles[property.changeStyle?.style] = `url(${componentData[keyComponent][property.name].src})`;                                                                     
+                                        else if(this.pixelAttr.includes(property.changeStyle?.style)) 
+                                            styles[property.changeStyle?.style] = this.returnValueWithSuffix(property.name, componentData[keyComponent]);                                
+                                        else if(typeof componentData[keyComponent][property.name] !== "object")
+                                            styles[property.changeStyle?.style] = componentData[keyComponent][property.name];
+                                    }
+                                }
                             }
+                        }   
+
+                        let styleRemoveNulls = {};
+
+                        for(let key in styles){
+                            if(styles[key])
+                                styleRemoveNulls[key] = styles[key]
                         }
-                    }
-                }   
 
-                let styleRemoveNulls = {};
-
-                for(let key in styles){
-                    if(styles[key])
-                        styleRemoveNulls[key] = styles[key]
-                }
-
-                /**
-                    <style>
-                    .${component.id} {<% if(style) { for(let keyStyle in style){ %>
-                        <%= keyStyle %>: <%= style[keyStyle] %>; <% } } %>
-                    }
-                    </style>
-                 */
-                
-                const template = ejs.render(`${raw}`, {
-                    id: component.id,
-                    slot: subComponents,
-                    style: (styleRemoveNulls) ? styleRemoveNulls : {},
-                    styleId: component.id,
-                    ...componentData   
-                });
-
-                const lines = template.split("\n");
-
-                for(let line of lines)
-                    result += tabs + line + "\n";
-            }
-            else{
-                result += `${tabs}<div ref="${component.id}">${subComponents}</div>\n`;
-            }
-
-            if(!onlyStyle && component.components.length > 0){
-                for(let subComponent of component.components){
-                    if(fs.existsSync(subComponent.filename)){//Script
-                        const bundleFile = subComponent.filename.replace(path.basename(subComponent.filename), "bundle.js");
-                        const requirePath = subComponent.filename
-                            .replace(process.cwd() + "/src/", "")
-                            .replace(process.cwd() + "\\src\\", "")
-                            .replace(".ts", "");
-
-                        await tsc.compile({
-                            "module": "amd",
-                            "moduleResolution": "Node",                                
-                            "removeComments": true,
-                            "preserveConstEnums": true,
-                            "sourceMap": false,
-                            "target": "ES6",
-                            "watch": false,
-                            "allowJs": false,
-                            "allowUmdGlobalAccess": true,
-                            "allowSyntheticDefaultImports": true,
-                            outFile: bundleFile
-                        }, [subComponent.filename], {
-                            verbose: false
+                        /**
+                            <style>
+                            .${component.id} {<% if(style) { for(let keyStyle in style){ %>
+                                <%= keyStyle %>: <%= style[keyStyle] %>; <% } } %>
+                            }
+                            </style>
+                        */
+                        
+                        const template = ejs.render(`${raw}`, {
+                            id: component.id,
+                            slot: subComponents,
+                            style: (styleRemoveNulls) ? styleRemoveNulls : {},
+                            styleId: component.id,
+                            ...componentData   
                         });
 
-                        result += `<script>${fs.readFileSync(bundleFile, "utf8")}
-        require(["${requirePath}"], ({ ${subComponent.namespace} }) => {
-            const ${subComponent.namespace.toLowerCase()} = new ${subComponent.namespace}(${JSON.stringify(subComponent.value)});
-            ${subComponent.namespace.toLowerCase()}.Start();
-        });                            
-    </script>\n`;
+                        const lines = template.split("\n");
 
-                        fs.unlinkSync(bundleFile);
+                        for(let line of lines)
+                            result += tabs + line + "\n";
+                    }
+                    else{
+                        Logger.error(`Template ${component.template} not found`);
+                    }
+                }
+                else{
+                    result += `${tabs}<div ref="${component.id}">${subComponents}</div>\n`;
+                }
+
+                if(!onlyStyle && component.components.length > 0){
+                    for(let subComponent of component.components){
+                        if(fs.existsSync(subComponent.filename)){//Script
+                            const bundleFile = subComponent.filename.replace(path.basename(subComponent.filename), "bundle.js");
+                            const requirePath = subComponent.filename
+                                .replace(process.cwd() + "/src/", "")
+                                .replace(process.cwd() + "\\src\\", "")
+                                .replace(".ts", "");
+
+                            await tsc.compile({
+                                "module": "amd",
+                                "moduleResolution": "Node",                                
+                                "removeComments": true,
+                                "preserveConstEnums": true,
+                                "sourceMap": false,
+                                "target": "ES6",
+                                "watch": false,
+                                "allowJs": false,
+                                "allowUmdGlobalAccess": true,
+                                "allowSyntheticDefaultImports": true,
+                                outFile: bundleFile
+                            }, [subComponent.filename], {
+                                verbose: false
+                            });
+
+                            result += `<script>${fs.readFileSync(bundleFile, "utf8")}
+            require(["${requirePath}"], ({ ${subComponent.namespace} }) => {
+                const ${subComponent.namespace.toLowerCase()} = new ${subComponent.namespace}(${JSON.stringify(subComponent.value)});
+                ${subComponent.namespace.toLowerCase()}.Start();
+            });                            
+        </script>\n`;
+
+                            fs.unlinkSync(bundleFile);
+                        }
                     }
                 }
             }

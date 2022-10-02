@@ -12,15 +12,21 @@ export class DefaultParser {
 
     getData(file: string, $extendsClass: string = "Blueprint", $metadataOverride: boolean = false) {
         const contents = fs.readFileSync(file, "utf8").toString();
-        const namespaceRegex = new RegExp(`class (.*?) extends ${$extendsClass}`, "isg");
-        const classInfo = this.regexService.getData(namespaceRegex, contents, ["name"], true);
+        let namespaceRegex = null;
+
+        if($extendsClass == "*")
+            namespaceRegex = new RegExp(`class (.*?) extends (.*?){`, "isg");
+        else
+            namespaceRegex = new RegExp(`class (.*?) extends ${$extendsClass}`, "isg");
+
+        const classInfo = this.regexService.getData(namespaceRegex, contents, ["name", "extends"], true);
         const content = this.regexService.getDataRaw(/content\(\){.*?return ['"`](.*?)['"`];/gms, contents)[1];
 
         if(contents){
             let component: any = {
                 filename: file,
                 namespace: classInfo[0]?.name,
-                extends: $extendsClass,
+                extends: (classInfo[0]?.extends) ? classInfo[0].extends : $extendsClass,
                 publicVars: this.regexService.getData([
                     /public\s_(.*?)[:]\s(.*?)[\s;][=][\s](.*?)[;]/isg,
                     /public\s_(.*?)[:]\s(.*?);/isg
