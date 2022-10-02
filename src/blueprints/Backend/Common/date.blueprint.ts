@@ -1,4 +1,3 @@
-import { BehaviorSubject } from 'rxjs';
 import { Blueprint, Type } from "@ucsjs/blueprint";
 
 export class DateBlueprint extends Blueprint {

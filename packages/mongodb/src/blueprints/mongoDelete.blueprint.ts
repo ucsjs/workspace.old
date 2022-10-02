@@ -12,7 +12,7 @@ export class MongoDeleteBlueprint extends Blueprint{
     private __TypeMongoDB_Schema: object = { color: "#6d0000" };
     private __trigger = true;
 
-    public _awaitTrigger: boolean = false;
+    public _awaitTrigger: boolean = true;
     public _multi: boolean = false;
 
     private state = { model: null, query: null };
@@ -41,9 +41,10 @@ export class MongoDeleteBlueprint extends Blueprint{
         this.output("error", Type.String, null);
     }
 
-    public async trigger(scope){
-        scope._awaitTrigger = false;
-        await scope.run(scope);
+    public async trigger(){
+        Logger.log(`Triggered`, "MongoDeleteBlueprint");
+        this._awaitTrigger = false;
+        await this.run(this);
     }
 
     public async run(scope){

@@ -38,11 +38,23 @@ exports.default = async ($metadata, $blueprint, $itemKey, $moduleInjection, $sta
                 `import { Document, Model, createConnection } from "mongoose";`,
                 `import { MongooseModule, Prop, Schema, SchemaFactory, InjectModel } from '@nestjs/mongoose';`,
                 `\nlet ${$settings.connectionName} = null;
-try{ ${$settings.connectionName} = createConnection("${protocol}://${uri}"); }catch(e){}`
+try{ 
+    ${$settings.connectionName} = createConnection("${protocol}://${uri}");
+    Logger.log("Connecting to database: ${protocol}://${uri}", "MongoConnectionBlueprint");
+}catch(e){
+    Logger.log("Error connecting to database: ${protocol}://${uri}", "MongoConnectionBlueprint");
+}`
             ],
             constructors: [{
                 injection: `${$settings.connectionName}`
             }],
+            args: [`{${$settings.connectionName}}`],
+            events: [`\tStart(){
+        if(this["mongodb_" + this._itemKey]) {
+            Logger.log("Send connection", "MongoConnectionBlueprint");
+            this.next("connection", this["mongodb_" + this._itemKey]);
+        }
+    }`]
         };
     }   
 };

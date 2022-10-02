@@ -1,3 +1,4 @@
+import { Logger } from "@nestjs/common";
 import { Blueprint, Type } from "@ucsjs/blueprint";
 import { HTTPTypes } from "./httpTypes.enum";
 
@@ -15,8 +16,10 @@ export class HTTPHeadersBlueprint extends Blueprint{
         this.setup(metadata);
 
         this.input("request", HTTPTypes.Request, null).subscribe((request) => {
-            if(request)
+            if(request){
+                Logger.log(`Recive request: ${JSON.stringify(request.headers)}`, "HTTPHeadersBlueprint");
                 this.next("result", request.headers);
+            }
         });
 
         this.output("headers", Type.JSON, null);

@@ -1,10 +1,10 @@
 import { Module } from '@nestjs/common';
 import { BlueprintsController } from 'src/controllers/blueprints.controller';
-import { BlueprintsService } from 'src/services/blueprints.service';
+import { DefaultBlueprintParser } from 'src/parsers/default.blueprints.parser';
 import { RegexService } from 'src/services/regex.services';
 
 @Module({
 	controllers: [BlueprintsController],
-	providers: [BlueprintsService, RegexService]
+	providers: [DefaultBlueprintParser, RegexService]
 })
 export class BlueprintsModule {}

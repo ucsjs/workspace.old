@@ -65,7 +65,7 @@ export class ${$blueprint}Controller {
 
             $module += `\n    @${methodNest}("${route.url}")
     async ${$blueprint.toLowerCase()}${method.toLowerCase()}${route.url.replace(/\//img, "_").replace(/:/img, "")}(@Req() req: Request, @Res() res: Response){
-        const { flow } = new ${$blueprint}().exec({${$paramsInjection.join(", ")}});\n`;
+        const { flow } = await new ${$blueprint}().exec({${$paramsInjection.join(", ")}});`;
 
             if($output){
                 const [input, keyComponent] = $output.input.split("-");
@@ -79,7 +79,7 @@ export class ${$blueprint}Controller {
             }
         
             const componentKey = ($metadata.componentKey) ? $metadata.componentKey : `${$metadata.namespace.toLowerCase()}${$itemKey}`;
-            $module += `\n\t\tflow.get("${componentKey}").next("${inputRef}", req);
+            $module += `\n\t\tflow.get("${componentKey}").next("${inputRef.replace(/-.*?-/, '-routes-')}", req);
     }\n`;
         }
         

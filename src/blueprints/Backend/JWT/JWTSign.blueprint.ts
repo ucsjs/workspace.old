@@ -1,5 +1,6 @@
 import * as fs from "fs";
 import * as jsonwebtoken from "jsonwebtoken";
+import { Logger } from "@nestjs/common";
 import { Blueprint, Type } from "@ucsjs/blueprint";
 import { JWTTypes } from "./JWTTypes.enum";
 
@@ -21,19 +22,39 @@ export class JWTSignBlueprint extends Blueprint{
         super();
         this.setup(metadata);
 
+        this.event("error");
+
         this.input("privateKey", JWTTypes.PrivateKey, null, (privateKey) => {
             this.privateKey = privateKey;
         });
 
         this.input("input", Type.Any, null, (input: any) => {
-            const secretOrPrivateKey = (this.privateKey) ? fs.readFileSync('private.key') : this._secret;
+            if(input){
+                Logger.log(`Recive input, generating token...`, "JWTSignBlueprint");
+                const secretOrPrivateKey = (this.privateKey !== null) ? fs.readFileSync('private.key') : this._secret;
+                let token = null;
 
-            const token = jsonwebtoken.sign(input, secretOrPrivateKey, { 
-                algorithm: this._algorithm as any,
-                expiresIn: this._expiresIn
-            });
-            
-            this.next("token", token);
+                if(typeof secretOrPrivateKey == "string") {
+                    token = jsonwebtoken.sign(input, secretOrPrivateKey, { 
+                        expiresIn: this._expiresIn
+                    });
+                }
+                else {
+                    token = jsonwebtoken.sign(input, secretOrPrivateKey, { 
+                        algorithm: this._algorithm as any,
+                        expiresIn: this._expiresIn
+                    });
+                }
+
+                if(token){
+                    Logger.log(`Send token: ${token}`, "JWTSignBlueprint");
+                    this.next("token", token);
+                }
+                else{
+                    Logger.error(`Error generating token`, "JWTSignBlueprint");
+                    this.trigger("error");
+                }
+            }            
         });
 
         this.output("token", Type.String, null);       

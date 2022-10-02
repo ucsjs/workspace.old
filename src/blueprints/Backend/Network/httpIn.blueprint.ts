@@ -1,3 +1,4 @@
+import { Logger } from "@nestjs/common";
 import { Blueprint } from "@ucsjs/blueprint";
 import { HTTPTypes } from "./httpTypes.enum";
 
@@ -23,12 +24,12 @@ export class HTTPInBlueprint extends Blueprint{
             for(let route of metadata.routes){
                 const method = (route.method) ? route.method : "GET";
 
-                if(route.key) {
-                    this.output(route.key, HTTPTypes.Request, null);
-                    this.output(`${route.key.replace(/-.*?-/, "-routes-")}`, HTTPTypes.Request, null);
-                }                       
-                else
-                    this.output(`${method}-${route.url.replace(/\//img,'-')}`, HTTPTypes.Request, null);
+                Logger.log(`Create dynamic route: ${method} ${route.url} with key: ${route.key}`, "HTTPInBlueprint");
+                this.output(route.key, HTTPTypes.Request, null);
+                this.output(`${route.key.replace(/-.*?-/, "-routes-")}`, HTTPTypes.Request, null);
+            
+                Logger.log(`Create dynamic route: ${method} ${route.url}`, "HTTPInBlueprint");
+                this.output(`${method}-${route.url.replace(/\//img,'-')}`, HTTPTypes.Request, null);
             }
         }
     }

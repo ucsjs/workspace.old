@@ -7,11 +7,11 @@ import { jsmin } from "jsmin";
 import { minify } from "html-minifier";
 import { Injectable } from '@nestjs/common';
 
-import { ParserService } from "./parser.service";
-import { RegexService } from "./regex.services";
+import { DefaultParser } from "./default.parser";
+import { RegexService } from "../services/regex.services";
 
 @Injectable()
-export class VisualService extends ParserService {
+export class DefaultVisualParser extends DefaultParser {
     private pixelAttr = [
         "width", "height", "top", "left", "right", "bottom", 
         "margin-top", "margin-left", "margin-right", "margin-bottom", 
@@ -461,7 +461,7 @@ export class LazyModule {}`;
                         });
                     </script>
                     <script>
-                        if ('serviceWorker' in navigator) {
+                        /*if ('serviceWorker' in navigator) {
                             window.addEventListener('load', () => {
                                 navigator.serviceWorker.register('/workbox-sw.min.js')
                                 .then(registration => {
@@ -471,7 +471,7 @@ export class LazyModule {}`;
                                     console.log(err);
                                 });
                             });
-                        }
+                        }*/
 
                         const { createApp } = Vue;
 

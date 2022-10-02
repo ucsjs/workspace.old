@@ -27,11 +27,16 @@ export class HTTPParamBlueprint extends Blueprint{
                     if(this._toJSON){
                         const json = {};
                         json[this._name] = request.params[this._name];
+                        Logger.log(`Recive request: ${JSON.stringify(json)}`, "HTTPParamBlueprint");
                         this.next("result", json);
                     }
                     else{
+                        Logger.log(`Recive request: ${request.params[this._name]}`, "HTTPParamBlueprint");
                         this.next("result", request.params[this._name]);
                     }
+                }
+                else{
+                    Logger.log(`Recive request but dont has '${this._name}' param`, "HTTPParamBlueprint");
                 }
             }
         });

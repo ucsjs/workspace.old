@@ -6,14 +6,14 @@ import * as crypto from 'crypto';
 import * as languageDetect from "language-detect";
 import { Injectable } from '@nestjs/common';
 
-import { BlueprintsService } from "./blueprints.service";
-import { VisualService } from "./visual.service";
+import { DefaultBlueprintParser } from "../parsers/default.blueprints.parser";
+import { DefaultVisualParser } from "../parsers/default.visual.parser";
 
 @Injectable()
 export class FileService {
 	constructor(
-		private blueprintsService: BlueprintsService,
-		private visualService: VisualService
+		private defaultBlueprintParser: DefaultBlueprintParser,
+		private defaultVisualParser: DefaultVisualParser
 	){}
 
 	async getFiles(pathname: string = "", onlyDirectories: boolean = false, onlyFiles: boolean = false){
@@ -166,7 +166,7 @@ export class FileService {
 		}
 	}
 
-	async saveFile(item){
+	async saveFile(item, parser = "default"){
 		if(item.filename.includes(".blueprint.ts")){
 			let metadata = null;
 			try{ metadata = JSON.stringify(JSON.parse(item.content)); } catch(e){}
@@ -179,8 +179,10 @@ export class FileService {
 				await fs.writeFileSync(`${dirname}/.${basename}.meta`, metadata);
 
 				//Controller
-				const contents = await this.blueprintsService.parse(item, parserBasename[0]);
-				await fs.writeFileSync(item.filename, contents);
+				if(parser == "default"){
+					const contents = await this.defaultBlueprintParser.parse(item, parserBasename[0]);
+					await fs.writeFileSync(item.filename, contents);
+				}
 			}
 			else{
 				await fs.writeFileSync(item.filename, item.content);
@@ -197,22 +199,24 @@ export class FileService {
 				const parserBasename = basename.split(".");
 				await fs.writeFileSync(`${dirname}/.${basename}.meta`, metadata);
 
-				//Template
-				const contentsTemplate = await this.visualService.parseTemplate(item, parserBasename[0], [
-					'./packages/**/*.component.ts',
-					'./src/visualobjects/**/*.component.ts',
-					'./.metadata/visualobjects/**/*.component.ts'
-				], [
-					'./packages/**/*.type.ts',
-					'./src/visualobjects/**/*.type.ts',
-					'./.metadata/visualobjects/**/*.type.ts'
-				]);
+				if(parser == "default"){
+					//Template
+					const contentsTemplate = await this.defaultVisualParser.parseTemplate(item, parserBasename[0], [
+						'./packages/**/*.component.ts',
+						'./src/visualobjects/**/*.component.ts',
+						'./.metadata/visualobjects/**/*.component.ts'
+					], [
+						'./packages/**/*.type.ts',
+						'./src/visualobjects/**/*.type.ts',
+						'./.metadata/visualobjects/**/*.type.ts'
+					]);
 
-				await fs.writeFileSync(`${dirname}/${basename}.html`, contentsTemplate);
+					await fs.writeFileSync(`${dirname}/${basename}.html`, contentsTemplate);
 
-				//Controller
-				const contents = await this.visualService.parse(item, parserBasename[0]);
-				await fs.writeFileSync(item.filename, contents);
+					//Controller
+					const contents = await this.defaultVisualParser.parse(item, parserBasename[0]);
+					await fs.writeFileSync(item.filename, contents);
+				}
 			}
 			else{
 				await fs.writeFileSync(item.filename, item.content);

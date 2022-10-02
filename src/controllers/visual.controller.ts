@@ -1,13 +1,13 @@
 import { Body, Controller, Get, Post, Put, Query, Res, StreamableFile } from '@nestjs/common';
-import { VisualService } from 'src/services/visual.service';
+import { DefaultVisualParser } from 'src/parsers/default.visual.parser';
 
 @Controller("visual")
 export class VisualController {
-	constructor(private readonly visualService: VisualService) {}
+	constructor(private readonly visualparser: DefaultVisualParser) {}
 
 	@Get()
 	async index() {
-		return await this.visualService.getComponents([
+		return await this.visualparser.getComponents([
 			'./packages/**/*.ts',
 			'./src/visualobjects/**/*.ts',
 			'./.metadata/visualobjects/**/*.ts'
@@ -20,7 +20,7 @@ export class VisualController {
 
 	@Get("subcomponents")
 	async getSubcomponents() {
-		return await this.visualService.getSubcomponents([
+		return await this.visualparser.getSubcomponents([
 			'./src/visualobjects/**/*.component.ts',
 			'./src/workspace/**/*.ts',
 		], [	

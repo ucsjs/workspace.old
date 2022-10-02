@@ -4,7 +4,7 @@ import { TextVisual } from "./Text.component";
 export class LinkVisual extends TextVisual {
     //Matadata
     protected override __namespace = "Link";
-    protected override __group = "Core";
+    protected override __group = "HTML";
     protected override __icon = "fa-solid fa-link";
     protected override __resizable = true;
     protected override __moveble = true;

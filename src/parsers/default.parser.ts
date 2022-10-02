@@ -3,24 +3,24 @@ import * as crypto from "crypto";
 import * as path from "path";
 import * as imageToUri from "image-to-uri";
 
-import { RegexService } from "./regex.services";
+import { RegexService } from "../services/regex.services";
 
-export class ParserService {
+export class DefaultParser {
     constructor(
         public regexService: RegexService
     ){}
 
     getData(file: string, $extendsClass: string = "Blueprint", $metadataOverride: boolean = false) {
         const contents = fs.readFileSync(file, "utf8").toString();
-        const namespaceRegex = new RegExp(`class (.*?) extends (.*?){`, "isg");
-        const classInfo = this.regexService.getData(namespaceRegex, contents, ["name", "extends"], true);
+        const namespaceRegex = new RegExp(`class (.*?) extends ${$extendsClass}`, "isg");
+        const classInfo = this.regexService.getData(namespaceRegex, contents, ["name"], true);
         const content = this.regexService.getDataRaw(/content\(\){.*?return ['"`](.*?)['"`];/gms, contents)[1];
 
         if(contents){
             let component: any = {
                 filename: file,
                 namespace: classInfo[0]?.name,
-                extends: classInfo[0]?.extends,
+                extends: $extendsClass,
                 publicVars: this.regexService.getData([
                     /public\s_(.*?)[:]\s(.*?)[\s;][=][\s](.*?)[;]/isg,
                     /public\s_(.*?)[:]\s(.*?);/isg

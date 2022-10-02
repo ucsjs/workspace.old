@@ -39,7 +39,7 @@ async function bootstrap() {
 			await lazyModuleLoader.load(() => LazyModule);
 		}
 		catch(err){
-	
+			//console.log(err);
 		}
 	}
 

@@ -24,6 +24,9 @@ export class Flow {
         if(this._scope[from])
             this._scope[from].subscribe(output, this._scope[to].assign(input));
 
+        if(this._scope[from].get(output)?.value)
+            this._scope[to].get(input)?.value.next(this._scope[from].get(output)?.value)
+                            
         return this;
     }
 
@@ -44,16 +47,40 @@ export class Flow {
     }
 
     next(component: string, value: any){
-        if(this._scope[component])
-            this._scope[component].next(value);
+        if(value !== null){
+            if(this._scope[component])
+                this._scope[component].next(value);
+            else {
+                let waitCounter = 0;
+                let persistNext = setInterval(() => {
+                    if(this._scope[component]){
+                        this._scope[component].next(value);
+                        clearInterval(persistNext);
+                    }
+                    else {
+                        waitCounter++;
+                        
+                        if(waitCounter > 10)
+                            clearInterval(persistNext);
+                    }
+                }, 1000);  
+            }
+        }
 
         return this;
     }
 
-    start(){
+    async start(){
         for(const key in this._scope){
             if(this._scope[key].start)
-                this._scope[key].start();              
+                await this._scope[key].start();              
         }
+
+        for(const key in this._scope){
+            if(this._scope[key].exec)
+                await this._scope[key].exec(this._root);              
+        }
+
+        return true;
     }
 }

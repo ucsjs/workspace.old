@@ -1,3 +1,4 @@
+import { Logger } from "@nestjs/common";
 import { Blueprint, Type } from "@ucsjs/blueprint";
 import { Request } from "express";
 import { HTTPTypes } from "./httpTypes.enum";
@@ -16,8 +17,10 @@ export class HTTPBodyBlueprint extends Blueprint{
         this.setup(metadata);
 
         this.input("request", HTTPTypes.Request, null).subscribe((request: Request) => {
-            if(request && request.body)
-                this.next("result", request.body)
+            if(request && request.body){
+                Logger.log(`Recive body: ${JSON.stringify(request.body)}`, "HTTPBodyBlueprint");
+                this.next("result", request.body);
+            }               
         });
 
         this.output("result", Type.JSON, null);

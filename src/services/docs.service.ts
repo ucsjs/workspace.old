@@ -12,7 +12,13 @@ export class DocsService {
             anchors: []
         };
 
-        const filesAndDirsIndex = await fg(path.resolve("./docs/*"), { dot: false, onlyFiles: false });
+        const filesAndDirsIndex = await fg(path.resolve("./docs/*"), { 
+            dot: false, 
+            onlyFiles: false, 
+            ignore: [
+                "./docs/index.html"
+            ] 
+        });
 
         if(file){
             const pathDivider = (process.platform === "win32") ? "\\" : "/";
@@ -28,42 +34,46 @@ export class DocsService {
             if(strutucture.breadcrumb[1] && strutucture.breadcrumb[1].includes("."))
                 strutucture.breadcrumb[1] = strutucture.breadcrumb[1].split(".")[0];
         }
+
+        strutucture.index = fs.readFileSync(path.resolve("./docs/index.html"), "utf8") ;
      
         for(let fileOrDir of filesAndDirsIndex){
-            let basename = path.basename(fileOrDir);
-            let [indexRaw, nameRaw] = basename.split("-");
-            let index = parseInt(indexRaw.trim());
-            let name = (nameRaw.includes(".")) ? nameRaw.split(".")[0].trim() : nameRaw.trim();
-            const isDir = fs.lstatSync(fileOrDir).isDirectory();
-
-            if(index == 1)
-                strutucture.index = (file) ? fs.readFileSync(file, "utf8") : fs.readFileSync(fileOrDir, "utf8");
-            
-            strutucture.navbar[index-1] = {
-                filename: fileOrDir,
-                uri: "/docs/" + encodeURIComponent(fileOrDir.replace(process.cwd(), "").replace("/docs/", "").replace(/\\/g, "/")),
-                isDir,
-                index: index,
-                name: name,
-                children: []
-            };
-
-            if(isDir){
-                const filesChildren = await fg(`${fileOrDir}/*.html`, { dot: false, onlyFiles: true });
+            try{
+                let basename = path.basename(fileOrDir);
+                let [indexRaw, nameRaw] = basename.split("-");
+                let index = parseInt(indexRaw.trim());
+                let name = (nameRaw?.includes(".")) ? nameRaw.split(".")[0].trim() : nameRaw.trim();
+                const isDir = fs.lstatSync(fileOrDir).isDirectory(); 
                 
-                for(let children of filesChildren){
-                    let basenameChildren = path.basename(children);
-                    let [indexRawChildren, nameRawChildren] = basenameChildren.split("-");
-                    let indexChildren = parseInt(indexRawChildren.trim());
-                    let nameChildren = (nameRawChildren.includes(".")) ? nameRawChildren.split(".")[0].trim() : nameRawChildren.trim();
-
-                    strutucture.navbar[index-1].children.push({
-                        filename: children,
-                        uri: "/docs/" + encodeURIComponent(children.replace(process.cwd(), "").replace("/docs/", "").replace(/\\/g, "/")),
-                        name: nameChildren
-                    })
+                if(name){
+                    strutucture.navbar[index-1] = {
+                        filename: fileOrDir,
+                        uri: "/docs/" + encodeURIComponent(fileOrDir.replace(process.cwd(), "").replace("/docs/", "").replace(/\\/g, "/")),
+                        isDir,
+                        index: index,
+                        name: name,
+                        children: []
+                    };
+    
+                    if(isDir){
+                        const filesChildren = await fg(`${fileOrDir}/*.html`, { dot: false, onlyFiles: true });
+                        
+                        for(let children of filesChildren){
+                            let basenameChildren = path.basename(children);
+                            let [indexRawChildren, nameRawChildren] = basenameChildren.split("-");
+                            let indexChildren = parseInt(indexRawChildren.trim());
+                            let nameChildren = (nameRawChildren.includes(".")) ? nameRawChildren.split(".")[0].trim() : nameRawChildren.trim();
+        
+                            strutucture.navbar[index-1].children.push({
+                                filename: children,
+                                uri: "/docs/" + encodeURIComponent(children.replace(process.cwd(), "").replace("/docs/", "").replace(/\\/g, "/")),
+                                name: nameChildren
+                            })
+                        }
+                    }
                 }
             }
+            catch(e){}
         }
 
         if(strutucture.index){

@@ -58,6 +58,7 @@ try{
             constructors: [{
                 injection: `${$settings.connectionName}`
             }],
+            args:[`{${$settings.connectionName}}`]
         };
     }   
 };

@@ -4,10 +4,10 @@ import { Background } from "../../Components/Style/Background.component";
 
 export class BoxVisual extends VisualObject {
     //Matadata
-    protected override __namespace = "Box";
+    protected override __namespace = "Div";
     protected override __resizable = true;
     protected override __moveble = true;
-    protected override __group = "Core";
+    protected override __group = "HTML";
     protected override __icon = "fa-regular fa-square-full";
 
     public _border: Border;

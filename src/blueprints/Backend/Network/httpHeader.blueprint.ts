@@ -1,3 +1,4 @@
+import { Logger } from "@nestjs/common";
 import { Blueprint, Type } from "@ucsjs/blueprint";
 import { HTTPTypes } from "./httpTypes.enum";
 
@@ -23,11 +24,16 @@ export class HTTPHeaderBlueprint extends Blueprint{
                     if(this._toJSON){
                         const json = {};
                         json[this._name] = request.headers[this._name];
+                        Logger.log(`Recive request: ${JSON.stringify(json)}`, "HTTPHeaderBlueprint");
                         this.next("result", json);
                     }
                     else{
+                        Logger.log(`Recive request: ${request.headers[this._name]}`, "HTTPHeaderBlueprint");
                         this.next("result", request.headers[this._name]);
                     }
+                }
+                else{
+                    Logger.log(`Recive request but dont has '${this._name}' param`, "HTTPHeaderBlueprint");
                 }
             }
         });

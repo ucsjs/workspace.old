@@ -20,13 +20,39 @@ export class MongoSchemaBlueprint extends Blueprint{
         super();
         this.setup(metadata);
 
-        this.input("connection", TypeMongoDB.Connection, null, (connectionName: string) => {
-            if(connectionName){
-                const collectionClassName = this._collection.charAt(0).toUpperCase() + this._collection.slice(1).toLowerCase();
-                
-                if(this.root.hasOwnProperty(connectionName)){
-                    Logger.log(`Recive connection: ${connectionName} load model ${collectionClassName}Model`, "MongoSchemaBlueprint");
-                    this.next("schema", this.root[connectionName].model(`${collectionClassName}Model`, this.root[`${collectionClassName}Schema`]));
+        this.input("connection", TypeMongoDB.Connection, null, (connectionName) => {
+            if(connectionName){      
+                if(typeof connectionName == "string"){
+                    const collectionClassName = this._collection.charAt(0).toUpperCase() + this._collection.slice(1).toLowerCase();
+                    
+                    if(this.root.hasOwnProperty(connectionName)){
+                        Logger.log(`Recive connection: ${connectionName} load model ${collectionClassName}Document`, "MongoSchemaBlueprint");
+                        this.next("schema", this.root[connectionName].model(`${collectionClassName}Document`, this.root[`${collectionClassName}Schema`]));
+                    }
+                    else {
+                        Logger.error(`Recive connection: ${connectionName} not found`, "MongoSchemaBlueprint");
+                    }
+                }
+                else if(typeof connectionName == "object" && connectionName !== null){
+                    const collectionClassName = this._collection.charAt(0).toUpperCase() + this._collection.slice(1).toLowerCase();
+     
+                    if(this[`${collectionClassName}Schema`]){
+                        Logger.log(`Recive connection: Load model ${collectionClassName}Document from this`, "MongoSchemaBlueprint");
+                        this.next("schema", connectionName.model(`${collectionClassName}Document`, this[`${collectionClassName}Schema`]));
+                    }
+                    if(this.root){
+                        if(this.root[`${collectionClassName}Schema`]){
+                            Logger.log(`Recive connection: Load model ${collectionClassName}Document from root`, "MongoSchemaBlueprint");
+                            this.next("schema", connectionName.model(`${collectionClassName}Document`, this.root[`${collectionClassName}Schema`]));
+                        }
+                        else {
+                            console.log(this.root);
+                            Logger.error(`Recive connection: Schema not exists ${collectionClassName}`, "MongoSchemaBlueprint");
+                        }
+                    }              
+                }
+                else{
+                    Logger.error(`Recive connection: ${connectionName} not found`, "MongoSchemaBlueprint");
                 }
             }
         });

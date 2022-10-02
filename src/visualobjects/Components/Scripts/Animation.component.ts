@@ -10,7 +10,10 @@ export class Animation extends Component {
     protected override __script = true;
     
     public _entrance: string;
+    private __entranceHelp = "https://animate.style/";
+
     public _exit: string;
+    private __exitHelp = "https://animate.style/";
     
     constructor(){
         super();

@@ -1,3 +1,4 @@
+import { Logger } from '@nestjs/common';
 import { Blueprint, Type } from "@ucsjs/blueprint";
 import { TypeMongoDB } from "./mongoTypes.enum";
 import { createConnection, Connection } from "mongoose";
@@ -28,7 +29,19 @@ export class MongoConnectionBlueprint extends Blueprint{
         this.output("connection", TypeMongoDB.Connection, null);
     }
 
-    start(){
-        this.next("connection", `mongodb_${this._itemKey}`);
+    exec($args?: any){
+        Logger.log("Start MongoConnectionBlueprint", "MongoConnectionBlueprint");
+
+        if(this[`mongodb_${this._itemKey}`]) {
+            Logger.log("MongoConnectionBlueprint already connected", "MongoConnectionBlueprint");
+            this.next("connection", this[`mongodb_${this._itemKey}`]);
+        }  
+        if($args[`mongodb_${this._itemKey}`]) {
+            Logger.log("MongoConnectionBlueprint already connected", "MongoConnectionBlueprint");
+            this.next("connection", $args[`mongodb_${this._itemKey}`]);
+        }           
+        else {
+            this.next("connection", `mongodb_${this._itemKey}`);
+        }                        
     }
 }

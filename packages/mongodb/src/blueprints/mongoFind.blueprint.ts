@@ -45,9 +45,9 @@ export class MongoFindBlueprint extends Blueprint{
         this.output("error", Type.String, null);
     }
 
-    public async trigger(scope){
-        scope._awaitTrigger = false;
-        await scope.run(scope);
+    public async trigger(){
+        this._awaitTrigger = false;
+        await this.run(this);
     }
 
     public async run(scope){
@@ -55,16 +55,39 @@ export class MongoFindBlueprint extends Blueprint{
             Logger.log(`Find in MongoDB: ${JSON.stringify(scope.state.query)}`, "MongoFindBlueprint");
 
             try{
-                const docs = await scope.state.model.find(scope.state.query, null, {
-                    limit: scope._limit,
-                    skip: scope._offset
-                }).lean();
+                if(scope._limit > 1){
+                    const docs = await scope.state.model.find(scope.state.query, null, {
+                        limit: scope._limit,
+                        skip: scope._offset
+                    }).lean();
+    
+                    if(docs){
+                        Logger.log(`Send docs: ${JSON.stringify(docs)}`, "MongoFindBlueprint");    
+                        scope.next("result", docs);
+                    }
+                    else{
+                        Logger.log("There are no valid records for the query sent", "MongoFindBlueprint");    
+                        scope.next("error", { error: "There are no valid records for the query sent" });
+                    }
+                }
+                else{
+                    const doc = await scope.state.model.findOne(scope.state.query, null, {
+                        skip: scope._offset
+                    }).lean();
 
-                scope.next("result", docs);
+                    if(doc){
+                        Logger.log(`Send doc: ${JSON.stringify(doc)}`, "MongoFindBlueprint");    
+                        scope.next("result", doc);
+                    }
+                    else{
+                        Logger.log("There are no valid records for the query sent", "MongoFindBlueprint");    
+                        scope.next("error", { error: "There are no valid records for the query sent" });
+                    }
+                }
             }
             catch(e){
                 Logger.error(e, "MongoFindBlueprint");
-                scope.next("error", e.message);
+                scope.next("error", { error: e.message });
             }
         }
     }

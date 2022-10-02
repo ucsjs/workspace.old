@@ -1,12 +1,7 @@
 import { ArgumentsHost, Catch, ExceptionFilter, HttpCode, HttpException, Logger } from "@nestjs/common";
-import { BlueprintsService } from "src/services/blueprints.service";
 
 @Catch(HttpException)
 export class HttpExceptionFilter implements ExceptionFilter {
-	constructor(
-		private blueprintsService: BlueprintsService
-	){}
-
 	catch(exception: HttpException, host: ArgumentsHost) {
 		const ctx = host.switchToHttp();
 		const response = ctx.getResponse();

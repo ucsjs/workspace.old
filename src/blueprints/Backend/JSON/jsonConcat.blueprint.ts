@@ -20,7 +20,7 @@ export class JSONConcatBlueprint extends Blueprint{
     parse(v, name, scope){
         scope.state[name] = v;
         
-        if(scope.state.JSON1 && scope.nums.JSON2){
+        if(scope.state.JSON1 && scope.state.JSON2){
             let result = {};
 
             if(Array.isArray(scope.state.JSON1) && Array.isArray(scope.state.JSON2)){

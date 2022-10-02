@@ -1,14 +1,14 @@
 import * as fs from "fs";
 import { Controller, Get } from '@nestjs/common';
-import { BlueprintsService } from 'src/services/blueprints.service';
+import { DefaultBlueprintParser } from 'src/parsers/default.blueprints.parser';
 
 @Controller("blueprints")
 export class BlueprintsController {
-	constructor(private readonly blueprintsService: BlueprintsService) {}
+	constructor(private readonly defaultBlueprintParser: DefaultBlueprintParser) {}
 
 	@Get("backend")
 	async getBackendprints() {
-		return await this.blueprintsService.getBlueprints([
+		return await this.defaultBlueprintParser.getBlueprints([
 			'./packages/**/*.blueprint.ts',
 			'./src/blueprints/**/*.blueprint.ts',
 			'./.metadata/blueprints/**/*.blueprint.ts',
@@ -18,7 +18,7 @@ export class BlueprintsController {
 
 	@Get("frontend")
 	async getFrontendBlueprints() {
-		let blueprints = await this.blueprintsService.getBlueprints(['./**/*.blueprint.client.ts']);
+		let blueprints = await this.defaultBlueprintParser.getBlueprints(['./**/*.blueprint.client.ts']);
 
 		for(let key in blueprints){
 			if(fs.existsSync(blueprints[key].filename?.replace(".blueprint", "").replace(".ts", ".js")))

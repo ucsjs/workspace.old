@@ -54,7 +54,8 @@ exports.default = async ($metadata) => {
                 injection: `${collectionClassName}Entity`
             }],
             extras: [`\n\n@Entity()
-export class ${collectionClassName}Entity {${fields}};\n\n`]
+export class ${collectionClassName}Entity {${fields}};\n\n`],
+            args:[`{${collectionClassName}Entity}`]
         };
     }   
 

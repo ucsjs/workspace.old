@@ -14,18 +14,11 @@ export class MongoInsertBlueprint extends Blueprint{
 
     private state = { model: null, document: null, conditional: false };
 
-    public _awaitTrigger: boolean = false;
+    public _awaitTrigger: boolean = true;
 
     constructor(metadata?: any){
         super();
         this.setup(metadata);
-
-        this.input("conditional", Type.Boolean, false, async (conditional: boolean) => {
-            if(conditional !== undefined && typeof conditional === "boolean"){
-                this.state["conditional"] = conditional;
-                await this.run(this);
-            }
-        });
 
         this.input("schema", TypeMongoDB.Schema, null, async (model: Model<any>) => {
             if(model){
@@ -47,13 +40,14 @@ export class MongoInsertBlueprint extends Blueprint{
         this.output("error", Type.String, null);
     }
 
-    public async trigger(scope){
-        scope._awaitTrigger = false;
-        await scope.run(scope);
+    public async trigger(){
+        Logger.log(`Triggered`, "MongoInsertBlueprint");
+        this._awaitTrigger = false;
+        await this.run(this);
     }
 
     public async run(scope){
-        if(scope.state.model && scope.state.document && !scope._awaitTrigger && scope.state.conditional === true){
+        if(scope.state.model && scope.state.document && !scope._awaitTrigger){
             Logger.log(`Insert into MongoDB: ${JSON.stringify(scope.state.document)}`, "MongoInsertBlueprint");
 
             try{

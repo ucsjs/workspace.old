@@ -4,11 +4,11 @@ import * as fg from "fast-glob";
 import { Injectable } from '@nestjs/common';
 import { Parser } from "@ucsjs/blueprint";
 
-import { ParserService } from "./parser.service";
-import { RegexService } from "./regex.services";
+import { DefaultParser } from "./default.parser";
+import { RegexService } from "../services/regex.services";
 
 @Injectable()
-export class BlueprintsService extends ParserService{
+export class DefaultBlueprintParser extends DefaultParser{
     constructor(
         public regexService: RegexService
     ){
@@ -49,7 +49,6 @@ export class BlueprintsService extends ParserService{
     async parse(item, namespace): Promise<string>{
         const parser = new Parser(`${this.uppercaseFirstLetter(namespace)}Blueprint`, JSON.parse(item.content), [
             path.resolve("./src/blueprints/**/*.blueprint.ts"),
-            path.resolve("node_modules/@ucsjs/**/*.blueprint.ts"),
             path.resolve("packages/**/*.blueprint.ts"),
             path.resolve("./src/workspace/**/*.blueprint.ts"),
         ], path.resolve("."));
@@ -66,7 +65,10 @@ export class BlueprintsService extends ParserService{
             constructors: [],
             controllers: [],
             extras: [],
-            metadata: []
+            metadata: [],
+            args: [],
+            events: [],
+            flows: []
         };
 
         let moduleExtra = "";
@@ -94,6 +96,15 @@ export class BlueprintsService extends ParserService{
                 
                 if(dependency.controllers)
                     moduleInjection.controllers = moduleInjection.controllers.concat(dependency.controllers);
+
+                if(dependency.args)
+                    moduleInjection.args = moduleInjection.args.concat(dependency.args);
+
+                if(dependency.events)
+                    moduleInjection.events = moduleInjection.events.concat(dependency.events);
+
+                if(dependency.flows)
+                    moduleInjection.flows = moduleInjection.flows.concat(dependency.flows);
             }
 
             moduleInjection = JSON.parse(JSON.stringify(moduleInjection));
@@ -103,7 +114,7 @@ export class BlueprintsService extends ParserService{
         for(let itemKey in metadata.items){
             const item = metadata.items[itemKey];
 
-            if(!imports.includes(item.namespace) && item.namespace != "OutputBlueprint") {                
+            if(!imports.includes(item.namespace)) {                
                 const importModule = item.filename.replace(`${process.cwd()}/`, "").replace(".ts", "");
                 const builderModule = importModule.replace(".blueprint", ".builder");
 
@@ -125,9 +136,11 @@ export class BlueprintsService extends ParserService{
         }
 
         let result = await parser.export();
+        let $impots = "";
+        let $extra = "";
 
         if(moduleExtra)
-            result += moduleExtra;
+            $impots += moduleExtra;
 
         if(
             moduleInjection.imports.length > 0 || 
@@ -140,23 +153,62 @@ export class BlueprintsService extends ParserService{
                 let imports = [...new Set(moduleInjection.imports)];
 
                 for(let importModule of imports)
-                    result += `${importModule}\n`;
+                    $impots += `${importModule}\n`;
+
+                $impots += `{{extra}}\n`;
             }
+
+            result = result.replace("{{imports}}", $impots);
     
             if(moduleInjection && moduleInjection.extras){
                 for(let moduleExtra of moduleInjection.extras)
-                    result += `${moduleExtra}\n`;
+                    $extra += `${moduleExtra}\n`;
             }
 
-            result +=`import { Module } from "@nestjs/common";
+            result = result.replace("{{extra}}", $extra);
 
-@Module({
-    imports: [\n\t\t${moduleInjection.importsModule.join(",\n\t\t")}\n\t],
-    exports: [\n\t\t${moduleInjection.exports.join(",\n\t\t")}\n\t],
-    controllers: [\n\t\t${moduleInjection.controllers.join(",\n\t\t")}\n\t],
-    providers: [\n\t\t${moduleInjection.providers.join(",\n\t\t")}\n\t]
-})
+            if(moduleInjection.args.length > 0)
+                result = result.replace("{{args}}", `args = (typeof args === "object") ? { ...args, ...${moduleInjection.args} } : ${moduleInjection.args}`);
+            else
+                result = result.replace("{{args}}", "");
+
+            //Events
+            if(moduleInjection.events.length > 0)
+                result = result.replace("{{events}}", "\n" + moduleInjection.events.join("\n\n"));
+            else
+                result = result.replace("{{events}}", "");
+
+            //Events
+            if(moduleInjection.flows.length > 0)
+                result = result.replace("{{flows}}", "\n" + moduleInjection.flows.join("\n\n"));
+            else
+                result = result.replace("{{flows}}", "");
+            
+            if(
+                moduleInjection.importsModule.length > 0 ||
+                moduleInjection.exports.length > 0 ||
+                moduleInjection.controllers.length > 0 ||
+                moduleInjection.providers.length > 0 
+            ){
+                let $Module: any = {};
+
+                if(moduleInjection.importsModule.length > 0)
+                    $Module.imports = moduleInjection.importsModule;
+
+                if(moduleInjection.exports.length > 0)
+                    $Module.exports = moduleInjection.exports;
+                
+                if(moduleInjection.controllers.length > 0)
+                    $Module.controllers = moduleInjection.controllers;
+
+                if(moduleInjection.providers.length > 0)
+                    $Module.providers = moduleInjection.providers;
+
+                result +=`
+import { Module } from "@nestjs/common";
+@Module(${JSON.stringify($Module).replace(/["']/img, "")})
 export class LazyModule {}`;
+            }
         }
 
         return result;
@@ -169,7 +221,7 @@ export class LazyModule {}`;
         for(let itemKey in items){
             const item = items[itemKey];
 
-            if(!imports.includes(item.namespace) && item.namespace != "OutputBlueprint") {
+            if(!imports.includes(item.namespace)) {
                 const importModule = item.filename.replace(`${process.cwd()}/`, "").replace(".ts", "");
                 const builderModule = importModule.replace(".blueprint", ".builder");               
 

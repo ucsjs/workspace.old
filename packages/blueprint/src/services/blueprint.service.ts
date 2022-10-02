@@ -20,6 +20,12 @@ export class Blueprint {
             for(const key in metadata){
                 if(this.hasOwnProperty(`_${key}`))
                     this[`_${key}`] = metadata[key];
+                else if (key == "args"){
+                    if(Array.isArray(metadata[key])){
+                        let keys = Object.keys(metadata[key]);
+                        console.log(keys);
+                    }
+                }
             }
         }
     }
@@ -58,8 +64,12 @@ export class Blueprint {
     }
     
     subscribe(key: string, callback: (value: any) => void){
+        const input = this._inputs.find(input => input.key === key);
         const output = this._output.find(output => output.key === key);
         const event = this._events.find(event => event.key === key);
+
+        if(input)
+            input.value?.subscribe(callback);
 
         if(output)
             output.value?.subscribe(callback);

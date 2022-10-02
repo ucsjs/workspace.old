@@ -1,10 +1,10 @@
 import { Module } from '@nestjs/common';
 import { VisualController } from 'src/controllers/visual.controller';
-import { VisualService } from 'src/services/visual.service';
+import { DefaultVisualParser } from 'src/parsers/default.visual.parser';
 import { RegexService } from 'src/services/regex.services';
 
 @Module({
 	controllers: [VisualController],
-	providers: [VisualService, RegexService]
+	providers: [DefaultVisualParser, RegexService]
 })
 export class VisualModule {}

@@ -7,4 +7,6 @@ export class Component {
     protected __icon: string = "fa-solid fa-cube";
     protected __group: string = "";
     protected __script: boolean = false;
+    protected __formater: string = "";
+    protected __formaterStyle: string = "";
 }

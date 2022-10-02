@@ -1,4 +1,5 @@
 import { CoreObject } from "../Components/Core/CoreObject.componen";
+import { Head } from "./Head.component";
 import { Border } from "../Components/Style/Border.component";
 import { Background } from "../Components/Style/Background.component";
 import { Transform } from "../Components/Style/Transform.component";
@@ -11,8 +12,6 @@ export class Body extends CoreObject {
     protected override __namespace = "Body";
     protected override __resizable = false;
     protected override __moveble = false;
-    protected override __group = "";
-    protected override __icon = "fa-regular fa-square-full";
 
     public _class: Class;
     public _transform: Transform;

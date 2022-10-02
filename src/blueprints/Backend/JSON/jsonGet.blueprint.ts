@@ -17,8 +17,12 @@ export class JSONGetBlueprint extends Blueprint{
         this.setup(metadata);
 
         this.input("JSON", Type.JSON, null).subscribe((json) => {
-            if(typeof json === "object" && json !== null && json[this._key])
-                this.next("result", json[this._key]);
+            if(json){
+                if(typeof json === "object" && json[this._key])
+                    this.next("result", json[this._key]);
+                else
+                    Logger.log(`Recive JSON but dont has '${this._key}' key`, "JSONGetBlueprint");
+            }            
         });
 
         this.output("result", Type.Any, null);

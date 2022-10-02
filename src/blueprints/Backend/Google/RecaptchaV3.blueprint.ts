@@ -18,19 +18,21 @@ export class RecaptchaV3Blueprint extends Blueprint{
         this.event("valid");
 
         this.input("token", Type.String, null, async (token) => {
-            const result = await axios.post(`https://www.google.com/recaptcha/api/siteverify?secret=${this._siteKey}&response=${token}`)
+            if(token){
+                const result = await axios.post(`https://www.google.com/recaptcha/api/siteverify?secret=${this._siteKey}&response=${token}`)
             
-            if(result.status === 200){
-                if(result && result.data && result.data.success){
-                    this.next("valid", true);
-                    this.trigger("valid");
-                }                    
-                else 
+                if(result.status === 200){
+                    if(result && result.data && result.data.success){
+                        this.next("valid", true);
+                        this.trigger("valid");
+                    }                    
+                    else 
+                        this.next("error", "Invalid recaptcha token");
+                }
+                else{
                     this.next("error", "Invalid recaptcha token");
-            }
-            else{
-                this.next("error", "Invalid recaptcha token");
-            }
+                }
+            }            
         });
 
         this.output("valid", Type.Boolean, null);   

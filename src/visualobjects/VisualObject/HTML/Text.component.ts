@@ -5,7 +5,7 @@ import { BoxVisual } from "./Box.component";
 export class TextVisual extends BoxVisual {
     //Matadata
     protected override __namespace = "Text";
-    protected override __group = "Core";
+    protected override __group = "HTML";
     protected override __icon = "fa-solid fa-align-center";
     protected override __resizable = true;
     protected override __moveble = true;

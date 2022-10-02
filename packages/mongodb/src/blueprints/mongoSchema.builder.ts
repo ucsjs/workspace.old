@@ -68,7 +68,8 @@ export class ${collectionClassName}DTO extends Document {${fieldsInterfaceDTO}
 @Schema({ timestamps: ${timestamps}, collection: "${$settings.collection}" })
 export class ${collectionClassName}Document extends ${collectionClassName}DTO implements ${collectionClassName}Entity {${fieldsMongoose}};
 
-export const ${collectionClassName}Schema = SchemaFactory.createForClass(${collectionClassName}Document);`]
+export const ${collectionClassName}Schema = SchemaFactory.createForClass(${collectionClassName}Document);`],
+            args: [`{${collectionClassName}Schema, ${collectionClassName}DTO, ${collectionClassName}Document}`]
         };
     }   
 

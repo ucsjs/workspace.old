@@ -4,7 +4,7 @@ import { Image } from "../../Components/HTML/Image.component";
 export class ImageVisual extends BoxVisual {
     //Matadata
     protected override __namespace = "Image";
-    protected override __group = "Core";
+    protected override __group = "HTML";
     protected override __icon = "fa-regular fa-image";
     protected override __resizable = true;
     protected override __moveble = true;

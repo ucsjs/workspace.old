@@ -6,7 +6,7 @@ import { BoxVisual } from "../HTML/Box.component";
 export class NotificationVisual extends BoxVisual {
     //Matadata
     protected override __namespace = "Notification";
-    protected override __group = "UI";
+    protected override __group = "Components";
     protected override __icon = "fa-solid fa-circle-exclamation";
     protected override __resizable = true;
     protected override __moveble = true;

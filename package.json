@@ -1,6 +1,6 @@
 {
 	"name": "@ucsjs/workspace",
-	"version": "0.0.17",
+	"version": "0.0.42",
 	"description": "UCS.js (@workspace)",
 	"author": "Andre Ferreira <andrehrf@gmail.com>",
 	"license": "MIT",

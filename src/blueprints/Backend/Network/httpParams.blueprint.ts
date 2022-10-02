@@ -17,8 +17,10 @@ export class HTTPParamsBlueprint extends Blueprint{
         this.setup(metadata);
 
         this.input("request", HTTPTypes.Request, null).subscribe((request) => {
-            if(request)
+            if(request){
+                Logger.log(`Recive request: ${JSON.stringify(request.params)}`, "HTTPParamsBlueprint");
                 this.next("result", request.params);
+            }
         });
 
         this.output("params", Type.JSON, null);
