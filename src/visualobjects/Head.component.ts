@@ -1,4 +1,4 @@
-import { CoreObject } from "../Components/Core/CoreObject.componen";
+import { CoreObject } from "./Components/Core/CoreObject.componen";
 
 export class Head extends CoreObject {
     //Matadata

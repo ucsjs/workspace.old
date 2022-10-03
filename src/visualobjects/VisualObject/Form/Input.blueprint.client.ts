@@ -6,6 +6,7 @@ export class InputVisualBlueprint extends Blueprint{
     private __group = "Visual Objects";
     private __headerIcon = "fa-solid fa-i-cursor";
     private __headerColor = "#630000";
+    private __componentLink = "InputVisual";
 
     public _name: string = "";
  

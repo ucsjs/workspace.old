@@ -1,10 +1,10 @@
-import { CoreObject } from "../Components/Core/CoreObject.componen";
+import { CoreObject } from "./Components/Core/CoreObject.componen";
 import { Head } from "./Head.component";
-import { Border } from "../Components/Style/Border.component";
-import { Background } from "../Components/Style/Background.component";
-import { Transform } from "../Components/Style/Transform.component";
-import { Class } from "../Components/Style/Class.component";
-import { Margin } from "../Components/Style/Margin.component";
+import { Border } from "./Components/Style/Border.component";
+import { Background } from "./Components/Style/Background.component";
+import { Transform } from "./Components/Style/Transform.component";
+import { Class } from "./Components/Style/Class.component";
+import { Margin } from "./Components/Style/Margin.component";
 
 export class Body extends CoreObject {
     //Matadata

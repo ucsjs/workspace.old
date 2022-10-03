@@ -6,6 +6,9 @@ export class ButtonVisualBlueprint extends Blueprint{
     private __group = "Visual Objects";
     private __headerIcon = "fa-regular fa-hand-pointer";
     private __headerColor = "#630000";
+    private __componentLink = "ButtonVisual";
+
+    public _name: string = "";
  
     constructor(metadata?: any){
         super();

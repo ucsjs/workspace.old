@@ -265,4 +265,10 @@ export class DefaultParser {
     fixedLabel(value){
         return (typeof value == "string") ? this.uppercaseFirstLetter(value?.replace(/([A-Z])/g, " $1")) : '';
     }
+
+    generateSign(component){
+        return crypto.createHash("sha1")
+        .update(Buffer.from(JSON.stringify(component)))
+        .digest("hex")
+    }
 }

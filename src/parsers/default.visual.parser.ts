@@ -56,7 +56,11 @@ export class DefaultVisualParser extends DefaultParser {
         let exportedComponents = [];
 
         for(let key in components){
-            if(components[key].metadata.importable || components[key].extends == "VisualObject" || await this.rootIsVisualObject(components[key].extends, dependenciesIndex)){
+            if(components[key].metadata.importable || 
+                components[key].extends == "VisualObject" || 
+                components[key].extends == "CoreObject" || 
+                await this.rootIsVisualObject(components[key].extends, dependenciesIndex)
+            ){
                 const importModule = components[key].filename.replace(`${process.cwd()}/`, "").replace(".ts", "");
                 const builderModule = importModule.replace(".component", ".template");
                 const medatadaModule = importModule.replace(".component", ".metadata");
@@ -216,6 +220,8 @@ export class DefaultVisualParser extends DefaultParser {
     }
 
     async getFrontendBlueprints(paths: Array<string> = []){
+        const resolvePath = path.resolve(`./`);
+
         const files = await fg(paths, { 
             dot: true, 
             onlyFiles: true, 
@@ -231,16 +237,44 @@ export class DefaultVisualParser extends DefaultParser {
             const metadata = JSON.parse(fs.readFileSync(file, "utf-8"));
 
             if(metadata.itemsClient && metadata.itemsClient.length > 0){
-                if(metadata.metadata.importable){
-                    blueprints.push({
+                if(
+                    metadata.metadata.importable && 
+                    metadata.metadata.namespace && 
+                    metadata.metadata.group &&
+                    metadata.metadata.headerIcon.icon
+                ){
+                    let items = [];
+
+                    for(let item of metadata.itemsClient){
+                        let name = "";
+
+                        for(let publicVar of item.publicVars){
+                            if(publicVar.name === "name" && publicVar.value){
+                                name = publicVar.value;
+                                break;
+                            }
+                        }
+
+                        items.push({
+                            name,
+                            ...item
+                        });
+                    }
+
+                    let blueprint: any = {
+                        id: `${metadata.metadata.group}::${metadata.metadata.namespace}`,
+                        filename: file.replace(resolvePath, "").replace(/\//s, "").replace("/.", "/").replace(".meta", ".ts"),
                         namespace: metadata.metadata.namespace,
                         group: metadata.metadata.group,
                         icon: metadata.metadata.headerIcon.icon,
-                        color: metadata.metadata.headerColor.color,                        
-                        items: metadata.itemsClient,
+                        color: metadata.metadata.headerColor.color,                       
                         connections: metadata.connectionsClient,
                         metadata: metadata.metadata,
-                    });
+                        items
+                    };
+
+                    blueprint.sign = this.generateSign(blueprint);
+                    blueprints.push(blueprint);
                 }
             }
         }
