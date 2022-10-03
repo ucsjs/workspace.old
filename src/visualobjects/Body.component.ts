@@ -27,5 +27,6 @@ export class Body extends CoreObject {
         this._margin._marginLeft = 0;
         this._margin._marginRight = 0;
         this._transform._position = "";
+        this._background._color = { a: 1, b: 255, g: 255, r: 255, hex: "#ffffff" };
     }
 }

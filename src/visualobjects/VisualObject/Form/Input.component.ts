@@ -19,6 +19,22 @@ export class InputVisual extends BoxVisual {
         this._transform._position = "absolute";
         this._transform._width = 240;
         this._transform._height = 40;
+
+        this._border._borderWidthBottom = 1;
+        this._border._borderWidthLeft = 1;
+        this._border._borderWidthRight = 1;
+        this._border._borderWidthTop = 1;
+        this._border._borderColorBottom = { a: 1, b: 229, g: 70, r: 79, hex: "#171717" };
+        this._border._borderColorLeft = { a: 1, b: 229, g: 70, r: 79, hex: "#171717" };
+        this._border._borderColorRight = { a: 1, b: 229, g: 70, r: 79, hex: "#171717" };
+        this._border._borderColorTop = { a: 1, b: 229, g: 70, r: 79, hex: "#171717" };
+        this._border._radiusBottomLeft = 5;
+        this._border._radiusBottomRight = 5;
+        this._border._radiusTopLeft = 5;
+        this._border._radiusTopRight = 5;
+        this._margin._padding = 2;
+        this._background._color = { a: 1, b: 229, g: 70, r: 79, hex: "#FFFFFF" };
+        this._font._color = { a: 1, b: 255, g: 255, r: 255, hex: "#171717" };
     }
 
     public content(){

@@ -83,6 +83,21 @@ export class DefaultVisualParser extends DefaultParser {
                 if(components[key].extends)
                     components[key] = await this.injectRootDependencies(components[key], dependenciesIndex);
                 
+                
+                if(components[key]?.components){
+                    for(let subcomponent of components[key]?.components){
+                        const subcomponentNamespace = subcomponent.component.toLowerCase();
+                        let componentValue = {}
+    
+                        for(let componentsDefault of components[key]?.componentsDefaults){
+                            if(subcomponentNamespace === componentsDefault.component)
+                                componentValue[componentsDefault.property] = componentsDefault.value;
+                        }
+                        
+                        subcomponent.value = componentValue;
+                    }
+                }
+
                 if(!components[key].metadata.script){
                     exportedComponents.push({
                         namespace: components[key].namespace,

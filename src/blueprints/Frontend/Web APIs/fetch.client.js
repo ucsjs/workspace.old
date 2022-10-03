@@ -1,3 +1,15 @@
+/**
+ * Fetch API Frontend
+ * 
+ * The Fetch API provides an interface for fetching resources (including across the network). 
+ * It will seem familiar to anyone who has used XMLHttpRequest, but the new API provides a 
+ * more powerful and flexible feature set.
+ * 
+ * @version 0.0.1
+ * @author: Andre Ferreira <andre@ucsjs.io>
+ * @see https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API
+ */
+
 ($input, $events, $output) => {
     if(typeof $input?.url == "function"){
         let headersData = {}

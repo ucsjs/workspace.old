@@ -1,9 +1,22 @@
+/**
+ * Fetch API Blueprint
+ * 
+ * The Fetch API provides an interface for fetching resources (including across the network). 
+ * It will seem familiar to anyone who has used XMLHttpRequest, but the new API provides a 
+ * more powerful and flexible feature set.
+ * 
+ * @version 0.0.1
+ * @author: Andre Ferreira <andre@ucsjs.io>
+ * @see https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API
+ */
+
 import { Blueprint, Type } from "@ucsjs/blueprint";
 
-export class HTTPRequestClientBlueprint extends Blueprint{
+export class FetchClientBlueprint extends Blueprint{
     //Metadata
-    private __namespace = "Request";
-    private __group = "Network";
+    private __namespace = "Fetch";
+    private __group = "Web APIs";
+    private __headerColor = "#332946";
     private __headerIcon = "fa-solid fa-cloud-arrow-up";
     private __trigger = true;
     private __method = ["GET", "POST", "PUT", "DELETE", "PATCH"];
