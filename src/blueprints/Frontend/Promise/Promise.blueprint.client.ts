@@ -1,6 +1,5 @@
-import { Logger } from "@nestjs/common";
-import { Blueprint, Type } from "@ucsjs/blueprint";
-import { TypePromise } from "./PromiseTypes.enum";
+import { Blueprint } from "@ucsjs/blueprint";
+import { TypePromise } from "./promiseTypes.enum";
 
 export class PromiseClientBlueprint extends Blueprint{
     //Metadata

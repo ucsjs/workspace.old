@@ -5,7 +5,7 @@ import { FirebaseTypes } from "./firebaseTypes.enum";
 export class FirebaseInitBlueprint extends Blueprint{
     //Metadata
     private __namespace = "Firebase Init";
-    private __group = "Firebase";
+    private __group = "Google";
     private __headerIcon = "./public/icons/firebase.png";
     private __headerColor = "#b28910";    
     private __help = "https://firebase.google.com/docs/web/setup";

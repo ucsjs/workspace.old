@@ -149,14 +149,14 @@ import { Logger } from '@nestjs/common';
                 let hasInputs = false;
 
                 for(let keyPublicVars in this._metadata.items[key].publicVars){
-                    if(this._metadata.items[key].publicVars[keyPublicVars].value){
+                    if(this._metadata.items[key].publicVars[keyPublicVars].value != null){
                         newDefaults[this._metadata.items[key].publicVars[keyPublicVars].name] = this._metadata.items[key].publicVars[keyPublicVars].value;
                         hasInputs = true;
                     }                        
                 }
 
                 for(let keyInput in this._metadata.items[key].inputs){
-                    if(this._metadata.items[key].inputs[keyInput].value){
+                    if(this._metadata.items[key].inputs[keyInput].value != null){
                         newDefaults[this._metadata.items[key].inputs[keyInput].name] = this._metadata.items[key].inputs[keyInput].value;
                         hasInputs = true;
                     }                        

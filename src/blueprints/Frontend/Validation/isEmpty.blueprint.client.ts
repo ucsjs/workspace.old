@@ -1,8 +1,8 @@
 import { Blueprint, Type } from "@ucsjs/blueprint";
 
-export class NotEmptyClientBlueprint extends Blueprint{
+export class IsEmptyClientBlueprint extends Blueprint{
     //Metadata
-    private __namespace = "NotEmpty";
+    private __namespace = "Is Empty";
     private __group = "Validation";
     private __headerIcon = "fa-solid fa-check-double";
     private __headerColor = "#e55e1b";

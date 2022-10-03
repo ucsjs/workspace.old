@@ -210,6 +210,9 @@ import { Module } from "@nestjs/common";
 export class LazyModule {}`;
             }
         }
+        else{
+            result = result.replace(/{{.*?}}/img, "");
+        }
 
         return result;
     }
