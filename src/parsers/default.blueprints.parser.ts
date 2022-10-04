@@ -243,4 +243,126 @@ export class LazyModule {}`;
 
         return dependencies;
     }
+
+    async debugExpressionBlueprints(body){
+        let funcs = {};
+        let inputIndex = {};
+        let connectTo = {};
+        let valuesScope = {};
+        let connectionPrint = {};
+
+        let expressionRaw = `(() => { 
+    try {
+        let valuesScope = {};
+        let funcByBlueprint = {};
+        let connectionValues = {};\n\n`;
+
+        for(let keyBlueprint in body.blueprints){
+            const blueprint = body.blueprints[keyBlueprint];
+
+            if(!funcs[blueprint.namespace] && blueprint.content !== null){
+                expressionRaw += `\t\tfuncByBlueprint["${blueprint.namespace}"] = ${blueprint.content};\n`;
+                funcs[blueprint.namespace] = true;
+            }
+
+            for(let key in blueprint.inputs){
+                const input = blueprint.inputs[key];
+
+                inputIndex[input.id] = input.name;
+                inputIndex[`${input.id}-${keyBlueprint}`] = input.name;
+            }
+
+            for(let key in blueprint.outputs){
+                const output = blueprint.outputs[key];
+
+                inputIndex[output.id] = output.name;
+                inputIndex[`${output.id}-${keyBlueprint}`] = output.name;
+            }
+
+            for(let key in blueprint.publicVars){
+                const publicVar = blueprint.publicVars[key];
+
+                inputIndex[publicVar.id] = publicVar.name;
+                inputIndex[`${publicVar.id}-${keyBlueprint}`] = publicVar.name;
+
+                if(typeof publicVar.value == "string")
+                    expressionRaw += `\t\tvaluesScope["${blueprint.componentKey}_result"] = funcByBlueprint["${blueprint.namespace}"]({"${publicVar.name}": "${publicVar.value}"});\n`;
+                else
+                    expressionRaw += `\t\tvaluesScope["${blueprint.componentKey}_result"] = funcByBlueprint["${blueprint.namespace}"]({"${publicVar.name}": ${publicVar.value}});\n`;                
+                    
+                valuesScope[`${blueprint.componentKey}_result`] = true;
+            }
+        }
+
+        for(let connection of body.connections){
+            expressionRaw += `\n\t\tif(!connectionValues["${connection.to.componentKey}"]){
+                    connectionValues["${connection.to.componentKey}"] = {};
+                }\n\n`;
+        }
+
+        expressionRaw += ` 
+        let count = 0;
+        let persist = setInterval(() => {\n`;
+
+        for(let connection of body.connections){
+            expressionRaw += `\n\t\tif(valuesScope["${connection.from.componentKey}_${inputIndex[connection.from.input]}"] !== undefined){
+                connectionValues["${connection.to.componentKey}"]["${inputIndex[connection.to.input]}"] = valuesScope["${connection.from.componentKey}_${inputIndex[connection.from.input]}"];
+            }\n`;
+            connectTo[`${connection.to.componentKey}`] = true;
+            valuesScope[`${connection.from.componentKey}_${inputIndex[connection.from.input]}`] = true;
+            connectionPrint[`${connection.to.componentKey}_${inputIndex[connection.to.input]}`] = true;
+        }
+
+        for(let blueprint of body.blueprints){
+            if(connectTo[blueprint.componentKey]){
+                if(blueprint.namespace == "OutputExpBlueprint")
+                    expressionRaw += `\n\t\tif(connectionValues["${blueprint.componentKey}"]["input"] || connectionValues["${blueprint.componentKey}"]["input"] === false){
+                        clearInterval(persist);
+                        resolve({result: connectionValues["${blueprint.componentKey}"]["input"], valuesScope, connectionValues});
+                    }`
+                else
+                    expressionRaw += `\n\t\tif(connectionValues["${blueprint.componentKey}"] !== undefined){
+                        valuesScope["${blueprint.componentKey}_result"] = funcByBlueprint["${blueprint.namespace}"](connectionValues["${blueprint.componentKey}"]);
+                    }\n`;
+            }
+        } 
+
+        expressionRaw += `\t\t
+        count++;
+        if(count > 10){
+            clearInterval(persist);
+            reject("Timeout");
+        }
+    }, 100);\n`;
+    
+        expressionRaw += `\t} 
+        catch(e){
+            console.log(e);
+        }
+    })`;
+
+        try{
+            let promiseCall = null;
+            
+            eval(`promiseCall = new Promise((resolve, reject) => {
+                ${expressionRaw}();
+            });`);
+
+            let { result, valuesScope, connectionValues } = await promiseCall;
+
+            return {
+                expression: expressionRaw,
+                result,
+                valuesScope,
+                connectionValues
+            };
+        }
+        catch(e){
+            return {
+                expression: expressionRaw,
+                result: null,
+                error: e.message
+            };
+        }
+    }
 }
