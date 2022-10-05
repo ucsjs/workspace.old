@@ -38,6 +38,11 @@ export class InputVisual extends BoxVisual {
     }
 
     public content(){
-        return "<input :type='component.Input.type' :style='component.style' :value='component.Input.value' />";
+        return `<input 
+            class='cursor-default' 
+            :type='component.Input.type' 
+            :style='component.style' 
+            :value='component.Input.value' 
+        />`;
     }
 }
