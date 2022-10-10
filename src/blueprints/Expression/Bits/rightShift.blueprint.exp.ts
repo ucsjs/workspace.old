@@ -9,8 +9,8 @@ export class RightShiftExpBlueprint extends Blueprint{
 
     constructor(){
         super();
-        this.input("expr1", Type.Int, null);
-        this.input("expr2", Type.Int, null);
-        this.output("result", Type.Int, null);
+        this.input("expr1", Type.Byte, null);
+        this.input("expr2", Type.Byte, null);
+        this.output("result", Type.Byte, null);
     }
 }

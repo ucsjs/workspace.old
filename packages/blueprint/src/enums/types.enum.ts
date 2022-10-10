@@ -10,5 +10,6 @@ export enum Type {
     Date,
     Boolean,
     Array,
-    Object
+    Object,
+    Byte
 }

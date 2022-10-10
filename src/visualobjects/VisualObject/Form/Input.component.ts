@@ -32,7 +32,10 @@ export class InputVisual extends BoxVisual {
         this._border._radiusBottomRight = 5;
         this._border._radiusTopLeft = 5;
         this._border._radiusTopRight = 5;
-        this._margin._padding = 2;
+        this._margin._paddingBottom = 5;
+        this._margin._paddingTop = 5;
+        this._margin._paddingLeft = 5;
+        this._margin._paddingRight = 5;
         this._background._color = { a: 1, b: 229, g: 70, r: 79, hex: "#FFFFFF" };
         this._font._color = { a: 1, b: 255, g: 255, r: 255, hex: "#171717" };
     }
