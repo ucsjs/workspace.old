@@ -72,7 +72,18 @@ export class RegexService {
         return data;
     }
 
-    exec(regex, contents, legends){
+    getDataWithoutParserType(regex, contents, legends){
+        let data = [];
+
+        if(!Array.isArray(regex))
+            regex = [regex];
+
+        data = this.exec(regex, contents, legends, true);
+        
+        return data;
+    }
+
+    exec(regex, contents, legends, ignoreObject = false){
         let m;
         let data = [];
         let index = -1;
@@ -87,7 +98,7 @@ export class RegexService {
                         index++;
                         data[index] = {};
                     }
-                    else if(legends.length >= groupIndex && !match.includes("=") && !match.includes("new ")){
+                    else if(legends.length >= groupIndex && !match.includes("=") && !match.includes("new ") && !ignoreObject){
                         if(match.includes("{") && match.includes("}")){
                             data[index][legends[groupIndex-1].trim()] = {}
 
@@ -96,6 +107,9 @@ export class RegexService {
                         }
                         else
                             data[index][legends[groupIndex-1].trim()] = match.replace(/["']/isg, "").trim();
+                    }
+                    else if(ignoreObject){
+                        data[index][legends[groupIndex-1].trim()] = match.trim();
                     }
                         
                 });

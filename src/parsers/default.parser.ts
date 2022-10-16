@@ -113,11 +113,13 @@ export class DefaultParser {
             let rawMetadataList = [];
             let rawMetadataBool = [];
             let newMetadataObject = [];
+            let rawMetadataFormater = [];
 
             rawMetadata = this.regexService.getData(/private\s__(.*?)[\s]=[\s]["'](.*?)["'];/isg, contents, ["name", "value"], true);
             rawMetadataList = this.regexService.getData(/private\s__(.*?)[\s]=[\s]\[(.*?)\][;]/isg, contents, ["name", "value"], true);
             rawMetadataBool = this.regexService.getData(/private\s__(.*?)[\s]=[\s](.*?);/isg, contents, ["name", "value"], true);
             newMetadataObject = this.regexService.getData(/private\s__(.*?)[:]\s(.*?)[\s;][=][\s](.*?)[;]/isg, contents, ["name", "type", "default"], true);
+            rawMetadataFormater = this.regexService.getDataWithoutParserType(/private\s__(.*?)[\s]=[\s]["'](.*?)["'];/isg, contents, ["name", "value"]);
         
             if($metadataOverride){
                 const rawMetadataOverride = this.regexService.getData(/protected override\s__(.*?)[\s]=[\s]["'](.*?)["'];/isg, contents, ["name", "value"], true);
@@ -154,6 +156,11 @@ export class DefaultParser {
                 if(meta.name && meta.default)
                     metadata[meta.name] = meta.default;
             }
+
+            for(let meta of rawMetadataFormater){
+                if(meta.name && meta.value && meta.name.toLowerCase().includes('formater'))
+                    metadata[meta.name] = meta.value;
+            }       
 
             //Metadata File
             const medatadaModule = file.replace(".component", ".metadata").replace(".ts", "");
@@ -249,8 +256,6 @@ export class DefaultParser {
             component.sign = crypto.createHash("sha1")
             .update(Buffer.from(JSON.stringify(component)))
             .digest("hex");
-
-            //console.log(component);
 
             return component
         }

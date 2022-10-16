@@ -37,4 +37,10 @@ export class Font extends Component {
     public _weight: string;
     private __weightHelp = "https://www.w3schools.com/cssref/pr_font_weight.asp";
     private _weightChangeStyle = { style: "font-weight", styleVue: "fontWeight" };
+
+    public _shadow: object = { h: "number", v: "number", blur: "number", color: "Color", multi: true, formater: "shadowFormater", defaults: "shadowDefaultItem" };
+    private __shadowHelp = "https://www.w3schools.com/cssref/css3_pr_text-shadow.asp";
+    private _shadowChangeStyle = { style: "text-shadow", styleVue: "text-shadow" };
+    private __shadowFormater = "{h}px {v}px {{?blur}}{blur}px{{/blur}} {{?color}}{color.hex}{{/color}}";
+    private __shadowDefaultItem: object = { h: 0, v: 0, blur: 0, color: { r: 0, g: 0, b: 0, a: 1, hex: "#000000" } };
 }

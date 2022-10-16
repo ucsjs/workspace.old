@@ -179,9 +179,12 @@ export class FileService {
 				await fs.writeFileSync(`${dirname}/.${basename}.meta`, metadata);
 
 				//Controller
-				if(parser == "default"){
+				if(parser == "default" && metadata.items){
 					const contents = await this.defaultBlueprintParser.parse(item, parserBasename[0]);
 					await fs.writeFileSync(item.filename, contents);
+				}
+				else{
+					await fs.writeFileSync(item.filename, "");
 				}
 			}
 			else{

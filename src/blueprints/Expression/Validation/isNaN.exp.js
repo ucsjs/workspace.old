@@ -1,3 +1,3 @@
 ($inputs) => {
-    return isNaN($inputs["value"]);
+    return Number.isNaN($inputs["value"]);
 };

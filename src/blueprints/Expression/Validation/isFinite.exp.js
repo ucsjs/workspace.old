@@ -1,3 +1,3 @@
 ($inputs) => {
-    return isFinite($inputs["value"]);
+    return Number.isFinite($inputs["value"]);
 };

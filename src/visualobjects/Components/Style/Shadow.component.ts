@@ -9,7 +9,7 @@ export class Shadow extends Component {
     protected override __importable = true;
     protected override __script = true;
     protected override __formaterStyle = "box-shadow";
-    protected override __formater = "{left} {bottom} {blur} {spread} {color} {?inset}inset{/inset}";
+    protected override __formater = "{left} {bottom} {blur} {spread} {color} {{?inset}}{inset}{{/inset}}";
     
     public _color: Color;
     public _left: number = 1;
